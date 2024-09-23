@@ -129,6 +129,39 @@ a.active, a:hover {
     #check:checked ~ ul {
         left: 0;
     }
+    /* Style untuk Dropdown */
+    nav ul li .dropdown {
+        display: inline-block;
+    }
+
+    nav ul li .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    nav ul li .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+    nav ul li .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    nav ul li .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    nav ul li .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
 }
 
 
