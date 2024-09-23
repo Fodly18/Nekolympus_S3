@@ -55,6 +55,7 @@ nav ul {
 
 nav ul li {
     margin: 0 15px;
+    position: relative; /* Tambahkan untuk dropdown */
 }
 
 nav ul li a {
@@ -84,6 +85,33 @@ a.active, a:hover {
     display: none;
 }
 
+/* Dropdown Styles */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Media Queries */
 @media (max-width: 952px) {
     label.logo {
         font-size: 30px;
@@ -129,13 +157,18 @@ a.active, a:hover {
     #check:checked ~ ul {
         left: 0;
     }
-    .dropdown {
-        position: relative;
-        display: inline-block;
+
+    .dropdown-content {
+        position: static;
     }
     
-   
+    .dropdown:hover .dropdown-content {
+        display: block;
+        position: relative;
+        background: #2c3e50;
+    }
 }
+
 
 
 
