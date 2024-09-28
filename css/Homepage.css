@@ -69,6 +69,7 @@ nav ul {
 nav ul li {
     margin: 0 10px; /* Jarak antar item menu */
     position: relative; 
+    padding-top: 10px;
 }
 
 nav ul li a {
@@ -79,6 +80,7 @@ nav ul li a {
     padding: 10px 15px; /* Padding yang cukup untuk klik yang lebih nyaman */
     border-radius: 5px; /* Sudut yang lebih bulat */
     transition: background 0.3s, color 0.3s; /* Transisi yang halus */
+
 }
 
 nav ul li a:hover {
@@ -87,6 +89,7 @@ nav ul li a:hover {
 }
 
 /* Dropdown */
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -207,7 +210,7 @@ nav ul li a:hover {
     text-align: center;
 }
 
-/* Statistik */
+
 /* Statistik */
 .statistics-section {
     padding: 40px 20px;
@@ -323,7 +326,7 @@ nav ul li a:hover {
 .news-container {
     display: flex;
     align-items: center; 
-    height: 90vh; 
+    height: 60vh; 
 }
 
 .news-wrapper {
@@ -334,7 +337,7 @@ nav ul li a:hover {
 
 .news-item {
     flex: 0 0 auto; /* Mencegah item untuk menyusut */
-    width: 400px; /* Ganti dengan lebar yang diinginkan */
+    width: 200px; /* Ganti dengan lebar yang diinginkan */
     margin-right: 30px; /* Jarak antar item */
     background-color: white;
     border-radius: 10px;
@@ -361,7 +364,7 @@ nav ul li a:hover {
 }
 
 .news-description {
-    font-size: 14px;
+    font-size: 16px;
     color: #666;
     padding: 0 10px;
 

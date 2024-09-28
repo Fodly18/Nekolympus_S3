@@ -1,0 +1,241 @@
+/* Reset dan dasar */
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Navbar */
+nav {
+    background-color: rgb(219, 238, 247);
+    height: 65px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 999; 
+}
+
+/* Logo */
+label.logo {
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 50px; 
+    height: auto;
+    margin-right: 10px; 
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Rata kiri untuk teks */
+}
+
+.main-text {
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.sub-text {
+    font-size: 12px;
+    color: white;
+    margin-top: 2px; 
+}
+
+/* Navigation */
+nav ul {
+    display: flex;
+    justify-content: center; /* Memusatkan menu navigasi */
+    align-items: center; /* Memastikan item dalam garis yang sama */
+    flex: 1; /* Mengizinkan ul untuk mengisi ruang tersisa */
+}
+
+nav ul li {
+    margin: 0 10px; /* Jarak antar item menu */
+    position: relative; 
+    padding-top: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 16px; /* Ukuran font yang lebih besar untuk keterbacaan */
+    text-transform: capitalize;
+    padding: 10px 15px; /* Padding yang cukup untuk klik yang lebih nyaman */
+    border-radius: 5px; /* Sudut yang lebih bulat */
+    transition: background 0.3s, color 0.3s; /* Transisi yang halus */
+
+}
+
+nav ul li a:hover {
+    background: #1b9bff; /* Latar belakang saat hover */
+    color: white; /* Warna teks saat hover */
+}
+
+/* Dropdown */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #77afdd;
+    min-width: 150px; /* Lebar dropdown yang lebih besar */
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px; /* Sudut dropdown yang lebih bulat */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px; /* Padding yang lebih banyak untuk dropdown */
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 14px; /* Ukuran font yang lebih kecil */
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd; /* Latar belakang saat hover di dropdown */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Menampilkan dropdown saat hover */
+}
+
+/* Banner */
+.banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 65px; /* Sesuaikan dengan tinggi navbar jika fixed */
+}
+
+/* Gambar banner */
+.banner-jpg {
+    width: 100%;
+    height: auto; /* Gunakan auto agar tinggi gambar proporsional dengan lebar */
+    object-fit: cover; /* Mengisi seluruh kontainer dengan proporsi yang benar */
+}
+
+
+/* Footer */
+.footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 40px 0;
+}
+
+.footer h5 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.footer p, .footer ul {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer ul {
+    padding: 0;
+    list-style: none;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer .social-media {
+    list-style: none;
+    padding: 0;
+}
+
+.footer .social-media li {
+    display: inline;
+    margin-right: 15px;
+}
+
+.footer .social-media a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer .social-media a:hover {
+    color: #1abc9c; 
+}
+
+
+
+@media (max-width: 952px) {
+    label.logo {
+        font-size: 30px;
+        padding-left: 50px;
+    }
+    
+    nav ul li a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 858px) {
+    .checkbtn {
+        display: block;
+    }
+    
+    ul {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #2c3e50;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+    
+    nav ul li {
+        display: block;
+        margin: 50px 0;
+        line-height: 30px;
+    }
+    
+    nav ul li a {
+        font-size: 20px;
+    }
+    
+    a:hover, a.active {
+        background: none;
+        color: #0082e6;
+    }
+    
+    #check:checked ~ ul {
+        left: 0;
+    }
+
+    .dropdown-content {
+        position: static;
+    }
+    
+    .banner {
+        height: 50vh; 
+    }
+    
+    .foto {
+        display: block;
+        width: 100%; 
+    }
+}
