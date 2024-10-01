@@ -327,6 +327,7 @@ nav ul li a:hover {
     display: flex;
     align-items: center; 
     height: 60vh; 
+    justify-content: center;
 }
 
 .news-wrapper {
@@ -345,7 +346,6 @@ nav ul li a:hover {
     overflow: hidden;
     transition: transform 0.3s;
 }
-
 
 .news-item:hover {
     transform: translateY(-5px);
