@@ -302,8 +302,6 @@ nav ul li a:hover {
     color: #666;
 }
 
-
-
 /* Animasi fade-in */
 .fade-in {
     opacity: 0;
@@ -327,7 +325,7 @@ nav ul li a:hover {
     display: flex;
     align-items: center; 
     height: 60vh; 
-    justify-content: center;
+    justify-content: center;    
 }
 
 .news-wrapper {
