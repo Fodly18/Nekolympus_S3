@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="../asset/logo.png" type="image/png">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/css/forgotstyle.css">
+</head>
+<body>
+    <div class="container">
+        <div class="container-left">
+            <h1>SDN 01 Kalisat</h1>
+            <img src="../asset/duduk.png" alt="Login-png-duduk">
+        </div>
+        <div class="container-right">
+            <h2>Lupa Password</h2>
+            <form method="post" action="../Connection/Login.php">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" id="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" id="password" required>
+                    <label for="password">Password</label>
+                </div>  
+                <div class="remnreco">
+                    <label>
+                        <input type="checkbox" name="remember" id="remember">
+                        Remember Me
+                    </label>
+                    <p class="recover">
+                        <a href="#">Forgot Password?</a>
+                    </p>
+                </div>
+                <button type="submit" name="logIn">Log In</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
