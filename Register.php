@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="../asset/logo.png" type="image/png">
   <link rel="stylesheet" href="./css/register.css">
@@ -61,29 +62,24 @@
         echo "<a href='javascript:self.history.back()'><button class='btn'>Kembali</button></a>";
       }
       ?>
-
       <form method="post" action="">
-        <div class="input-group">
+        <div class="field input mb-3">
           <i class="fa-solid fa-user"></i>
-          <input type="text" name="fullname" id="fullname" required />
-          <label for="fullname">Full Name</label>
+          <input type="text" name="fullname" placeholder="Full Name" id="fullname" required />
         </div>
-        <div class="input-group">
+        <div class="field input mb-3">
           <i class="fas fa-envelope"></i>
-          <input type="email" name="email" id="email" required />
-          <label for="email">Email</label>
+          <input type="email" name="email" placeholder="Email" id="email" required />
         </div>
-        <div class="input-group">
+        <div class="field input mb-3">
           <i class="fas fa-lock"></i>
-          <input type="password" name="password" id="password" required />
-          <label for="password">Create Password</label>
+          <input type="password" name="password" placeholder="Create Password" id="password" required />
         </div>
-        <div class="input-group">
+        <div class="field input mb-3">
           <i class="fas fa-lock"></i>
-          <input type="password" name="confirm_password" id="confirm_password" required />
-          <label for="confirm_password">Confirm Password</label>
+          <input type="password" name="confirm_password" placeholder="Confirm Password" id="confirm_password" required />
         </div>
-        <button type="submit" name="register">Register</button>
+        <button class="btn" type="submit" name="register">Register</button>
       </form>
     </div>
   </div>
