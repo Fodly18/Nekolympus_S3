@@ -17,8 +17,8 @@ body{
 .container{
     display: flex;
     background:#fff;
-    width: 700px;
-    height: 350px;
+    width: 1000px;
+    height: 800px;
     margin:50px auto;
     border-radius:10px;
     box-shadow:0 0px 10px rgba(0,0,0,0.9);
