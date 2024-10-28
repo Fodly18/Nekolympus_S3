@@ -1,547 +1,530 @@
 * {
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: "Montserrat", sans-serif;
-  }
-  
-  /* Logo */
-  a.logo {
-    padding-left: 30px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo-img {
-    width: 50px;
-    height: auto;
-    margin-right: 10px;
-  }
-  
-  .header-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Rata kiri untuk teks */
-  }
-  
-  .main-text {
-    font-size: 24px;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-  }
-  
-  .sub-text {
-    font-size: 12px;
-    color: white;
-    margin-top: 2px;
-  }
-  
-  /* Navbar */
-  nav.navbar {
-    background-color: rgba(85, 85, 85, 0.2); /* Warna latar belakang navbar */
-    backdrop-filter: blur(10px); /* Efek blur pada background */
-    height: 65px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
-  }
-  
-  nav.navbar ul.navbar-nav li.nav-item a.nav-link {
-    text-decoration: none;
-    color: black; /* Warna teks navbar */
-    font-size: 16px;
-    text-transform: capitalize;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background 0.3s, color 0.3s;
-  }
-  
-  nav.navbar ul.navbar-nav li.nav-item a.nav-link:hover {
-    background-color: #1b9bff; /* Warna latar saat hover */
-    color: white; /* Warna teks saat hover */
-  }
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
 
-  
-  /* Navigation */
-  nav ul {
-    display: flex;
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Logo */
+a.logo {
+  padding-left: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Rata kiri untuk teks */
+}
+
+.main-text {
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.sub-text {
+  font-size: 12px;
+  color: white;
+  margin-top: 2px;
+}
+
+/* Navbar */
+nav.navbar {
+  background-color: rgba(255, 255, 255, 0.2); /* Warna latar belakang navbar */
+  backdrop-filter: blur(10px); /* Efek blur pada background */
+  height: 65px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+nav.navbar ul.navbar-nav li.nav-item a.nav-link {
+  text-decoration: none;
+  color: black; /* Warna teks navbar */
+  font-size: 16px;
+  text-transform: capitalize;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+}
+
+nav.navbar ul.navbar-nav li.nav-item a.nav-link:hover {
+  background-color: #1b9bff; /* Warna latar saat hover */
+  color: white; /* Warna teks saat hover */
+}
+
+/* Navigation */
+nav ul {
+  display: flex;
+}
+
+nav ul li {
+  margin: 0 10px; /* Jarak antar item menu */
+  position: relative;
+  padding-top: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 16px; /* Ukuran font yang lebih besar untuk keterbacaan */
+  text-transform: capitalize;
+  padding: 10px 15px; /* Padding yang cukup untuk klik yang lebih nyaman */
+  border-radius: 5px; /* Sudut yang lebih bulat */
+  transition: background 0.3s, color 0.3s; /* Transisi yang halus */
+}
+
+nav ul li a:hover {
+  background: #1b9bff; /* Latar belakang saat hover */
+  color: white; /* Warna teks saat hover */
+}
+
+/* Dropdown */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #77afdd;
+  min-width: 150px; /* Lebar dropdown yang lebih besar */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px; /* Sudut dropdown yang lebih bulat */
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px; /* Padding yang lebih banyak untuk dropdown */
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  font-size: 14px; /* Ukuran font yang lebih kecil */
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd; /* Latar belakang saat hover di dropdown */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block; /* Menampilkan dropdown saat hover */
+}
+
+/* Banner */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.png {
+  width: 100%;
+  object-fit: contain;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  animation: fadeIn 1s 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
   }
-  
-  nav ul li {
-    margin: 0 10px; /* Jarak antar item menu */
-    position: relative;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-    font-size: 16px; /* Ukuran font yang lebih besar untuk keterbacaan */
-    text-transform: capitalize;
-    padding: 10px 15px; /* Padding yang cukup untuk klik yang lebih nyaman */
-    border-radius: 5px; /* Sudut yang lebih bulat */
-    transition: background 0.3s, color 0.3s; /* Transisi yang halus */
-  }
-  
-  nav ul li a:hover {
-    background: #1b9bff; /* Latar belakang saat hover */
-    color: white; /* Warna teks saat hover */
-  }
-  
-  /* Dropdown */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #77afdd;
-    min-width: 150px; /* Lebar dropdown yang lebih besar */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-radius: 5px; /* Sudut dropdown yang lebih bulat */
-    margin-top: 10px;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 12px 20px; /* Padding yang lebih banyak untuk dropdown */
-    text-decoration: none;
-    display: block;
-    text-align: left;
-    font-size: 14px; /* Ukuran font yang lebih kecil */
-  }
-  
-  .dropdown-content a:hover {
-    background-color: #777575; /* Latar belakang saat hover di dropdown */
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block; /* Menampilkan dropdown saat hover */
-  }
-  
-  /* Banner */
-  .banner {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-  }
-  
-  .banner-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  .png {
-    width: 100%;
-    object-fit: contain;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    animation: fadeIn 1s 1s forwards;
-  }
-  
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
-  }
-  
-  /* Sambutan */
-  .sambutan-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 100px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .sambutan-text {
-    flex: 1;
-    margin-right: 20px;
-    text-align: justify; /* Rata kanan-kiri untuk teks sambutan */
-  }
-  
-  .sambutan-text h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: left; /* Rata kiri untuk h2 */
-  }
-  
-  .sambutan-text p {
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  
-  /* Sambutan Foto */
-  .sambutan-foto img {
-    width: 300px;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .nama-kepala-sekolah {
-    margin-top: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-  }
-  
-  /* Statistik */
-  .statistics-section {
-    padding: 40px 20px;
-    background-color: #f5f5f5;
-    text-align: center;
-  }
-  
-  .section-title {
-    font-size: 28px;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .statistics-description {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  
-  .statistics-container {
-    height: 90vh;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .statistics-image {
-    flex: 1;
-    text-align: left;
-    padding-right: 20px;
-    padding-left: 50px;
-  }
-  
-  .statistics-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .statistics-content {
-    flex: 1;
-    padding-left: 20px;
-  }
-  
-  .stat-items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-  
-  .stat-item {
-    background-color: white;
-    margin: 15px;
-    padding: 20px;
-    height: 30vh;
-    width: 150px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Bayangan lebih kuat untuk kesan 3D */
-    transition: transform 0.3s, box-shadow 0.3s; /* Tambahkan transisi untuk bayangan */
-    perspective: 1000px; /* Tambahkan perspektif */
-  }
-  
-  .stat-item:hover {
-    transform: translateY(-10px) scale(1.1) rotateY(10deg);
-    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .stat-item i {
-    font-size: 40px;
-    color: #1b9bff;
-    margin-bottom: 10px;
-    transition: color 0.3s; /* Transisi untuk warna ikon */
-  }
-  
-  .stat-item:hover i {
-    color: #004d99; /* Ubah warna ikon saat hover */
-  }
-  
-  .stat-value {
-    font-size: 36px;
-    font-weight: bold;
-    color: #333;
-    margin: 10px 0;
-  }
-  
-  .stat-label {
-    font-size: 16px;
-    color: #666;
-  }
-  
-  /* News */
-  .news-section {
-    padding: 40px 20px;
-    background-color: #f5f5f5;
-    text-align: center;
-  }
-  
-  .news-container {
-    display: flex;
-    align-items: center; 
-    height: 60vh; 
-    justify-content: center;    
+}
+
+/* Sambutan */
+.sambutan-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sambutan-text {
+  flex: 1;
+  margin-right: 20px;
+  text-align: justify; /* Rata kanan-kiri untuk teks sambutan */
+}
+
+.sambutan-text h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: left; /* Rata kiri untuk h2 */
+}
+
+.sambutan-text p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Sambutan Foto */
+.sambutan-foto img {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nama-kepala-sekolah {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* Statistik */
+.statistics-section {
+  padding: 40px 20px;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.statistics-description {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.statistics-container {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.statistics-image {
+  flex: 1;
+  text-align: left;
+  padding-right: 20px;
+  padding-left: 50px;
+}
+
+.statistics-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.statistics-content {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.stat-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.stat-item {
+  background-color: white;
+  margin: 15px;
+  padding: 20px;
+  height: 30vh;
+  width: 150px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Bayangan lebih kuat untuk kesan 3D */
+  transition: transform 0.3s, box-shadow 0.3s; /* Tambahkan transisi untuk bayangan */
+  perspective: 1000px; /* Tambahkan perspektif */
+}
+
+.stat-item:hover {
+  transform: translateY(-10px) scale(1.1) rotateY(10deg);
+  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.stat-item i {
+  font-size: 40px;
+  color: #1b9bff;
+  margin-bottom: 10px;
+  transition: color 0.3s; /* Transisi untuk warna ikon */
+}
+
+.stat-item:hover i {
+  color: #004d99; /* Ubah warna ikon saat hover */
+}
+
+.stat-value {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+}
+
+.stat-label {
+  font-size: 16px;
+  color: #666;
+}
+
+/* News */
+.news-section {
+  padding: 40px 20px;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.news-container {
+  display: flex;
+  align-items: center;
+  height: 60vh;
+  justify-content: center;
 }
 
 .news-wrapper {
-    display: flex;
-    overflow: hidden;
-    height: 100%;
-  }
-  
-  .news-item {
-    flex: 0 0 auto; /* Mencegah item untuk menyusut */
-    width: 200px; /* Ganti dengan lebar yang diinginkan */
-    margin-right: 30px; /* Jarak antar item */
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s;
+  display: flex;
+  overflow: hidden;
+  height: 100%;
+}
+
+.news-item {
+  flex: 0 0 auto; /* Mencegah item untuk menyusut */
+  width: 200px; /* Ganti dengan lebar yang diinginkan */
+  margin-right: 30px; /* Jarak antar item */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
 }
 
 .news-item:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
+}
+
+.news-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.news-title {
+  font-size: 18px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.news-description {
+  font-size: 16px;
+  color: #666;
+  padding: 0 10px;
+}
+@media (max-width: 768px) {
+  .news-item {
+    width: 200px; /* Lebar item untuk layar kecil */
   }
-  
+}
+
+/* Tombol navigasi berita */
+.arrow {
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1;
+}
+
+/* Footer dan konten */
+.footer-text {
+  width: 100%;
+  height: 70vh;
+  border: solid;
+  background-color: rgb(193, 193, 255);
+}
+
+.berita-terkini {
+  height: 70vh;
+  background-color: #0082e6;
+}
+
+/* Footer */
+.footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 40px 0;
+}
+
+.footer h5 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.footer p,
+.footer ul {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer ul {
+  padding: 0;
+  list-style: none;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer .social-media {
+  list-style: none;
+  padding: 0;
+}
+
+.footer .social-media li {
+  display: inline;
+  margin-right: 15px;
+}
+
+.footer .social-media a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer .social-media a:hover {
+  color: #1abc9c;
+}
+
+/* Animasi fade-in */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* 0.5s adalah durasi */
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Styles for Mobile */
+@media (max-width: 768px) {
+  .carousel-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the news item */
+  }
+
+  .carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .carousel-item .col-lg-3 {
+    flex: 0 0 100%; /* Make the news item take full width on mobile */
+    max-width: 100%;
+  }
+
   .news-img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+    height: 250px; /* Optional: Adjust height for mobile */
   }
-  
-  .news-title {
-    font-size: 18px;
-    color: #333;
-    margin: 10px 0;
-  }
-  
-  .news-description {
-    font-size: 16px;
-    color: #666;
-    padding: 0 10px;
-  }
-  @media (max-width: 768px) {
-    .news-item {
-      width: 200px; /* Lebar item untuk layar kecil */
-    }
-  }
-  
-  /* Tombol navigasi berita */
-  .arrow {
-    background-color: transparent;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1;
-  }
-  
-  /* Footer dan konten */
-  .footer-text {
-    width: 100%;
-    height: 70vh;
-    border: solid;
-    background-color: rgb(193, 193, 255);
-  }
-  
-  .berita-terkini {
-    height: 70vh;
-    background-color: #0082e6;
-  }
-  
-  /* Footer */
-  .footer {
-    background-color: #2c3e50;
-    color: white;
-    padding: 40px 0;
-  }
-  
-  .footer h5 {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .footer p,
-  .footer ul {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  
-  .footer ul {
-    padding: 0;
-    list-style: none;
-  }
-  
-  .footer ul li {
-    margin-bottom: 10px;
-  }
-  
-  .footer .social-media {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer .social-media li {
-    display: inline;
-    margin-right: 15px;
-  }
-  
-  .footer .social-media a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  .footer .social-media a:hover {
-    color: #1abc9c;
-  }
-  
-  /* Animasi fade-in */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* 0.5s adalah durasi */
-  }
-  
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Responsive Styles for Mobile */
-  @media (max-width: 768px) {
-    .carousel-inner {
-      display: flex;
-      flex-direction: column;
-      align-items: center; /* Centers the news item */
-    }
-  
-    .carousel-item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  
-    .carousel-item .col-lg-3 {
-      flex: 0 0 100%; /* Make the news item take full width on mobile */
-      max-width: 100%;
-    }
-  
-    .news-img {
-      height: 250px; /* Optional: Adjust height for mobile */
-    }
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .carousel-item {
-      display: flex;
-      justify-content: center;
-    }
-  
-    .carousel-item .col-lg-3 {
-      flex: 0 0 100%; /* Make the news item take full width on mobile */
-      max-width: 100%;
-    }
-  
-    .news-img {
-      height: 250px; /* Optional: Adjust height for mobile */
-    }
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .news-item {
-      flex: 0 0 100%; /* 1 item di mobile */
-    }
-  }
-  
-  /* Responsiveness */
-  @media (max-width: 768px) {
-    /* Navbar */
-    nav.navbar {
-      padding: 10px 15px;
-    }
-  
-    .logo-img {
-      width: 40px; /* Perkecil ukuran logo */
-    }
-  
-    .main-text {
-      font-size: 18px; /* Ukuran teks lebih kecil */
-    }
-  
-    .sub-text {
-      font-size: 10px; /* Ukuran teks lebih kecil */
-    }
-    nav ul li {
-        background-color: rgba(55, 59, 63, 0.5); /* Warna putih dengan transparansi 50% */
-        margin: 0 -30px; /* Jarak antar item menu */
-        backdrop-filter: blur(10px); /* Efek blur pada background */
-    }
-    nav ul li a{
-    margin-top: 10px;
-    
-    }
+}
 
-    .dropdown-content{
-        z-index: 1;
-        background-color: #0082e6;
-        margin-top: 0px;
-    }
-
-    /* Banner */
-    .banner {
-      height: 50vh; /* Perkecil tinggi banner */
-    }
-  
-    /* Section Sambutan */
-    .sambutan-container {
-      flex-direction: column; /* Ubah arah flex menjadi kolom */
-      padding: 20px; /* Perkecil padding */
-    }
-  
-    .sambutan-foto img {
-      width: 200px; /* Perkecil gambar kepala sekolah */
-    }
-  
-    /* Statistik */
-    .statistics-container {
-      flex-direction: column; /* Ubah arah flex menjadi kolom */
-      height: auto; /* Biarkan konten mengalir */
-    }
-  
-    .stat-item {
-      width: 100%; /* Biarkan stat-item mengisi lebar penuh */
-      margin: 10px 0; /* Tambahkan margin antara stat-item */
-    }
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .carousel-item {
+    display: flex;
+    justify-content: center;
   }
-  
+
+  .carousel-item .col-lg-3 {
+    flex: 0 0 100%; /* Make the news item take full width on mobile */
+    max-width: 100%;
+  }
+
+  .news-img {
+    height: 250px; /* Optional: Adjust height for mobile */
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .news-item {
+    flex: 0 0 100%; /* 1 item di mobile */
+  }
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  /* Navbar */
+  nav.navbar {
+    padding: 10px 15px;
+  }
+
+  .logo-img {
+    width: 40px; /* Perkecil ukuran logo */
+  }
+
+  .main-text {
+    font-size: 18px; /* Ukuran teks lebih kecil */
+  }
+
+  .sub-text {
+    font-size: 10px; /* Ukuran teks lebih kecil */
+  }
+
+  /* Banner */
+  .banner {
+    height: 50vh; /* Perkecil tinggi banner */
+  }
+
+  /* Section Sambutan */
+  .sambutan-container {
+    flex-direction: column; /* Ubah arah flex menjadi kolom */
+    padding: 20px; /* Perkecil padding */
+  }
+
+  .sambutan-foto img {
+    width: 200px; /* Perkecil gambar kepala sekolah */
+  }
+
+  /* Statistik */
+  .statistics-container {
+    flex-direction: column; /* Ubah arah flex menjadi kolom */
+    height: auto; /* Biarkan konten mengalir */
+  }
+
+  .stat-item {
+    width: 100%; /* Biarkan stat-item mengisi lebar penuh */
+    margin: 10px 0; /* Tambahkan margin antara stat-item */
+  }
+}
