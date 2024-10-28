@@ -131,6 +131,46 @@ nav ul li a:hover {
     object-fit: cover; /* Mengisi seluruh kontainer dengan proporsi yang benar */
 }
 
+.container-teks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f9;
+    text-align: center;
+    height: 100vh; /* Memastikan kontainer mengambil seluruh tinggi viewport */
+    flex-direction: column; /* Mengatur elemen teks menjadi kolom vertikal */
+    margin: 0; /* Menghapus margin default jika ada */
+}
+
+.announcement {
+    color: #d32f2f;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Style untuk detail */
+.details {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Style untuk status */
+.status {
+    color: #2b5dab;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* Style untuk catatan */
+.note {
+    color: #333;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
 
 /* Footer */
 .footer {
