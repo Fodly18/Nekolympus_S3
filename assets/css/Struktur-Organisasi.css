@@ -135,14 +135,12 @@ nav ul li a:hover {
     background-color: #ffffff;
     margin-top: auto;
 }
-
-/* CSS tambahan */
-
-.GambarStruktur {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+.struktur {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
 }
 
 /* Footer */
