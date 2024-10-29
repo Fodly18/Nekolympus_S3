@@ -12,7 +12,7 @@ session_start();
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
 
       <!--=============== CSS ===============-->
-      <link rel="stylesheet" href="assets/css/homeadmin.css">
+      <link rel="stylesheet" href="/assets/css/homeadmin.css">
 
       <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
    </head>
@@ -55,9 +55,9 @@ session_start();
                         <span>Dashboard</span>
                      </a>
                      
-                     <a href="#" class="sidebar__link">
+                     <a href="/admin/UserManage.php" class="sidebar__link">
                         <i class="ri-wallet-3-fill"></i>
-                        <span>My Wallet</span>
+                        <span>Manage User</span>
                      </a>
 
                      <a href="#" class="sidebar__link">
