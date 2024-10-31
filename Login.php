@@ -4,13 +4,16 @@
 <head>
     <title>Login Page</title>
     <link rel="icon" href="/assets/img/logo.png" type="image/png">
+
     <link rel="stylesheet" type="text/css" href="./assets/css/loginstyle.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 
 <body>
+
     <img class="wave" src="./assets/img/wavelog.png">
     <div class="container">
         <div class="img">
@@ -82,6 +85,7 @@
                 </div>
                 <a href="ForgotPass.php">Forgot Password?</a>
                 <input type="submit" class="btn" name="logIn" value="Log In">
+
             </form>
         </div>
     </div>
