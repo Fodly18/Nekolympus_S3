@@ -43,8 +43,8 @@ a.logo {
 
 /* Navbar */
 nav.navbar {
-  background-color: rgba(255, 255, 255, 0.2); /* Warna latar belakang navbar */
-  backdrop-filter: blur(10px); /* Efek blur pada background */
+  background-color: rgba(1, 41, 94, 0.2); /* Warna latar belakang navbar */
+  backdrop-filter: blur(5px); /* Efek blur pada background */
   height: 65px;
   width: 100%;
   display: flex;
@@ -488,6 +488,9 @@ nav ul li a:hover {
   /* Navbar */
   nav.navbar {
     padding: 10px 15px;
+  }
+  .navbar-toggler-icon {
+    
   }
 
   .logo-img {
