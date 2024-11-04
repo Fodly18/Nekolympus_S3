@@ -1,30 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
-   <link rel="stylesheet" href="/assets/css/homeadmin.css">
-</head>
-
-<body>
-   <!--=============== HEADER ===============-->
-   <header class="header" id="header">
-      <div class="header__container">
-         <a href="#" class="header__logo">
-            <i class="ri-cloud-fill"></i>
-            <span>Cloud</span>
-         </a>
-
-         <button class="header__toggle" id="header-toggle">
-            <i class="ri-menu-line"></i>
-         </button>
-      </div>
-   </header>
-
-   <!--=============== SIDEBAR ===============-->
-   <nav class="sidebar" id="sidebar">
+<!--=============== SIDEBAR ===============-->
+<nav class="sidebar" id="sidebar">
       <div class="sidebar__container">
          <div class="sidebar__user">
             <div class="sidebar__img">
@@ -103,14 +78,3 @@
          </div>
       </div>
    </nav>
-
-   <!--=============== MAIN ===============-->
-   <main class="main container" id="main">
-      <h1>Sidebar Menu</h1>
-   </main>
-
-   <!--=============== MAIN JS ===============-->
-   <script src="/assets/js/homeadmin.js"></script>
-</body>
-
-</html>
