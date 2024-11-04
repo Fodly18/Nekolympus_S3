@@ -68,7 +68,7 @@ nav.navbar ul.navbar-nav li.nav-item a.nav-link {
 }
 
 nav.navbar ul.navbar-nav li.nav-item a.nav-link:hover {
-  background-color: #1b9bff; /* Warna latar saat hover */
+  background-color: hsl(206, 100%, 55%); /* Warna latar saat hover */
   color: white; /* Warna teks saat hover */
 }
 
@@ -488,9 +488,24 @@ nav ul li a:hover {
   /* Navbar */
   nav.navbar {
     padding: 10px 15px;
-  }
-  .navbar-toggler-icon {
     
+  }
+  nav ul li {
+    background-color: rgba(76, 130, 231, 0.5); /* Warna semi-transparan */
+    margin-inline: -30px;
+    backdrop-filter: blur(10px); /* Menerapkan efek blur */
+    -webkit-backdrop-filter: blur(10px); /* Dukungan untuk browser WebKit */
+}
+
+
+  .toggler-logo {
+    display: inline-block;
+    width: 30px; /* Sesuaikan ukuran logo */
+    height: auto;
+  }
+
+  .navbar-toggler-icon {
+    display: none; /* Sembunyikan ikon default */
   }
 
   .logo-img {

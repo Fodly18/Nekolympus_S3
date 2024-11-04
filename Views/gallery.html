@@ -13,88 +13,138 @@
 </head>
 
 <body>
-    <header>
-        <!-- NAVBAR -->
-<div class="isiHeader">
-    <nav>
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
-        <label class="logo">
-            <img src="/assets/img/logo.png" alt="Logo" class="logo-img"> 
-            <div class="header-text">
-                <span class="main-text">SDN 1 KALISAT</span> 
-                <span class="sub-text">Kalisat - Jember</span> 
-            </div>
-        </label>
-        <ul class="Content-nav">
-            <li><a class="active" href="/index.html">Beranda</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Profil</a>
-                <div class="dropdown-content">
-                    <a href="/Views/sejarah.html">Sejarah</a>
-                    <a href="/Views/Visi-misi.html">Visi dan Misi</a>
-                    <a href="/Views/Struktur-Organisasi.html">Struktur Organisasi</a>
-                </div>
-            </li>                    
-            <li><a href="#">Akademik</a></li>
-            <li><a href="/Views/gallery.html">Gallery</a></li>
-            <li><a href="/Views/ppdb.html">PPDB</a></li>
-            <li><a href="/Views/kontak.html">Kontak</a></li>
-        </ul>
-    </nav>
-</div>
+    <!-- navbar -->
+   <nav class="navbar navbar-expand-lg bg-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand logo" href="#">
+        <img src="/assets/img/logo.png" class="logo-img" alt="Logo" />
+        <div class="header-text">
+          <span class="main-text">SDN 1 Kalisat</span>
+          <span class="sub-text">Kalisat - Jember</span>
+        </div>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <img src="/assets/img/logo-small.png" alt="Logo" class="toggler-logo d-none" />
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    </header>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html">Beranda</a>
+          </li>
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#">Profil</a>
+            <div class="dropdown-content">
+              <a href="/Views/sejarah.html">Sejarah</a>
+              <a href="/Views/Visi-misi.html">Visi dan Misi</a>
+              <a href="/Views/Struktur-Organisasi.html">Struktur Organisasi</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Views/gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Views/ppdb.html">PPDB</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Views/kontak.html">Kontak</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
     <!-- Banner  -->
     <div class="banner">
         <img class="banner-jpg" src="/assets/img/bnn.jpeg" alt="Banner JPG">
     </div>
 
-    <!-- Gallery -->
-    <section id="gallery">
-        <div class="gallery-container">
-            <h2>Galeri Kegiatan</h2>
-            
-            <div class="gallery-grid">
-                <!-- Contoh Gambar 1 -->
-                <div class="gallery-item">
-                    <img src="/assets/img/foto1.jpg" alt="Kegiatan 1" class="gallery-img">
-                </div>
-    
-                <!-- Contoh Gambar 2 -->
-                <div class="gallery-item">
-                    <img src="/assets/img/foto2.jpg" alt="Kegiatan 2" class="gallery-img">
-                </div>
-    
-                <!-- Contoh Gambar 3 -->
-                <div class="gallery-item">
-                    <img src="/assets/img/foto3.jpg" alt="Kegiatan 3" class="gallery-img">
-                </div>
-    
-                <!-- Contoh Gambar 4 -->
-                <div class="gallery-item">
-                    <img src="/assets/img/foto4.jpg" alt="Kegiatan 4" class="gallery-img">
-                </div>
-    
-                <!-- Contoh Gambar 5 -->
-                <div class="gallery-item">
-                    <img src="/assets/img/foto5.jpg" alt="Kegiatan 5" class="gallery-img">
-                </div>
-    
-                <!-- Contoh Gambar 6 -->
-                <div class="gallery-item">
-                    <img src="/assets/img/foto6.jpg" alt="Kegiatan 6" class="gallery-img">
+  <!-- Gallery -->
+<section id="gallery">
+    <div class="container">
+        <h2 class="text-center mb-4">Galeri Kegiatan</h2>
+        <div class="row">
+            <!-- Contoh Card Gambar 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card gallery-card" data-src="/assets/img/foto1.jpg">
+                    <img src="/assets/img/foto1.jpg" class="card-img-top" alt="Kegiatan 1">
+                    <div class="card-body">
+                        <p class="card-text">Deskripsi kegiatan 1 di sini.</p>
+                    </div>
                 </div>
             </div>
+
+            <!-- Contoh Card Gambar 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card gallery-card" data-src="/assets/img/foto2.jpg">
+                    <img src="/assets/img/foto2.jpg" class="card-img-top" alt="Kegiatan 2">
+                    <div class="card-body">
+                        <p class="card-text">Deskripsi kegiatan 2 di sini.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card gallery-card" data-src="/assets/img/foto3.jpg">
+                    <img src="/assets/img/foto3.jpg" class="card-img-top" alt="Kegiatan 3">
+                    <div class="card-body">
+                        <p class="card-text">Deskripsi kegiatan 3 di sini.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card gallery-card" data-src="/assets/img/foto4.jpg">
+                    <img src="/assets/img/foto4.jpg" class="card-img-top" alt="Kegiatan 3">
+                    <div class="card-body">
+                        <p class="card-text">Deskripsi kegiatan 3 di sini.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card gallery-card" data-src="/assets/img/foto5.jpg">
+                    <img src="/assets/img/foto5.jpg" class="card-img-top" alt="Kegiatan 3">
+                    <div class="card-body">
+                        <p class="card-text">Deskripsi kegiatan 3 di sini.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card gallery-card" data-src="/assets/img/foto6.jpg">
+                    <img src="/assets/img/foto6.jpg" class="card-img-top" alt="Kegiatan 3">
+                    <div class="card-body">
+                        <p class="card-text">Deskripsi kegiatan 3 di sini.</p>
+                    </div>
+                </div>
+            </div>
+
+            
         </div>
-    
-        <!-- Modal untuk memperbesar gambar -->
-        <div id="gallery-modal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="modal-img">
+    </div>
+
+    <!-- Modal untuk memperbesar gambar -->
+    <div id="gallery-modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+</section>
+
+
         </div>
-    </section>
+    </div>
+</section>
+
     
  <!-- FOOTER -->
  <footer class="footer">
@@ -126,31 +176,34 @@
         </div>
     </div>
 </footer>
+
 <script>
-    // Modal functionality
-    const modal = document.getElementById('gallery-modal');
-    const modalImg = document.getElementById('modal-img');
-    const closeBtn = document.getElementsByClassName('close')[0];
-    
-    // Membuka modal ketika gambar diklik
-    document.querySelectorAll('.gallery-img').forEach(img => {
-        img.addEventListener('click', function() {
-            modal.style.display = 'flex';
-            modalImg.src = this.src;
-        });
+   // Modal functionality
+const modal = document.getElementById('gallery-modal');
+const modalImg = document.getElementById('modal-img');
+const closeBtn = document.getElementsByClassName('close')[0];
+
+// Membuka modal ketika card diklik
+document.querySelectorAll('.gallery-card').forEach(card => {
+    card.addEventListener('click', function() {
+        const imgSrc = this.getAttribute('data-src');
+        modal.style.display = 'flex';
+        modalImg.src = imgSrc;
     });
-    
-    // Menutup modal ketika tombol close diklik
-    closeBtn.onclick = function() {
+});
+
+// Menutup modal ketika tombol close diklik
+closeBtn.onclick = function() {
+    modal.style.display = 'none';
+}
+
+// Menutup modal ketika area di luar gambar diklik
+modal.onclick = function(event) {
+    if (event.target === modal) {
         modal.style.display = 'none';
     }
-    
-    // Menutup modal ketika area di luar gambar diklik
-    modal.onclick = function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    }
+}
+
     </script>
     
 </body>
