@@ -131,57 +131,22 @@ nav ul li a:hover {
     object-fit: cover; /* Mengisi seluruh kontainer dengan proporsi yang benar */
 }
 
-.container-teks {
+.container-text {
+    background-color: #ffffff;
+    margin-top: auto;
+}
+.struktur {
+    background-color: #ffffff;
     display: flex;
-    justify-content: center;
     align-items: center;
-    background-color: #f4f4f9;
-    flex-direction: column; 
+    justify-content: center;
+    padding: 30px;
 }
-
-.announcement {
-    color: #d32f2f;
-    font-size: 46px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
-    text-decoration: underline;
-    padding-top: 150px;
-    border: #ff0000;
-}
-
-/* Style untuk detail */
-.details {
-    color: #333;
-    font-size: 26px;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-/* Style untuk status */
-.status {
-    color: #2b5dab;
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    margin: 15px 0;
-}
-
-/* Style untuk catatan */
-.note {
-    color: #333;
-    font-size: 26px;
-    text-align: center;
-    margin-top: 10px;
-    padding-bottom: 150px;
-}
-
 
 /* Footer */
 .footer {
-    background-color: #2c3e50;
-    color: white;
-    text-align: center;
+    background-color: #5183b4;
+    color: rgb(255, 255, 255);
     padding: 40px 0;
 }
 
