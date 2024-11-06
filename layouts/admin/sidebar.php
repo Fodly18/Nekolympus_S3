@@ -78,3 +78,5 @@
          </div>
       </div>
    </nav>
+
+   <script src="/assets/js/homeadmin.js"></script>

@@ -35,7 +35,7 @@
           elseif ($password !== $confirm_password) {
             echo "<div class='message'><p>Password dan konfirmasi password tidak cocok!</p></div><br>";
           } else {
-            $stmt = $connection->prepare("SELECT email FROM tb_admin WHERE email = ?");
+            $stmt = $connection->prepare("SELECT email FROM users WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $stmt->store_result();
@@ -47,7 +47,7 @@
 
               $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-              $stmt = $connection->prepare("INSERT INTO tb_admin (nama, email, password) VALUES (?, ?, ?)");
+              $stmt = $connection->prepare("INSERT INTO users (nama, email, password) VALUES (?, ?, ?)");
               $stmt->bind_param("sss", $fullname, $email, $hashed_password);
               $stmt->execute();
 

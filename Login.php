@@ -4,7 +4,6 @@
 <head>
     <title>Login Page</title>
     <link rel="icon" href="/assets/img/logo.png" type="image/png">
-
     <link rel="stylesheet" type="text/css" href="./assets/css/loginstyle.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
@@ -46,7 +45,7 @@
                                 throw new Exception("Format email tidak valid!");
                             }
 
-                            $stmt = $connection->prepare("SELECT * FROM tb_admin WHERE email = ?");
+                            $stmt = $connection->prepare("SELECT * FROM users WHERE email = ?");
                             $stmt->bind_param("s", $email);
                             $stmt->execute();
                             $result = $stmt->get_result();
