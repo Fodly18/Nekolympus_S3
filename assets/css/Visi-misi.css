@@ -97,35 +97,91 @@
     background: #1b9bff; /* Latar belakang saat hover */
     color: white; /* Warna teks saat hover */
   }
+
+  @media (max-width: 768px) {
+    /* Tambahkan transisi untuk menyembunyikan navbar */
+    .navbar-collapse {
+      transition: transform 0.3s ease-in-out;
+      transform: translateY(0); /* Posisi default */
+    }
+  
+    .navbar-collapse.hide {
+      transform: translateY(-100%); /* Navbar keluar dari layar ke atas */
+    }
+  }
   
   /* Dropdown */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #77afdd;
-    min-width: 150px; /* Lebar dropdown yang lebih besar */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-radius: 5px; /* Sudut dropdown yang lebih bulat */
-  }
+.dropdown-menu {
+  background-color: #5995c5; /* Warna latar belakang dropdown */
+  border-radius: 5px; /* Sudut yang lebih bulat */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan */
+  z-index: 1000; /* Pastikan dropdown muncul di atas elemen lain */
+  border: none; /* Hilangkan border default */
+ padding: 0;
+ margin : 0;
+}
   
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px; /* Padding yang lebih banyak untuk dropdown */
-    text-decoration: none;
-    display: block;
-    text-align: left;
-    font-size: 14px; /* Ukuran font yang lebih kecil */
-  }
-  
-  .dropdown-content a:hover {
-    background-color: #ddd; /* Latar belakang saat hover di dropdown */
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block; /* Menampilkan dropdown saat hover */
+/* Pastikan dropdown tampil saat diaktifkan */
+.show > .dropdown-menu {
+  display:block; /* Tampilkan dropdown saat aktif */
+}
+
+.navbar-nav .nav-item .dropdown-menu {
+  z-index: 1000; /* Pastikan cukup tinggi */
+}
+/* Gaya item dropdown */
+.dropdown-menu .dropdown-item {
+  color: rgb(0, 0, 0); /* Warna teks item */
+  padding: 10px 15px; /* Padding untuk keterbacaan */
+  font-size: 14px; /* Ukuran font */
+  transition: background 0.3s; /* Transisi hover */
+}
+
+/* Hover efek untuk item dropdown */
+.dropdown-menu .dropdown-item:hover {
+  background-color: #ffffff; /* Warna latar saat hover */
+}
+
+/* Gaya dropdown di ponsel */
+@media (max-width: 768px) {
+  .navbar-collapse {
+    background-color: rgba(1, 41, 94, 0.9); /* Warna latar belakang untuk menu dropdown */
+    border-radius: 5px;
   }
 
+  .dropdown-menu {
+    position: relative; /* Tetap relative agar dropdown tampil */
+    width: auto; /* Biarkan auto untuk mengisi lebar kontainer */
+    background-color: #77afdd; /* Warna dropdown */
+    box-shadow: none; /* Hilangkan bayangan */
+    z-index: 1000; /* Tetap pastikan z-index cukup tinggi */
+  }
+
+  .dropdown-menu .dropdown-item {
+    color: #000; /* Warna teks dropdown */
+    padding: 13px 16px; /* Padding */
+  }
+
+  .dropdown-menu .dropdown-item:hover {
+    background-color: #ddd; /* Warna hover */
+  }
+
+  .navbar-nav .nav-item {
+    margin: 0;
+    width: 100%; /* Agar menu memenuhi lebar */
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px;
+    color: black; /* Warna teks */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Garis pemisah */
+  }
+
+  .navbar-nav .nav-link:hover {
+    background-color: #1b9bff; /* Warna hover */
+    color: #fff; /* Warna teks hover */
+  }
+}
 /* Banner */
 .banner {
     position: relative;
