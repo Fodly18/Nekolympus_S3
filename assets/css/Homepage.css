@@ -114,34 +114,39 @@ nav ul li a:hover {
 
 /* Dropdown */
 .dropdown-menu {
-  background-color: #77afdd; /* Warna latar belakang dropdown */
+  background-color: #5995c5; /* Warna latar belakang dropdown */
   border-radius: 5px; /* Sudut yang lebih bulat */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan */
   z-index: 1000; /* Pastikan dropdown muncul di atas elemen lain */
   border: none; /* Hilangkan border default */
+ padding: 0;
+ margin : 0;
 }
+  
 
 /* Pastikan dropdown tampil saat diaktifkan */
 .show > .dropdown-menu {
-  display: block; /* Tampilkan dropdown saat aktif */
+  display:block; /* Tampilkan dropdown saat aktif */
 }
 
 .navbar-nav .nav-item .dropdown-menu {
   z-index: 1000; /* Pastikan cukup tinggi */
+
+
 }
 
 
 /* Gaya item dropdown */
 .dropdown-menu .dropdown-item {
-  color: black; /* Warna teks item */
-  padding: 12px 16px; /* Padding untuk keterbacaan */
+  color: rgb(0, 0, 0); /* Warna teks item */
+  padding: 10px 15px; /* Padding untuk keterbacaan */
   font-size: 14px; /* Ukuran font */
   transition: background 0.3s; /* Transisi hover */
 }
 
 /* Hover efek untuk item dropdown */
 .dropdown-menu .dropdown-item:hover {
-  background-color: #ddd; /* Warna latar saat hover */
+  background-color: #ffffff; /* Warna latar saat hover */
 }
 
 /* Gaya dropdown di ponsel */
