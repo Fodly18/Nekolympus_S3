@@ -13,37 +13,61 @@
 </head>
 
 <body>
-    <header>
-        <!-- NAVBAR -->
-<div class="isiHeader">
-    <nav>
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
-        <label class="logo">
-            <img src="/assets/img/logo.png" alt="Logo" class="logo-img"> 
-            <div class="header-text">
-                <span class="main-text">SDN 1 KALISAT</span> 
-                <span class="sub-text">Kalisat - Jember</span> 
+     <!-- navbar -->
+   <nav class="navbar navbar-expand-lg bg-custom">
+    <div class="container-fluid">
+      <a class="navbar-brand logo" href="#">
+        <img src="/assets/img/logo.png" class="logo-img" alt="Logo" />
+        <div class="header-text">
+          <span class="main-text">SDN 1 Kalisat</span>
+          <span class="sub-text">Kalisat - Jember</span>
+        </div>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <img src="/assets/img/logo-small.png" alt="Logo" class="toggler-logo d-none" />
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html">Beranda</a>
+          </li>
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#">Profil</a>
+            <div class="dropdown-content">
+              <a href="/Views/sejarah.html">Sejarah</a>
+              <a href="/Views/Visi-misi.html">Visi dan Misi</a>
+              <a href="/Views/Struktur-Organisasi.html">Struktur Organisasi</a>
             </div>
-        </label>
-        <ul class="Content-nav">
-            <li><a class="active" href="/index.html">Beranda</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropbtn">Profil</a>
-                <div class="dropdown-content">
-                    <a href="/Views/sejarah.html">Sejarah</a>
-                    <a href="/Views/Visi-misi.html">Visi dan Misi</a>
-                    <a href="/Views/Struktur-Organisasi.html">Struktur Organisasi</a>
-                </div>
-            </li>                    
-            <li><a href="#">Akademik</a></li>
-            <li><a href="/Views/gallery.html">Gallery</a></li>
-            <li><a href="/Views/ppdb.html">PPDB</a></li>
-            <li><a href="/Views/kontak.html">Kontak</a></li>
+          </li>
+           <!-- Dropdown Gallery-->
+           <li class="nav-item dropdown">
+            <a class="nav-link" href="#">Gallery</a>
+            <div class="dropdown-content">
+              <a href="/Views/Acara-Sekolah.html">Acara Sekolah</a>
+              <a href="/Views/Prestasi.html">Prestasi</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Views/ppdb.html">PPDB</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Views/kontak.html">Kontak</a>
+          </li>
         </ul>
-    </nav>
-</div>
+      </div>
+    </div>
+  </nav>
 
     </header>
     <!-- Banner  -->
@@ -54,7 +78,7 @@
     <!-- sejarah -->
     <section id="contact">
         <div class="contact-container">
-            <h2>Contact Us</h2>
+            <h2>Contact Us :</h2>
             
             <!-- Formulir Kontak -->
             <form action="#" method="POST" class="contact-form">
