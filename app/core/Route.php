@@ -45,51 +45,46 @@ class Route
     public static function handleRequest($url, $method)
     {
         foreach (self::$routes as $route) {
-            // Menyesuaikan pattern untuk menangkap parameter dalam curly braces (seperti {id})
             $pattern = "#^" . preg_replace("/{[a-zA-Z0-9_]+}/", "([a-zA-Z0-9_-]+)", $route['uri']) . "$#";
-    
-            // Cek method dan pola URL
             if ($route['method'] === $method && preg_match($pattern, $url, $matches)) {
-                array_shift($matches); // Hapus elemen pertama yang berisi URL lengkap
-    
-                // Middleware proses
+                array_shift($matches);
+
+                // Mengakses middleware dari objek route yang aktif
                 $currentRoute = $route['routeObject'];
                 $middlewares = $currentRoute->middlewares;
-    
+
+                // Jalankan setiap middleware
                 foreach ($middlewares as $middlewareName) {
                     $middlewareInstance = Middleware::getMiddleware($middlewareName);
                     if ($middlewareInstance) {
-                        $response = $middlewareInstance->handle(function () {
-                            return true;
+                        $response = $middlewareInstance->handle(function() {
+                            return true; // Fungsi callback untuk melanjutkan ke rute berikutnya
                         });
-    
+
+                        // Jika middleware mengembalikan false, hentikan eksekusi
                         if ($response === false) {
-                            return;
+                            return; // Middleware gagal
                         }
                     }
                 }
-    
-                // Controller dan action
+
                 $controller = $route['controller'];
                 $action = $route['action'];
-    
-                // Membuat instance controller
                 $controllerInstance = new $controller;
-    
-                // Jika metode adalah POST, buat objek request
-                $parameters = $matches; // Default hanya parameter dari URL
-                if ($method !== 'GET') {
-                    $request = new Request();
-                    $parameters = array_merge([$request], $matches);
+
+                // Tambahkan objek Request sebagai parameter saat GET method dipanggil
+                $request = new Request();
+                if ($method == 'POST') {
+                    call_user_func_array([$controllerInstance, $action], [$request]);
+                } else {
+                    call_user_func_array([$controllerInstance, $action], array_merge([$request], $matches));
                 }
-    
-                // Panggil fungsi controller dengan parameter yang sesuai
-                call_user_func_array([$controllerInstance, $action], $parameters);
                 return;
             }
         }
         echo "404 Not Found";
     }
+
 
     public static function prefix($prefix)
     {
