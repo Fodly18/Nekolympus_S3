@@ -206,60 +206,134 @@ nav ul li a:hover {
 
 .container-text {
     background-color: #ffffff;
-    margin-top: auto;
+    height: 50%;
+    width: auto;
 }
 .struktur {
     background-color: #ffffff;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 30px;
+    padding: 20px;
 }
+
 
 /* Footer */
 .footer {
-    background-color: #5183b4;
-    color: rgb(255, 255, 255);
-    padding: 40px 0;
+  background-color: #0083d7;
+  color: white;
+  padding: 40px 20px;
 }
 
 .footer h5 {
-    font-size: 20px;
-    margin-bottom: 20px;
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
 }
 
-.footer p, .footer ul {
-    font-size: 14px;
-    line-height: 1.6;
+.footer p,
+.footer ul {
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .footer ul {
-    padding: 0;
-    list-style: none;
+  padding: 0;
+  list-style: none;
 }
 
 .footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer-logo {
+  width: 50%; /* Ukuran logo */
+  height: auto;
+  margin-right: 20px; /* Jarak antara logo dan teks */
+  flex-shrink: 0; /* Pastikan logo tidak mengecil */
+}
+
+.about-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px; /* Spasi antara logo dan teks */
+}
+
+.about-section p {
+  margin: 0;
+}
+
+.footer .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px; /* Spasi antar kolom */
+}
+
+.footer .col-md-4 {
+  flex: 1;
+  margin-bottom: 20px;
+  margin-right: -50px;
+}
+
+.footer .col-md-4.kontak {
+  margin-left: 100px; /* Geser kolom Kontak ke kiri */
+}
+
+.footer iframe {
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #1abc9c;
+}
+
+.text-center {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #ddd;
+}
+
+/* Menambahkan margin antar elemen */
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .footer .row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer .col-md-4 {
+    margin-bottom: 20px;
+  }
+
+  .about-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    margin-right: 0; /* Hilangkan margin di mobile */
+  }
+
+  .footer-logo {
+    margin-right: 0;
     margin-bottom: 10px;
-}
+  }
 
-.footer .social-media {
-    list-style: none;
-    padding: 0;
-}
-
-.footer .social-media li {
-    display: inline;
-    margin-right: 15px;
-}
-
-.footer .social-media a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer .social-media a:hover {
-    color: #1abc9c; 
+  .footer iframe {
+    width: 100%;
+  }
 }
 
 

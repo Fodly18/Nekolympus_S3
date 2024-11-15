@@ -45,6 +45,7 @@ class Route
     public static function handleRequest($url, $method)
     {
         foreach (self::$routes as $route) {
+
             // Menyesuaikan pattern untuk menangkap parameter dalam curly braces (seperti {id})
             $pattern = "#^" . preg_replace("/{[a-zA-Z0-9_]+}/", "([a-zA-Z0-9_-]+)", $route['uri']) . "$#";
     
@@ -85,11 +86,14 @@ class Route
     
                 // Panggil fungsi controller dengan parameter yang sesuai
                 call_user_func_array([$controllerInstance, $action], $parameters);
+
                 return;
             }
         }
         echo "404 Not Found";
     }
+
+
 
     public static function prefix($prefix)
     {

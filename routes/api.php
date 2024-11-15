@@ -13,8 +13,10 @@ Route::post('/logout', AuthController::class, 'Logout');
 
 Route::get('/profile', AuthController::class, 'profile');
 
+
 Route::get('/jadwal', HomeController::class, 'getJadwal');
 
 Route::get('/wali', HomeController::class, 'getWaliKelas');
 
 Route::get('/mapel-kelas', TugasController::class, 'getMapelKelas');
+

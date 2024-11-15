@@ -24,7 +24,9 @@ class Model
         $stmt->execute();
         $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         
+
         return $data;   
+
     }
 
     public static function find($id)
@@ -48,6 +50,8 @@ class Model
 
         return new ResultSet($results); // Kembalikan sebagai ResultSet
     }
+
+
 
     public static function create(array $data)
     {
