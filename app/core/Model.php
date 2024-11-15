@@ -24,7 +24,7 @@ class Model
         $stmt->execute();
         $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         
-        return new ResultSet($data); // Kembalikan sebagai ResultSet
+        return $data;   
     }
 
     public static function find($id)
@@ -48,54 +48,6 @@ class Model
 
         return new ResultSet($results); // Kembalikan sebagai ResultSet
     }
-
-    public static function join(array $joins, array $conditions = [], array $columns = ['*'], $type = 'INNER')
-    {
-        self::init();
-
-        $baseTable = static::$table;
-        
-        // Pilih kolom yang ingin ditampilkan
-        $columnsList = implode(', ', $columns);
-        $query = "SELECT $columnsList FROM $baseTable";
-
-        // Proses Join
-        foreach ($joins as $join) {
-            if (!isset($join['table'], $join['baseColumn'], $join['joinColumn'])) {
-                throw new \Exception("Join array must contain 'table', 'baseColumn', and 'joinColumn' keys.");
-            }
-
-            $joinTable = $join['table'];
-            $baseColumn = $join['baseColumn'];
-            $joinColumn = $join['joinColumn'];
-            
-            // Menyusun query join
-            $query .= " $type JOIN $joinTable ON $baseTable.$baseColumn = $joinTable.$joinColumn";
-        }
-
-        // Proses Where Clause
-        if (!empty($conditions)) {
-            $query .= " WHERE ";
-            $clauses = [];
-            foreach ($conditions as $column => $value) {
-                $clauses[] = "$column = :$column";
-            }
-            $query .= implode(' AND ', $clauses);
-        }
-
-        $stmt = self::$db->prepare($query);
-
-        // Bind nilai untuk kondisi
-        foreach ($conditions as $column => $value) {
-            $stmt->bindValue(":$column", $value);
-        }
-
-        $stmt->execute();
-        $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-        return $results; // Mengembalikan hasil sebagai array biasa
-    }
-
 
     public static function create(array $data)
     {

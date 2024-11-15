@@ -14,17 +14,4 @@ class HomeController extends Controller
     {
         return  $this->view('home.index');
     }
-
-    public function sejarah()
-    {
-        return  $this->view('html.sejarah');
-    }
-
-    public function Visi_misi()
-{
-    return $this->view('html.Visi-misi');
-    
-}
-
-
 }
