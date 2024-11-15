@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/Homepage.css">
+    <link rel="stylesheet" href="assets/css/Homepage.css">
     <link rel="icon" href="/assets/img/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </head>
 <body>
    <!-- navbar -->
@@ -37,7 +35,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/">Beranda</a>
+            <a class="nav-link" href="/index.html">Beranda</a>
           </li>
           <!-- Dropdown Profil -->
           <li class="nav-item dropdown">
@@ -45,9 +43,9 @@
               Profil
             </a>
             <ul class="dropdown-menu" aria-labelledby="profilDropdown">
-              <li><a class="dropdown-item" href="/sejarah">Sejarah</a></li>
-              <li><a class="dropdown-item" href="/Visi-misi">Visi dan Misi</a></li>
-              <li><a class="dropdown-item" href="/strukture-organisasi">Struktur Organisasi</a></li>
+              <li><a class="dropdown-item" href="/Views/sejarah.html">Sejarah</a></li>
+              <li><a class="dropdown-item" href="/Views/Visi-misi.html">Visi dan Misi</a></li>
+              <li><a class="dropdown-item" href="/Views/Struktur-Organisasi.html">Struktur Organisasi</a></li>
             </ul>
           </li>
           <!-- Dropdown Gallery -->
@@ -56,35 +54,44 @@
               Gallery
             </a>
             <ul class="dropdown-menu" aria-labelledby="galleryDropdown">
-              <li><a class="dropdown-item" href="/acara_sekolah">Acara Sekolah</a></li>
-              <li><a class="dropdown-item" href="/prestasi">Prestasi</a></li>
+              <li><a class="dropdown-item" href="/Views/Acara-Sekolah.html">Acara Sekolah</a></li>
+              <li><a class="dropdown-item" href="/Views/Prestasi.html">Prestasi</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/berita">Berita</a>
+            <a class="nav-link" href="/Views/Berita.html">Berita</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/ppdb">PPDB</a>
+            <a class="nav-link" href="/Views/ppdb.html">PPDB</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/kontak">Kontak</a>
+            <a class="nav-link" href="/Views/kontak.html">Kontak</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const navbarToggler = document.querySelector('.navbar-toggler');
+      const navbarCollapse = document.querySelector('.navbar-collapse');
+  
+      navbarToggler.addEventListener('click', function () {
+        if (navbarCollapse.style.display === 'none' || navbarCollapse.style.display === '') {
+          navbarCollapse.style.display = 'block'; // Menampilkan navbar
+        } else {
+          navbarCollapse.style.display = 'none'; // Menyembunyikan navbar
+        }
+      });
+    });
+  </script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
   <!-- BANNER -->
   <div class="banner">
     <img class="banner-img" src="assets/img/Langit.jpg" alt="Banner JPG" />
-    <img class="png-pager" src="assets/img/Pager - Copy.png" alt="pager PNG" />
-    <img class="png-bangunan1" src="assets/img/bb3.png" alt="bangunan1 PNG" />
-    <img class="png-org1" src="assets/img/org1.png" alt="anak-anak PNG" />
-    <img class="png-org2" src="assets/img/org2.png" alt="anak-anak 2 PNG" />
-    <img class="png-pdg1" src="assets/img/pdg1.png" alt="pedagang PNG" />
-    <img class="png-tiang" src="assets/img/flagpule-removebg-preview.PNG" alt="tiang-bangunan PNG" />
-    <img class="png-pohon1" src="assets/img/pohon1.png" alt="pohon1 PNG" />
-    <img class="png-pohon2" src="assets/img/pohon2.png" alt="pohon2 PNG" />
+    <img class="png" src="assets/img/Pager - Copy.png" alt="Banner PNG" />
   </div>
 
   <!-- CONTENT Sambutan -->
@@ -219,54 +226,46 @@
     </div>
   </section>
 
- <!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <!-- Tentang Kami dengan Logo -->
-      <div class="col-md-4 about-section d-flex">
-        <img src="assets/img/logo.png" alt="Logo SDN 1 Kalisat" class="footer-logo">
-        <div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
           <h5>Tentang Kami</h5>
           <p>
-            SDN 1 Kalisat adalah sekolah dasar yang berkomitmen untuk memberikan
-            pendidikan terbaik bagi anak-anak. Kami berfokus pada pengembangan
-            karakter dan akademik siswa.
+            SDN 1 Kalisat adalah sekolah dasar yang berkomitmen untuk
+            memberikan pendidikan terbaik bagi anak-anak. Kami berfokus pada
+            pengembangan karakter dan akademik siswa.
           </p>
         </div>
+        <div class="col-md-4">
+          <h5>Kontak</h5>
+          <ul>
+            <li>Alamat: Jl. Kalisat No. 1, Jember</li>
+            <li>Telepon: (0331) 123456</li>
+            <li>Email: info@sdn1kalisat.sch.id</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Ikuti Kami</h5>
+          <ul class="social-media">
+            <li>
+              <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+            </li>
+            <li>
+              <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+            </li>
+            <li>
+              <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+            </li>
+          </ul>
+        </div>
       </div>
-
-      <!-- Kontak -->
-      <div class="col-md-4 kontak">
-        <h5>Kontak</h5>
-        <ul>
-          <li>Alamat: Jl. Kalisat No. 1, Jember</li>
-          <li>Telepon: (0331) 123456</li>
-          <li>Email: info@sdn1kalisat.sch.id</li>
-        </ul>
-      </div>
-
-      <!-- Lokasi -->
-      <div class="col-md-4 lokasi">
-        <h5>Alamat</h5>
-        <a href="https://www.google.com/maps/search/?api=1&query=SDN+1+Kalisat,+Jember" target="_blank">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.8970015713357!2d111.45046627405344!3d-8.009557579918342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79733e2dbc9155%3A0x4aaf9dd2609da5a9!2sSDN%201%20Kalisat!5e0!3m2!1sen!2sid!4v1731520584344!5m2!1sen!2sid"
-            width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </a>
+      <div class="text-center">
+        <p>&copy; 2024 SDN 1 Kalisat. All rights reserved.</p>
       </div>
     </div>
-
-    <!-- Copyright -->
-    <div class="text-center mt-4">
-      <p>&copy; 2024 SDN 1 Kalisat. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-
-
-
-
+  </footer>
 
   <script>
     const statItems = document.querySelectorAll(".stat-item");
