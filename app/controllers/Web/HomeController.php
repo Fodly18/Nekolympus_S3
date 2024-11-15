@@ -21,10 +21,40 @@ class HomeController extends Controller
     }
 
     public function Visi_misi()
-{
+    {
     return $this->view('html.Visi-misi');
     
-}
+    }
+    public function strukture_organisasi()
+    {
+    return $this->view('html.Struktur-Organisasi');
+    
+    }
+    public function acara_sekolah()
+    {
+    return $this->view('html.Acara-Sekolah');
+    
+    }
+    public function prestasi()
+    {
+    return $this->view('html.Prestasi');
+    
+    }
+    public function berita()
+    {
+    return $this->view('html.Berita');
+    
+    }
+    public function ppdb()
+    {
+    return $this->view('html.ppdb');
+    
+    }
+    public function kontak()
+    {
+    return $this->view('html.kontak');
+    
+    }
 
 
 }
