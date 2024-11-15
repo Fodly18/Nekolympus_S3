@@ -3,6 +3,8 @@
 namespace Nekolympus\Project\controllers\Api;
 
 use Nekolympus\Project\core\Controller;
+use Nekolympus\Project\core\DB;
+
 use Nekolympus\Project\core\Helper;
 use Nekolympus\Project\core\Request;
 use Nekolympus\Project\models\Siswa;
@@ -43,7 +45,9 @@ class AuthController extends Controller
                 'token' => $token,
                 'token_type' => 'Bearer'
             ]
-        ]);
+
+        ], 201);
+
     }
 
     public function Logout(Request $request)
@@ -52,7 +56,8 @@ class AuthController extends Controller
             return $this->json([
                 'status' => 'errors',
                 'message' => 'Unauthenticated.'
-            ]);
+            ], 401);
+
         }
 
         $data = Siswa::where('token', '=', $request->bearerToken())->first();
@@ -80,27 +85,22 @@ class AuthController extends Controller
             return $this->json([
                 'status' => 'errors',
                 'message' => 'Unauthenticated.'
-            ]);
+
+            ], 401);
         }
 
-        $data = Siswa::join([
-            ['table' => 'kelas', 'baseColumn' => 'id_kelas', 'joinColumn' => 'id']
-        ],[
-            'token' => $token
-        ],[
-            'siswa.id', 'siswa.nisn', 'siswa.nama', 'siswa.nomor_hp', 'kelas.kelas'
-        ]);
+        $data = DB::table('siswa')
+                ->join('kelas', 'siswa.id_kelas', '=','kelas.id')
+                ->where('siswa.token', '=', $token)
+                ->select(['siswa.id', 'siswa.nisn', 'siswa.nama', 'siswa.nomor_hp', 'kelas.kelas'])
+                ->get();
 
-        if(!$data) {
-            return $this->json([
-                'status' => 'errors',
-                'message' => 'Token Tidak Valid'
-            ]);
-        }
         
         return $this->json([
             'status' => 'success',
             'data' => $data
-        ]);
+
+        ], 200);
+
     }
 }

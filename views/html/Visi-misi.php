@@ -15,6 +15,7 @@
     <div class="container-fluid">
       <a class="navbar-brand logo" href="#">
         <img src="assets/img/logo.png" class="logo-img" alt="Logo" />
+
         <div class="header-text">
           <span class="main-text">SDN 1 Kalisat</span>
           <span class="sub-text">Kalisat - Jember</span>
@@ -71,6 +72,7 @@
       </div>
     </div>
   </nav>
+
   </script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 

@@ -14,7 +14,10 @@
    <nav class="navbar navbar-expand-lg bg-custom">
     <div class="container-fluid">
       <a class="navbar-brand logo" href="#">
+
+
         <img src="assets/img/logo.png" class="logo-img" alt="Logo" />
+
         <div class="header-text">
           <span class="main-text">SDN 1 Kalisat</span>
           <span class="sub-text">Kalisat - Jember</span>
@@ -35,7 +38,9 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
+
             <a class="nav-link" href="/">Beranda</a>
+
           </li>
           <!-- Dropdown Profil -->
           <li class="nav-item dropdown">
@@ -43,9 +48,13 @@
               Profil
             </a>
             <ul class="dropdown-menu" aria-labelledby="profilDropdown">
+
+        
+
               <li><a class="dropdown-item" href="/sejarah">Sejarah</a></li>
               <li><a class="dropdown-item" href="/Visi-misi">Visi dan Misi</a></li>
               <li><a class="dropdown-item" href="/strukture-organisasi">Struktur Organisasi</a></li>
+
             </ul>
           </li>
           <!-- Dropdown Gallery -->
@@ -54,6 +63,7 @@
               Gallery
             </a>
             <ul class="dropdown-menu" aria-labelledby="galleryDropdown">
+
               <li><a class="dropdown-item" href="/acara_sekolah">Acara Sekolah</a></li>
               <li><a class="dropdown-item" href="/prestasi">Prestasi</a></li>
             </ul>
@@ -66,16 +76,19 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/kontak">Kontak</a>
+
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
   </script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
     <!-- Banner  -->
     <div class="banner">
+
         <img class="banner-jpg" src="/assets/img/banner-sejarah.jpg" alt="Banner JPG">
     </div>
 
@@ -154,6 +167,7 @@
       <p>&copy; 2024 SDN 1 Kalisat. All rights reserved.</p>
     </div>
   </div>
+
 </footer>
 </body>
 </html>

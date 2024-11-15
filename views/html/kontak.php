@@ -14,7 +14,9 @@
    <nav class="navbar navbar-expand-lg bg-custom">
     <div class="container-fluid">
       <a class="navbar-brand logo" href="#">
+
         <img src="assets/img/logo.png" class="logo-img" alt="Logo" />
+
         <div class="header-text">
           <span class="main-text">SDN 1 Kalisat</span>
           <span class="sub-text">Kalisat - Jember</span>
@@ -96,12 +98,12 @@
 
     <!-- sejarah -->
     <section id="contact">
-        <div class="contact-container">
-            
-            
+        <div class="contact-container">      
+
             <!-- Formulir Kontak -->
             <form action="#" method="POST" class="contact-form">
             <h2>Contact Us :</h2>
+
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" placeholder="Your Name" required>
