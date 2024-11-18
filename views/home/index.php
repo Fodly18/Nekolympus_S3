@@ -85,6 +85,7 @@
     <img class="png-tiang" src="assets/img/flagpule-removebg-preview.PNG" alt="tiang-bangunan PNG" />
     <img class="png-pohon1" src="assets/img/pohon1.png" alt="pohon1 PNG" />
     <img class="png-pohon2" src="assets/img/pohon2.png" alt="pohon2 PNG" />
+
   </div>
 
   <!-- CONTENT Sambutan -->
@@ -263,7 +264,6 @@
     </div>
   </div>
 </footer>
-
 
 
 
