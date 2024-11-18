@@ -15,26 +15,42 @@
 <body>
     <div class="container" id="container">
         <div class="sign-in">
-            <form>
+            <form action="/login-admin" method="POST">
                 <h1>Log In</h1>
                 <input type="text" placeholder="Username" />
+                <?php if (isset($errors['username'])): ?>
+                    <div class="error-message">
+                        <?php foreach ($errors['username'] as $error): ?>
+                            <p><?php echo htmlspecialchars($error); ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
                 <input type="password" placeholder="Password" />
+                <?php if (isset($errors['password'])): ?>
+                    <div class="error-message">
+                        <?php foreach ($errors['password'] as $error): ?>
+                            <p><?php echo htmlspecialchars($error); ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
                 <a href="" id="forgot">Lupa Password ?</a>
                 <button>Log In</button>
             </form>
         </div>
         <div class="sign-up">
+            <button class="hidden" id="login"><i class="fa-solid fa-circle-arrow-left fa-lg"></i>Kembali</button>
             <form>
                 <h1>Lupa Password</h1>
                 <input type="text" placeholder="Email" />
                 <button>Send OTP</button>
             </form>
+
             <br>
         </div>
         <div class="toogle-container">
             <div class="toogle">
                 <div class="toogle-panel toogle-left">
-                <h4>APLIKASI PEMBELAJARAN DIGITAL</h4>
+                    <h4>APLIKASI PEMBELAJARAN DIGITAL</h4>
                     <h4>DAN</h4>
                     <h4>MONITORING SISWA</h4>
                     <br>
@@ -55,6 +71,8 @@
         </div>
     </div>
     <script src="/assets/js/login.js"></script>
+    <?php if(isset($error)) :?>
+        <p><?php echo htmlspecialchars($error); ?></p>
+    <?php endif; ?>
 </body>
-
 </html>
