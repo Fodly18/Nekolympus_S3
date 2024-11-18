@@ -85,10 +85,10 @@
         <p><strong>Sejarah Singkat Sekolah</strong></p>
         <p>Yang dimaksud dengan sejarah dalam profil ini adalah tapakan atau jalan laju perkembangan UPTD Satuan Pendidikan SDN Kalisat 01, sejak didirikan hingga saat ini. Laju perkembangan UPTD Satuan Pendidikan SDN Kalisat 01 sejak didirikan hingga saat ini melalui sejumlah tahapan perkembangan dan pengembangan program, sebagaimana tertuang sebagai berikut.</p>
         
-        <p><strong>a. Masa Sebelum Penggabungan atau Regrouping</strong></p>
+        <p><strong> Masa Sebelum Penggabungan atau Regrouping</strong></p>
         <p>Tanah yang ditempati oleh SDN Kalisat 01 sudah dikuasai dan ditempati oleh SDN Kalisat 01 sejak tahun 1911. Dimana pada saat itu sekolah hanya memiliki 6 Rombel. Pada saat itu pula berdiri juga sekolah lain yaitu SDN Kalisat 02 dan SDN Kalisat 04, masing-masing sekolah tersebut memiliki 6 rombel dan kegiatan pembelajaran berjalan secara beriringan.</p>
         
-        <p><strong>b. Masa Penggabungan atau Regrouping</strong></p>
+        <p><strong> Masa Penggabungan atau Regrouping</strong></p>
         <p>Sesuai SK Bupati Jember No. 41 tahun 2007 tentang Penggabungan, Penghapusan dan Pendirian Sekolah Dasar Negeri Kabupaten Jember, dibentuklah lembaga baru yang bernama SDN Kalisat 01 yang merupakan gabungan dari:</p>
         <ul>
             <li>SDN Kalisat 01</li>

@@ -202,6 +202,7 @@ nav ul li a:hover {
     width: 100%;
     height: auto; /* Gunakan auto agar tinggi gambar proporsional dengan lebar */
     object-fit: cover; /* Mengisi seluruh kontainer dengan proporsi yang benar */
+    margin-bottom: 20px;
 }
 
 .container-text {
@@ -219,22 +220,22 @@ nav ul li a:hover {
 .sejarah-content{
   align-items: center;
   flex-direction: column;
-}
-.sejarah-content p {
   width: 50%; /* Lebar 50% */
-    background-color: #96d9f3;
-    border: solid rgb(0, 0, 0);
-    border-radius: 20px;
-    padding: 10px;
-    align-items: center;
-    flex-direction: column;
+  background-color: #96d9f3;
+  border: solid rgb(187, 240, 240);
+  border-radius: 20px;
+  padding: 10px;
+  align-items: center;
+  flex-direction: column;
 }
+
 
 /* Footer */
 .footer {
   background-color: #0083d7;
   color: white;
   padding: 40px 20px;
+  margin-top: 20px;
 }
 
 .footer h5 {
