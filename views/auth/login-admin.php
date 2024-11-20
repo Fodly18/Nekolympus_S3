@@ -17,7 +17,7 @@
         <div class="sign-in">
             <form action="/login-admin" method="POST">
                 <h1>Log In</h1>
-                <input type="text" placeholder="Username" />
+                <input type="text" name="username" placeholder="Username" />
                 <?php if (isset($errors['username'])): ?>
                     <div class="error-message">
                         <?php foreach ($errors['username'] as $error): ?>
@@ -25,13 +25,16 @@
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
-                <input type="password" placeholder="Password" />
+                <input type="password" name="password" placeholder="Password" />
                 <?php if (isset($errors['password'])): ?>
                     <div class="error-message">
                         <?php foreach ($errors['password'] as $error): ?>
                             <p><?php echo htmlspecialchars($error); ?></p>
                         <?php endforeach; ?>
                     </div>
+                <?php endif; ?>
+                <?php if (isset($error)) : ?>
+                    <p><?php echo htmlspecialchars($error); ?></p>
                 <?php endif; ?>
                 <a href="" id="forgot">Lupa Password ?</a>
                 <button>Log In</button>
@@ -71,8 +74,5 @@
         </div>
     </div>
     <script src="/assets/js/login.js"></script>
-    <?php if(isset($error)) :?>
-        <p><?php echo htmlspecialchars($error); ?></p>
-    <?php endif; ?>
 </body>
 </html>

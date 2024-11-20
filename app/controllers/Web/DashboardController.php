@@ -8,6 +8,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return $this->view('home', ['title' => 'dashboard']);
+        return $this->view('admin.index');
+    }
+
+    public function logout()
+    {
+        return $this->view('auth.login-admin');
     }
 }

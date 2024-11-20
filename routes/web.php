@@ -22,7 +22,6 @@ Route::post('/login-admin', AuthController::class, 'LoginAdmin')->middleware(['g
 
 Route::get('/dashboard-admin', DashboardController::class, 'index')->middleware(['auth', 'admin']);
 
-
 Route::get('/mapel', MapelController::class, 'index');
 Route::get('/create', MapelController::class, 'createIndex');
 Route::post('/create', MapelController::class, 'create');
