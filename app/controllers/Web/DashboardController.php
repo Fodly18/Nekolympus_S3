@@ -6,9 +6,14 @@ use Nekolympus\Project\core\Controller;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function indexAdmin()
     {
         return $this->view('admin.index');
+    }
+
+    public function indexGuru()
+    {
+        return $this->view('guru.index');
     }
 
     public function logout()

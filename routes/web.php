@@ -20,7 +20,12 @@ Route::get('/strukture-organisasi', HomeController::class, 'strukture_organisasi
 Route::get('/login-admin', AuthController::class, 'indexAdmin')->middleware(['guest']);
 Route::post('/login-admin', AuthController::class, 'LoginAdmin')->middleware(['guest']);
 
-Route::get('/dashboard-admin', DashboardController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/login-guru', AuthController::class, 'indexGuru')->middleware(['guest']);
+Route::post('/login-guru', AuthController::class, 'LoginGuru')->middleware(['guest']);
+
+Route::get('/dashboard-admin', DashboardController::class, 'indexAdmin')->middleware(['auth', 'admin']);
+Route::get('/dashboard-guru', DashboardController::class, 'indexGuru')->middleware(['auth', 'guru']);
+
 
 Route::get('/mapel', MapelController::class, 'index');
 Route::get('/create', MapelController::class, 'createIndex');
