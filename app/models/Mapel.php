@@ -1,7 +1,6 @@
 <?php
 
 namespace Nekolympus\Project\models;
-
 use Nekolympus\Project\core\Model;
 
 class Mapel extends Model

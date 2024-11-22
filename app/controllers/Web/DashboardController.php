@@ -18,6 +18,7 @@ class DashboardController extends Controller
 
     public function logout()
     {
-        return $this->view('auth.login-admin');
+        return $this->view('home.index');
     }
+    
 }
