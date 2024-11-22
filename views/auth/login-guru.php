@@ -9,23 +9,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
-    <title>Admin Login Page</title>
+    <title>Guru Login Page</title>
 </head>
 
 <body>
     <div class="container" id="container">
         <div class="sign-in">
-            <form action="/login-admin" method="POST">
+            <form action="/login-guru" method="POST">
                 <h1>Log In</h1>
-                <input type="text" name="username" placeholder="Username" />
-                <?php if (isset($errors['username'])): ?>
+                <input type="text" name="nip" placeholder="NIP" />
+                <?php if (isset($errors['nip'])): ?>
                     <div class="error-message">
-                        <?php foreach ($errors['username'] as $error): ?>
+                        <?php foreach ($errors['nip'] as $error): ?>
                             <p><?php echo htmlspecialchars($error); ?></p>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
-                <input type="password" name="password" id="password" placeholder="Password">
+                <input type="password" name="password" placeholder="Password" />
                 <?php if (isset($errors['password'])): ?>
                     <div class="error-message">
                         <?php foreach ($errors['password'] as $error): ?>
@@ -39,6 +39,7 @@
                 <button>Log In</button>
             </form>
         </div>
+    
         <div class="toogle-container">
             <div class="toogle">
                 <div class="toogle-panel toogle-right">
@@ -53,5 +54,6 @@
             </div>
         </div>
     </div>
+    <script src="/assets/js/login.js"></script>
 </body>
 </html>
