@@ -10,7 +10,7 @@ allSideMenu.forEach(item=> {
 	})
 });
 
-//toggle sidebar
+//fungsi hide sidebar
 const menuBar = document.querySelector('#content nav .bx.bx-menu');
 const sidebar = document.getElementById('sidebar');
 
@@ -48,6 +48,7 @@ window.addEventListener('resize', function () {
 	}
 })
 
+//ganti tema
 const switchMode = document.getElementById('switch-mode');
 
 switchMode.addEventListener('change', function () {
@@ -58,6 +59,22 @@ switchMode.addEventListener('change', function () {
 	}
 })
 
-
-
+//action untuk sidebar
+document.addEventListener('DOMContentLoaded', function () {
+    const sidebar = document.getElementById('sidebar');
+    
+    if (sidebar) {
+        sidebar.addEventListener('click', function (event) {
+            const clickedItem = event.target.closest('li'); 
+            
+            if (clickedItem) {
+                const link = clickedItem.querySelector('a');
+                if (link && link.getAttribute('href') !== '#') {
+                    const href = link.getAttribute('href');
+                    window.location.href = href;
+                }
+            }
+        });
+    }
+});
 
