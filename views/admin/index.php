@@ -114,7 +114,71 @@
 				</div>
 			
 			</div>
+		
+			<?php
+function build_calendar($month, $year) {
+    $daysOfWeek = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    $firstDayOfMonth = mktime(0, 0, 0, $month, 1, $year);
+    $numberDays = date('t', $firstDayOfMonth);
+    $dateComponents = getdate($firstDayOfMonth);
+    $monthName = $dateComponents['month'];
+    $dayOfWeek = $dateComponents['wday'];
 
+    $calendar = "<table class='calendar'>";
+    $calendar .= "<caption>$monthName $year</caption>";
+    $calendar .= "<tr>";
+
+    foreach ($daysOfWeek as $day) {
+        $calendar .= "<th class='header'>$day</th>";
+    }
+
+    $calendar .= "</tr><tr>";
+
+    if ($dayOfWeek > 0) {
+        $calendar .= str_repeat("<td class='empty'></td>", $dayOfWeek);
+    }
+
+    $currentDay = 1;
+    while ($currentDay <= $numberDays) {
+        if ($dayOfWeek == 7) {
+            $dayOfWeek = 0;
+            $calendar .= "</tr><tr>";
+        }
+
+        $date = "$year-$month-" . str_pad($currentDay, 2, "0", STR_PAD_LEFT);
+
+        // Modify this section to add events or highlights
+        $calendar .= "<td class='day' data-date='$date'>$currentDay</td>";
+
+        $currentDay++;
+        $dayOfWeek++;
+    }
+
+    if ($dayOfWeek != 7) {
+        $remainingDays = 7 - $dayOfWeek;
+        $calendar .= str_repeat("<td class='empty'></td>", $remainingDays);
+    }
+
+    $calendar .= "</tr>";
+    $calendar .= "</table>";
+    return $calendar;
+}
+
+// Mendapatkan bulan dan tahun saat ini
+$month = date('m');
+$year = date('Y');
+
+// Jika ada request untuk pindah bulan
+if (isset($_GET['month']) && isset($_GET['year'])) {
+    $month = $_GET['month'];
+    $year = $_GET['year'];
+}
+
+echo build_calendar($month, $year);
+?>
+
+			
+			
 			<ul class="box-info">
 				<li>
 					<i class='bx bxs-calendar-check' ></i>
