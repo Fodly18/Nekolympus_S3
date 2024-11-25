@@ -78,3 +78,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
+function updateTime() {
+	const now = new Date(); // Mendapatkan waktu saat ini
+	const hours = String(now.getHours()).padStart(2, '0'); // Jam (2 digit)
+	const minutes = String(now.getMinutes()).padStart(2, '0'); // Menit (2 digit)
+	const seconds = String(now.getSeconds()).padStart(2, '0'); // Detik (2 digit)
+	const day = now.toLocaleDateString('id-ID', { weekday: 'long' }); // Hari dalam bahasa Indonesia
+	const date = now.toLocaleDateString('id-ID'); // Tanggal dalam format lokal
+	
+	// Update elemen HTML
+	document.getElementById('current-time').textContent = `${hours}:${minutes}:${seconds}`;
+	document.getElementById('current-date').textContent = `${day}, ${date}`;
+}
+
+// Jalankan fungsi pertama kali
+updateTime();
+
+// Update setiap detik
+setInterval(updateTime, 1000);

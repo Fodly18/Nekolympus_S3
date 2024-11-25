@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+
+use Nekolympus\Project\models\Siswa;
+use Nekolympus\Project\models\Tugas;
+
+$totalSiswa = Siswa::count();
+$totalTugas = Tugas::count();
+
+$currentDate = date('l, d F Y');
+$currentTime = date('H:i:s');
+
+?>
 
 <head>
 	<meta charset="UTF-8">
@@ -57,7 +69,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="/logout" class="logout">
+				<a href="/" class="logout">
 					<i class='bx bxs-log-out-circle'></i>
 					<span class="text">Logout</span>
 				</a>
@@ -65,8 +77,6 @@
 		</ul>
 	</section>
 	<!-- SIDEBAR -->
-
-
 
 	<!-- CONTENT -->
 	<section id="content">
@@ -111,31 +121,32 @@
 
 			<ul class="box-info">
 				<li>
-					<i class='bx bxs-calendar-check'></i>
-					<span class="text">
-						<h3>1020< /h3>
-								<p>Jumlah Siswa</p>
-					</span>
-				</li>
-				<li>
 					<i class='bx bxs-group'></i>
 					<span class="text">
-						<h3>2834</h3>
-						<p>Jumlah Tugas</p>
+						<p>Jumlah Siswa</p>
+						<h3><?= htmlspecialchars($totalSiswa, ENT_QUOTES, 'UTF-8'); ?></h3>
 					</span>
 				</li>
 				<li>
-					<i class='bx bxs-dollar-circle'></i>
+
+					<i class='bx bxs-calendar-check'></i>
 					<span class="text">
-						<h3>$2543</h3>
-						<p>Total Sales</p>
+						<p>Jumlah Tugas</p>
+						<h3><?= htmlspecialchars($totalTugas, ENT_QUOTES, 'UTF-8'); ?></h3>
+					</span>
+				</li>
+				<li>
+				<i class='bx bxs-time-five' ></i>
+					<span class="text">
+						<h3 id="current-time"></h3>
+						<p id="current-date"></p>
 					</span>
 				</li>
 			</ul>
 			<!-- MAIN -->
 	</section>
 
-	<script src="/assets/js/dashboardadmin.js"></script>
+	<script src="/assets/js/dashboardguru.js"></script>
 </body>
 
 </html>

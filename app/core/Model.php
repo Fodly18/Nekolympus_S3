@@ -95,4 +95,14 @@ class Model
         $stmt->bindParam(':id', $id);
         return $stmt->execute(); // Mengembalikan true jika berhasil
     }
+
+    public static function count()
+    {
+        self::init();
+        $stmt = self::$db->prepare("SELECT COUNT(*) as total FROM " . static::$table);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        
+        return $result['total'];
+    }
 }
