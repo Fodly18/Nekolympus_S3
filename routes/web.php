@@ -24,7 +24,14 @@ Route::get('/login-guru', AuthController::class, 'indexGuru')->middleware(['gues
 Route::post('/login-guru', AuthController::class, 'LoginGuru')->middleware(['guest']);
 
 Route::get('/dashboard-admin', DashboardController::class, 'indexAdmin')->middleware(['auth', 'admin']);
+Route::get('/logout-admin', AuthController::class, 'logoutGuru')->middleware(['auth', 'admin']);
+// Route Dashboard Guru
 Route::get('/dashboard-guru', DashboardController::class, 'indexGuru')->middleware(['auth', 'guru']);
+Route::get('/daftar-siswa', DashboardController::class, 'dafsisGuru')->middleware(['auth', 'guru']);
+Route::get('/tugas-pembelajaran', DashboardController::class, 'tugasGuru')->middleware(['auth', 'guru']);
+Route::get('/latihan-soal', DashboardController::class, 'latsolGuru')->middleware(['auth', 'guru']);
+Route::get('/settings', DashboardController::class, 'settingGuru')->middleware(['auth', 'guru']);
+Route::get('/logout-guru', AuthController::class, 'logoutGuru')->middleware(['auth', 'guru']);
 
 
 Route::get('/mapel', MapelController::class, 'index');
