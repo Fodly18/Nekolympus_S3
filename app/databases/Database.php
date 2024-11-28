@@ -11,14 +11,13 @@ class Database
 
     public function __construct()
     {
-        $servername = $_ENV["DB_HOST"]; 
-        $username =   $_ENV["DB_USERNAME"];      
-        $password =   $_ENV["DB_PASSWORD"];      
-        $dbName =   $_ENV["DB_NAME"];     
+        $servername = "localhost"; 
+        $username = "root";      
+        $password = "";      
+        $dbName = "sdn_kalisat";     
 
         try {
             $this->conn = new PDO("mysql:host=$servername;dbname=$dbName", $username, $password);
-
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();

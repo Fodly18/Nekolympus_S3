@@ -102,11 +102,10 @@
 
             <!-- Formulir Kontak -->
             <form action="#" method="POST" class="contact-form">
-            <h2>Contact Us :</h2>
-
+            <h2>Hubungi kami :</h2>
                 <div class="form-group">
                     <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="text" id="nam" name="name" placeholder="Your Name" required>
                 </div>
                 
                 <div class="form-group">
@@ -115,19 +114,24 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="message">Message:</label>
+                    <label for="message">Pesan:</label>
                     <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
                 </div>
                 
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="submit-btn">Kirim pesan</button>
             </form>
     
             <!-- Informasi Kontak -->
             <div class="contact-info">
-                <h3>Our Contact Info</h3>
-                <p><strong>Address:</strong> Jl. Pattimura No.29, Krajan II, Kalisat, Kec. Kalisat, Kabupaten Jember, Jawa Timur 68193</p>
-                <p><strong>Email:</strong>  sdnkalisat01@gmail.com</p>
-                <p><strong>Phone:</strong> +123 456 7890</p>
+                <h3>Informasi kami :</h3>
+                <p><strong >Alamat:</strong> 
+                <li>Jl. Kapuas No.50, Gabahan,</li>
+                <li>Kalisat, Kec. Bungkal,</li>
+                <li>Kabupaten Ponorogo,</li>
+                <li>Jawa Timur 63462</li>
+                </p>
+                <p><strong >Email:</strong>  sdnkalisat01@gmail.com</p>
+                <p><strong >No Telp:</strong> .</p>
             </div>
         </div>
     </section>

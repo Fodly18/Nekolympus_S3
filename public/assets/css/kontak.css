@@ -228,14 +228,25 @@ body {
 h2, h3 {
     text-align: center;
     margin-bottom: 20px;
+    font-weight: bold;
 }
+
+.form-group label {
+  font-weight: bold;
+}
+  
+
+  
+
 
 .contact-form {
     flex: 1;
     top: 0;
     background-color: #fff;
     padding: 30px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: -1px -1px 1px 4px rgba(182,182,182,0.75);
+    -webkit-box-shadow: -1px -1px 1px 4px rgba(182,182,182,0.75);
+    -moz-box-shadow: -1px -1px 1px 4px rgba(182,182,182,0.75);
     border-radius: 20px;
     background-color: #91b6ce;
 }
@@ -292,6 +303,9 @@ h2, h3 {
     padding: 30px;
     background-color: #abddf1;
     border-radius: 20px;
+    box-shadow: -1px -1px 1px 4px rgba(182,182,182,0.75);
+-webkit-box-shadow: -1px -1px 1px 4px rgba(182,182,182,0.75);
+-moz-box-shadow: -1px -1px 1px 4px rgba(182,182,182,0.75);
 }
 
 .contact-info p {
@@ -302,6 +316,7 @@ h2, h3 {
 
 .contact-info strong {
     font-weight: bold;
+    font-size: large;
 }
 
 /* Footer */
