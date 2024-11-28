@@ -10,10 +10,12 @@ use Nekolympus\Project\middleware\AuthMiddleware;
 use Nekolympus\Project\core\Middleware;
 use Nekolympus\Project\middleware\AdminMiddleware;
 use Nekolympus\Project\middleware\GuestMiddleware;
+use Nekolympus\Project\middleware\GuruMiddleware;
 
 Middleware::register('admin', AdminMiddleware::class);
 Middleware::register('auth', AuthMiddleware::class);
 Middleware::register('guest', GuestMiddleware::class);
+Middleware::register('guru', GuruMiddleware::class);
 
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
