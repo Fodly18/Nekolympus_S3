@@ -31,13 +31,13 @@ $currentTime = date('H:i:s');
 			<span class="text">SDN 1 KALISAT</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+			<li>
 				<a href="/dashboard-guru">
 					<i class='bx bxs-dashboard'></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li>
+			<li class="active">
 				<a href="/daftar-siswa">
 					<i class='bx bxs-shopping-bag-alt'></i>
 					<span class="text">Daftar Siswa</span>
@@ -97,10 +97,10 @@ $currentTime = date('H:i:s');
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>Dashboard</h1>
+					<h1>Daftar Siswa</h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Dashboard</a>
+							<a href="#">Daftar Siswa</a>
 						</li>
 						<li><i class='bx bx-chevron-right'></i></li>
 						<li>
@@ -134,31 +134,29 @@ $currentTime = date('H:i:s');
 				</li>
 			</ul>
 
-			<div class="jdwl-border">
-				<h2>Jadwal Hari Ini</h2>
-				<table>
-					<thead>
+			<div class="table-data">
+				<div class="jadwal">
+					<h2>Jadwal Hari Ini</h2>
+					<table>
 						<tr>
 							<th>Mata Pembelajaran</th>
 							<th>Kelas</th>
 							<th>Jam</th>
 						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td data-label="Mata Pembelajaran">Matematika</td>
-							<td data-label="Kelas">5A</td>
-							<td data-label="Jam">08:00 - 09:30</td>
-						</tr>
-						<tr>
-							<td data-label="Mata Pembelajaran">Bahasa Indonesia</td>
-							<td data-label="Kelas">5B</td>
-							<td data-label="Jam">09:30 - 11:00</td>
-						</tr>
-					</tbody>
-
-				</table>
-			</div>
+						<tbody>
+						<?php if (empty($data)): ?>
+                            <tr>
+                                <td colspan="5" class="empty-state">
+                                    <p>Belum Ada Jadwal Mapel Tersedia</p>
+                                </td>
+                            </tr>
+						<?php endif; ?>
+							<tr>
+								<td></td>
+							</tr>
+						</tbody>	
+					</table>
+				</div>
 			</div>
 		</main>
 		<!-- MAIN -->

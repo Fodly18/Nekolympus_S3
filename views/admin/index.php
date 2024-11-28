@@ -55,8 +55,10 @@
 				</a>
 			</li>
 			<li>
-				<a href="/logout" class="logout">
-					<i class='bx bxs-log-out-circle'></i>
+
+				<a href="/logout-admin" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+
 					<span class="text">Logout</span>
 				</a>
 			</li>
