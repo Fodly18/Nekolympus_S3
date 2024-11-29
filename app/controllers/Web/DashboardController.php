@@ -3,6 +3,7 @@
 namespace Nekolympus\Project\controllers\Web;
 
 use Nekolympus\Project\core\Controller;
+use Nekolympus\Project\core\DB;
 
 class DashboardController extends Controller
 {
@@ -10,9 +11,6 @@ class DashboardController extends Controller
     {
         return $this->view('admin.index');
     }
-
-
-
 
     //Ini Punya Guru
     public function indexGuru()
@@ -22,7 +20,14 @@ class DashboardController extends Controller
 
     public function tugasGuru()
     {
-        return $this->view('guru.tugas.index');
+        $idGuru = $_SESSION['auth'];
+        $data = DB::table('tugas')
+                ->join('mapel_kelas', 'tugas.id_mapel_kelas', '=', 'mapel_kelas.id')
+                ->join('mapel', 'mapel_kelas.id_mapel', '=', 'mapel.id')
+                ->where('mapel_kelas.id_guru', '=', $idGuru)
+                ->get();
+        $no = 1;
+        return $this->view('guru.tugas.index', ['data' => $data, 'no' => $no]);
     }
 
     public function latsolGuru()

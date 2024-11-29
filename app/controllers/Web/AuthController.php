@@ -75,6 +75,7 @@ class AuthController extends Controller
         {
             $_SESSION['user_role'] = 'guru';
             $_SESSION['user'] = true;
+            $_SESSION['auth'] = $user->id;
             return $this->redirect('/dashboard-guru');
         }
 
