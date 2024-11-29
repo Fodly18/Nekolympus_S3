@@ -26,6 +26,7 @@ Route::post('/login-guru', AuthController::class, 'LoginGuru')->middleware(['gue
 
 Route::get('/dashboard-admin', DashboardController::class, 'indexAdmin')->middleware(['auth', 'admin']);
 Route::get('/logout-admin', AuthController::class, 'logoutAdmin')->middleware(['auth', 'admin']);
+
 // Route Dashboard Guru
 Route::get('/dashboard-guru', DashboardController::class, 'indexGuru')->middleware(['auth', 'guru']);
 Route::get('/daftar-siswa', DashboardController::class, 'dafsisGuru')->middleware(['auth', 'guru']);
