@@ -113,7 +113,7 @@ nav ul li a:hover {
 
 /* Dropdown */
 .dropdown-menu {
-  background-color: #136498; /* Warna latar belakang dropdown */
+  background-color: #364981; /* Warna latar belakang dropdown */
   border-radius: 5px; /* Sudut yang lebih bulat */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan */
   z-index: 1000; /* Pastikan dropdown muncul di atas elemen lain */
@@ -240,7 +240,7 @@ nav ul li a:hover {
     backdrop-filter: blur(10px); /* Menerapkan efek blur */
     -webkit-backdrop-filter: blur(10px); /* Dukungan untuk browser WebKit */
 }
-}
+
 
 
   .toggler-logo {
@@ -264,7 +264,7 @@ nav ul li a:hover {
   .sub-text {
     font-size: 10px; /* Ukuran teks lebih kecil */
   }
-
+}
 /* Banner */
 .banner {
   position: relative;

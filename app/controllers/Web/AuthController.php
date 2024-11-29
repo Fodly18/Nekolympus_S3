@@ -43,7 +43,7 @@ class AuthController extends Controller
         $_SESSION = [];
         session_unset();
         session_destroy();
-        return $this->redirect('auth.login-admin');  
+        return $this->view('auth.login-admin');  
     }
 
     public function logoutGuru()
