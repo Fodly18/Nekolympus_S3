@@ -6,7 +6,7 @@
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/dataguruadmin.css">
     <link rel="stylesheet" href="/assets/css/dashboardadmin.css">
-    <title>Tambah Data Guru - Admin Dashboard</title>
+    <title>Tambah Data Siswa - Admin Dashboard</title>
 </head>
 <body>
     <!-- SIDEBAR -->
@@ -79,13 +79,13 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Tambah Data Guru</h1>
+                    <h1>Tambah Data Siswa</h1>
                     <ul class="breadcrumb">
                         <li><a href="/admin">Dashboard</a></li>
                         <li><i class='bx bx-chevron-right'></i></li>
-                        <li><a href="/guru">Data Guru</a></li>
+                        <li><a href="/siswa">Data Siswa</a></li>
                         <li><i class='bx bx-chevron-right'></i></li>
-                        <li><a class="active" href="#">Tambah Guru</a></li>
+                        <li><a class="active" href="#">Tambah Siswa</a></li>
                     </ul>
                 </div>
             </div>
@@ -97,14 +97,14 @@
                     </div>
                 <?php endif; ?>
 
-                <form action="/guru/create" method="post" id="createForm" onsubmit="return validateForm()">
+                <form action="/siswa/create" method="post" id="createForm" onsubmit="return validateForm()">
                     <div class="form-group">
-                        <label for="nip">NIP</label>
-                        <input type="text" class="form-control" id="nip" name="nip" required 
-                               pattern="[0-9]{18}" maxlength="18">
-                        <div class="form-hint">NIP harus 18 digit angka</div>
-                        <?php if (isset($errors['nip'])): ?>
-                            <?php foreach ($errors['nip'] as $error): ?>
+                        <label for="nisn">NISN</label>
+                        <input type="text" class="form-control" id="nisn" name="nisn" required 
+                               pattern="[0-9]{10}" maxlength="10">
+                        <div class="form-hint">NISN harus 10 digit angka</div>
+                        <?php if (isset($errors['nisn'])): ?>
+                            <?php foreach ($errors['nisn'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -150,7 +150,7 @@
                             <i class='bx bx-save'></i>
                             <span>Simpan</span>
                         </button>
-                        <a href="/guru" class="btn btn-danger">
+                        <a href="/siswa" class="btn btn-danger">
                             <i class='bx bx-x'></i>
                             <span>Batal</span>
                         </a>
@@ -175,13 +175,13 @@
 
         // Form validation
         function validateForm() {
-            const nip = document.getElementById('nip').value;
+            const nisn = document.getElementById('nisn').value;
             const nomor_hp = document.getElementById('nomor_hp').value;
             const password = document.getElementById('password').value;
 
-            // Validate NIP
-            if (!/^[0-9]{18}$/.test(nip)) {
-                alert('NIP harus 18 digit angka');
+            // Validate NISN
+            if (!/^[0-9]{10}$/.test(nisn)) {
+                alert('NISN harus 10 digit angka');
                 return false;
             }
 
@@ -205,7 +205,7 @@
             this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13);
         });
 
-        document.getElementById('nip').addEventListener('input', function(e) {
+        document.getElementById('nisn').addEventListener('input', function(e) {
             this.value = this.value.replace(/[^0-9]/g, '').slice(0, 18);
         });
     </script>

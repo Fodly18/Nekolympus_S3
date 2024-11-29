@@ -23,27 +23,33 @@
 				</a>
 			</li>
 			<li>
+				<a href="#">
+					<i class='bx bxs-book'></i>
+					<span class="text">Data Admin</span>
+				</a>
+			</li>
+			<li>
 				<a href="/guru">
 					<i class='bx bxs-user-badge'></i>
 					<span class="text">Data Guru</span>
 				</a>
 			</li>
 			<li>
-				<a href="/mapel">
+				<a href="/siswa">
 					<i class='bx bxs-book'></i>
-					<span class="text">Mata Pelajaran</span>
+					<span class="text">Data Siswa</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
 					<i class='bx bxs-message-dots'></i>
-					<span class="text">Message</span>
+					<span class="text">Berita</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
 					<i class='bx bxs-group'></i>
-					<span class="text">Team</span>
+					<span class="text">PPDB</span>
 				</a>
 			</li>
 		</ul>
