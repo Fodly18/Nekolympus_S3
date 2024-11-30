@@ -91,7 +91,7 @@
 						<li><a class="active" href="#">Tabel Tugas</a></li>
 					</ul>
 				</div>
-				<a href="/guru/create" class="btn btn-primary">
+				<a href="/tugas-pembelajaran/create" class="btn btn-primary">
 					<i class='bx bx-plus'></i>
 					<span>Tambah Tugas</span>
 				</a>
@@ -105,6 +105,7 @@
 							<th>Mata Pelajaran</th>
 							<th>Kelas</th>
 							<th>Judul Tugas</th>
+							<th>Deskripsi</th>
 							<th>Tanggal Tugas</th>
 							<th>Deadline Tugas</th>
 							<th>Action</th>
@@ -113,7 +114,7 @@
 					<tbody>
 						<?php if (empty($data)): ?>
 							<tr>
-								<td colspan="7" class="empty-state">
+								<td colspan="8" class="empty-state">
 									<i class='bx bx-folder-open'></i>
 									<p>Belum Ada Tugas Yang Tersedia</p>
 								</td>
@@ -122,17 +123,18 @@
 							<?php foreach ($data as $row): ?>
 								<tr>
 									<td><?= $no++; ?></td>
-									<td><?= htmlspecialchars($row->mapelKelas->mapel->nama_mapel ?? 'Tidak Ditemukan'); ?></td>
-									<td><?= htmlspecialchars($row->mapelKelas->kelas->nama_kelas ?? 'Tidak Ditemukan'); ?></td>
+									<td><?= htmlspecialchars($row['nama'] ?? 'Tidak Ditemukan'); ?></td>
+									<td><?= htmlspecialchars($row['kelas'] ?? 'Tidak Ditemukan'); ?></td>
 									<td><?= htmlspecialchars($row['judul_tugas']); ?></td>
+									<td><?= htmlspecialchars($row['deskripsi']); ?></td>
 									<td><?= htmlspecialchars($row['tanggal_tugas']); ?></td>
 									<td><?= htmlspecialchars($row['deadline']); ?></td>
 									<td class="action-buttons">
-										<a href="/guru/update/<?= $row['id']; ?>" class="btn btn-success">
+										<a href="/tugas-pembelajaran/update/<?= $row['id']; ?>" class="btn btn-success">
 											<i class='bx bx-edit-alt'></i>
 											<span>Edit</span>
 										</a>
-										<a href="/guru/delete/<?= $row['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="btn btn-danger">
+										<a href="/tugas-pembelajaran/delete/<?= $row['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="btn btn-danger">
 											<i class='bx bx-trash'></i>
 											<span>Hapus</span>
 										</a>

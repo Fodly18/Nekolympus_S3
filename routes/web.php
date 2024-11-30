@@ -1,11 +1,13 @@
 <?php
 
+use Nekolympus\Project\controllers\Web\TugasController;
 use Nekolympus\Project\controllers\Web\AuthController;
 use Nekolympus\Project\controllers\Web\DashboardController;
 use Nekolympus\Project\core\Route;
 use Nekolympus\Project\controllers\Web\HomeController;
 use Nekolympus\Project\controllers\Web\MapelController;
 use Nekolympus\Project\controllers\Web\GuruController;
+use Nekolympus\Project\core\Middleware;
 
 Route::get('/', HomeController::class, 'index')->middleware(['guest']);
 Route::get('/sejarah', HomeController::class, 'sejarah')->middleware(['guest']);
@@ -34,6 +36,14 @@ Route::get('/tugas-pembelajaran', DashboardController::class, 'tugasGuru')->midd
 Route::get('/latihan-soal', DashboardController::class, 'latsolGuru')->middleware(['auth', 'guru']);
 Route::get('/settings', DashboardController::class, 'settingGuru')->middleware(['auth', 'guru']);
 Route::get('/logout-guru', AuthController::class, 'logoutGuru')->middleware(['auth', 'guru']);
+
+// Route CRUD Tugas
+Route::get('/tugas-pembelajaran/create', TugasController::class, 'createIndex')->middleware(['auth', 'guru']);
+Route::post('/tugas-pembelajaran/create', TugasController::class, 'create')->middleware(['auth', 'guru']);
+Route::get('/tugas-pembelajaran/update/{id}', TugasController::class, 'updateIndex')->middleware(['auth', 'guru']);
+Route::post('/tugas-pembelajaran/update', TugasController::class, 'update')->middleware(['auth', 'guru']);
+Route::get('/tugas-pembelajaran/delete/{id}', TugasController::class, 'delete')->middleware(['auth', 'guru']);
+
 
 // Routing untuk Guru
 Route::get('/guru', GuruController::class, 'index')->middleware(['auth', 'admin']);
