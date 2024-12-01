@@ -30,7 +30,8 @@ class TugasController extends Controller
         $idGuru = $_SESSION['auth'];
         $data = DB::table('mapel_kelas')
                 ->join('kelas', 'mapel_kelas.id_kelas', '=', 'kelas.id')
-                ->select(['kelas.id', 'kelas.kelas'])
+                ->join('mapel', 'mapel_kelas.id_mapel', '=', 'mapel.id')
+                ->select(['mapel_kelas.id', 'kelas.kelas', 'mapel.nama'])
                 ->where('mapel_kelas.id_guru', '=', $idGuru)
                 ->get();
         return $this->view('guru.tugas.create', ['data' => $data]);
@@ -54,9 +55,11 @@ class TugasController extends Controller
         $idGuru = $_SESSION['auth'];
         $kelas = DB::table('mapel_kelas')
                 ->join('kelas', 'mapel_kelas.id_kelas', '=', 'kelas.id')
-                ->select(['kelas.id', 'kelas.kelas'])
+                ->join('mapel', 'mapel_kelas.id_mapel', '=', 'mapel.id')
+                ->select(['mapel_kelas.id', 'kelas.kelas', 'mapel.nama'])
                 ->where('mapel_kelas.id_guru', '=', $idGuru)
                 ->get();
+
         var_dump($id);
         $data = DB::table('tugas')
                 ->join('mapel_kelas', 'tugas.id_mapel_kelas', '=', 'mapel_kelas.id')

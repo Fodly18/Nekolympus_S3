@@ -4,6 +4,7 @@ namespace Nekolympus\Project\controllers\Web;
 
 use Nekolympus\Project\core\Controller;
 use Nekolympus\Project\core\DB;
+use Nekolympus\Project\core\Request;
 use Nekolympus\Project\models\LatihanSoal;
 
 class DashboardController extends Controller
@@ -40,9 +41,38 @@ class DashboardController extends Controller
         return $this->view('guru.latihan-soal.index', ['data' => $data, 'no' => $no]);
     }
 
-    public function dafsisGuru()
+    public function submitTugas()
     {
-        return $this->view('guru.daftar-siswa.index');
+        $idGuru = $_SESSION['auth'];
+        $tugas = DB::table('tugas')
+                    ->join('mapel_kelas', 'tugas.id_mapel_kelas', '=', 'mapel_kelas.id')
+                    ->select(['tugas.id', 'tugas.judul_tugas'])
+                    ->where('mapel_kelas.id_guru', '=', $idGuru)
+                    ->get();
+        $no = 1;
+        return $this->view('guru.pengumpulan-tugas.index', ['data' => $tugas, 'no' => $no]);
+    }
+
+    public function submitTugasFilter(Request $request)
+    {
+        $idGuru = $_SESSION['auth'];
+        $tugas = DB::table('tugas')
+                    ->join('mapel_kelas', 'tugas.id_mapel_kelas', '=', 'mapel_kelas.id')
+                    ->select(['tugas.id', 'tugas.judul_tugas'])
+                    ->where('mapel_kelas.id_guru', '=', $idGuru)
+                    ->get();
+        $no = 1;
+
+        $data = DB::table('tugas')
+                    ->join('siswa', 'tugas.id_siswa', '=', 'siswa.id')
+                    ->join('kelas', 'siswa.id_kelas', '=', 'kelas.id')
+                    ->select(['tugas.id', 'siswa.nama', 'kelas.kelas', 'tugas.']);
+        return $this->view('guru.pengumpulan-tugas.index', ['data' => $tugas, 'no' => $no]);
+    }
+
+    public function penilaian()
+    {
+        return $this->view('guru.penilaian.index');
     }
 
     public function settingGuru()
