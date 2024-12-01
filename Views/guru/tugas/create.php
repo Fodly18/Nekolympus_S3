@@ -156,16 +156,16 @@
 
                 <form action="/tugas-pembelajaran/create" method="post" id="createForm" onsubmit="return validateForm()">
                     <div class="form-group">
-                        <label for="kelas">Kelas</label>
+                        <label for="kelas">Mapel Kelas</label>
                         <select class="form-control" id="kelas" name="kelas" required>
-                            <option value="">-- Pilih Kelas --</option>
+                            <option value="" disabled selected>-- Pilih Mapel Dan Kelas --</option>
                             <?php foreach ($data as $row): ?>
                                 <option value="<?= htmlspecialchars($row['id']); ?>">
-                                    <?= htmlspecialchars($row['kelas']); ?>
+                                <?= htmlspecialchars($row['kelas']) . ' - ' . htmlspecialchars($row['nama']); ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
-                        <div class="form-hint">Pilih Kelas Yang Tersedia</div>
+                        <div class="form-hint">Pilih Kelas Dan Mapel Yang Tersedia</div>
                         <?php if (isset($errors['kelas'])): ?>
                             <?php foreach ($errors['kelas'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>

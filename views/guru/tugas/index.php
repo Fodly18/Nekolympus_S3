@@ -24,12 +24,6 @@
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li>
-				<a href="/daftar-siswa">
-					<i class='bx bxs-shopping-bag-alt'></i>
-					<span class="text">Daftar Siswa</span>
-				</a>
-			</li>
 			<li class="active">
 				<a href="/tugas-pembelajaran">
 					<i class='bx bxs-doughnut-chart'></i>
@@ -37,9 +31,21 @@
 				</a>
 			</li>
 			<li>
+				<a href="/pengumpulan-tugas">
+					<i class='bx bxs-shopping-bag-alt'></i>
+					<span class="text">Pengumpulan Tugas</span>
+				</a>
+			</li>
+			<li>
 				<a href="/latihan-soal">
-					<i class='bx bxs-message-dots'></i>
+					<i class='bx bxs-book-content'></i>
 					<span class="text">Latihan Soal</span>
+				</a>
+			</li>
+			<li>
+				<a href="/penilaian-latihan-soal">
+					<i class='bx bx-task'></i>
+					<span class="text">Penilaian Latihan Soal</span>
 				</a>
 			</li>
 		</ul>

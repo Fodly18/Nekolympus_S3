@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="/assets/css/dashboardadmin.css">
 	<link rel="stylesheet" href="/assets/css/tablestyle.css">
+	<style>
+		.select {
+			display: inline-block;
+			width: auto;
+			min-width: 600px;
+			align-items: center;
+			justify-content: center;
+			margin-top: 10px;
+			padding: 8px 12px;
+			color: #333;
+			background-color: #eee;
+			border: 2px solid #bbb;
+			cursor: pointer;
+			border-radius: 5px;
+			font-size: 14px;
+			text-align: left;
+			text-align-last: center;
+			transition: border-color 0.3s ease;
+		}
+
+		.select:focus,
+		.select:hover {
+			outline: none;
+			border: 2px solid #169dea;
+		}
+
+		.select option {
+			background: #fff;
+			color: #333;
+			padding: 4px;
+			text-align: left;
+		}
+
+		.btn-select{
+			margin-left: 16px;
+			padding: 8px 12px;
+			color: #eee;
+			background-color: #169dea;
+			font-size: 14px;
+			cursor: pointer;
+			border: 2px solid #169dea;
+			border-radius: 10px;
+		}
+	</style>
 	<title>Dashboard Guru Page</title>
 </head>
 
@@ -30,13 +75,13 @@
 					<span class="text">Tugas</span>
 				</a>
 			</li>
-			<li>
+			<li class="active">
 				<a href="/pengumpulan-tugas">
 					<i class='bx bxs-shopping-bag-alt'></i>
 					<span class="text">Pengumpulan Tugas</span>
 				</a>
 			</li>
-			<li class="active">
+			<li>
 				<a href="/latihan-soal">
 					<i class='bx bxs-book-content'></i>
 					<span class="text">Latihan Soal</span>
@@ -89,55 +134,55 @@
 		<!-- MAIN -->
 		<main>
 			<div class="head-title">
-				<div class="left">
-					<h1>Latihan Soal</h1>
+				<d class="left">
+					<h1>Pengumpulan Tugas</h1>
 					<ul class="breadcrumb">
-						<li>
-							<a href="#">Latihan Soal</a>
-						</li>
+						<li><a href="#">Pengumpulan Tugas</a></li>
 						<li><i class='bx bx-chevron-right'></i></li>
-						<li>
-							<a class="active" href="#">Beranda</a>
-						</li>
+						<li><a class="active" href="#">Daftar Tugas</a></li>
 					</ul>
-				</div>
-				<a href="/latihan-soal/create" class="btn btn-primary">
-					<i class='bx bx-plus'></i>
-					<span>Tambah Latihan Soal</span>
-				</a>
+					<form action="/pengumpulan-tugas/filter" method="POST">
+						<select class="select" name="filter">
+							<option disabled selected value="">-- Pilih Judul Tugas --</option>
+							<?php foreach($data as $row) :?>
+								<option value=""><?= $row['judul_tugas'] ?></option>
+							<?php endforeach; ?>
+						</select>
+						<button class="btn-select">Pilih Judul</button>
+					</form>
+			</div>
+
 			</div>
 			<div class="table-container">
 				<table class="data-table">
 					<thead>
 						<tr>
 							<th>No</th>
-							<th>Judul Soal</th>
-							<th>Jumlah Soal</th>
+							<th>Nama Siswa</th>
+							<th>Kelas</th>
+							<th>Tanggal Mengumpulkan</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php if (empty($data)): ?>
+						<?php if (empty($asd)): ?>
 							<tr>
-								<td colspan="4" class="empty-state">
+								<td colspan="5" class="empty-state">
 									<i class='bx bx-folder-open'></i>
-									<p>Belum Ada Tugas Yang Tersedia</p>
+									<p>Belum Ada Siswa Yang Mengumpulkan Tugas</p>
 								</td>
 							</tr>
 						<?php else: ?>
-							<?php foreach ($data as $row): ?>
+							<?php foreach ($asd as $row): ?>
 								<tr>
 									<td><?= $no++; ?></td>
-									<td><?= htmlspecialchars($row['judul_soal']); ?></td>
-									<td><?= htmlspecialchars($row['jumlah_soal']); ?></td>
+									<td><?= htmlspecialchars($row['asd'] ?? 'Tidak Ditemukan'); ?></td>
+									<td><?= htmlspecialchars($row['asd'] ?? 'Tidak Ditemukan'); ?></td>
+									<td><?= htmlspecialchars($row['asd']); ?></td>
 									<td class="action-buttons">
-										<a href="/latihan-soal/update/<?= $row['id']; ?>" class="btn btn-success">
+										<a href="/tugas-pembelajaran/update/<?= $row['id']; ?>" class="btn btn-success">
 											<i class='bx bx-edit-alt'></i>
-											<span>Edit</span>
-										</a>
-										<a href="/latihan-soal/delete/<?= $row['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="btn btn-danger">
-											<i class='bx bx-trash'></i>
-											<span>Hapus</span>
+											<span>Tamppilkan</span>
 										</a>
 									</td>
 								</tr>

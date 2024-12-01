@@ -7,6 +7,7 @@ use Nekolympus\Project\core\Route;
 use Nekolympus\Project\controllers\Web\HomeController;
 use Nekolympus\Project\controllers\Web\MapelController;
 use Nekolympus\Project\controllers\Web\GuruController;
+use Nekolympus\Project\controllers\Web\LatihanController;
 use Nekolympus\Project\core\Middleware;
 
 Route::get('/', HomeController::class, 'index')->middleware(['guest']);
@@ -31,9 +32,11 @@ Route::get('/logout-admin', AuthController::class, 'logoutAdmin')->middleware(['
 
 // Route Dashboard Guru
 Route::get('/dashboard-guru', DashboardController::class, 'indexGuru')->middleware(['auth', 'guru']);
-Route::get('/daftar-siswa', DashboardController::class, 'dafsisGuru')->middleware(['auth', 'guru']);
+Route::get('/pengumpulan-tugas', DashboardController::class, 'submitTugas')->middleware(['auth', 'guru']);
+Route::post('/pengumpulan-tugas/filter', DashboardController::class, 'submitTugasFilter')->middleware(['auth', 'guru']);
 Route::get('/tugas-pembelajaran', DashboardController::class, 'tugasGuru')->middleware(['auth', 'guru']);
 Route::get('/latihan-soal', DashboardController::class, 'latsolGuru')->middleware(['auth', 'guru']);
+Route::get('/penilaian-latihan-soal', DashboardController::class, 'penilaian')->middleware(['auth', 'guru']);
 Route::get('/settings', DashboardController::class, 'settingGuru')->middleware(['auth', 'guru']);
 Route::get('/logout-guru', AuthController::class, 'logoutGuru')->middleware(['auth', 'guru']);
 
@@ -44,6 +47,12 @@ Route::get('/tugas-pembelajaran/update/{id}', TugasController::class, 'updateInd
 Route::post('/tugas-pembelajaran/update', TugasController::class, 'update')->middleware(['auth', 'guru']);
 Route::get('/tugas-pembelajaran/delete/{id}', TugasController::class, 'delete')->middleware(['auth', 'guru']);
 
+// Route CRUD Latihan Soal
+Route::get('/latihan-soal/create', LatihanController::class, 'createIndex')->middleware(['auth', 'guru']);
+Route::post('/latihan-soal/create', LatihanController::class, 'create')->middleware(['auth', 'guru']);
+Route::get('/latihan-soal/update/{id}', LatihanController::class, 'updateIndex')->middleware(['auth', 'guru']);
+Route::post('/latihan-soal/update', LatihanController::class, 'update')->middleware(['auth', 'guru']);
+Route::get('/latihan-soal/delete/{id}', LatihanController::class, 'delete')->middleware(['auth', 'guru']);
 
 // Routing untuk Guru
 Route::get('/guru', GuruController::class, 'index')->middleware(['auth', 'admin']);

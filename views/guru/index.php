@@ -2,10 +2,10 @@
 <html lang="en">
 <?php
 
-use Nekolympus\Project\models\Siswa;
+use Nekolympus\Project\models\LatihanSoal;
 use Nekolympus\Project\models\Tugas;
 
-$totalSiswa = Siswa::count();
+$totalLatsol = LatihanSoal::count();
 $totalTugas = Tugas::count();
 
 
@@ -38,21 +38,27 @@ $currentTime = date('H:i:s');
 				</a>
 			</li>
 			<li>
-				<a href="/daftar-siswa">
-					<i class='bx bxs-shopping-bag-alt'></i>
-					<span class="text">Daftar Siswa</span>
-				</a>
-			</li>
-			<li>
 				<a href="/tugas-pembelajaran">
 					<i class='bx bxs-doughnut-chart'></i>
 					<span class="text">Tugas</span>
 				</a>
 			</li>
 			<li>
+				<a href="/pengumpulan-tugas">
+					<i class='bx bxs-shopping-bag-alt'></i>
+					<span class="text">Pengumpulan Tugas</span>
+				</a>
+			</li>
+			<li>
 				<a href="/latihan-soal">
-					<i class='bx bxs-message-dots'></i>
+					<i class='bx bxs-book-content'></i>
 					<span class="text">Latihan Soal</span>
+				</a>
+			</li>
+			<li>
+				<a href="/penilaian-latihan-soal">
+					<i class='bx bx-task'></i>
+					<span class="text">Penilaian Latihan Soal</span>
 				</a>
 			</li>
 		</ul>
@@ -112,17 +118,17 @@ $currentTime = date('H:i:s');
 
 			<ul class="box-info">
 				<li>
-					<i class='bx bxs-group'></i>
-					<span class="text">
-						<p>Jumlah Siswa</p>
-						<h3><?= htmlspecialchars($totalSiswa, ENT_QUOTES, 'UTF-8'); ?></h3>
-					</span>
-				</li>
-				<li>
 					<i class='bx bxs-calendar-check'></i>
 					<span class="text">
 						<p>Jumlah Tugas</p>
 						<h3><?= htmlspecialchars($totalTugas, ENT_QUOTES, 'UTF-8'); ?></h3>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-group'></i>
+					<span class="text">
+						<p>Jumlah Latihan Soal</p>
+						<h3><?= htmlspecialchars($totalLatsol, ENT_QUOTES, 'UTF-8'); ?></h3>
 					</span>
 				</li>
 				<li>
