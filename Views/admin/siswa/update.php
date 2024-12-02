@@ -64,7 +64,7 @@
             <i class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Cari...">
+                    <input type="search" placeholder="Cari..." aria-label="Search">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
@@ -101,11 +101,11 @@
                     <input type="hidden" name="id" value="<?= htmlspecialchars($data->id) ?>">
                     
                     <div class="form-group">
-                        <label for="nisn">nisn</label>
-                        <input type="text" class="form-control" id="nisn name="nisn" required 
-                               pattern="[0-9]{18}" maxlength="18"
-                               value="<?= htmlspecialchars($data->nisn) ?>">
-                        <div class="form-hint">NISN harus 10 digit angka</div>
+                        <label for="nisn">NISN</label>
+                        <input type="text" class="form-control" id="nisn" name="nisn" required 
+                               pattern="[0-9]{10}" maxlength="10"
+                               value="<?= htmlspecialchars($data->nisn) ?>" aria-describedby="nisnHint">
+                        <div id="nisnHint" class="form-hint">NISN harus 10 digit angka</div>
                         <?php if (isset($errors['nisn'])): ?>
                             <?php foreach ($errors['nisn'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -128,8 +128,8 @@
                         <label for="nomor_hp">Nomor HP</label>
                         <input type="tel" class="form-control" id="nomor_hp" name="nomor_hp" required 
                                pattern="[0-9]{10,13}" maxlength="13"
-                               value="<?= htmlspecialchars($data->nomor_hp) ?>">
-                        <div class="form-hint">Nomor HP harus 10-13 digit angka</div>
+                               value="<?= htmlspecialchars($data->nomor_hp) ?>" aria-describedby="nomorHpHint">
+                        <div id="nomorHpHint" class="form-hint">Nomor HP harus 10-13 digit angka</div>
                         <?php if (isset($errors['nomor_hp'])): ?>
                             <?php foreach ($errors['nomor_hp'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -141,10 +141,10 @@
                         <label for="password">Password Baru (Kosongkan jika tidak ingin mengubah)</label>
                         <div class="password-container">
                             <input type="password" class="form-control" id="password" name="password" 
-                                   minlength="6">
+                                   minlength="6" aria-describedby="passwordHint">
                             <i class='bx bx-show toggle-password' onclick="togglePassword()"></i>
                         </div>
-                        <div class="form-hint">Password minimal 6 karakter</div>
+                        <div id="passwordHint" class="form-hint">Password minimal 6 karakter</div>
                         <?php if (isset($errors['password'])): ?>
                             <?php foreach ($errors['password'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -173,11 +173,7 @@
         const switchMode = document.getElementById('switch-mode');
         
         switchMode.addEventListener('change', function() {
-            if(this.checked) {
-                document.body.classList.add('dark');
-            } else {
-                document.body.classList.remove('dark');
-            }
+            document.body.classList.toggle('dark', this.checked);
         });
 
         // Form validation
@@ -188,7 +184,7 @@
 
             // Validate nisn
             if (!/^[0-9]{10}$/.test(nisn)) {
-                alert('nisn harus 10 digit angka');
+                alert('NISN harus 10 digit angka');
                 return false;
             }
 
@@ -212,24 +208,19 @@
             const passwordInput = document.getElementById('password');
             const toggleIcon = document.querySelector('.toggle-password');
             
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleIcon.classList.remove('bx-show');
-                toggleIcon.classList.add('bx-hide');
-            } else {
-                passwordInput.type = 'password';
-                toggleIcon.classList.remove('bx-hide');
-                toggleIcon.classList.add('bx-show');
-            }
+            const isPasswordVisible = passwordInput.type === 'text';
+            passwordInput.type = isPasswordVisible ? 'password' : 'text';
+            toggleIcon.classList.toggle('bx-show', isPasswordVisible);
+            toggleIcon.classList.toggle('bx-hide', !isPasswordVisible);
         }
 
         // Add input event listeners for real-time validation
-        document.getElementById('nomor_hp').addEventListener('input', function(e) {
+        document.getElementById('nomor_hp').addEventListener('input', function() {
             this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13);
         });
 
-        document.getElementById('nisn').addEventListener('input', function(e) {
-            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 18);
+        document.getElementById('nisn').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
         });
     </script>
 </body>

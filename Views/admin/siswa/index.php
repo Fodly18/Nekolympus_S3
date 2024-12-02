@@ -64,7 +64,7 @@
             <i class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Cari guru...">
+                    <input type="search" placeholder="Cari siswa...">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
@@ -86,7 +86,7 @@
                         <li><a class="active" href="#">Data Siswa</a></li>
                     </ul>
                 </div>
-                <a href="/Siswa/create" class="btn btn-primary">
+                <a href="/siswa/create" class="btn btn-primary">
                     <i class='bx bx-plus'></i>
                     <span>Tambah Siswa</span>
                 </a>

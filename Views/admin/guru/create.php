@@ -16,44 +16,14 @@
             <span class="text">SDN 1 KALISAT</span>
         </a>
         <ul class="side-menu top">
-            <li>
-                <a href="/admin">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="text">Dashboard</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="/guru">
-                    <i class='bx bxs-group'></i>
-                    <span class="text">Data Guru</span>
-                </a>
-            </li>
-            <li>
-                <a href="/mapel">
-                    <i class='bx bxs-book'></i>
-                    <span class="text">Mata Pelajaran</span>
-                </a>
-            </li>
-            <li>
-                <a href="/siswa">
-                    <i class='bx bxs-user-detail'></i>
-                    <span class="text">Data Siswa</span>
-                </a>
-            </li>
+            <li><a href="/admin"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a></li>
+            <li class="active"><a href="/guru"><i class='bx bxs-group'></i><span class="text">Data Guru</span></a></li>
+            <li><a href="/mapel"><i class='bx bxs-book'></i><span class="text">Mata Pelajaran</span></a></li>
+            <li><a href="/siswa"><i class='bx bxs-user-detail'></i><span class="text">Data Siswa</span></a></li>
         </ul>
         <ul class="side-menu">
-            <li>
-                <a href="/settings">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
-            <li>
-                <a href="/logout" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
-                </a>
-            </li>
+            <li><a href="/settings"><i class='bx bxs-cog'></i><span class="text">Settings</span></a></li>
+            <li><a href="/logout" class="logout"><i class='bx bxs-log-out-circle'></i><span class="text">Logout</span></a></li>
         </ul>
     </section>
 
@@ -64,7 +34,7 @@
             <i class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Cari...">
+                    <input type="search" placeholder="Cari..." aria-label="Search">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
@@ -101,8 +71,8 @@
                     <div class="form-group">
                         <label for="nip">NIP</label>
                         <input type="text" class="form-control" id="nip" name="nip" required 
-                               pattern="[0-9]{18}" maxlength="18">
-                        <div class="form-hint">NIP harus 18 digit angka</div>
+                               pattern="[0-9]{18}" maxlength="18" aria-describedby="nipHint">
+                        <div id="nipHint" class="form-hint">NIP harus 18 digit angka</div>
                         <?php if (isset($errors['nip'])): ?>
                             <?php foreach ($errors['nip'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -113,7 +83,8 @@
                     <div class="form-group">
                         <label for="nama">Nama Lengkap</label>
                         <input type="text" class="form-control" id="nama" name="nama" required 
-                               maxlength="100">
+                               maxlength="100" aria-describedby="namaHint">
+                        <div id="namaHint" class="form-hint">Masukkan nama lengkap</div>
                         <?php if (isset($errors['nama'])): ?>
                             <?php foreach ($errors['nama'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -124,8 +95,8 @@
                     <div class="form-group">
                         <label for="nomor_hp">Nomor HP</label>
                         <input type="tel" class="form-control" id="nomor_hp" name="nomor_hp" required 
-                               pattern="[0-9]{10,13}" maxlength="13">
-                        <div class="form-hint">Nomor HP harus 10-13 digit angka</div>
+                               pattern="[0-9]{10,13}" maxlength="13" aria-describedby="nomorHpHint">
+                        <div id="nomorHpHint" class="form-hint">Nomor HP harus 10-13 digit angka</div>
                         <?php if (isset($errors['nomor_hp'])): ?>
                             <?php foreach ($errors['nomor_hp'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -136,8 +107,8 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" required 
-                               minlength="6">
-                        <div class="form-hint">Password minimal 6 karakter</div>
+                               minlength="6" aria-describedby="passwordHint">
+                        <div id="passwordHint" class="form-hint">Password minimal 6 karakter</div>
                         <?php if (isset($errors['password'])): ?>
                             <?php foreach ($errors['password'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -166,11 +137,7 @@
         const switchMode = document.getElementById('switch-mode');
         
         switchMode.addEventListener('change', function() {
-            if(this.checked) {
-                document.body.classList.add('dark');
-            } else {
-                document.body.classList.remove('dark');
-            }
+            document.body.classList.toggle('dark', this.checked);
         });
 
         // Form validation
@@ -201,11 +168,11 @@
         }
 
         // Add input event listeners for real-time validation
-        document.getElementById('nomor_hp').addEventListener('input', function(e) {
+        document.getElementById('nomor_hp').addEventListener('input', function() {
             this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13);
         });
 
-        document.getElementById('nip').addEventListener('input', function(e) {
+        document.getElementById('nip').addEventListener('input', function() {
             this.value = this.value.replace(/[^0-9]/g, '').slice(0, 18);
         });
     </script>
