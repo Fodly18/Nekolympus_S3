@@ -2,10 +2,10 @@
 <html lang="en">
 <?php
 
-use Nekolympus\Project\models\LatihanSoal;
+use Nekolympus\Project\models\Siswa;
 use Nekolympus\Project\models\Tugas;
 
-$totalLatsol = LatihanSoal::count();
+$totalSiswa = Siswa::count();
 $totalTugas = Tugas::count();
 
 
@@ -31,7 +31,7 @@ $currentTime = date('H:i:s');
 			<span class="text">SDN 1 KALISAT</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+			<li>
 				<a href="/dashboard-guru">
 					<i class='bx bxs-dashboard'></i>
 					<span class="text">Dashboard</span>
@@ -118,17 +118,17 @@ $currentTime = date('H:i:s');
 
 			<ul class="box-info">
 				<li>
+					<i class='bx bxs-group'></i>
+					<span class="text">
+						<p>Jumlah Siswa</p>
+						<h3><?= htmlspecialchars($totalSiswa, ENT_QUOTES, 'UTF-8'); ?></h3>
+					</span>
+				</li>
+				<li>
 					<i class='bx bxs-calendar-check'></i>
 					<span class="text">
 						<p>Jumlah Tugas</p>
 						<h3><?= htmlspecialchars($totalTugas, ENT_QUOTES, 'UTF-8'); ?></h3>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-group'></i>
-					<span class="text">
-						<p>Jumlah Latihan Soal</p>
-						<h3><?= htmlspecialchars($totalLatsol, ENT_QUOTES, 'UTF-8'); ?></h3>
 					</span>
 				</li>
 				<li>
@@ -140,31 +140,29 @@ $currentTime = date('H:i:s');
 				</li>
 			</ul>
 
-			<div class="jdwl-border">
-				<h2>Jadwal Hari Ini</h2>
-				<table>
-					<thead>
+			<div class="table-data">
+				<div class="jadwal">
+					<h2>Jadwal Hari Ini</h2>
+					<table>
 						<tr>
 							<th>Mata Pembelajaran</th>
 							<th>Kelas</th>
 							<th>Jam</th>
 						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td data-label="Mata Pembelajaran">Matematika</td>
-							<td data-label="Kelas">5A</td>
-							<td data-label="Jam">08:00 - 09:30</td>
-						</tr>
-						<tr>
-							<td data-label="Mata Pembelajaran">Bahasa Indonesia</td>
-							<td data-label="Kelas">5B</td>
-							<td data-label="Jam">09:30 - 11:00</td>
-						</tr>
-					</tbody>
-
-				</table>
-			</div>
+						<tbody>
+						<?php if (empty($data)): ?>
+                            <tr>
+                                <td colspan="5" class="empty-state">
+                                    <p>Belum Ada Jadwal Mapel Tersedia</p>
+                                </td>
+                            </tr>
+						<?php endif; ?>
+							<tr>
+								<td></td>
+							</tr>
+						</tbody>	
+					</table>
+				</div>
 			</div>
 		</main>
 		<!-- MAIN -->

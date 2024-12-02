@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-
-use Nekolympus\Project\models\LatihanSoal;
-use Nekolympus\Project\models\Tugas;
-
-$totalLatsol = LatihanSoal::count();
-$totalTugas = Tugas::count();
-
-
-$currentDate = date('l, d F Y');
-$currentTime = date('H:i:s');
-
-?>
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="/assets/css/dashboardadmin.css">
+	<link rel="stylesheet" href="/assets/css/tablestyle.css">
 	<title>Dashboard Guru Page</title>
 </head>
 
@@ -31,13 +18,13 @@ $currentTime = date('H:i:s');
 			<span class="text">SDN 1 KALISAT</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+			<li>
 				<a href="/dashboard-guru">
 					<i class='bx bxs-dashboard'></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li>
+			<li class="active">
 				<a href="/tugas-pembelajaran">
 					<i class='bx bxs-doughnut-chart'></i>
 					<span class="text">Tugas</span>
@@ -103,71 +90,69 @@ $currentTime = date('H:i:s');
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>Dashboard</h1>
+					<h1>Data Tugas</h1>
 					<ul class="breadcrumb">
-						<li>
-							<a href="#">Dashboard</a>
-						</li>
+						<li><a href="/dashboard-guru">Dashboard</a></li>
 						<li><i class='bx bx-chevron-right'></i></li>
-						<li>
-							<a class="active" href="#">Home</a>
-						</li>
+						<li><a class="active" href="#">Tabel Tugas</a></li>
 					</ul>
 				</div>
+				<a href="/tugas-pembelajaran/create" class="btn btn-primary">
+					<i class='bx bx-plus'></i>
+					<span>Tambah Tugas</span>
+				</a>
 			</div>
 
-			<ul class="box-info">
-				<li>
-					<i class='bx bxs-calendar-check'></i>
-					<span class="text">
-						<p>Jumlah Tugas</p>
-						<h3><?= htmlspecialchars($totalTugas, ENT_QUOTES, 'UTF-8'); ?></h3>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-group'></i>
-					<span class="text">
-						<p>Jumlah Latihan Soal</p>
-						<h3><?= htmlspecialchars($totalLatsol, ENT_QUOTES, 'UTF-8'); ?></h3>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-time-five'></i>
-					<span class="text">
-						<h3 id="current-time"></h3>
-						<p id="current-date"></p>
-					</span>
-				</li>
-			</ul>
-
-			<div class="jdwl-border">
-				<h2>Jadwal Hari Ini</h2>
-				<table>
+			<div class="table-container">
+				<table class="data-table">
 					<thead>
 						<tr>
-							<th>Mata Pembelajaran</th>
+							<th>No</th>
+							<th>Mata Pelajaran</th>
 							<th>Kelas</th>
-							<th>Jam</th>
+							<th>Judul Tugas</th>
+							<th>Deskripsi</th>
+							<th>Tanggal Tugas</th>
+							<th>Deadline Tugas</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td data-label="Mata Pembelajaran">Matematika</td>
-							<td data-label="Kelas">5A</td>
-							<td data-label="Jam">08:00 - 09:30</td>
-						</tr>
-						<tr>
-							<td data-label="Mata Pembelajaran">Bahasa Indonesia</td>
-							<td data-label="Kelas">5B</td>
-							<td data-label="Jam">09:30 - 11:00</td>
-						</tr>
+						<?php if (empty($data)): ?>
+							<tr>
+								<td colspan="8" class="empty-state">
+									<i class='bx bx-folder-open'></i>
+									<p>Belum Ada Tugas Yang Tersedia</p>
+								</td>
+							</tr>
+						<?php else: ?>
+							<?php foreach ($data as $row): ?>
+								<tr>
+									<td><?= $no++; ?></td>
+									<td><?= htmlspecialchars($row['nama'] ?? 'Tidak Ditemukan'); ?></td>
+									<td><?= htmlspecialchars($row['kelas'] ?? 'Tidak Ditemukan'); ?></td>
+									<td><?= htmlspecialchars($row['judul_tugas']); ?></td>
+									<td><?= htmlspecialchars($row['deskripsi']); ?></td>
+									<td><?= htmlspecialchars($row['tanggal_tugas']); ?></td>
+									<td><?= htmlspecialchars($row['deadline']); ?></td>
+									<td class="action-buttons">
+										<a href="/tugas-pembelajaran/update/<?= $row['id']; ?>" class="btn btn-success">
+											<i class='bx bx-edit-alt'></i>
+											<span>Edit</span>
+										</a>
+										<a href="/tugas-pembelajaran/delete/<?= $row['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="btn btn-danger">
+											<i class='bx bx-trash'></i>
+											<span>Hapus</span>
+										</a>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						<?php endif; ?>
 					</tbody>
-
 				</table>
-			</div>
+
 			</div>
 		</main>
-		<!-- MAIN -->
 	</section>
 
 	<script src="/assets/js/dashboardguru.js"></script>

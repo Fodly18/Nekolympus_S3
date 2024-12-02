@@ -38,9 +38,10 @@ body {
 	height: 40%;
 }
 
-.sign-in h1 {
-	margin-bottom: 10px;
+.j2 {
+	margin-bottom: 40px;
 }
+
 
 .container span {
 	font-size: 12px;
@@ -64,6 +65,7 @@ body {
 	text-transform: uppercase;
 	margin-top: 20px;
 	cursor: pointer;
+	margin-bottom: 100px;
 }
 
 
@@ -106,6 +108,7 @@ body {
 	left: 0;
 	width: 50%;
 	z-index: 2;
+
 }
 
 

@@ -249,12 +249,13 @@
 
       <!-- Lokasi -->
       <div class="col-md-4 lokasi">
-        <h5>Alamat</h5>
+        <h5>Alamat </h5>
         <a href="https://www.google.com/maps/search/?api=1&query=SDN+1+Kalisat,+Jember" target="_blank">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.8970015713357!2d111.45046627405344!3d-8.009557579918342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79733e2dbc9155%3A0x4aaf9dd2609da5a9!2sSDN%201%20Kalisat!5e0!3m2!1sen!2sid!4v1731520584344!5m2!1sen!2sid"
             width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </a>
+        <p>Jl. Kapuas No.50, Gabahan, Kalisat, Kec. Bungkal, Kabupaten Ponorogo, Jawa Timur 63462</p>
       </div>
     </div>
 

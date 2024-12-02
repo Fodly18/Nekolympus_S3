@@ -15,6 +15,7 @@ class AuthController extends Controller
         return $this->view('auth.login-admin');
     }
 
+
     public function LoginAdmin(Request $request)
     {
         if(!$request->validate([
@@ -35,6 +36,22 @@ class AuthController extends Controller
         }
 
         return $this->view('auth.login-admin', ['error' => 'Username Atau Password Salah']);
+    }
+
+    public function logoutAdmin()
+    {
+        $_SESSION = [];
+        session_unset();
+        session_destroy();
+        return $this->view('auth.login-admin');  
+    }
+
+    public function logoutGuru()
+    {
+        $_SESSION = [];
+        session_unset();
+        session_destroy();
+        return $this->view('auth.login-guru');  
     }
 
     public function indexGuru()
@@ -58,6 +75,7 @@ class AuthController extends Controller
         {
             $_SESSION['user_role'] = 'guru';
             $_SESSION['user'] = true;
+            $_SESSION['auth'] = $user->id;
             return $this->redirect('/dashboard-guru');
         }
 
