@@ -1,0 +1,88 @@
+/* Gaya untuk quiz-question container */
+.quiz-question {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Jarak antar soal */
+    padding: 20px;
+}
+
+/* Gaya untuk setiap soal yang akan terlihat seperti card */
+.question-container {
+    border: 1px solid #ddd; /* Border untuk pemisah antar soal */
+    border-radius: 8px; /* Agar sudut lebih halus */
+    padding: 20px;
+    background-color: #ffffff; /* Warna latar belakang card */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Efek bayangan agar seperti card */
+    margin-bottom: 15px; /* Jarak bawah antar soal */
+}
+
+/* Gaya untuk setiap form input dalam soal */
+.question-container .form-group {
+    margin-bottom: 15px; /* Jarak antar form group */
+}
+
+/* Gaya untuk label input */
+.question-container .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Gaya untuk input field */
+.question-container .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Gaya untuk input field saat berada dalam focus */
+.question-container .form-control:focus {
+    border-color: #007bff; /* Warna border berubah saat focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Efek fokus pada input */
+}
+
+/* Memberikan jarak dan hover effect untuk setiap soal */
+.question-container:hover {
+    border-color: #007bff; /* Warna border berubah saat hover */
+    background-color: #f1faff; /* Latar belakang berubah saat hover */
+}
+
+/* Styling tombol submit di akhir */
+.quiz-question .btn-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Gaya untuk tombol lanjutkan */
+.quiz-question .btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Efek tombol saat hover */
+.quiz-question .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Styling tombol batal */
+.quiz-question .btn-danger {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Efek tombol batal saat hover */
+.quiz-question .btn-danger:hover {
+    background-color: #c82333;
+}

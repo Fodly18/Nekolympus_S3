@@ -2,7 +2,6 @@
     padding: 0;
     margin: 0;
     text-decoration: none;
-    list-style: none;
     box-sizing: border-box;
   }
   
@@ -84,7 +83,7 @@
   
   nav ul li a {
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-size: 16px; /* Ukuran font yang lebih besar untuk keterbacaan */
     text-transform: capitalize;
     padding: 10px 15px; /* Padding yang cukup untuk klik yang lebih nyaman */
@@ -111,7 +110,7 @@
   
   /* Dropdown */
 .dropdown-menu {
-  background-color: #5995c5; /* Warna latar belakang dropdown */
+  background-color: #364981; /* Warna latar belakang dropdown */
   border-radius: 5px; /* Sudut yang lebih bulat */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan */
   z-index: 1000; /* Pastikan dropdown muncul di atas elemen lain */
@@ -130,7 +129,7 @@
 }
 /* Gaya item dropdown */
 .dropdown-menu .dropdown-item {
-  color: rgb(0, 0, 0); /* Warna teks item */
+  color: white; /* Warna teks item */
   padding: 10px 15px; /* Padding untuk keterbacaan */
   font-size: 14px; /* Ukuran font */
   transition: background 0.3s; /* Transisi hover */
@@ -138,7 +137,7 @@
 
 /* Hover efek untuk item dropdown */
 .dropdown-menu .dropdown-item:hover {
-  background-color: #ffffff; /* Warna latar saat hover */
+  background-color: #2c70be; /* Warna latar saat hover */
 }
 
 /* Gaya dropdown di ponsel */
@@ -263,6 +262,7 @@
     width: 100%;
     overflow: hidden;
     margin-top: 65px; /* Sesuaikan dengan tinggi navbar jika fixed */
+    margin-bottom: 20px;
 }
 
 /* Gambar banner */
@@ -275,92 +275,159 @@
 .container-text {
     background-color: #798288;
 }
+
 /* text */
 .text-visimisi {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Jarak antar elemen */
 }
 
-.text-visimisi h1 {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 20px;
+.visi-style,
+.misi-style,
+.tujuan-style {
+    width: 50%; /* Lebar 50% */
+    background-color: #96d9f3;
+    border: solid rgb(187, 240, 240);
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .text-visimisi h3 {
     color: #34495e;
     margin-top: 20px;
+    text-align: center;
 }
 
-.text-visimisi p {
-    margin-left: 20px;
-    line-height: 1.6;
-    color: #555;
-}
 
-.text-visimisi p::before {
-    content: "• ";
-    color: #2980b9;
-    margin-right: 5px;
-}
+/* .text-visimisi ol {
+  /* list-style-type: decimal; Menampilkan angka secara berurutan */
+  /* margin-left: 20px; Memberikan margin kiri untuk pemisahan */
+  /* padding-left: 20px; Memberikan padding kiri agar terlihat rapi */
+ 
 
-.text-visimisi p:first-of-type::before {
-    content: "";
-}
-
-.text-visimisi p:not(:first-of-type) {
-    text-indent: -20px;
-}
 
 
 /* Footer */
 .footer {
-    background-color: #2c3e50;
-    color: white;
-    padding: 40px 0;
+  margin-top: 20px;
+  background-color: #0083d7;
+  color: white;
+  padding: 40px 20px;
 }
 
 .footer h5 {
-    font-size: 20px;
-    margin-bottom: 20px;
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
 }
 
-.footer p, .footer ul {
-    font-size: 14px;
-    line-height: 1.6;
+.footer p,
+.footer ul {
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .footer ul {
-    padding: 0;
-    list-style: none;
+  padding: 0;
+  list-style: none;
 }
 
 .footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer-logo {
+  width: 50%; /* Ukuran logo */
+  height: auto;
+  margin-right: 20px; /* Jarak antara logo dan teks */
+  flex-shrink: 0; /* Pastikan logo tidak mengecil */
+}
+
+.about-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px; /* Spasi antara logo dan teks */
+}
+
+.about-section p {
+  margin: 0;
+}
+
+.footer .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px; /* Spasi antar kolom */
+}
+
+.footer .col-md-4 {
+  flex: 1;
+  margin-bottom: 20px;
+  margin-right: -50px;
+}
+
+.footer .col-md-4.kontak {
+  margin-left: 100px; /* Geser kolom Kontak ke kiri */
+}
+
+.footer iframe {
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #1abc9c;
+}
+
+.text-center {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #ddd;
+}
+
+/* Menambahkan margin antar elemen */
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .footer .row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer .col-md-4 {
+    margin-bottom: 20px;
+  }
+
+  .about-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    margin-right: 0; /* Hilangkan margin di mobile */
+  }
+
+  .footer-logo {
+    margin-right: 0;
     margin-bottom: 10px;
-}
+  }
 
-.footer .social-media {
-    list-style: none;
-    padding: 0;
-}
-
-.footer .social-media li {
-    display: inline;
-    margin-right: 15px;
-}
-
-.footer .social-media a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer .social-media a:hover {
-    color: #1abc9c; 
+  .footer iframe {
+    width: 100%;
+  }
 }
 
 

@@ -14,7 +14,10 @@
    <nav class="navbar navbar-expand-lg bg-custom">
     <div class="container-fluid">
       <a class="navbar-brand logo" href="#">
-        <img src="/assets/img/logo.png" class="logo-img" alt="Logo" />
+
+
+        <img src="assets/img/logo.png" class="logo-img" alt="Logo" />
+
         <div class="header-text">
           <span class="main-text">SDN 1 Kalisat</span>
           <span class="sub-text">Kalisat - Jember</span>
@@ -35,7 +38,9 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/index">Beranda</a>
+
+            <a class="nav-link" href="/">Beranda</a>
+
           </li>
           <!-- Dropdown Profil -->
           <li class="nav-item dropdown">
@@ -43,9 +48,13 @@
               Profil
             </a>
             <ul class="dropdown-menu" aria-labelledby="profilDropdown">
-              <li><a class="dropdown-item" href="/Views/sejarah.html">Sejarah</a></li>
-              <li><a class="dropdown-item" href="/Views/Visi-misi.html">Visi dan Misi</a></li>
-              <li><a class="dropdown-item" href="/Views/Struktur-Organisasi.html">Struktur Organisasi</a></li>
+
+        
+
+              <li><a class="dropdown-item" href="/sejarah">Sejarah</a></li>
+              <li><a class="dropdown-item" href="/Visi-misi">Visi dan Misi</a></li>
+              <li><a class="dropdown-item" href="/strukture-organisasi">Struktur Organisasi</a></li>
+
             </ul>
           </li>
           <!-- Dropdown Gallery -->
@@ -54,83 +63,114 @@
               Gallery
             </a>
             <ul class="dropdown-menu" aria-labelledby="galleryDropdown">
-              <li><a class="dropdown-item" href="/Views/Acara-Sekolah.html">Acara Sekolah</a></li>
-              <li><a class="dropdown-item" href="/Views/Prestasi.html">Prestasi</a></li>
+
+              <li><a class="dropdown-item" href="/acara_sekolah">Acara Sekolah</a></li>
+              <li><a class="dropdown-item" href="/prestasi">Prestasi</a></li>
             </ul>
-          </li><li class="nav-item">
-            <a class="nav-link" href="/Views/Berita.html">Berita</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Views/ppdb.html">PPDB</a>
+            <a class="nav-link" href="/berita">Berita</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Views/kontak.html">Kontak</a>
+            <a class="nav-link" href="/blog">blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/ppdb">PPDB</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/kontak">Kontak</a>
+
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const navbarToggler = document.querySelector('.navbar-toggler');
-      const navbarCollapse = document.querySelector('.navbar-collapse');
-  
-      navbarToggler.addEventListener('click', function () {
-        if (navbarCollapse.style.display === 'none' || navbarCollapse.style.display === '') {
-          navbarCollapse.style.display = 'block'; // Menampilkan navbar
-        } else {
-          navbarCollapse.style.display = 'none'; // Menyembunyikan navbar
-        }
-      });
-    });
   </script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
     <!-- Banner  -->
     <div class="banner">
-        <img class="banner-jpg" src="/assets/img/bnn.jpeg" alt="Banner JPG">
+
+        <img class="banner-jpg" src="/assets/img/banner-sejarah.jpg" alt="Banner JPG">
     </div>
 
-    <!-- sejarah -->
-     <div class="container-text">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus deleniti culpa accusantiu
-    m officia veritatis pariatur, aperiam obcaecati fuga iure consectetur hic perspiciatis debitis in 
-    amet maxime nobis sapiente voluptas? Libero.
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-    Ullam facere inventore dignissimos dolores, culpa temporibus ab vitae labore quis assumenda
-    molestias minima quae fugit omnis vero eos deserunt et fuga.</p>
+    <!-- Sejarah -->
+<div class="container-sejarah">
+    <div class="sejarah-content">
+        <p><strong>Sejarah Singkat Sekolah</strong></p>
+        <p>Yang dimaksud dengan sejarah dalam profil ini adalah tapakan atau jalan laju perkembangan UPTD Satuan Pendidikan SDN Kalisat 01, sejak didirikan hingga saat ini. Laju perkembangan UPTD Satuan Pendidikan SDN Kalisat 01 sejak didirikan hingga saat ini melalui sejumlah tahapan perkembangan dan pengembangan program, sebagaimana tertuang sebagai berikut.</p>
+        
+        <p><strong> Masa Sebelum Penggabungan atau Regrouping</strong></p>
+        <p>Tanah yang ditempati oleh SDN Kalisat 01 sudah dikuasai dan ditempati oleh SDN Kalisat 01 sejak tahun 1911. Dimana pada saat itu sekolah hanya memiliki 6 Rombel. Pada saat itu pula berdiri juga sekolah lain yaitu SDN Kalisat 02 dan SDN Kalisat 04, masing-masing sekolah tersebut memiliki 6 rombel dan kegiatan pembelajaran berjalan secara beriringan.</p>
+        
+        <p><strong> Masa Penggabungan atau Regrouping</strong></p>
+        <p>Sesuai SK Bupati Jember No. 41 tahun 2007 tentang Penggabungan, Penghapusan dan Pendirian Sekolah Dasar Negeri Kabupaten Jember, dibentuklah lembaga baru yang bernama SDN Kalisat 01 yang merupakan gabungan dari:</p>
+        <ul>
+            <li>SDN Kalisat 01</li>
+            <li>SDN Kalisat 02</li>
+            <li>SDN Kalisat 04</li>
+        </ul>
+        <p>Lembaga baru ini memiliki NPSN 20524909. Pada saat penggabungan, batas-batas tanah juga berubah menjadi:</p>
+        <ul>
+            <li>Utara: Selokan</li>
+            <li>Barat: Selokan</li>
+            <li>Selatan: Tanah Pak Djamal</li>
+            <li>Timur: Jalan Patimura</li>
+        </ul>
+        <p>Luas tanah berubah menjadi 5673 m², yang penggunaannya terbagi atas bangunan gedung sekolah seluas 160 m² dan taman bermain 900 m². Tanah tersebut terletak di Jalan Patimura RT. 001 RW. 01 Desa Kalisat Kecamatan Kalisat Kabupaten Jember.</p>
+        <p>Sesuai Peraturan Bupati Jember Nomor 34 Tahun 2018 tanggal 26 November 2018, tentang Nomenklatur UPTD Satuan Pendidikan Formal dan Non Formal Se Kab. Jember, SDN Kalisat 01 berubah nama menjadi Unit Pelaksana Teknis Daerah (UPTD) Satuan Pendidikan SDN Kalisat 01, dan digunakan sampai saat ini.</p>
+        <p>UPTD Satuan Pendidikan SDN Kalisat 01 sudah beberapa kali mengalami perubahan kepemimpinan sejak penggabungan, hingga akhirnya menjadi Sekolah Penggerak Angkatan Ke-3. Pada tahun 2021, UPTD Satuan Pendidikan SDN Kalisat 01 mendapat bantuan berupa renovasi gedung sebanyak 3 kelas serta bantuan TIK berupa Chromebook sebanyak 15 unit.</p>
+
+        <p><strong>Masa Perkembangan Program</strong></p>
+        <p>Masa perkembangan program merupakan kegiatan yang dilakukan untuk mengembangkan program sesuai dengan perkembangan kurikulum dan kebutuhan masyarakat. Pada masa perkembangan ini, setapak demi setapak, UPTD Satuan Pendidikan SDN Kalisat 01 mengembangkan sejumlah program dan keunggulan, baik secara akademik maupun non-akademik, yaitu program reguler (intrakurikuler), program ekstrakurikuler, serta program rutin lainnya.</p>
     </div>
 </div>
+
  <!-- FOOTER -->
- <footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h5>Tentang Kami</h5>
-                <p>SDN 1 Kalisat adalah sekolah dasar yang berkomitmen untuk memberikan pendidikan terbaik bagi anak-anak. Kami berfokus pada pengembangan karakter dan akademik siswa.</p>
-            </div>
-            <div class="col-md-4">
-                <h5>Kontak</h5>
-                <ul>
-                    <li>Alamat: Jl. Kalisat No. 1, Jember</li>
-                    <li>Telepon: (0331) 123456</li>
-                    <li>Email: info@sdn1kalisat.sch.id</li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h5>Ikuti Kami</h5>
-                <ul class="social-media">
-                    <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                </ul>
-            </div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <!-- Tentang Kami dengan Logo -->
+      <div class="col-md-4 about-section d-flex">
+        <img src="assets/img/logo.png" alt="Logo SDN 1 Kalisat" class="footer-logo">
+        <div>
+          <h5>Tentang Kami</h5>
+          <p>
+            SDN 1 Kalisat adalah sekolah dasar yang berkomitmen untuk memberikan
+            pendidikan terbaik bagi anak-anak. Kami berfokus pada pengembangan
+            karakter dan akademik siswa.
+          </p>
         </div>
-        <div class="text-center">
-            <p>&copy; 2024 SDN 1 Kalisat. All rights reserved.</p>
-        </div>
+      </div>
+
+      <!-- Kontak -->
+      <div class="col-md-4 kontak">
+        <h5>Kontak</h5>
+        <ul>
+          <li>Alamat: Jl. Kalisat No. 1, Jember</li>
+          <li>Telepon: (0331) 123456</li>
+          <li>Email: info@sdn1kalisat.sch.id</li>
+        </ul>
+      </div>
+
+      <!-- Lokasi -->
+      <div class="col-md-4 lokasi">
+        <h5>Alamat</h5>
+        <a href="https://www.google.com/maps/search/?api=1&query=SDN+1+Kalisat,+Jember" target="_blank">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.8970015713357!2d111.45046627405344!3d-8.009557579918342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79733e2dbc9155%3A0x4aaf9dd2609da5a9!2sSDN%201%20Kalisat!5e0!3m2!1sen!2sid!4v1731520584344!5m2!1sen!2sid"
+            width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </a>
+      </div>
     </div>
+
+    <!-- Copyright -->
+    <div class="text-center mt-4">
+      <p>&copy; 2024 SDN 1 Kalisat. All rights reserved.</p>
+    </div>
+  </div>
+
 </footer>
 </body>
 </html>

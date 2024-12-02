@@ -1,0 +1,302 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  /* Logo */
+  a.logo {
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .header-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Rata kiri untuk teks */
+  }
+  
+  .main-text {
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+  }
+  
+  .sub-text {
+    font-size: 12px;
+    color: white;
+    margin-top: 2px;
+  }
+  
+  /* Navbar */
+  nav.navbar {
+    background-color: #0083d7;/* Warna latar belakang navbar */
+    height: 65px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    overflow: visible;
+    top: 0;
+    left: 0;
+    z-index: 99;
+  }
+  
+  nav.navbar ul.navbar-nav li.nav-item a.nav-link {
+    text-decoration: none;
+    color: rgb(255, 255, 255); /* Warna teks navbar */
+    font-size: 16px;
+    text-transform: capitalize;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  nav.navbar ul.navbar-nav li.nav-item a.nav-link:hover {
+    background-color: hsl(206, 100%, 55%); /* Warna latar saat hover */
+    color: white; /* Warna teks saat hover */
+  }
+  
+  /* Navigation */
+  nav ul {
+    display: flex;
+  }
+  
+  nav ul li {
+    margin: 0 10px; /* Jarak antar item menu */
+    position: relative;
+    padding-top: 10px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 16px; /* Ukuran font yang lebih besar untuk keterbacaan */
+    text-transform: capitalize;
+    padding: 10px 15px; /* Padding yang cukup untuk klik yang lebih nyaman */
+    border-radius: 5px; /* Sudut yang lebih bulat */
+    transition: background 0.3s, color 0.3s; /* Transisi yang halus */
+  }
+  
+  nav ul li a:hover {
+    background: #1b9bff; /* Latar belakang saat hover */
+    color: white; /* Warna teks saat hover */
+  }
+  
+  @media (max-width: 768px) {
+    /* Tambahkan transisi untuk menyembunyikan navbar */
+    .navbar-collapse {
+      transition: transform 0.3s ease-in-out;
+      transform: translateY(0); /* Posisi default */
+    }
+  
+    .navbar-collapse.hide {
+      transform: translateY(-100%); /* Navbar keluar dari layar ke atas */
+    }
+  }
+  
+  
+  /* Dropdown */
+  .dropdown-menu {
+    background-color: #364981; /* Warna latar belakang dropdown */
+    border-radius: 5px; /* Sudut yang lebih bulat */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan */
+    z-index: 1000; /* Pastikan dropdown muncul di atas elemen lain */
+    border: none; /* Hilangkan border default */
+   padding: 0;
+   margin : 0;
+  }
+    
+  
+  /* Pastikan dropdown tampil saat diaktifkan */
+  .show > .dropdown-menu {
+    display:block; /* Tampilkan dropdown saat aktif */
+  }
+  
+  .navbar-nav .nav-item .dropdown-menu {
+    z-index: 1000; /* Pastikan cukup tinggi */
+  
+  
+  }
+  
+  
+  /* Gaya item dropdown */
+  .dropdown-menu .dropdown-item {
+    color: rgb(255, 255, 255); /* Warna teks item */
+    padding: 10px 15px; /* Padding untuk keterbacaan */
+    font-size: 14px; /* Ukuran font */
+    transition: background 0.3s; /* Transisi hover */
+  }
+  
+  /* Hover efek untuk item dropdown */
+  .dropdown-menu .dropdown-item:hover {
+    background-color: #2c70be; /* Warna latar saat hover */
+  }
+  
+  /* Gaya dropdown di ponsel */
+  @media (max-width: 768px) {
+    .navbar-collapse {
+      background-color: rgba(1, 41, 94, 0.9); /* Warna latar belakang untuk menu dropdown */
+      border-radius: 5px;
+    }
+  
+    .dropdown-menu {
+      position: relative; /* Tetap relative agar dropdown tampil */
+      width: auto; /* Biarkan auto untuk mengisi lebar kontainer */
+      background-color: #77afdd; /* Warna dropdown */
+      box-shadow: none; /* Hilangkan bayangan */
+      z-index: 1000; /* Tetap pastikan z-index cukup tinggi */
+    }
+  
+    .dropdown-menu .dropdown-item {
+      color: #000; /* Warna teks dropdown */
+      padding: 13px 16px; /* Padding */
+    }
+  
+    .dropdown-menu .dropdown-item:hover {
+      background-color: #ddd; /* Warna hover */
+    }
+  
+    .navbar-nav .nav-item {
+      margin: 0;
+      width: 100%; /* Agar menu memenuhi lebar */
+    }
+  
+    .navbar-nav .nav-link {
+      padding: 10px;
+      color: black; /* Warna teks */
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Garis pemisah */
+    }
+  
+    .navbar-nav .nav-link:hover {
+      background-color: #1b9bff; /* Warna hover */
+      color: #fff; /* Warna teks hover */
+    }
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    /* Navbar */
+    nav.navbar {
+      padding: 10px;
+      z-index: 1000; /* Pastikan navbar tampil di atas elemen lain */
+      
+    }
+    .navbar-collapse {
+      background-color: rgba(1, 41, 94, 0.9); /* Warna latar belakang untuk menu dropdown */
+      border-radius: 5px;
+    }
+  
+    .navbar-nav .nav-item {
+      margin: 0;
+      width: 100%; /* Agar menu memenuhi lebar */
+    }
+  
+    .navbar-nav .nav-link {
+      padding: 10px;
+      color: white; /* Warna teks saat tampil di ponsel */
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Garis pemisah antar item */
+    }
+  
+    .navbar-nav .nav-link:hover {
+      background-color: #1b9bff; /* Warna hover */
+      color: #3684c4; /* Warna teks hover */
+    }
+  
+    .dropdown-menu {
+      background-color: #77afdd; /* Warna latar dropdown */
+      border-radius: 5px;
+    }
+  
+    .dropdown-menu .dropdown-item {
+      color: #000; /* Warna teks dropdown */
+      padding: 10px;
+    }
+  
+    .dropdown-menu .dropdown-item:hover {
+      background-color: #2c79b8; /* Warna saat hover */
+    }
+    .dropdown-content {
+      background-color: #1abc9c;
+      z-index: 99;
+    }
+    nav ul li {
+      background-color: rgba(76, 130, 231, 0.5); /* Warna semi-transparan */
+      backdrop-filter: blur(10px); /* Menerapkan efek blur */
+      -webkit-backdrop-filter: blur(10px); /* Dukungan untuk browser WebKit */
+  }
+  
+  
+  
+    .toggler-logo {
+      display: inline-block;
+      width: 30px; /* Sesuaikan ukuran logo */
+      height: auto;
+    }
+  
+    .navbar-toggler-icon {
+      display: none; /* Sembunyikan ikon default */
+    }
+  
+    .logo-img {
+      width: 40px; /* Perkecil ukuran logo */
+    }
+  
+    .main-text {
+      font-size: 18px; /* Ukuran teks lebih kecil */
+    }
+  
+    .sub-text {
+      font-size: 10px; /* Ukuran teks lebih kecil */
+    }
+  }
+
+  
+  .card {
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.75rem;
+    color: #007bff;
+  }
+  
+  .text-muted {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+  
+  .card p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  

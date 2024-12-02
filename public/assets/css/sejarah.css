@@ -68,7 +68,7 @@ nav.navbar ul.navbar-nav li.nav-item a.nav-link {
 }
 
 nav.navbar ul.navbar-nav li.nav-item a.nav-link:hover {
-  background-color: hsl(206, 100%, 55%); /* Warna latar saat hover */
+  background-color: 1b9bff; /* Warna latar saat hover */
   color: white; /* Warna teks saat hover */
 }
 
@@ -95,7 +95,7 @@ nav ul li a {
 
 nav ul li a:hover {
   background: #1b9bff; /* Latar belakang saat hover */
-  color: white; /* Warna teks saat hover */
+  color: rgb(255, 255, 255); /* Warna teks saat hover */
 }
 
 @media (max-width: 768px) {
@@ -113,7 +113,7 @@ nav ul li a:hover {
 
 /* Dropdown */
 .dropdown-menu {
-  background-color: #5995c5; /* Warna latar belakang dropdown */
+  background-color: #364981; /* Warna latar belakang dropdown */
   border-radius: 5px; /* Sudut yang lebih bulat */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan */
   z-index: 1000; /* Pastikan dropdown muncul di atas elemen lain */
@@ -137,7 +137,7 @@ nav ul li a:hover {
 
 /* Gaya item dropdown */
 .dropdown-menu .dropdown-item {
-  color: rgb(0, 0, 0); /* Warna teks item */
+  color: white; /* Warna teks item */
   padding: 10px 15px; /* Padding untuk keterbacaan */
   font-size: 14px; /* Ukuran font */
   transition: background 0.3s; /* Transisi hover */
@@ -145,7 +145,7 @@ nav ul li a:hover {
 
 /* Hover efek untuk item dropdown */
 .dropdown-menu .dropdown-item:hover {
-  background-color: #ffffff; /* Warna latar saat hover */
+  background-color: #2c70be; /* Warna latar saat hover */
 }
 
 /* Gaya dropdown di ponsel */
@@ -202,6 +202,7 @@ nav ul li a:hover {
     width: 100%;
     height: auto; /* Gunakan auto agar tinggi gambar proporsional dengan lebar */
     object-fit: cover; /* Mengisi seluruh kontainer dengan proporsi yang benar */
+    margin-bottom: 20px;
 }
 
 .container-text {
@@ -209,50 +210,145 @@ nav ul li a:hover {
     margin-top: auto;
 }
 
+/* sejarah konten */
+.container-sejarah {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.sejarah-content{
+  align-items: center;
+  flex-direction: column;
+  width: 50%; /* Lebar 50% */
+  background-color: #96d9f3;
+  border: solid rgb(187, 240, 240);
+  border-radius: 20px;
+  padding: 10px;
+  align-items: center;
+  flex-direction: column;
+}
+
+
 /* Footer */
 .footer {
-    background-color: #5183b4;
-    color: rgb(255, 255, 255);
-    padding: 40px 0;
+  background-color: #0083d7;
+  color: white;
+  padding: 40px 20px;
+  margin-top: 20px;
 }
 
 .footer h5 {
-    font-size: 20px;
-    margin-bottom: 20px;
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
 }
 
-.footer p, .footer ul {
-    font-size: 14px;
-    line-height: 1.6;
+.footer p,
+.footer ul {
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .footer ul {
-    padding: 0;
-    list-style: none;
+  padding: 0;
+  list-style: none;
 }
 
 .footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer-logo {
+  width: 50%; /* Ukuran logo */
+  height: auto;
+  margin-right: 20px; /* Jarak antara logo dan teks */
+  flex-shrink: 0; /* Pastikan logo tidak mengecil */
+}
+
+.about-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px; /* Spasi antara logo dan teks */
+}
+
+.about-section p {
+  margin: 0;
+}
+
+.footer .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px; /* Spasi antar kolom */
+}
+
+.footer .col-md-4 {
+  flex: 1;
+  margin-bottom: 20px;
+  margin-right: -50px;
+}
+
+.footer .col-md-4.kontak {
+  margin-left: 100px; /* Geser kolom Kontak ke kiri */
+}
+
+.footer iframe {
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #1abc9c;
+}
+
+.text-center {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #ddd;
+}
+
+/* Menambahkan margin antar elemen */
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .footer .row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer .col-md-4 {
+    margin-bottom: 20px;
+  }
+
+  .about-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    margin-right: 0; /* Hilangkan margin di mobile */
+  }
+
+  .footer-logo {
+    margin-right: 0;
     margin-bottom: 10px;
-}
+  }
 
-.footer .social-media {
-    list-style: none;
-    padding: 0;
-}
-
-.footer .social-media li {
-    display: inline;
-    margin-right: 15px;
-}
-
-.footer .social-media a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer .social-media a:hover {
-    color: #1abc9c; 
+  .footer iframe {
+    width: 100%;
+  }
 }
 
 
