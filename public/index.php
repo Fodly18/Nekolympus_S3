@@ -9,11 +9,13 @@ use Dotenv\Dotenv;
 use Nekolympus\Project\middleware\AuthMiddleware;
 use Nekolympus\Project\core\Middleware;
 use Nekolympus\Project\middleware\AdminMiddleware;
+use Nekolympus\Project\middleware\ApiMiddleware;
 use Nekolympus\Project\middleware\GuestMiddleware;
 
 Middleware::register('admin', AdminMiddleware::class);
 Middleware::register('auth', AuthMiddleware::class);
 Middleware::register('guest', GuestMiddleware::class);
+Middleware::register('bearer', ApiMiddleware::class);
 
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
