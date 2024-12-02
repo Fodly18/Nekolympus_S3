@@ -38,26 +38,32 @@ $currentTime = date('H:i:s');
 				</a>
 			</li>
 			<li>
-				<a href="/daftar-siswa">
-					<i class='bx bxs-shopping-bag-alt'></i>
-					<span class="text">Daftar Siswa</span>
-				</a>
-			</li>
-			<li>
 				<a href="/tugas-pembelajaran">
 					<i class='bx bxs-doughnut-chart'></i>
 					<span class="text">Tugas</span>
 				</a>
 			</li>
 			<li>
+				<a href="/pengumpulan-tugas">
+					<i class='bx bxs-shopping-bag-alt'></i>
+					<span class="text">Pengumpulan Tugas</span>
+				</a>
+			</li>
+			<li>
 				<a href="/latihan-soal">
-					<i class='bx bxs-message-dots'></i>
+					<i class='bx bxs-book-content'></i>
 					<span class="text">Latihan Soal</span>
+				</a>
+			</li>
+			<li>
+				<a href="/penilaian-latihan-soal">
+					<i class='bx bx-task'></i>
+					<span class="text">Penilaian Latihan Soal</span>
 				</a>
 			</li>
 		</ul>
 		<ul class="side-menu">
-			<li class="active">
+			<li>
 				<a href="/settings">
 					<i class='bx bxs-cog'></i>
 					<span class="text">Settings</span>

@@ -33,8 +33,10 @@
 			</li>
 			<li>
 				<a href="#">
-					<i class='bx bxs-shopping-bag-alt' ></i>
-					<span class="text">Data admin</span>
+
+					<i class='bx bxs-book'></i>
+					<span class="text">Data Admin</span>
+
 				</a>
 			</li>
 			<li>
@@ -44,6 +46,7 @@
 				</a>
 			</li>
 			<li>
+
 				<a href="#">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Siswa</span>
@@ -51,13 +54,16 @@
 			</li>
 			<li>
 				<a href="#">
+
 					<i class='bx bxs-news' ></i>
 					<span class="text">Berita</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
+
 					<i class='bx bxs-receipt' ></i>
+
 					<span class="text">PPDB</span>
 				</a>
 			</li>

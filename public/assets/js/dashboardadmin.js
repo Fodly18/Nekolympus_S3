@@ -113,11 +113,15 @@ window.addEventListener('click', (e) => {
      todoModal.style.display = 'block';
  });
 
-// Menambahkan todo list setelah submit
-todoForm.addEventListener('submit', (e) => {
+ todoForm.addEventListener('submit', (e) => {
     e.preventDefault(); // Mencegah form reload
 
     const todoText = todoInput.value.trim(); // Ambil nilai input
+    if (todoText.length > 25) {
+        alert("Todo tidak boleh lebih dari 25 karakter!");
+        return; // Hentikan eksekusi jika terlalu panjang
+    }
+
     if (todoText !== "") {
         // Membuat elemen li baru
         const li = document.createElement('li');
@@ -126,7 +130,7 @@ todoForm.addEventListener('submit', (e) => {
             <p>${todoText}</p>
             <i class='bx bx-trash'></i>  <!-- Ikon trash untuk menghapus todo -->
         `;
-        
+
         // Menambahkan elemen li ke dalam todo list
         todoList.appendChild(li);
 
@@ -146,6 +150,7 @@ todoForm.addEventListener('submit', (e) => {
         todoModal.style.display = 'none'; // Menyembunyikan modal setelah todo ditambahkan
     }
 });
+
 
 // Fungsi untuk menyimpan todo ke localStorage
 function saveTodoToLocalStorage(todoText) {
@@ -193,6 +198,13 @@ function loadTodos() {
             updateLocalStorage();
         });
     });
+    todoInput.addEventListener('input', () => {
+        if (todoInput.value.length > 25) {
+            todoInput.value = todoInput.value.slice(0, 25); // Potong ke 25 karakter
+            alert("Maksimal karakter yang diizinkan adalah 25.");
+        }
+    });
+    
 }
 
 // Fungsi untuk memperbarui localStorage setelah item dihapus

@@ -588,7 +588,7 @@ nav ul li a:hover {
 
 .news-item {
   flex: 0 0 auto; /* Mencegah item untuk menyusut */
-  width: 250px; /* Ganti dengan lebar yang diinginkan */
+  width: 217px; /* Ganti dengan lebar yang diinginkan */
   margin-right: 30px; /* Jarak antar item */
   background-color: white;
   border-radius: 10px;

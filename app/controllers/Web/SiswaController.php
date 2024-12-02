@@ -4,19 +4,19 @@ namespace Nekolympus\Project\controllers\Web;
 
 use Nekolympus\Project\core\Controller;
 use Nekolympus\Project\core\Request;
-use Nekolympus\Project\models\Guru;
+use Nekolympus\Project\models\Siswa;
 
-class GuruController extends Controller
+class SiswaController extends Controller
 {
     public function index()
     {
-        $data = Guru::all();
-        return $this->view('admin.guru.index', ['data' => $data]);
+        $data = Siswa::all();
+        return $this->view('admin.siswa.index', ['data' => $data]);
     }
 
     public function createIndex()
     {
-        return $this->view('admin.guru.create');
+        return $this->view('admin.siswa.create');
     }
 
     public function create(Request $request)
@@ -24,36 +24,36 @@ class GuruController extends Controller
         // Validate phone number format
         $nomor_hp = $request->input('nomor_hp');
         if (!preg_match('/^[0-9]{10,13}$/', $nomor_hp)) {
-            return $this->view('admin.guru.create', [
+            return $this->view('admin.siswa.create', [
                 'errors' => ['nomor_hp' => ['Nomor HP harus berupa angka dan panjang 10-13 digit']]
             ]);
         }
 
-        // Validate NIP format
-        $nip = $request->input('nip');
-        $existingGuru = Guru::where('nip', '=', $nip)->first();
-        if ($existingGuru) {
-            return $this->view('admin.guru.create', [
-                'errors' => ['nip' => ['NIP sudah Digunakan']]
+        // Validate NISN format
+        $nisn = $request->input('nisn');
+        $existingSiswa = Siswa::where('nisn', '=', $nisn)->first();
+        if ($existingSiswa) {
+            return $this->view('admin.siswa.create', [
+                'errors' => ['nisn' => ['NISN sudah Digunakan']]
             ]);
         }
-        if (!preg_match('/^[0-9]{18}$/', $nip)) {
-            return $this->view('admin.guru.create', [
-                'errors' => ['nip' => ['NIP harus berupa 18 digit angka']]
+        if (!preg_match('/^[0-9]{10}$/', $nisn)) {
+            return $this->view('admin.siswa.create', [
+                'errors' => ['nisn' => ['nisn harus berupa 10 digit angka']]
             ]);
         }
 
 
         try {
-            Guru::create([
-                'nip' => $nip,
+            Siswa::create([
+                'nisn' => $nisn,
                 'nomor_hp' => $nomor_hp,
                 'nama' => $request->input('nama'),
                 'password' => password_hash($request->input('password'), PASSWORD_BCRYPT)
             ]);
-            return $this->redirect('/guru');
+            return $this->redirect('/siswa');
         } catch (\Exception $e) {
-            return $this->view('admin.guru.create', [
+            return $this->view('admin.siswa.create', [
                 'errors' => ['system' => ['Terjadi kesalahan saat menyimpan data. Silakan coba lagi.']]
             ]);
         }
@@ -62,13 +62,13 @@ class GuruController extends Controller
     public function updateIndex($id)
     {
         try {
-            $data = Guru::where('id', '=', $id)->first();
+            $data = Siswa::where('id', '=', $id)->first();
             if (!$data) {
-                return $this->redirect('/guru');
+                return $this->redirect('/siswa');
             }
-            return $this->view('admin.guru.update', ['data' => $data]);
+            return $this->view('admin.siswa.update', ['data' => $data]);
         } catch (\Exception $e) {
-            return $this->redirect('/guru');
+            return $this->redirect('/siswa');
         }
     }
 
@@ -77,36 +77,36 @@ class GuruController extends Controller
         $id = $request->input('id');
         
         // Get current data for error display
-        $currentData = Guru::where('id', '=', $id)->first();
+        $currentData = Siswa::where('id', '=', $id)->first();
         if (!$currentData) {
-            return $this->redirect('/guru');
+            return $this->redirect('/siswa');
         }
 
         // Validate phone number format
         $nomor_hp = $request->input('nomor_hp');
         if (!preg_match('/^[0-9]{10,13}$/', $nomor_hp)) {
-            return $this->view('admin.guru.update', [
+            return $this->view('admin.siswa.update', [
                 'errors' => ['nomor_hp' => ['Nomor HP harus berupa angka dan panjang 10-13 digit']],
                 'data' => $currentData
             ]);
         }
 
-        // Validate NIP format
-        $nip = $request->input('nip');
-        if (!preg_match('/^[0-9]{18}$/', $nip)) {
-            return $this->view('admin.guru.update', [
-                'errors' => ['nip' => ['NIP harus berupa 18 digit angka']],
+        // Validate nisn format
+        $nisn = $request->input('nisn');
+        if (!preg_match('/^[0-9]{10}$/', $nisn)) {
+            return $this->view('admin.siswa.update', [
+                'errors' => ['nisn' => ['nisn harus berupa 10 digit angka']],
                 'data' => $currentData
             ]);
         }
 
         if (!$request->validate([
             'id' => 'required',
-            'nip' => 'required',
+            'nisn' => 'required',
             'nama' => 'required',
             'nomor_hp' => 'required'
         ])) {
-            return $this->view('admin.guru.update', [
+            return $this->view('admin.siswa.update', [
                 'errors' => $request->getErrors(),
                 'data' => $currentData
             ]);
@@ -114,7 +114,7 @@ class GuruController extends Controller
 
         try {
             $updateData = [
-                'nip' => $nip,
+                'nisn' => $nisn,
                 'nomor_hp' => $nomor_hp,
                 'nama' => $request->input('nama')
             ];
@@ -123,7 +123,7 @@ class GuruController extends Controller
             $password = $request->input('password');
             if (!empty($password)) {
                 if (strlen($password) < 6) {
-                    return $this->view('admin.guru.update', [
+                    return $this->view('admin.siswa.update', [
                         'errors' => ['password' => ['Password minimal 6 karakter']],
                         'data' => $currentData
                     ]);
@@ -131,10 +131,10 @@ class GuruController extends Controller
                 $updateData['password'] = password_hash($password, PASSWORD_BCRYPT);
             }
 
-            Guru::update($id, $updateData);
-            return $this->redirect('/guru');
+            Siswa::update($id, $updateData);
+            return $this->redirect('/siswa');
         } catch (\Exception $e) {
-            return $this->view('admin.guru.update', [
+            return $this->view('admin.siswa.update', [
                 'errors' => ['system' => ['Terjadi kesalahan saat memperbarui data. Silakan coba lagi.']],
                 'data' => $currentData
             ]);
@@ -144,14 +144,14 @@ class GuruController extends Controller
     public function delete($id)
     {
         try {
-            // Check if guru exists
-            $guru = Guru::where('id', '=', $id)->first();
-            if ($guru) {
-                Guru::delete($id);
+            // Check if siswa exists
+            $siswa = Siswa::where('id', '=', $id)->first();
+            if ($siswa) {
+                Siswa::delete($id);
             }
         } catch (\Exception $e) {
             // Log error if needed
         }
-        return $this->redirect('/guru');
+        return $this->redirect('/siswa');
     }
 }
