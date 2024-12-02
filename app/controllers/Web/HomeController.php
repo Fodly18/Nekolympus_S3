@@ -57,5 +57,11 @@ class HomeController extends Controller
     
     }
 
+    public function blog()
+    {
+    return $this->view('html.blog');
+    
+    }
+
 
 }

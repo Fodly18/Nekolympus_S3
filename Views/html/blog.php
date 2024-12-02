@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/Acara-Sekolah.css">
+    <link rel="stylesheet" href="/assets/css/kontak.css">
     <link rel="icon" href="/assets/img/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
-  <!-- navbar -->
-  <nav class="navbar navbar-expand-lg bg-custom">
+   <!-- navbar -->
+   <nav class="navbar navbar-expand-lg bg-custom">
     <div class="container-fluid">
       <a class="navbar-brand logo" href="#">
+
         <img src="assets/img/logo.png" class="logo-img" alt="Logo" />
+
         <div class="header-text">
           <span class="main-text">SDN 1 Kalisat</span>
           <span class="sub-text">Kalisat - Jember</span>
@@ -91,89 +93,38 @@
   </script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
+    </header>
     <!-- Banner  -->
     <div class="banner">
         <img class="banner-jpg" src="/assets/img/bnn.jpeg" alt="Banner JPG">
     </div>
 
-  <!-- Gallery -->
-<section id="gallery">
-    <div class="container">
-        <h2 class="text-center mb-4">Galeri Kegiatan</h2>
-        <div class="row">
-            <!-- Contoh Card Gambar 1 -->
-            <div class="col-md-4 mb-4">
-                <div class="card gallery-card" data-src="/assets/img/foto1.jpg">
-                    <img src="/assets/img/foto1.jpg" class="card-img-top" alt="Kegiatan 1">
-                    <div class="card-body">
-                        <p class="card-text">Deskripsi kegiatan 1 di sini.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Contoh Card Gambar 2 -->
-            <div class="col-md-4 mb-4">
-                <div class="card gallery-card" data-src="/assets/img/foto2.jpg">
-                    <img src="/assets/img/foto2.jpg" class="card-img-top" alt="Kegiatan 2">
-                    <div class="card-body">
-                        <p class="card-text">Deskripsi kegiatan 2 di sini.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card gallery-card" data-src="/assets/img/foto3.jpg">
-                    <img src="/assets/img/foto3.jpg" class="card-img-top" alt="Kegiatan 3">
-                    <div class="card-body">
-                        <p class="card-text">Deskripsi kegiatan 3 di sini.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card gallery-card" data-src="/assets/img/foto4.jpg">
-                    <img src="/assets/img/foto4.jpg" class="card-img-top" alt="Kegiatan 3">
-                    <div class="card-body">
-                        <p class="card-text">Deskripsi kegiatan 3 di sini.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card gallery-card" data-src="/assets/img/foto5.jpg">
-                    <img src="/assets/img/foto5.jpg" class="card-img-top" alt="Kegiatan 3">
-                    <div class="card-body">
-                        <p class="card-text">Deskripsi kegiatan 3 di sini.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card gallery-card" data-src="/assets/img/foto6.jpg">
-                    <img src="/assets/img/foto6.jpg" class="card-img-top" alt="Kegiatan 3">
-                    <div class="card-body">
-                        <p class="card-text">Deskripsi kegiatan 3 di sini.</p>
-                    </div>
-                </div>
-            </div>
-
-            
+    <!-- konten berita -->
+    <div class="container my-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <img src="assets/img/foto2.jpg" class="card-img-top" alt="Gambar Berita">
+        <div class="card-body">
+          <h2 class="card-title">Peluncuran Program Ramah Lingkungan di SDN 1 Kalisat</h2>
+          <p class="text-muted">Dipublikasikan pada: 2 Desember 2024 | Oleh: Admin SDN 1 Kalisat</p>
+          <p>
+            Dalam upaya menjaga lingkungan, SDN 1 Kalisat resmi meluncurkan program <strong>“Sekolah Hijau”</strong>. Program ini bertujuan untuk mengedukasi siswa tentang pentingnya menjaga lingkungan melalui berbagai kegiatan seperti penanaman pohon, daur ulang sampah, dan pengurangan penggunaan plastik.
+          </p>
+          <p>
+            “Kami berharap program ini bisa menjadi langkah awal siswa untuk lebih peduli terhadap lingkungan di sekitar mereka,” ujar Kepala Sekolah, Ibu Anita Rahmawati.
+          </p>
+          <p>
+            Program ini akan berlangsung selama enam bulan, dimulai dengan agenda penanaman 100 pohon di sekitar sekolah. Kegiatan lainnya adalah lomba daur ulang kreatif dan penyuluhan kepada siswa mengenai pengelolaan sampah.
+          </p>
         </div>
+      </div>
     </div>
-
-    <!-- Modal untuk memperbesar gambar -->
-    <div id="gallery-modal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modal-img">
-    </div>
-</section>
-
-
-        </div>
-    </div>
-</section>
+  </div>
+</div>
 
     
+</div>
  <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
@@ -218,36 +169,5 @@
     </div>
   </div>
 </footer>
-
-<script>
-   // Modal functionality
-const modal = document.getElementById('gallery-modal');
-const modalImg = document.getElementById('modal-img');
-const closeBtn = document.getElementsByClassName('close')[0];
-
-// Membuka modal ketika card diklik
-document.querySelectorAll('.gallery-card').forEach(card => {
-    card.addEventListener('click', function() {
-        const imgSrc = this.getAttribute('data-src');
-        modal.style.display = 'flex';
-        modalImg.src = imgSrc;
-    });
-});
-
-// Menutup modal ketika tombol close diklik
-closeBtn.onclick = function() {
-    modal.style.display = 'none';
-}
-
-// Menutup modal ketika area di luar gambar diklik
-modal.onclick = function(event) {
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
-}
-
-    </script>
-    
 </body>
-
 </html>
