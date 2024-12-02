@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/assets/css/dataguruadmin.css">
-    <link rel="stylesheet" href="/assets/css/dashboardadmin.css">
+	<link rel="stylesheet" href="/assets/css/dashboardberita.css">
     <title>Data Guru - Admin Dashboard</title>
 </head>
 <body>

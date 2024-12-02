@@ -9,7 +9,9 @@ use Nekolympus\Project\controllers\Web\MapelController;
 use Nekolympus\Project\controllers\Web\GuruController;
 use Nekolympus\Project\controllers\Web\SiswaController; // Ensure this is included
 use Nekolympus\Project\controllers\Web\LatihanController;
+use Nekolympus\Project\controllers\Web\BeritaController;
 use Nekolympus\Project\core\Middleware;
+use Nekolympus\Project\models\Berita;
 
 Route::get('/', HomeController::class, 'index')->middleware(['guest']);
 Route::get('/sejarah', HomeController::class, 'sejarah')->middleware(['guest']);
@@ -41,6 +43,14 @@ Route::get('/latihan-soal', DashboardController::class, 'latsolGuru')->middlewar
 Route::get('/penilaian-latihan-soal', DashboardController::class, 'penilaian')->middleware(['auth', 'guru']);
 Route::get('/settings', DashboardController::class, 'settingGuru')->middleware(['auth', 'guru']);
 Route::get('/logout-guru', AuthController::class, 'logoutGuru')->middleware(['auth', 'guru']);
+
+// Route Berita 
+Route::get('/berita', BeritaController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/berita/create', BeritaController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/berita/create', BeritaController::class, 'create')->middleware(['auth', 'admin']);
+Route::get('/berita/update/{id}', BeritaController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/berita/update', BeritaController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/berita/delete/{id}', BeritaController::class, 'delete')->middleware(['auth', 'admin']); 
 
 // Route CRUD Tugas
 Route::get('/tugas-pembelajaran/create', TugasController::class, 'createIndex')->middleware(['auth', 'guru']);
