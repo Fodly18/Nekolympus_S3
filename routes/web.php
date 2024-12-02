@@ -7,6 +7,7 @@ use Nekolympus\Project\core\Route;
 use Nekolympus\Project\controllers\Web\HomeController;
 use Nekolympus\Project\controllers\Web\MapelController;
 use Nekolympus\Project\controllers\Web\GuruController;
+use Nekolympus\Project\controllers\Web\SiswaController; // Ensure this is included
 use Nekolympus\Project\controllers\Web\LatihanController;
 use Nekolympus\Project\core\Middleware;
 
@@ -19,7 +20,6 @@ Route::get('/berita', HomeController::class, 'berita')->middleware(['guest']);
 Route::get('/ppdb', HomeController::class, 'ppdb')->middleware(['guest']);
 Route::get('/kontak', HomeController::class, 'kontak')->middleware(['guest']);
 Route::get('/strukture-organisasi', HomeController::class, 'strukture_organisasi')->middleware(['guest']);
-
 
 Route::get('/login-admin', AuthController::class, 'indexAdmin')->middleware(['guest']);
 Route::post('/login-admin', AuthController::class, 'LoginAdmin')->middleware(['guest']);
@@ -54,13 +54,21 @@ Route::get('/latihan-soal/update/{id}', LatihanController::class, 'updateIndex')
 Route::post('/latihan-soal/update', LatihanController::class, 'update')->middleware(['auth', 'guru']);
 Route::get('/latihan-soal/delete/{id}', LatihanController::class, 'delete')->middleware(['auth', 'guru']);
 
-// Routing untuk Guru
+// Routing untuk Akun Guru
 Route::get('/guru', GuruController::class, 'index')->middleware(['auth', 'admin']);
 Route::get('/guru/create', GuruController::class, 'createIndex')->middleware(['auth', 'admin']);
 Route::post('/guru/create', GuruController::class, 'create')->middleware(['auth', 'admin']);
 Route::get('/guru/update/{id}', GuruController::class, 'updateIndex')->middleware(['auth', 'admin']);
 Route::post('/guru/update', GuruController::class, 'update')->middleware(['auth', 'admin']);
-Route::get('/guru/delete/{id}', GuruController::class, 'delete')->middleware(['auth', 'admin']); // Changed back to GET
+Route::get('/guru/delete/{id}', GuruController::class, 'delete')->middleware(['auth', 'admin']); 
+
+// Routing untuk Akun Siswa
+Route::get('/siswa', SiswaController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/siswa/create', SiswaController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/siswa/create', SiswaController::class, 'create')->middleware(['auth', 'admin']);
+Route::get('/siswa/update/{id}', SiswaController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/siswa/update', SiswaController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/siswa/delete/{id}', SiswaController::class, 'delete')->middleware(['auth', 'admin']);
 
 Route::get('/mapel', MapelController::class, 'index');
 Route::get('/create', MapelController::class, 'createIndex');
