@@ -88,4 +88,41 @@ class QueryBuilder
         $this->limit = $count;
         return $this;
     }
+
+    public function paginate($perPage = 15, $page = 1)
+    {
+        $offset = ($page - 1) * $perPage;
+        $this->limit = "$offset, $perPage"; // Gunakan offset untuk pagination
+
+        $query = $this->buildQuery();
+        $stmt = $this->db->prepare($query);
+
+        foreach ($this->bindings as $key => $value) {
+            $stmt->bindValue($key, $value);
+        }
+
+        $stmt->execute();
+        $data = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        // Hitung total records
+        $countQuery = "SELECT COUNT(*) as total FROM {$this->table}";
+        if ($this->conditions) {
+            $countQuery .= ' WHERE ' . implode(' AND ', $this->conditions);
+        }
+        $countStmt = $this->db->prepare($countQuery);
+        foreach ($this->bindings as $key => $value) {
+            $countStmt->bindValue($key, $value);
+        }
+        $countStmt->execute();
+        $total = $countStmt->fetch(\PDO::FETCH_ASSOC)['total'];
+
+        return [
+            'data' => $data,
+            'current_page' => $page,
+            'per_page' => $perPage,
+            'total' => $total,
+            'last_page' => ceil($total / $perPage),
+        ];
+    }
+
 }

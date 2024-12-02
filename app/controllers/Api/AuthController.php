@@ -77,9 +77,9 @@ class AuthController extends Controller
         ]);
     }
 
-    public function profile(Request $request)
+    public function profile()
     {
-        $token = $request->bearerToken();
+        $token = (new Request)->bearerToken();
 
         if(!$token){
             return $this->json([
@@ -102,5 +102,46 @@ class AuthController extends Controller
 
         ], 200);
 
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $token = (new Request)->bearerToken();
+
+        $user = Siswa::where('token', '=', $token)->first();
+
+        if(!$user){
+            return $this->json([
+                'status' => 'errors',
+                'message' => 'Unauthenticated.'
+            ], 401);
+        }
+
+        if(!$request->validate([
+            'password_lama' => 'required|min:8',
+            'password_baru' => 'required|min:8'
+        ])) {
+            return $this->json([
+                'status' => 'errors',
+                'message' => 'validation error',
+                'data' => $request->getErrors()
+            ]);
+        }
+
+        if(Helper::bcryptVerify($request->input('password_lama'), $user->password)){
+            Siswa::update($user->id, [
+                'password' => Helper::bcryptEncrypt($request->input('password_baru'))
+            ]);
+        }else{
+            return $this->json([
+                'status' => 'success',
+                'data' => 'password lama salah'
+            ], 400);
+        }
+
+        return $this->json([
+            'status' => 'success',
+            'message' => 'password berhasil di update'
+        ], 200);
     }
 }

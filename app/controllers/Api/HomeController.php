@@ -9,9 +9,9 @@ use Nekolympus\Project\models\Siswa;
 
 class HomeController extends Controller
 {
-    public function getJadwal(Request $request)
+    public function getJadwal()
     {
-        $token = $request->bearerToken();
+        $token = (new Request)->bearerToken();
 
         $user = Siswa::where('token', '=', $token)->first();
 
@@ -36,9 +36,9 @@ class HomeController extends Controller
         ]);
     }
 
-    public function getWaliKelas(Request $request)
+    public function getWaliKelas()
     {
-        $token = $request->bearerToken();
+        $token = (new Request)->bearerToken();
 
         $user = Siswa::where('token', '=', $token)->first();
 

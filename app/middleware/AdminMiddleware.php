@@ -2,8 +2,6 @@
 
 namespace Nekolympus\Project\middleware;
 
-use Nekolympus\Project\helpers\Redirect;
-
 class AdminMiddleware
 {
     public function handle()
