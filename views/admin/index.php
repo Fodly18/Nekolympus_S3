@@ -53,7 +53,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="/berita">
+				<a href="/Berita">
 
 					<i class='bx bxs-news' ></i>
 					<span class="text">Berita</span>

@@ -32,6 +32,7 @@ class AuthController extends Controller
         {
             $_SESSION['user_role'] = 'admin';
             $_SESSION['user'] = true;
+            $_SESSION['auth'] = $user->id;
             return $this->redirect('/dashboard-admin');
         }
 

@@ -65,4 +65,5 @@ class Request
     {
         return $this->bearerToken; // Return the stored bearer token
     }
+
 }

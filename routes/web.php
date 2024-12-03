@@ -45,12 +45,12 @@ Route::get('/settings', DashboardController::class, 'settingGuru')->middleware([
 Route::get('/logout-guru', AuthController::class, 'logoutGuru')->middleware(['auth', 'guru']);
 
 // Route Berita 
-Route::get('/berita', BeritaController::class, 'index')->middleware(['auth', 'admin']);
-Route::get('/berita/create', BeritaController::class, 'createIndex')->middleware(['auth', 'admin']);
-Route::post('/berita/create', BeritaController::class, 'create')->middleware(['auth', 'admin']);
-Route::get('/berita/update/{id}', BeritaController::class, 'updateIndex')->middleware(['auth', 'admin']);
-Route::post('/berita/update', BeritaController::class, 'update')->middleware(['auth', 'admin']);
-Route::get('/berita/delete/{id}', BeritaController::class, 'delete')->middleware(['auth', 'admin']); 
+Route::get('/Berita', BeritaController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/Berita/create', BeritaController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/Berita/create', BeritaController::class, 'create')->  middleware(['auth', 'admin']);
+Route::get('/Berita/update/{id}', BeritaController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/Berita/update', BeritaController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/Berita/delete/{id}', BeritaController::class, 'delete')->middleware(['auth', 'admin']); 
 
 // Route CRUD Tugas
 Route::get('/tugas-pembelajaran/create', TugasController::class, 'createIndex')->middleware(['auth', 'guru']);
