@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/assets/css/dataguruadmin.css">
     <link rel="stylesheet" href="/assets/css/dashboardadmin.css">
-    <title>Tambah Data Guru - Admin Dashboard</title>
+    <title>Edit Data Guru - Admin Dashboard</title>
 </head>
 <body>
     <!-- SIDEBAR -->
@@ -16,14 +15,44 @@
             <span class="text">SDN 1 KALISAT</span>
         </a>
         <ul class="side-menu top">
-            <li><a href="/admin"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a></li>
-            <li class="active"><a href="/guru"><i class='bx bxs-group'></i><span class="text">Data Guru</span></a></li>
-            <li><a href="/mapel"><i class='bx bxs-book'></i><span class="text">Mata Pelajaran</span></a></li>
-            <li><a href="/siswa"><i class='bx bxs-user-detail'></i><span class="text">Data Siswa</span></a></li>
+            <li>
+                <a href="/admin">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="/guru">
+                    <i class='bx bxs-group'></i>
+                    <span class="text">Data Guru</span>
+                </a>
+            </li>
+            <li>
+                <a href="/mapel">
+                    <i class='bx bxs-book'></i>
+                    <span class="text">Mata Pelajaran</span>
+                </a>
+            </li>
+            <li>
+                <a href="/siswa">
+                    <i class='bx bxs-user-detail'></i>
+                    <span class="text">Data Siswa</span>
+                </a>
+            </li>
         </ul>
         <ul class="side-menu">
-            <li><a href="/settings"><i class='bx bxs-cog'></i><span class="text">Settings</span></a></li>
-            <li><a href="/logout" class="logout"><i class='bx bxs-log-out-circle'></i><span class="text">Logout</span></a></li>
+            <li>
+                <a href="/settings">
+                    <i class='bx bxs-cog'></i>
+                    <span class="text">Settings</span>
+                </a>
+            </li>
+            <li>
+                <a href="/logout" class="logout">
+                    <i class='bx bxs-log-out-circle'></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
         </ul>
     </section>
 
@@ -34,7 +63,7 @@
             <i class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Cari..." aria-label="Search">
+                    <input type="search" placeholder="Cari...">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
@@ -49,13 +78,13 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Tambah Data Guru</h1>
+                    <h1>Edit Data Guru</h1>
                     <ul class="breadcrumb">
                         <li><a href="/admin">Dashboard</a></li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li><a href="/guru">Data Guru</a></li>
                         <li><i class='bx bx-chevron-right'></i></li>
-                        <li><a class="active" href="#">Tambah Guru</a></li>
+                        <li><a class="active" href="#">Edit Guru</a></li>
                     </ul>
                 </div>
             </div>
@@ -67,12 +96,15 @@
                     </div>
                 <?php endif; ?>
 
-                <form action="/guru/create" method="post" id="createForm" onsubmit="return validateForm()">
+                <form action="/guru/update" method="post" id="updateForm" onsubmit="return validateForm()">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($data->id) ?>">
+                    
                     <div class="form-group">
                         <label for="nip">NIP</label>
                         <input type="text" class="form-control" id="nip" name="nip" required 
-                               pattern="[0-9]{18}" maxlength="18" aria-describedby="nipHint">
-                        <div id="nipHint" class="form-hint">NIP harus 18 digit angka</div>
+                               pattern="[0-9]{18}" maxlength="18"
+                               value="<?= htmlspecialchars($data->nip) ?>">
+                        <div class="form-hint">NIP harus 18 digit angka</div>
                         <?php if (isset($errors['nip'])): ?>
                             <?php foreach ($errors['nip'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -83,8 +115,7 @@
                     <div class="form-group">
                         <label for="nama">Nama Lengkap</label>
                         <input type="text" class="form-control" id="nama" name="nama" required 
-                               maxlength="100" aria-describedby="namaHint">
-                        <div id="namaHint" class="form-hint">Masukkan nama lengkap</div>
+                               maxlength="100" value="<?= htmlspecialchars($data->nama) ?>">
                         <?php if (isset($errors['nama'])): ?>
                             <?php foreach ($errors['nama'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -95,8 +126,9 @@
                     <div class="form-group">
                         <label for="nomor_hp">Nomor HP</label>
                         <input type="tel" class="form-control" id="nomor_hp" name="nomor_hp" required 
-                               pattern="[0-9]{10,13}" maxlength="13" aria-describedby="nomorHpHint">
-                        <div id="nomorHpHint" class="form-hint">Nomor HP harus 10-13 digit angka</div>
+                               pattern="[0-9]{10,13}" maxlength="13"
+                               value="<?= htmlspecialchars($data->nomor_hp) ?>">
+                        <div class="form-hint">Nomor HP harus 10-13 digit angka</div>
                         <?php if (isset($errors['nomor_hp'])): ?>
                             <?php foreach ($errors['nomor_hp'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -105,10 +137,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required 
-                               minlength="6" aria-describedby="passwordHint">
-                        <div id="passwordHint" class="form-hint">Password minimal 6 karakter</div>
+                        <label for="password">Password Baru (Kosongkan jika tidak ingin mengubah)</label>
+                        <div class="password-container">
+                            <input type="password" class="form-control" id="password" name="password" 
+                                   minlength="6">
+                            <i class='bx bx-show toggle-password' onclick="togglePassword()"></i>
+                        </div>
+                        <div class="form-hint">Password minimal 6 karakter</div>
                         <?php if (isset($errors['password'])): ?>
                             <?php foreach ($errors['password'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -119,7 +154,7 @@
                     <div class="btn-container">
                         <button type="submit" class="btn btn-primary">
                             <i class='bx bx-save'></i>
-                            <span>Simpan</span>
+                            <span>Simpan Perubahan</span>
                         </button>
                         <a href="/guru" class="btn btn-danger">
                             <i class='bx bx-x'></i>
@@ -133,12 +168,6 @@
 
     <script src="/assets/js/dashboardadmin.js"></script>
     <script>
-        // Add dark mode toggle functionality
-        const switchMode = document.getElementById('switch-mode');
-        
-        switchMode.addEventListener('change', function() {
-            document.body.classList.toggle('dark', this.checked);
-        });
 
         // Form validation
         function validateForm() {
@@ -158,8 +187,8 @@
                 return false;
             }
 
-            // Validate password
-            if (password.length < 6) {
+            // Validate password only if it's not empty
+            if (password && password.length < 6) {
                 alert('Password minimal 6 karakter');
                 return false;
             }
@@ -167,12 +196,28 @@
             return true;
         }
 
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.querySelector('.toggle-password');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('bx-show');
+                toggleIcon.classList.add('bx-hide');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('bx-hide');
+                toggleIcon.classList.add('bx-show');
+            }
+        }
+
         // Add input event listeners for real-time validation
-        document.getElementById('nomor_hp').addEventListener('input', function() {
+        document.getElementById('nomor_hp').addEventListener('input', function(e) {
             this.value = this.value.replace(/[^0-9]/g, '').slice(0, 13);
         });
 
-        document.getElementById('nip').addEventListener('input', function() {
+        document.getElementById('nip').addEventListener('input', function(e) {
             this.value = this.value.replace(/[^0-9]/g, '').slice(0, 18);
         });
     </script>

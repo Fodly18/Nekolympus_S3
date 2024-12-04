@@ -6,7 +6,7 @@
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/dataguruadmin.css">
     <link rel="stylesheet" href="/assets/css/dashboardadmin.css">
-    <title>Data Guru - Admin Dashboard</title>
+    <title>Data Siswa - Admin Dashboard</title>
 </head>
 <body>
     <!-- SIDEBAR -->
@@ -22,7 +22,7 @@
                     <span class="text">Dashboard</span>
                 </a>
             </li>
-            <li class="active">
+            <li>
                 <a href="/guru">
                     <i class='bx bxs-group'></i>
                     <span class="text">Data Guru</span>
@@ -34,7 +34,7 @@
                     <span class="text">Mata Pelajaran</span>
                 </a>
             </li>
-            <li>
+            <li class="active">
                 <a href="/siswa">
                     <i class='bx bxs-user-detail'></i>
                     <span class="text">Data Siswa</span>
@@ -64,7 +64,7 @@
             <i class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Cari guru...">
+                    <input type="search" placeholder="Cari siswa...">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
@@ -79,16 +79,16 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Data Guru</h1>
+                    <h1>Data Siswa</h1>
                     <ul class="breadcrumb">
                         <li><a href="/admin">Dashboard</a></li>
                         <li><i class='bx bx-chevron-right'></i></li>
-                        <li><a class="active" href="#">Data Guru</a></li>
+                        <li><a class="active" href="#">Data Siswa</a></li>
                     </ul>
                 </div>
-                <a href="/guru/create" class="btn btn-primary">
+                <a href="/siswa/create" class="btn btn-primary">
                     <i class='bx bx-plus'></i>
-                    <span>Tambah Guru</span>
+                    <span>Tambah Siswa</span>
                 </a>
             </div>
 
@@ -99,7 +99,7 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Nomor HP</th>
-                            <th>NIP</th>
+                            <th>NISN</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -108,7 +108,7 @@
                             <tr>
                                 <td colspan="5" class="empty-state">
                                     <i class='bx bx-folder-open'></i>
-                                    <p>Belum ada data guru tersedia</p>
+                                    <p>Belum ada data Siswa tersedia</p>
                                 </td>
                             </tr>
                         <?php else: ?>
@@ -117,14 +117,14 @@
                                     <td><?= $no++; ?></td>
                                     <td><?= htmlspecialchars($row['nama']); ?></td>
                                     <td><?= htmlspecialchars($row['nomor_hp']); ?></td>
-                                    <td><?= htmlspecialchars($row['nip']); ?></td>
+                                    <td><?= htmlspecialchars($row['nisn']); ?></td>
                                     <td class="action-buttons">
-                                        <a href="/guru/update/<?= $row['id']; ?>" class="btn btn-success">
+                                        <a href="/siswa/update/<?= $row['id']; ?>" class="btn btn-success">
                                             <i class='bx bx-edit-alt'></i>
                                             <span>Edit</span>
                                         </a>
-                                        <a href="/guru/delete/<?= $row['id']; ?>" 
-                                           onclick="return confirm('Apakah Anda yakin ingin menghapus data guru <?= htmlspecialchars($row['nama']); ?>?');"
+                                        <a href="/siswa/delete/<?= $row['id']; ?>" 
+                                           onclick="return confirm('Apakah Anda yakin ingin menghapus data siswa <?= htmlspecialchars($row['nama']); ?>?');"
                                            class="btn btn-danger">
                                             <i class='bx bx-trash'></i>
                                             <span>Hapus</span>
@@ -140,5 +140,17 @@
     </section>
 
     <script src="/assets/js/dashboardadmin.js"></script>
+    <script>
+        // Add dark mode toggle functionality
+        const switchMode = document.getElementById('switch-mode');
+        
+        switchMode.addEventListener('change', function() {
+            if(this.checked) {
+                document.body.classList.add('dark');
+            } else {
+                document.body.classList.remove('dark');
+            }
+        });
+    </script>
 </body>
 </html>

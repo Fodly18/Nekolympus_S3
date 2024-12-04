@@ -36,8 +36,8 @@ $totalGuru = Guru::count();
 			</li>
 			<li>
 				<a href="#">
-					<i class='bx bxs-shopping-bag-alt'></i>
-					<span class="text">Data admin</span>
+					<i class='bx bxs-book'></i>
+					<span class="text">Data Admin</span>
 				</a>
 			</li>
 			<li>
@@ -47,20 +47,21 @@ $totalGuru = Guru::count();
 				</a>
 			</li>
 			<li>
+
 				<a href="#">
 					<i class='bx bxs-group'></i>
 					<span class="text">Siswa</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<i class='bx bxs-news'></i>
+				<a href="/berita">
+					<i class='bx bxs-news' ></i>
 					<span class="text">Berita</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
-					<i class='bx bxs-receipt'></i>
+					<i class='bx bxs-receipt' ></i>
 					<span class="text">PPDB</span>
 				</a>
 			</li>
@@ -135,14 +136,14 @@ $totalGuru = Guru::count();
 			</div>
 			<ul class="box-info">
 				<li>
-					<i class='bx bxs-calendar-check'></i>
+					<i class='bx bxs-user'></i>
 					<span class="text">
 						<h3><?= htmlspecialchars($totalGuru, ENT_QUOTES, 'UTF-8'); ?></h3>
 						<p>Jumlah Guru</p>
 					</span>
 				</li>
 				<li>
-					<i class='bx bxs-group'></i>
+					<i class='bx bxs-user'></i>
 					<span class="text">
 						<h3><?= htmlspecialchars($totalSiswa, ENT_QUOTES, 'UTF-8'); ?></h3>
 						<p>Jumlah Siswa</p>

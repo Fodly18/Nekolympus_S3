@@ -56,6 +56,11 @@ class HomeController extends Controller
     return $this->view('html.kontak');
     
     }
+    public function blog()
+    {
+    return $this->view('html.blog');
+    
+    }
 
 
 }

@@ -4,9 +4,9 @@ namespace Nekolympus\Project\models;
 
 use Nekolympus\Project\core\Model;
 
-class Guru extends Model
+class Berita extends Model
 {
-    protected static $table = 'guru'; 
+    protected static $table = 'berita'; 
     protected static $guarded = ['id']; 
 
 }

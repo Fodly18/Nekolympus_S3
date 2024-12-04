@@ -62,6 +62,9 @@
             <a class="nav-link" href="/berita">Berita</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/blog">blog</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/ppdb">PPDB</a>
           </li>
           <li class="nav-item">
