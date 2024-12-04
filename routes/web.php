@@ -33,13 +33,20 @@ Route::get('/logout-admin', AuthController::class, 'logoutAdmin')->middleware(['
 // Route Dashboard Guru
 Route::get('/dashboard-guru', DashboardController::class, 'indexGuru')->middleware(['auth', 'guru']);
 Route::get('/pengumpulan-tugas', DashboardController::class, 'submitTugas')->middleware(['auth', 'guru']);
-Route::post('/pengumpulan-tugas/filter', DashboardController::class, 'submitTugasFilter')->middleware(['auth', 'guru']);
+
 Route::get('/tugas-pembelajaran', DashboardController::class, 'tugasGuru')->middleware(['auth', 'guru']);
 Route::get('/latihan-soal', DashboardController::class, 'latsolGuru')->middleware(['auth', 'guru']);
-Route::get('/penilaian-latihan-soal', DashboardController::class, 'penilaian')->middleware(['auth', 'guru']);
 Route::get('/settings', DashboardController::class, 'settingGuru')->middleware(['auth', 'guru']);
 Route::get('/logout-guru', AuthController::class, 'logoutGuru')->middleware(['auth', 'guru']);
 
+// Route Penilaian Soal
+Route::get('/penilaian-latihan-soal', DashboardController::class, 'penilaian')->middleware(['auth', 'guru']);
+Route::post('/penilaian-latihan-soal/filter', DashboardController::class, 'penilaianFilter')->middleware(['auth', 'guru']);
+
+// Route Pengumpulan Tugas
+Route::post('/pengumpulan-tugas/filter', DashboardController::class, 'submitTugasFilter')->middleware(['auth', 'guru']);
+Route::get('/pengumpulan-tugas/show/{id}', DashboardController::class, 'nilaiTugas')->middleware(['auth', 'guru']);
+Route::post('/penilaian-siswa', DashboardController::class, 'submitNilaiTugas')->middleware(['auth', 'guru']);
 // Route CRUD Tugas
 Route::get('/tugas-pembelajaran/create', TugasController::class, 'createIndex')->middleware(['auth', 'guru']);
 Route::post('/tugas-pembelajaran/create', TugasController::class, 'create')->middleware(['auth', 'guru']);

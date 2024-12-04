@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-	<?php
-	use Nekolympus\Project\models\Siswa;
-	use Nekolympus\Project\models\Guru;
+<?php
 
-	$totalSiswa = Siswa::count();
-	$totalGuru = Guru::count();
-	?>
+use Nekolympus\Project\models\Siswa;
+use Nekolympus\Project\models\Guru;
+
+$totalSiswa = Siswa::count();
+$totalGuru = Guru::count();
+?>
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<link rel="icon" href="/assets/img/logo.png" type="image/png">
 	<link rel="stylesheet" href="/assets/css/dashboardadmin.css">
 	<title>Dashboard Admin Page</title>
 </head>
+
 <body>
 
 	<!-- SIDEBAR -->
@@ -33,31 +36,31 @@
 			</li>
 			<li>
 				<a href="#">
-					<i class='bx bxs-shopping-bag-alt' ></i>
+					<i class='bx bxs-shopping-bag-alt'></i>
 					<span class="text">Data admin</span>
 				</a>
 			</li>
 			<li>
 				<a href="/guru">
-					<i class='bx bxs-group' ></i>
+					<i class='bx bxs-group'></i>
 					<span class="text">Guru</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
-					<i class='bx bxs-group' ></i>
+					<i class='bx bxs-group'></i>
 					<span class="text">Siswa</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
-					<i class='bx bxs-news' ></i>
+					<i class='bx bxs-news'></i>
 					<span class="text">Berita</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
-					<i class='bx bxs-receipt' ></i>
+					<i class='bx bxs-receipt'></i>
 					<span class="text">PPDB</span>
 				</a>
 			</li>
@@ -72,7 +75,7 @@
 			<li>
 
 				<a href="/logout-admin" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
+					<i class='bx bxs-log-out-circle'></i>
 
 					<span class="text">Logout</span>
 				</a>
@@ -104,7 +107,7 @@
 			</a>
 		</nav>
 		<!-- NAVBAR -->
-			
+
 
 
 		<!-- MAIN -->
@@ -123,12 +126,12 @@
 					</ul>
 				</div>
 				<div class="clock-container">
-				<div class="clock" id="clock">				
-					<?php
+					<div class="clock" id="clock">
+						<?php
 						echo date("H:i:s"); // Menampilkan waktu server
-					?>
+						?>
+					</div>
 				</div>
-			</div>
 			</div>
 			<ul class="box-info">
 				<li>
@@ -156,97 +159,98 @@
 
 
 			<div class="table-data">
-    <div class="todo">
-        <div class="head">
-            <h3>Todos</h3>
-            <!-- Tombol untuk menambah Todo List -->
-            <i class='bx bx-plus' id="addTodoButton"></i>
-        </div>
+				<div class="todo">
+					<div class="head">
+						<h3>Todos</h3>
+						<!-- Tombol untuk menambah Todo List -->
+						<i class='bx bx-plus' id="addTodoButton"></i>
+					</div>
 
-        <!-- Modal Pop-Up untuk menambahkan Todo List -->
-        <div id="todoModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h3>Tambah To-Do List</h3>
-                <form id="todoForm">
-                    <input type="text" id="todoInput" placeholder="Masukkan to-do list..." required>
-                    <button type="submit" class="btn-submit">Tambahkan</button>
-                </form>
-            </div>
-        </div>
+					<!-- Modal Pop-Up untuk menambahkan Todo List -->
+					<div id="todoModal" class="modal">
+						<div class="modal-content">
+							<span class="close">&times;</span>
+							<h3>Tambah To-Do List</h3>
+							<form id="todoForm">
+								<input type="text" id="todoInput" placeholder="Masukkan to-do list..." required>
+								<button type="submit" class="btn-submit">Tambahkan</button>
+							</form>
+						</div>
+					</div>
 
-        <!-- Daftar To-Do List -->
-        <ul class="todo-list" id="todoList">
-            <!-- Items akan ditambahkan di sini -->
-        </ul>
-		</div>
-				
+					<!-- Daftar To-Do List -->
+					<ul class="todo-list" id="todoList">
+						<!-- Items akan ditambahkan di sini -->
+					</ul>
+				</div>
+
 				<?php
-			function build_calendar($month, $year) {
-				$daysOfWeek = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-				$firstDayOfMonth = mktime(0, 0, 0, $month, 1, $year);
-				$numberDays = date('t', $firstDayOfMonth);
-				$dateComponents = getdate($firstDayOfMonth);
-				$monthName = $dateComponents['month'];
-				$dayOfWeek = $dateComponents['wday'];
+				function build_calendar($month, $year)
+				{
+					$daysOfWeek = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+					$firstDayOfMonth = mktime(0, 0, 0, $month, 1, $year);
+					$numberDays = date('t', $firstDayOfMonth);
+					$dateComponents = getdate($firstDayOfMonth);
+					$monthName = $dateComponents['month'];
+					$dayOfWeek = $dateComponents['wday'];
 
-				$calendar = "<table class='calendar'>";
-				$calendar .= "<caption>$monthName $year</caption>";
-				$calendar .= "<tr>";
+					$calendar = "<table class='calendar'>";
+					$calendar .= "<caption>$monthName $year</caption>";
+					$calendar .= "<tr>";
 
-				foreach ($daysOfWeek as $day) {
-					$calendar .= "<th class='header'>$day</th>";
-				}
-
-				$calendar .= "</tr><tr>";
-
-				if ($dayOfWeek > 0) {
-					$calendar .= str_repeat("<td class='empty'></td>", $dayOfWeek);
-				}
-
-				$currentDay = 1;
-				while ($currentDay <= $numberDays) {
-					if ($dayOfWeek == 7) {
-						$dayOfWeek = 0;
-						$calendar .= "</tr><tr>";
+					foreach ($daysOfWeek as $day) {
+						$calendar .= "<th class='header'>$day</th>";
 					}
 
-					$date = "$year-$month-" . str_pad($currentDay, 2, "0", STR_PAD_LEFT);
+					$calendar .= "</tr><tr>";
 
-					// Modify this section to add events or highlights
-					$calendar .= "<td class='day' data-date='$date'>$currentDay</td>";
+					if ($dayOfWeek > 0) {
+						$calendar .= str_repeat("<td class='empty'></td>", $dayOfWeek);
+					}
 
-					$currentDay++;
-					$dayOfWeek++;
+					$currentDay = 1;
+					while ($currentDay <= $numberDays) {
+						if ($dayOfWeek == 7) {
+							$dayOfWeek = 0;
+							$calendar .= "</tr><tr>";
+						}
+
+						$date = "$year-$month-" . str_pad($currentDay, 2, "0", STR_PAD_LEFT);
+
+						// Modify this section to add events or highlights
+						$calendar .= "<td class='day' data-date='$date'>$currentDay</td>";
+
+						$currentDay++;
+						$dayOfWeek++;
+					}
+
+					if ($dayOfWeek != 7) {
+						$remainingDays = 7 - $dayOfWeek;
+						$calendar .= str_repeat("<td class='empty'></td>", $remainingDays);
+					}
+
+					$calendar .= "</tr>";
+					$calendar .= "</table>";
+					return $calendar;
 				}
 
-				if ($dayOfWeek != 7) {
-					$remainingDays = 7 - $dayOfWeek;
-					$calendar .= str_repeat("<td class='empty'></td>", $remainingDays);
+				// Mendapatkan bulan dan tahun saat ini
+				$month = date('m');
+				$year = date('Y');
+
+				// Jika ada request untuk pindah bulan
+				if (isset($_GET['month']) && isset($_GET['year'])) {
+					$month = $_GET['month'];
+					$year = $_GET['year'];
 				}
 
-				$calendar .= "</tr>";
-				$calendar .= "</table>";
-				return $calendar;
-			}
-
-			// Mendapatkan bulan dan tahun saat ini
-			$month = date('m');
-			$year = date('Y');
-
-			// Jika ada request untuk pindah bulan
-			if (isset($_GET['month']) && isset($_GET['year'])) {
-				$month = $_GET['month'];
-				$year = $_GET['year'];
-			}
-
-			?>
-
-			<div class="calendar-container">
-				<?php
-				echo build_calendar($month, $year);
 				?>
-			</div>
+
+				<div class="calendar-container">
+					<?php
+					echo build_calendar($month, $year);
+					?>
+				</div>
 			</div>
 		</main>
 		<!-- MAIN -->
@@ -257,4 +261,5 @@
 	<script src="/assets/js/line-cart.js"></script>
 
 </body>
+
 </html>

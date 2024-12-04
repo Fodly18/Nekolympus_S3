@@ -64,6 +64,28 @@
         .form-control:invalid~.invalid-feedback {
             display: block;
         }
+
+        .quiz-question {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .question-container {
+            padding: 15px;
+            background: #f4f4f4;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-layer {
+            background: var(--light);
+            padding: 24px;
+            border-radius: 20px;
+            margin-top: 20px;
+            box-shadow: 1 2px 4px rgba(0, 0, 0, 0.1);
+        }
     </style>
     <title>Dashboard Guru Page</title>
 </head>
@@ -99,6 +121,12 @@
                 <a href="/latihan-soal">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">Latihan Soal</span>
+                </a>
+            </li>
+            <li>
+                <a href="/penilaian-latihan-soal">
+                    <i class='bx bx-task'></i>
+                    <span class="text">Penilaian Latihan Soal</span>
                 </a>
             </li>
         </ul>
@@ -155,117 +183,163 @@
             </div>
 
             <div class="start-quiz">
-    <?php if (isset($errors['system'])): ?>
-        <div class="error-message" style="margin-bottom: 1rem;">
-            <?= htmlspecialchars($errors['system'][0]) ?>
-        </div>
-    <?php endif; ?>
-
-    <form action="/latihan-soal/create" method="post" id="start-quiz-form">
-        <div class="form-group">
-            <label for="judul_tugas">Judul Latihan Soal</label>
-            <input type="text" class="form-control" id="judul_tugas" name="judul_tugas" required>
-            <div class="form-hint">Masukkan Judul Latihan Soal</div>
-            <?php if (isset($errors['judul_tugas'])): ?>
-                <?php foreach ($errors['judul_tugas'] as $error): ?>
-                    <div class="error-message"><?= htmlspecialchars($error) ?></div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
-
-        <div class="form-group">
-            <label for="jumlah_soal">Jumlah Soal Latihan Soal</label>
-            <input type="number" class="form-control" id="jumlah_soal" name="jumlah_soal" required>
-            <div class="form-hint">Masukkan Jumlah Soal Latihan Soal</div>
-            <?php if (isset($errors['jumlah_soal'])): ?>
-                <?php foreach ($errors['jumlah_soal'] as $error): ?>
-                    <div class="error-message"><?= htmlspecialchars($error) ?></div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
-
-        <div class="form-group">
-            <label for="nilai">Nilai Latihan Soal</label>
-            <input type="number" class="form-control" id="nilai" name="nilai" required>
-            <div class="form-hint">Masukkan Nilai Latihan Soal</div>
-        </div>
-        <div class="btn-container">
-            <button type="submit" class="btn btn-primary">
-                <i class='bx bx-save'></i>
-                <span>Lanjutkan</span>
-            </button>
-            <a href="/tugas-pembelajaran" class="btn btn-danger">
-                <i class='bx bx-x'></i>
-                <span>Batal</span>
-            </a>
-        </div>
-    </form>
-</div>
-
-<div class="quiz-question" style="display:none">
-    <!-- Kontainer soal akan muncul di sini -->
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const startQuizContainer = document.querySelector('.start-quiz');
-        const quizQuestionContainer = document.querySelector('.quiz-question');
-        const startQuizForm = document.getElementById('start-quiz-form');
-
-        startQuizForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Ambil jumlah soal dari input
-            const totalQuestions = document.getElementById('jumlah_soal').value;
-
-            // Sembunyikan container start-quiz
-            startQuizContainer.style.display = 'none';
-
-            // Mengosongkan container quiz-question agar tidak ada duplikasi soal
-            quizQuestionContainer.innerHTML = '';
-
-            // Tampilkan container quiz-question sesuai jumlah soal
-            for (let i = 0; i < totalQuestions; i++) {
-                const questionElement = document.createElement('div');
-                questionElement.classList.add('question-container');
-                questionElement.innerHTML = `
-                    <div class="form-group">
-                        <label for="soal_${i + 1}">Soal ${i + 1}</label>
-                        <input type="text" class="form-control" id="soal_${i + 1}" name="soal_${i + 1}" required>
+                <?php if (isset($errors['system'])): ?>
+                    <div class="error-message" style="margin-bottom: 1rem;">
+                        <?= htmlspecialchars($errors['system'][0]) ?>
                     </div>
-                    <div class="form-group">
-                        <label for="jawaban_a_${i + 1}">Jawaban A</label>
-                        <input type="text" class="form-control" id="jawaban_a_${i + 1}" name="jawaban_a_${i + 1}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="jawaban_b_${i + 1}">Jawaban B</label>
-                        <input type="text" class="form-control" id="jawaban_b_${i + 1}" name="jawaban_b_${i + 1}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="jawaban_c_${i + 1}">Jawaban C</label>
-                        <input type="text" class="form-control" id="jawaban_c_${i + 1}" name="jawaban_c_${i + 1}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="jawaban_d_${i + 1}">Jawaban D</label>
-                        <input type="text" class="form-control" id="jawaban_d_${i + 1}" name="jawaban_d_${i + 1}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="jawaban_benar_${i + 1}">Jawaban Benar</label>
-                        <input type="text" class="form-control" id="jawaban_benar_${i + 1}" name="jawaban_benar_${i + 1}" required>
-                    </div>
-                `;
-                quizQuestionContainer.appendChild(questionElement);
-            }
+                <?php endif; ?>
 
-            // Tampilkan container quiz-question
-            quizQuestionContainer.style.display = 'block';
-        });
-    });
-</script>
+                <!-- Form untuk input soal -->
+                <form action="/latihan-soal/create" method="post" id="start-quiz-form">
+                    <div class="form-group">
+                        <label for="judul_tugas">Judul Latihan Soal</label>
+                        <input type="text" class="form-control" id="judul_tugas" name="judul_tugas" required>
+                        <div class="form-hint">Masukkan Judul Latihan Soal</div>
+                        <?php if (isset($errors['judul_tugas'])): ?>
+                            <?php foreach ($errors['judul_tugas'] as $error): ?>
+                                <div class="error-message"><?= htmlspecialchars($error) ?></div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kelas">Mapel Kelas</label>
+                        <select class="form-control" id="kelas" name="kelas" required>
+                            <option value="" disabled selected>-- Pilih Mapel Dan Kelas --</option>
+                            <?php foreach ($data as $row): ?>
+                                <option value="<?= htmlspecialchars($row['id']); ?>">
+                                <?= htmlspecialchars($row['kelas']) . ' - ' . htmlspecialchars($row['nama']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="form-hint">Pilih Kelas Dan Mapel Yang Tersedia</div>
+                        <?php if (isset($errors['kelas'])): ?>
+                            <?php foreach ($errors['kelas'] as $error): ?>
+                                <div class="error-message"><?= htmlspecialchars($error) ?></div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tgl-deadline">Tanggal dan Jam Deadline Tugas</label>
+                        <input type="datetime-local" class="form-control" id="tgl-deadline" name="tgl_deadline" required>
+                        <div class="form-hint">Masukkan Tanggal dan Jam Deadline Tugas</div>
+                        <?php if (isset($errors['deadline'])): ?>
+                            <?php foreach ($errors['deadline'] as $error): ?>
+                                <div class="error-message"><?= htmlspecialchars($error) ?></div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jumlah_soal">Jumlah Soal Latihan Soal</label>
+                        <input type="number" class="form-control" id="jumlah_soal" name="jumlah_soal" required>
+                        <div class="form-hint">Masukkan Jumlah Soal Latihan Soal</div>
+                        <?php if (isset($errors['jumlah_soal'])): ?>
+                            <?php foreach ($errors['jumlah_soal'] as $error): ?>
+                                <div class="error-message"><?= htmlspecialchars($error) ?></div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- Tombol buat soal -->
+                    <div class="btn-container">
+                        <button type="button" class="btn btn-primary" id="create-quiz-btn">
+                            <i class='bx bx-save'></i>
+                            <span>Buat Soal</span>
+                        </button>
+                    </div>
+
+                    <!-- Form soal akan muncul disini -->
+                    <div class="quiz-layer" id="quiz-layer" style="display: none;">
+                        <div class="quiz-question" id="quiz-question-container"></div>
+                        <div class="btn-container">
+                            <button type="submit" class="btn btn-primary">
+                                <i class='bx bx-save'></i>
+                                <span>Simpan Latihan Soal</span>
+                            </button>
+                            <a href="javascript:void(0);" class="btn btn-danger" id="cancel-quiz-btn">
+                                <i class='bx bx-x'></i>
+                                <span>Batal</span>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const createQuizBtn = document.getElementById('create-quiz-btn');
+                    const cancelQuizBtn = document.getElementById('cancel-quiz-btn');
+                    const quizLayer = document.getElementById('quiz-layer');
+                    const quizQuestionContainer = document.getElementById('quiz-question-container');
+                    const startQuizForm = document.getElementById('start-quiz-form');
+
+                    // Ketika tombol "Buat Soal" ditekan
+                    createQuizBtn.addEventListener('click', function() {
+                        const totalQuestions = document.getElementById('jumlah_soal').value;
+
+                        // Kosongkan soal yang sudah ada, agar tidak ada duplikasi
+                        quizQuestionContainer.innerHTML = '';
+
+                        // Tampilkan form soal
+                        quizLayer.style.display = 'block';
+
+                        // Buat soal sesuai jumlah yang diminta
+                        for (let i = 0; i < totalQuestions; i++) {
+                            const questionElement = document.createElement('div');
+                            questionElement.classList.add('question-container');
+                            questionElement.innerHTML = `
+                <div class="form-group">
+                    <label for="soal_${i}">Soal No ${i+1}</label>
+                    <input type="text" class="form-control" id="soal_${i}" name="soal_${i}" required>
+                </div>
+                <div class="form-group">
+                    <label for="jawaban_a_${i}">Jawaban A</label>
+                    <input type="radio" name="jawaban_benar_${i}" value="a" required>
+                    <input type="text" class="form-control" id="jawaban_a_${i}" name="jawaban_a_${i}" required>
+                </div>
+                <div class="form-group">
+                    <label for="jawaban_b_${i}">Jawaban B</label>
+                    <input type="radio" name="jawaban_benar_${i}" value="b" required>
+                    <input type="text" class="form-control" id="jawaban_b_${i}" name="jawaban_b_${i}" required>
+                </div>
+                <div class="form-group">
+                    <label for="jawaban_c_${i}">Jawaban C</label>
+                    <input type="radio" name="jawaban_benar_${i}" value="c" required>
+                    <input type="text" class="form-control" id="jawaban_c_${i}" name="jawaban_c_${i}" required>
+                </div>
+                <div class="form-group">
+                    <label for="jawaban_d_${i}">Jawaban D</label>
+                    <input type="radio" name="jawaban_benar_${i}" value="d" required>
+                    <input type="text" class="form-control" id="jawaban_d_${i}" name="jawaban_d_${i}" required>
+                </div>
+                <div class="form-group">
+                    <label for="bobot_nilai_${i}">Bobot Nilai</label>
+                    <input type="number" class="form-control" id="bobot_nilai_${i}" name="bobot_nilai_${i}" required>
+                </div>
+            `;
+                            quizQuestionContainer.appendChild(questionElement);
+                        }
+                    });
+
+                    // Ketika tombol "Batal" ditekan
+                    cancelQuizBtn.addEventListener('click', function() {
+                        // Menghapus semua soal yang telah dimasukkan
+                        quizQuestionContainer.innerHTML = '';
+
+                        // Menyembunyikan form soal dan kembali ke tampilan awal
+                        quizLayer.style.display = 'none';
+
+                        // Mengosongkan input jumlah soal
+                        document.getElementById('jumlah_soal').value = '';
+                    });
+                });
+            </script>
 
         </main>
     </section>
-
     <script src="/assets/js/dashboardguru.js"></script>
 </body>
 
