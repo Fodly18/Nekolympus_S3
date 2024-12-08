@@ -775,7 +775,7 @@ canvas {
 .table-container {
     width: 100%;
     overflow-x: auto;
-    background: var(--light);
+	background: var(--grey);
     padding: 24px;
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -785,6 +785,13 @@ canvas {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
+	background-color: var(--grey); /* Header hari dalam mode gelap */
+    color: var(--dark);
+}
+
+.data-table th,
+.data-table td {
+    vertical-align: middle;
 }
 
 .data-table th {
@@ -822,8 +829,7 @@ canvas {
 /* Button Styles */
 .btn {
     display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    gap: 10px;
     padding: 8px 16px;
     border-radius: 8px;
     border: none;
@@ -831,6 +837,8 @@ canvas {
     font-size: 14px;
     font-weight: 500;
     transition: all 0.3s ease;
+	align-items: center; /* Menjaga teks dan ikon sejajar vertikal */
+    text-align: center; /* Menjaga teks berada di tengah */
 }
 
 .btn-primary {
@@ -864,16 +872,30 @@ canvas {
     font-size: 16px;
 }
 
-/* Action Buttons Container */
-.action-buttons {
+.form-button {
     display: flex;
-    gap: 8px;
-    align-items: center;
+    gap: 15px; /* Menambahkan jarak antar tombol */
 }
+
+.form-button .btn {
+    text-align: center; /* Memastikan konten tombol terpusat */
+}
+/* masalah disini row jebol */
+.action-buttons {
+    text-align: center; /* Posisikan tombol di tengah kolom */
+}
+
+.action-buttons .btn {
+	display: flex;
+	align-items: center;
+    margin: 4px 2px; /* Beri jarak antar tombol */
+    white-space: nowrap; /* Hindari teks tombol melipat */
+}
+
 
 /* Dark Mode Adjustments */
 body.dark .table-container {
-    background: var(--dark);
+    background: var(--light);
 }
 
 body.dark .data-table td {
@@ -911,66 +933,6 @@ body.dark .data-table tbody tr:hover {
         width: 100%;
         justify-content: center;
     }
-}
-
-/* Modal Styling */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 400px;
-    max-width: 90%;
-    text-align: center;
-    position: relative;
-}
-
-.modal-content .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-/* Card View Styling */
-.card-view {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card-view .preview-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.card-view h2 {
-    margin: 0 0 10px 0;
-}
-
-.card-view p {
-    text-align: justify;
-    margin: 10px 0;
-}
-
-.card-view small {
-    display: block;
-    color: gray;
 }
 
 /* MAIN */

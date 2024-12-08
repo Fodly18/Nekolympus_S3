@@ -745,12 +745,12 @@ canvas {
 }
 
 /* Highlight hari ini */
-.calendar td[data-date]:hover,
-.calendar td.day[data-date="2024-11-28"] {
-    background-color: #ffeb3b; /* Warna highlight hari ini tetap terlihat */
+.calendar td.highlight {
+    background-color: #ffeb3b; /* Warna highlight hari ini */
     font-weight: bold;
     color: #000; /* Teks tetap terbaca pada highlight */
 }
+
 
 /* Responsif */
 @media (max-width: 768px) {

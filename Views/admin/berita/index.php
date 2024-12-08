@@ -129,49 +129,36 @@
                 <th>Tanggal</th>
                 <th>Pembuat</th>
                 <th>Image</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
         <?php if (empty($data)): ?>
             <tr>
-                <td colspan="6" class="empty-state">
+                <td colspan="7" class="empty-state">
                     <i class='bx bx-folder-open'></i>
                     <p>Belum ada data Berita tersedia</p>
                 </td>
             </tr>
         <?php else: ?>
             <?php $no = 1; foreach ($data as $row): ?>
-                <?php 
-                    // Mengambil data gambar (BLOB)
-                    $imgData = $row['img']; // Kolom 'img' berisi data BLOB
-                    
-                    // Mengonversi BLOB ke base64
-                    $base64Image = base64_encode($imgData);
-                    // Membuat URL gambar base64
-                    $imageSrc = 'data:image/jpeg;base64,' . $base64Image;
-                    
-                    // Encode data lainnya menjadi JSON
-                    $dataEncoded = json_encode([
-                        'id' => $row['id'],
-                        'img' => $imageSrc, // Kirim gambar dalam base64
-                        'judul' => $row['judul'],
-                        'konten' => $row['konten'],
-                        'tanggal' => $row['tanggal'],
-                        'admin_id' => $row['admin_id']
-                    ], JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
-                ?>
                 <tr>
                     <td><?= $no++; ?></td>
-                    <td><?= htmlspecialchars($row['judul']); ?></td>
-                    <td><?= htmlspecialchars(substr($row['konten'], 0, 50)) . '...'; ?></td>
+                    <td><?= htmlspecialchars(strlen($row['judul']) > 20 ? substr($row['judul'], 0, 20) . '...' : $row['judul']); ?></td>
+					<td><?= htmlspecialchars(strlen($row['konten']) > 20 ? substr($row['konten'], 0, 20) . '...' : $row['konten']); ?></td>
                     <td><?= htmlspecialchars($row['tanggal']); ?></td>
-                    <td><?= htmlspecialchars($row['admin_id']); ?></td>
-                    <td>
-                        <!-- Menggunakan data JSON yang telah di-encode -->
-                        <button class="btn btn-info" onclick="showPreview(<?= $dataEncoded ?>)">
-                            <i class='bx bx-show'></i>
-                            <span>Preview</span>
-                        </button>
+					 <td><?= htmlspecialchars($row['username'] ?? 'Tidak ada admin'); ?></td> <!-- Tampilkan username admin -->             
+					 <td><?= htmlspecialchars(strlen(basename($row['img'])) > 20 ? substr(basename($row['img']), 0, 20) . '...' : basename($row['img'])); ?></td>
+                    <td class="action-buttons">
+                        <a href="/Berita/update/<?= urlencode($row['id']); ?>" class="btn btn-success btn-edit">
+                            <i class='bx bx-edit-alt'></i>
+                            <span>Edit</span>
+                        </a>
+						<a href="/Berita/delete/<?= urlencode($row['id']); ?>" 
+							class="btn btn-danger btn-delete">
+							<i class='bx bx-trash'></i>
+							<span>Hapus</span>
+							</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -180,45 +167,9 @@
     </table>
 </div>
 
+
 </main>
-
-<!-- Modal untuk Preview -->
-<div id="previewModal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close" onclick="closePreview()">&times;</span>
-        <div class="card-view">
-            <img id="previewImage" src="" alt="Image" class="preview-image">
-            <h2 id="previewTitle"></h2>
-            <p id="previewContent"></p>
-            <small id="previewDate"></small>
-            <span id="previewAuthor"></span>
-        </div>
-    </div>
-</div>
-
-
-	</section>
-	<!-- CONTENT -->
-<script>
- function showPreview(data) {
-    console.log(data); // Cek data yang dikirim dari PHP
-
-    // Menampilkan gambar dalam format base64
-    document.getElementById('previewImage').src = data.img;
-    document.getElementById('previewTitle').textContent = data.judul;
-    document.getElementById('previewContent').textContent = data.konten;
-    document.getElementById('previewDate').textContent = `Tanggal: ${data.tanggal}`;
-    document.getElementById('previewAuthor').textContent = `Pembuat: ${data.admin_id}`;
-    
-    // Menampilkan modal
-    document.getElementById('previewModal').style.display = 'flex';
-}
-
-function closePreview() {
-    document.getElementById('previewModal').style.display = 'none';
-}
-
-</script>
-
+</section>
+<script src="/assets/js/dashboardadmin.js"></script>
 </body>
 </html>

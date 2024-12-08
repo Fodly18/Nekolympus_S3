@@ -23,6 +23,8 @@ Route::get('/ppdb', HomeController::class, 'ppdb')->middleware(['guest']);
 Route::get('/kontak', HomeController::class, 'kontak')->middleware(['guest']);
 Route::get('/strukture-organisasi', HomeController::class, 'strukture_organisasi')->middleware(['guest']);
 Route::get('/blog', HomeController::class, 'blog')->middleware(['guest']);
+Route::get('/blog/{id}', HomeController::class, 'blogDetail')->middleware(['guest']);
+
 
 
 Route::get('/login-admin', AuthController::class, 'indexAdmin')->middleware(['guest']);

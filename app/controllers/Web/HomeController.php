@@ -3,16 +3,23 @@
 namespace Nekolympus\Project\controllers\Web;
 
 use Nekolympus\Project\core\Controller;
+use Nekolympus\Project\core\DB;
 use Nekolympus\Project\core\Helper;
 use Nekolympus\Project\core\View;
 use Nekolympus\Project\core\Request;
-use Nekolympus\Project\models\Barang;
+use Nekolympus\Project\models\Berita;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return  $this->view('home.index');
+        $data = DB::table('berita')
+        ->join('admin', 'berita.admin_id', '=', 'admin.id') // Menghubungkan berita dengan admin
+        ->select(['berita.id', 'berita.judul', 'berita.konten', 'berita.tanggal', 'berita.img', 'admin.username']) // Pilih kolom yang diperlukan
+        ->orderBy('berita.tanggal', 'desc')
+        ->get();
+
+        return $this->view('home.index', ['berita' => $data]);
     }
 
 
@@ -43,7 +50,13 @@ class HomeController extends Controller
     }
     public function berita()
     {
-    return $this->view('html.Berita');
+        $data = DB::table('berita')
+        ->join('admin', 'berita.admin_id', '=', 'admin.id') // Menghubungkan berita dengan admin
+        ->select(['berita.id', 'berita.judul', 'berita.konten', 'berita.tanggal', 'berita.img', 'admin.username']) // Pilih kolom yang diperlukan
+        ->orderBy('berita.tanggal', 'desc')
+        ->get();
+
+        return $this->view('html.Berita', ['berita' => $data]);
     
     }
     public function ppdb()
@@ -58,9 +71,45 @@ class HomeController extends Controller
     }
     public function blog()
     {
-    return $this->view('html.blog');
+        $data = DB::table('berita')
+        ->join('admin', 'berita.admin_id', '=', 'admin.id') // Menghubungkan berita dengan admin
+        ->select(['berita.id', 'berita.judul', 'berita.konten', 'berita.tanggal', 'berita.img', 'admin.username']) // Pilih kolom yang diperlukan
+        ->orderBy('berita.tanggal', 'desc')
+        ->get();
+        return $this->view('html.blog', ['berita' => $data]);
     
     }
+
+    public function blogDetail($id)
+{
+     // Validasi ID agar hanya menerima angka
+     if (!is_numeric($id)) {
+        die("Error: ID tidak valid.");
+    }
+
+    // Query untuk mengambil data berita berdasarkan ID
+    $data = DB::table('berita')
+        ->join('admin', 'berita.admin_id', '=', 'admin.id') // Menghubungkan berita dengan admin
+        ->select([
+            'berita.id',
+            'berita.judul',
+            'berita.konten',
+            'berita.tanggal',
+            'berita.img',
+            'admin.username'
+        ]) // Pilih kolom yang diperlukan
+        ->where('berita.id', '=', $id) // Filter berdasarkan ID
+        ->first(); // Mengambil hanya satu data
+
+    // Jika berita tidak ditemukan, tampilkan pesan error
+    if (!$data) {
+        die("Error: Berita tidak ditemukan.");
+    }
+
+    // Return ke view blog dengan data berita
+    return $this->view('html.blog', ['berita' => $data]);
+}
+
 
 
 }

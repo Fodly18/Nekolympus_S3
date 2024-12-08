@@ -11,6 +11,7 @@ class QueryBuilder
     protected $conditions = [];
     protected $bindings = [];
     protected $limit;
+    protected $orderBy = [];
 
     public function __construct(\PDO $db, $table)
     {
@@ -76,6 +77,10 @@ class QueryBuilder
             $query .= ' WHERE ' . implode(' AND ', $this->conditions);
         }
 
+        if ($this->orderBy) {
+            $query .= ' ORDER BY ' . implode(', ', $this->orderBy);
+        }
+
         if ($this->limit) {
             $query .= " LIMIT {$this->limit}";
         }
@@ -124,5 +129,13 @@ class QueryBuilder
             'last_page' => ceil($total / $perPage),
         ];
     }
+
+
+    public function orderBy($column, $direction = 'ASC')
+    {
+        $this->orderBy[] = "$column $direction";
+        return $this;
+    }
+
 
 }

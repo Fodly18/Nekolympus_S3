@@ -3,9 +3,11 @@
 	<?php
 	use Nekolympus\Project\models\Siswa;
 	use Nekolympus\Project\models\Guru;
+	use Nekolympus\Project\models\Berita;
 
 	$totalSiswa = Siswa::count();
 	$totalGuru = Guru::count();
+	$totalBerita = Berita::count();
 	?>
 <head>
 	<meta charset="UTF-8">
@@ -50,6 +52,13 @@
 				<a href="#">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Siswa</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+
+					<i class='bx bxs-photo-album' ></i>
+					<span class="text">Gallery</span>
 				</a>
 			</li>
 			<li>
@@ -141,21 +150,21 @@
 					<i class='bx bxs-user'></i>
 					<span class="text">
 						<h3><?= htmlspecialchars($totalGuru, ENT_QUOTES, 'UTF-8'); ?></h3>
-						<p>Jumlah Guru</p>
+						<p>Total Guru</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-user'></i>
 					<span class="text">
 						<h3><?= htmlspecialchars($totalSiswa, ENT_QUOTES, 'UTF-8'); ?></h3>
-						<p>Jumlah Siswa</p>
+						<p>Total Siswa</p>
 					</span>
 				</li>
 				<li>
-					<i class='bx bxs-dollar-circle'></i>
+					<i class='bx bx-news'></i>
 					<span class="text">
-						<h3>$2543</h3>
-						<p>Total Sales</p>
+						<h3><?= htmlspecialchars($totalBerita, ENT_QUOTES, 'UTF-8'); ?></h3>
+						<p>Total Berita</p>
 					</span>
 				</li>
 			</ul>
