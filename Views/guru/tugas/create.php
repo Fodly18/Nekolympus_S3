@@ -70,51 +70,57 @@
 <body>
     <!-- SIDEBAR -->
     <section id="sidebar">
-        <a href="/dashboard-guru" class="brand">
-            <i class='bx bxs-smile'></i>
-            <span class="text">SDN 1 KALISAT</span>
-        </a>
-        <ul class="side-menu top">
-            <li>
-                <a href="/dashboard-guru">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="text">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="/daftar-siswa">
-                    <i class='bx bxs-shopping-bag-alt'></i>
-                    <span class="text">Daftar Siswa</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="/tugas-pembelajaran">
-                    <i class='bx bxs-doughnut-chart'></i>
-                    <span class="text">Tugas</span>
-                </a>
-            </li>
-            <li>
-                <a href="/latihan-soal">
-                    <i class='bx bxs-message-dots'></i>
-                    <span class="text">Latihan Soal</span>
-                </a>
-            </li>
-        </ul>
-        <ul class="side-menu">
-            <li>
-                <a href="/settings">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
-            <li>
-                <a href="/logout-guru" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
-                </a>
-            </li>
-        </ul>
-    </section>
+		<a href="/dashboard-guru" class="brand">
+			<i class='bx bxs-smile'></i>
+			<span class="text">SDN 1 KALISAT</span>
+		</a>
+		<ul class="side-menu top">
+			<li>
+				<a href="/dashboard-guru">
+					<i class='bx bxs-dashboard'></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="/tugas-pembelajaran">
+					<i class='bx bxs-doughnut-chart'></i>
+					<span class="text">Tugas</span>
+				</a>
+			</li>
+			<li>
+				<a href="/pengumpulan-tugas">
+					<i class='bx bxs-shopping-bag-alt'></i>
+					<span class="text">Pengumpulan Tugas</span>
+				</a>
+			</li>
+			<li>
+				<a href="/latihan-soal">
+					<i class='bx bxs-book-content'></i>
+					<span class="text">Latihan Soal</span>
+				</a>
+			</li>
+			<li>
+				<a href="/penilaian-latihan-soal">
+					<i class='bx bx-task'></i>
+					<span class="text">Penilaian Latihan Soal</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="/settings">
+					<i class='bx bxs-cog'></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="/logout-guru" class="logout">
+					<i class='bx bxs-log-out-circle'></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
 
     <!-- CONTENT -->
     <section id="content">
@@ -186,7 +192,7 @@
 
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi Tugas</label>
-                        <input type="text" class="form-control" id="deskripsi" name="deskripsi" required>
+                        <textarea class="form-control" name="deskripsi" id="deskripsi" required></textarea>
                         <div class="form-hint">Masukkan Deskripsi Tugas</div>
                         <?php if (isset($errors['deskripsi'])): ?>
                             <?php foreach ($errors['deskripsi'] as $error): ?>

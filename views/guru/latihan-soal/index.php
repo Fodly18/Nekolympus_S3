@@ -113,15 +113,17 @@
 							<th>No</th>
 							<th>Judul Soal</th>
 							<th>Jumlah Soal</th>
+							<th>Tgl Soal</th>
+							<th>Tgl Deadline</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php if (empty($data)): ?>
 							<tr>
-								<td colspan="4" class="empty-state">
+								<td colspan="6" class="empty-state">
 									<i class='bx bx-folder-open'></i>
-									<p>Belum Ada Tugas Yang Tersedia</p>
+									<p>Belum Ada Latihan Soal Yang Tersedia</p>
 								</td>
 							</tr>
 						<?php else: ?>
@@ -130,6 +132,8 @@
 									<td><?= $no++; ?></td>
 									<td><?= htmlspecialchars($row['judul_soal']); ?></td>
 									<td><?= htmlspecialchars($row['jumlah_soal']); ?></td>
+									<td><?= htmlspecialchars($row['tanggal_soal']); ?></td>
+									<td><?= htmlspecialchars($row['deadline']); ?></td>
 									<td class="action-buttons">
 										<a href="/latihan-soal/update/<?= $row['id']; ?>" class="btn btn-success">
 											<i class='bx bx-edit-alt'></i>

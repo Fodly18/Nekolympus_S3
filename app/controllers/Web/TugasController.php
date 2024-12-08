@@ -84,8 +84,10 @@ class TugasController extends Controller
         return $this->redirect('/tugas-pembelajaran');
     }
 
-    public function delete() 
+    public function delete($id) 
     {
-        
+        Tugas::delete($id);
+
+        return $this->redirect('/tugas-pembelajaran');
     }
 }

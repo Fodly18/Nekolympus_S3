@@ -7,55 +7,10 @@
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="/assets/css/dashboardadmin.css">
 	<link rel="stylesheet" href="/assets/css/tablestyle.css">
-	<style>
-		.select {
-			display: inline-block;
-			width: auto;
-			min-width: 600px;
-			align-items: center;
-			justify-content: center;
-			margin-top: 10px;
-			padding: 8px 12px;
-			color: #333;
-			background-color: #eee;
-			border: 2px solid #bbb;
-			cursor: pointer;
-			border-radius: 5px;
-			font-size: 14px;
-			text-align: left;
-			text-align-last: center;
-			transition: border-color 0.3s ease;
-		}
-
-		.select:focus,
-		.select:hover {
-			outline: none;
-			border: 2px solid #169dea;
-		}
-
-		.select option {
-			background: #fff;
-			color: #333;
-			padding: 4px;
-			text-align: left;
-		}
-
-		.btn-select{
-			margin-left: 16px;
-			padding: 8px 12px;
-			color: #eee;
-			background-color: #169dea;
-			font-size: 14px;
-			cursor: pointer;
-			border: 2px solid #169dea;
-			border-radius: 10px;
-		}
-	</style>
 	<title>Dashboard Guru Page</title>
 </head>
 
 <body>
-
 	<!-- SIDEBAR -->
 	<section id="sidebar">
 		<a href="/dashboard-guru" class="brand">
@@ -134,7 +89,7 @@
 		<!-- MAIN -->
 		<main>
 			<div class="head-title">
-				<d class="left">
+				<div class="left">
 					<h1>Pengumpulan Tugas</h1>
 					<ul class="breadcrumb">
 						<li><a href="#">Pengumpulan Tugas</a></li>
@@ -144,15 +99,15 @@
 					<form action="/pengumpulan-tugas/filter" method="POST">
 						<select class="select" name="filter">
 							<option disabled selected value="">-- Pilih Judul Tugas --</option>
-							<?php foreach($data as $row) :?>
-								<option value=""><?= $row['judul_tugas'] ?></option>
+							<?php foreach ($data as $row) : ?>
+								<option value="<?= $row['id']; ?>"><?= $row['judul_tugas'] ?></option>
 							<?php endforeach; ?>
 						</select>
 						<button class="btn-select">Pilih Judul</button>
 					</form>
+				</div>
 			</div>
 
-			</div>
 			<div class="table-container">
 				<table class="data-table">
 					<thead>
@@ -161,28 +116,30 @@
 							<th>Nama Siswa</th>
 							<th>Kelas</th>
 							<th>Tanggal Mengumpulkan</th>
+							<th>Nilai Tugas</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php if (empty($asd)): ?>
+						<?php if (empty($dataTugas)): ?>
 							<tr>
-								<td colspan="5" class="empty-state">
+								<td colspan="6" class="empty-state">
 									<i class='bx bx-folder-open'></i>
 									<p>Belum Ada Siswa Yang Mengumpulkan Tugas</p>
 								</td>
 							</tr>
 						<?php else: ?>
-							<?php foreach ($asd as $row): ?>
+							<?php foreach ($dataTugas as $row): ?>
 								<tr>
 									<td><?= $no++; ?></td>
-									<td><?= htmlspecialchars($row['asd'] ?? 'Tidak Ditemukan'); ?></td>
-									<td><?= htmlspecialchars($row['asd'] ?? 'Tidak Ditemukan'); ?></td>
-									<td><?= htmlspecialchars($row['asd']); ?></td>
+									<td><?= htmlspecialchars($row['nama'] ?? 'Tidak Ditemukan'); ?></td>
+									<td><?= htmlspecialchars($row['kelas'] ?? 'Tidak Ditemukan'); ?></td>
+									<td><?= htmlspecialchars($row['tanggal']); ?></td>
+									<td><?= htmlspecialchars($row['grade'] ?? 'Belum Dinilai'); ?></td>
 									<td class="action-buttons">
-										<a href="/tugas-pembelajaran/update/<?= $row['id']; ?>" class="btn btn-success">
+										<a href="/pengumpulan-tugas/show/<?= $row['id']; ?>" class="btn btn-success" id="btn-show-tugas">
 											<i class='bx bx-edit-alt'></i>
-											<span>Tamppilkan</span>
+											<span class="show-tugas">Tampilkan</span>
 										</a>
 									</td>
 								</tr>
@@ -190,12 +147,9 @@
 						<?php endif; ?>
 					</tbody>
 				</table>
-
 			</div>
 		</main>
-		<!-- MAIN -->
 	</section>
-
 	<script src="/assets/js/dashboardguru.js"></script>
 </body>
 

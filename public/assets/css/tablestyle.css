@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .table-container {
@@ -22,6 +22,7 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .data-table th {
@@ -73,6 +74,7 @@
 .btn-primary {
     background: var(--blue);
     color: var(--light);
+    margin-right: 10px;
 }
 
 .btn-primary:hover {
@@ -152,3 +154,118 @@ body.dark .data-table tbody tr:hover {
 
 /* Keep existing responsive styles */
 /* ... [previous responsive styles remain unchanged] ... */
+
+
+/* Styling Pada Pengumpulan Tugas */
+
+/* Style Filter */
+.select {
+    display: inline-block;
+    width: auto;
+    min-width: 600px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 8px 12px;
+    color: #333;
+    background-color: #eee;
+    border: 2px solid #bbb;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: left;
+    text-align-last: center;
+    transition: border-color 0.3s ease;
+}
+
+.select:focus,
+.select:hover {
+    outline: none;
+    border: 2px solid #169dea;
+}
+
+.select option {
+    background: #fff;
+    color: #333;
+    padding: 4px;
+    text-align: left;
+}
+
+.btn-select {
+    margin-left: 16px;
+    padding: 8px 12px;
+    color: #eee;
+    background-color: #169dea;
+    font-size: 14px;
+    cursor: pointer;
+    border: 2px solid #169dea;
+    border-radius: 10px;
+}
+
+/* Style Inside Div Show*/
+
+.show-tugas-siswa{
+    margin-top: 20px;
+    width: 100%;
+    overflow-x: auto;
+    background: var(--light);
+    padding-right: 18px;
+    padding-left: 18px;
+    padding-top: 12px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.show-tugas-siswa label{
+    font-size: 18px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.show-tugas-siswa button{
+    font-size: 18px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.bukti-foto{
+    width: 400px;         
+    height: 400px;
+    object-fit: contain; 
+    object-position: center;
+}
+/* Style filter nilai */
+
+.select-nilai {
+    display: inline-block;
+    width: auto;
+    min-width: 100px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    
+    padding: 8px 12px;
+    color: #333;
+    background-color: #eee;
+    border: 2px solid #bbb;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: left;
+    text-align-last: center;
+    transition: border-color 0.3s ease;
+}
+
+.select-nilai:focus,
+.select-nilai:hover {
+    outline: none;
+    border: 2px solid #169dea;
+}
+
+.select-nilai option {
+    background: #fff;
+    color: #333;
+    padding: 4px;
+    text-align: left;
+}
