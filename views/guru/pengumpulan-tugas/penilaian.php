@@ -148,7 +148,6 @@
                             <p><strong>Foto Tugas:</strong></p>
                             <img src="data:image/jpg;base64,<?php echo htmlspecialchars($data['foto']); ?>" alt="Foto Tugas">
                         </div>
-
                         <select class="select-nilai" name="grade">
                             <option disabled selected value="">-- Pilih Nilai --</option>
                             <option value="A">A</option>

@@ -192,7 +192,7 @@
 
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi Tugas</label>
-                        <input type="text" class="form-control" id="deskripsi" name="deskripsi" required>
+                        <textarea class="form-control" name="deskripsi" id="deskripsi" required></textarea>
                         <div class="form-hint">Masukkan Deskripsi Tugas</div>
                         <?php if (isset($errors['deskripsi'])): ?>
                             <?php foreach ($errors['deskripsi'] as $error): ?>

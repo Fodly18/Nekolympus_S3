@@ -16,11 +16,7 @@ use Nekolympus\Project\middleware\GuruMiddleware;
 Middleware::register('admin', AdminMiddleware::class);
 Middleware::register('auth', AuthMiddleware::class);
 Middleware::register('guest', GuestMiddleware::class);
-<<<<<<< HEAD
 Middleware::register('bearer', ApiMiddleware::class);
-=======
-Middleware::register('guru', GuruMiddleware::class);
->>>>>>> 4f9fef28d4c3b4f5d50ceca475d4dc292dc9825e
 
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();

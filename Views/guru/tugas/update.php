@@ -85,21 +85,27 @@
                 </a>
             </li>
             <li>
-                <a href="/daftar-siswa">
-                    <i class='bx bxs-shopping-bag-alt'></i>
-                    <span class="text">Daftar Siswa</span>
-                </a>
-            </li>
-            <li class="active">
                 <a href="/tugas-pembelajaran">
                     <i class='bx bxs-doughnut-chart'></i>
                     <span class="text">Tugas</span>
                 </a>
             </li>
             <li>
+                <a href="/pengumpulan-tugas">
+                    <i class='bx bxs-shopping-bag-alt'></i>
+                    <span class="text">Pengumpulan Tugas</span>
+                </a>
+            </li>
+            <li class="active">
                 <a href="/latihan-soal">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">Latihan Soal</span>
+                </a>
+            </li>
+            <li>
+                <a href="/penilaian-latihan-soal">
+                    <i class='bx bx-task'></i>
+                    <span class="text">Penilaian Latihan Soal</span>
                 </a>
             </li>
         </ul>
@@ -177,7 +183,6 @@
                                 </option>
                             <?php endforeach; ?>
                         </select>
-
                         <div class="form-hint">Pilih Kelas Dan Mapel Yang Tersedia</div>
                         <?php if (isset($errors['kelas'])): ?>
                             <?php foreach ($errors['kelas'] as $error): ?>

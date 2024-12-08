@@ -15,11 +15,11 @@ class LatihanController extends Controller
     {
         $idGuru = $_SESSION['auth'];
         $data = DB::table('mapel_kelas')
-                ->join('kelas', 'mapel_kelas.id_kelas', '=', 'kelas.id')
-                ->join('mapel', 'mapel_kelas.id_mapel', '=', 'mapel.id')
-                ->select(['mapel_kelas.id', 'kelas.kelas', 'mapel.nama'])
-                ->where('mapel_kelas.id_guru', '=', $idGuru)
-                ->get();
+            ->join('kelas', 'mapel_kelas.id_kelas', '=', 'kelas.id')
+            ->join('mapel', 'mapel_kelas.id_mapel', '=', 'mapel.id')
+            ->select(['mapel_kelas.id', 'kelas.kelas', 'mapel.nama'])
+            ->where('mapel_kelas.id_guru', '=', $idGuru)
+            ->get();
 
         return $this->view('guru.latihan-soal.create', ['data' => $data]);
     }
@@ -30,11 +30,11 @@ class LatihanController extends Controller
             'id_mapel_kelas' => $request->input('kelas'),
             'judul_soal' => $request->input('judul_tugas'),
             'jumlah_soal' => $request->input('jumlah_soal'),
-            'tanggal_soal' => '2024-11-15 13:13:45',
+            'tanggal_soal' => $request->input('tanggal_soal'),
             'deadline' => $request->input('tgl_deadline')
         ]);
 
-        for( $i = 0; $i < $request->input('jumlah_soal'); $i++){
+        for ($i = 0; $i < $request->input('jumlah_soal'); $i++) {
             DetailSoal::create([
                 'id_latihan_soal' => $latSoal,
                 'soal' => $request->input("soal_$i"),
@@ -50,15 +50,38 @@ class LatihanController extends Controller
         return $this->redirect('/latihan-soal');
     }
 
-    public function updateIndex()
+    public function updateIndex($id)
     {
-        return $this->view('guru.latihan-soal.update');
+        $idGuru = $_SESSION['auth'];
+        $kelas = DB::table('mapel_kelas')
+            ->join('kelas', 'mapel_kelas.id_kelas', '=', 'kelas.id')
+            ->join('mapel', 'mapel_kelas.id_mapel', '=', 'mapel.id')
+            ->select(['mapel_kelas.id', 'kelas.kelas', 'mapel.nama'])
+            ->where('mapel_kelas.id_guru', '=', $idGuru)
+            ->get();
+
+        $data = DB::table('latihan_soal')
+            ->join('mapel_kelas', 'latihan_soal.id_mapel_kelas', '=', 'mapel_kelas.id')
+            ->join('mapel', 'mapel_kelas.id_mapel', '=', 'mapel.id')
+            ->join('kelas', 'mapel_kelas.id_kelas', '=', 'kelas.id')
+            ->select(['latihan_soal.id', 'mapel.nama', 'mapel_kelas.id_kelas as awok', 'latihan_soal.judul_soal', 'latihan_soal.tanggal_soal', 'latihan_soal.deadline'])
+            ->where('latihan_soal.id', '=', $id)
+            ->first();
+
+        return $this->view('guru.latihan-soal.update', ['data' => $data, 'kls' => $kelas]);
     }
 
-    public function update()
+    public function update(Request $request)
     {
+        $latSoal = LatihanSoal::update($request->input('id'), [
+            'judul_soal' => $request->input('judul_soal'),
+            'tanggal_soal' => $request->input('tanggal_soal'),
+            'deadline' => $request->input('tgl_deadline')
+        ]);
 
+        return $this->redirect('/latihan-soal');
     }
+
 
     public function delete($id)
     {
@@ -67,5 +90,3 @@ class LatihanController extends Controller
         return $this->redirect('/latihan-soal');
     }
 }
-
-?>
