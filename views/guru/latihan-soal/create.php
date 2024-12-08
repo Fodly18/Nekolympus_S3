@@ -208,7 +208,7 @@
                             <option value="" disabled selected>-- Pilih Mapel Dan Kelas --</option>
                             <?php foreach ($data as $row): ?>
                                 <option value="<?= htmlspecialchars($row['id']); ?>">
-                                <?= htmlspecialchars($row['kelas']) . ' - ' . htmlspecialchars($row['nama']); ?>
+                                    <?= htmlspecialchars($row['kelas']) . ' - ' . htmlspecialchars($row['nama']); ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
@@ -221,9 +221,20 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="tgl-deadline">Tanggal dan Jam Deadline Tugas</label>
+                        <label for="tanggal-soal">Tanggal dan Jam Latihan Soal Dibuka</label>
+                        <input type="datetime-local" class="form-control" id="tanggal-soal" name="tanggal_soal" required>
+                        <div class="form-hint">Masukkan Tanggal dan Jam Latihan Soal Dibuka</div>
+                        <?php if (isset($errors['deadline'])): ?>
+                            <?php foreach ($errors['deadline'] as $error): ?>
+                                <div class="error-message"><?= htmlspecialchars($error) ?></div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tgl-deadline">Tanggal dan Jam Deadline Latihan Soal</label>
                         <input type="datetime-local" class="form-control" id="tgl-deadline" name="tgl_deadline" required>
-                        <div class="form-hint">Masukkan Tanggal dan Jam Deadline Tugas</div>
+                        <div class="form-hint">Masukkan Tanggal dan Jam Deadline Latihan Soal</div>
                         <?php if (isset($errors['deadline'])): ?>
                             <?php foreach ($errors['deadline'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -252,7 +263,9 @@
 
                     <!-- Form soal akan muncul disini -->
                     <div class="quiz-layer" id="quiz-layer" style="display: none;">
-                        <div class="quiz-question" id="quiz-question-container"></div>
+                        <div class="quiz-question" id="quiz-question-container">
+
+                        </div>
                         <div class="btn-container">
                             <button type="submit" class="btn btn-primary">
                                 <i class='bx bx-save'></i>
@@ -275,17 +288,30 @@
                     const quizLayer = document.getElementById('quiz-layer');
                     const quizQuestionContainer = document.getElementById('quiz-question-container');
                     const startQuizForm = document.getElementById('start-quiz-form');
+                    const tanggalSoalInput = document.getElementById('tanggal-soal');
+                    const tglDeadlineInput = document.getElementById('tgl-deadline');
+
+
+                    const today = new Date();
+                    const year = today.getFullYear();
+                    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+                    const day = ('0' + today.getDate()).slice(-2); 
+                    const hours = ('0' + today.getHours()).slice(-2); 
+                    const minutes = ('0' + today.getMinutes()).slice(-2);
+
+                    const currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+                    // Mengatur nilai min pada input untuk tanggal-soal dan tgl-deadline
+                    tanggalSoalInput.setAttribute('min', currentDateTime);
+                    tglDeadlineInput.setAttribute('min', currentDateTime);
 
                     // Ketika tombol "Buat Soal" ditekan
                     createQuizBtn.addEventListener('click', function() {
                         const totalQuestions = document.getElementById('jumlah_soal').value;
-
                         // Kosongkan soal yang sudah ada, agar tidak ada duplikasi
                         quizQuestionContainer.innerHTML = '';
-
                         // Tampilkan form soal
                         quizLayer.style.display = 'block';
-
                         // Buat soal sesuai jumlah yang diminta
                         for (let i = 0; i < totalQuestions; i++) {
                             const questionElement = document.createElement('div');
@@ -297,22 +323,22 @@
                 </div>
                 <div class="form-group">
                     <label for="jawaban_a_${i}">Jawaban A</label>
-                    <input type="radio" name="jawaban_benar_${i}" value="a" required>
+                    <input type="checkbox" name="jawaban_benar_${i}" value="a" id="jawaban_a_checkbox_${i}" required>
                     <input type="text" class="form-control" id="jawaban_a_${i}" name="jawaban_a_${i}" required>
                 </div>
                 <div class="form-group">
                     <label for="jawaban_b_${i}">Jawaban B</label>
-                    <input type="radio" name="jawaban_benar_${i}" value="b" required>
+                    <input type="checkbox" name="jawaban_benar_${i}" value="b" id="jawaban_b_checkbox_${i}" required>
                     <input type="text" class="form-control" id="jawaban_b_${i}" name="jawaban_b_${i}" required>
                 </div>
                 <div class="form-group">
                     <label for="jawaban_c_${i}">Jawaban C</label>
-                    <input type="radio" name="jawaban_benar_${i}" value="c" required>
+                    <input type="checkbox" name="jawaban_benar_${i}" value="c" id="jawaban_c_checkbox_${i}" required>
                     <input type="text" class="form-control" id="jawaban_c_${i}" name="jawaban_c_${i}" required>
                 </div>
                 <div class="form-group">
                     <label for="jawaban_d_${i}">Jawaban D</label>
-                    <input type="radio" name="jawaban_benar_${i}" value="d" required>
+                    <input type="checkbox" name="jawaban_benar_${i}" value="d" id="jawaban_d_checkbox_${i}" required>
                     <input type="text" class="form-control" id="jawaban_d_${i}" name="jawaban_d_${i}" required>
                 </div>
                 <div class="form-group">
@@ -321,22 +347,48 @@
                 </div>
             `;
                             quizQuestionContainer.appendChild(questionElement);
+
+                            // Menambahkan event listener pada checkbox jawaban untuk menentukan jawaban benar
+                            const answerCheckboxes = [
+                                document.getElementById(`jawaban_a_checkbox_${i}`),
+                                document.getElementById(`jawaban_b_checkbox_${i}`),
+                                document.getElementById(`jawaban_c_checkbox_${i}`),
+                                document.getElementById(`jawaban_d_checkbox_${i}`)
+                            ];
+
+                            answerCheckboxes.forEach(function(checkbox) {
+                                checkbox.addEventListener('change', function() {
+                                    // Jika checkbox ini dicentang, centang hanya checkbox ini dan nonaktifkan yang lainnya
+                                    if (checkbox.checked) {
+                                        // Menonaktifkan checkbox lainnya
+                                        answerCheckboxes.forEach(function(otherCheckbox) {
+                                            if (otherCheckbox !== checkbox) {
+                                                otherCheckbox.checked = false; // Uncheck
+                                                otherCheckbox.disabled = true; // Nonaktifkan
+                                            }
+                                        });
+                                    } else {
+                                        // Mengaktifkan kembali checkbox lainnya jika tidak dicentang
+                                        answerCheckboxes.forEach(function(otherCheckbox) {
+                                            otherCheckbox.disabled = false;
+                                        });
+                                    }
+                                });
+                            });
                         }
                     });
-
                     // Ketika tombol "Batal" ditekan
                     cancelQuizBtn.addEventListener('click', function() {
                         // Menghapus semua soal yang telah dimasukkan
                         quizQuestionContainer.innerHTML = '';
-
                         // Menyembunyikan form soal dan kembali ke tampilan awal
                         quizLayer.style.display = 'none';
-
                         // Mengosongkan input jumlah soal
                         document.getElementById('jumlah_soal').value = '';
                     });
                 });
             </script>
+
 
         </main>
     </section>
