@@ -25,29 +25,25 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
-
-					<i class='bx bxs-book'></i>
-					<span class="text">Data Admin</span>
-
-				</a>
-			</li>
-			<li>
 				<a href="/guru">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Guru</span>
 				</a>
 			</li>
 			<li>
-
 				<a href="#">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Siswa</span>
 				</a>
 			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-photo-album' ></i>
+					<span class="text">Gallery</span>
+				</a>
+			</li>
 			<li class="active">
 				<a href="/Berita">
-
 					<i class='bx bxs-news' ></i>
 					<span class="text">Berita</span>
 				</a>

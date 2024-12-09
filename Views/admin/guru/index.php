@@ -35,18 +35,6 @@
 				</a>
 			</li>
 			<li>
-				<a href="/berita">
-					<i class='bx bxs-news' ></i>
-					<span class="text">Berita</span>
-				</a>
-			</li>
-			<li>
-				<a href="/ppdb">
-					<i class='bx bxs-news' ></i>
-					<span class="text">PPDB</span>
-				</a>
-			</li>
-			<li>
 				<a href="/kelas">
 					<i class='bx bxs-news' ></i>
 					<span class="text">Kelas</span>

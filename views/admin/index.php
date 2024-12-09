@@ -37,19 +37,12 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<i class='bx bxs-book'></i>
-					<span class="text">Data Admin</span>
-				</a>
-			</li>
-			<li>
 				<a href="/guru">
 					<i class='bx bxs-group'></i>
 					<span class="text">Guru</span>
 				</a>
 			</li>
 			<li>
-
 				<a href="#">
 					<i class='bx bxs-group'></i>
 					<span class="text">Siswa</span>
@@ -57,15 +50,12 @@
 			</li>
 			<li>
 				<a href="#">
-
 					<i class='bx bxs-photo-album' ></i>
 					<span class="text">Gallery</span>
 				</a>
 			</li>
 			<li>
 				<a href="/Berita">
-
-				<a href="/berita">
 					<i class='bx bxs-news' ></i>
 					<span class="text">Berita</span>
 				</a>
@@ -85,10 +75,8 @@
 				</a>
 			</li>
 			<li>
-
 				<a href="/logout-admin" class="logout">
 					<i class='bx bxs-log-out-circle'></i>
-
 					<span class="text">Logout</span>
 				</a>
 			</li>
