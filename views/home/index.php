@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+	use Nekolympus\Project\models\Siswa;
+	use Nekolympus\Project\models\Guru;
+	use Nekolympus\Project\models\Berita;
+
+	$totalSiswa = Siswa::count();
+	$totalGuru = Guru::count();
+	$totalBerita = Berita::count();
+	?>
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
@@ -127,18 +137,18 @@
         <div class="stat-items">
           <div class="stat-item fade-in">
             <i class="fas fa-users"></i>
-            <div class="stat-value">350</div>
+            <div class="stat-value"><?= htmlspecialchars($totalSiswa, ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="stat-label">Jumlah Siswa</div>
           </div>
           <div class="stat-item fade-in">
             <i class="fas fa-chalkboard-teacher"></i>
-            <div class="stat-value">20</div>
+            <div class="stat-value"><?= htmlspecialchars($totalGuru, ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="stat-label">Jumlah Guru</div>
           </div>
           <div class="stat-item fade-in">
-            <i class="fas fa-book"></i>
-            <div class="stat-value">1500</div>
-            <div class="stat-label">Jumlah Buku</div>
+            <i class="fa-solid fa-newspaper"></i>
+            <div class="stat-value"><?= htmlspecialchars($totalBerita, ENT_QUOTES, 'UTF-8'); ?></div>
+            <div class="stat-label">Jumlah Berita</div>
           </div>
           <div class="stat-item fade-in">
             <i class="fas fa-graduation-cap"></i>

@@ -43,7 +43,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/siswa">
 					<i class='bx bxs-group'></i>
 					<span class="text">Siswa</span>
 				</a>

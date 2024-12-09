@@ -7,7 +7,7 @@ use Nekolympus\Project\core\Route;
 use Nekolympus\Project\controllers\Web\HomeController;
 use Nekolympus\Project\controllers\Web\MapelController;
 use Nekolympus\Project\controllers\Web\GuruController;
-use Nekolympus\Project\controllers\Web\SiswaController; // Ensure this is included
+use Nekolympus\Project\controllers\Web\SiswaController; 
 use Nekolympus\Project\controllers\Web\LatihanController;
 use Nekolympus\Project\controllers\Web\BeritaController;
 use Nekolympus\Project\controllers\Web\KelasController;

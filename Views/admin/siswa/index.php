@@ -12,7 +12,7 @@
     <!-- SIDEBAR -->
     <section id="sidebar">
         <a href="/admin" class="brand">
-            <i class='bx bxs-school'></i>
+        <img src="/assets/img/logo.png" alt="Logo" class="icon" width="60" height="60">
             <span class="text">SDN 1 KALISAT</span>
         </a>
 		<ul class="side-menu top">
@@ -34,28 +34,22 @@
 					<span class="text">Siswa</span>
 				</a>
 			</li>
+            <li>
+				<a href="#">
+					<i class='bx bxs-photo-album' ></i>
+					<span class="text">Gallery</span>
+				</a>
+			</li>
 			<li>
-				<a href="/kelas">
+				<a href="/Berita">
 					<i class='bx bxs-news' ></i>
-					<span class="text">Kelas</span>
-				</a>
-			</li>
-			<li>
-				<a href="/mapel">
-					<i class='bx bxs-receipt' ></i>
-					<span class="text">Mapel</span>
+					<span class="text">Berita</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
 					<i class='bx bxs-receipt' ></i>
-					<span class="text">Mapel-Kelas</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-receipt' ></i>
-					<span class="text">Jadwal</span>
+					<span class="text">PPDB</span>
 				</a>
 			</li>
 		</ul>
@@ -67,7 +61,6 @@
 				</a>
 			</li>
 			<li>
-
 				<a href="/logout-admin" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 
