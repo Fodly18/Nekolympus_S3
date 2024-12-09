@@ -11,12 +11,12 @@ class MapelController extends Controller
     public function index()
     {
         $data = Mapel::all();
-        return $this->view('mapel.index', ['data' => $data, 'no' => 1]);
+        return $this->view('admin.mapel.index', ['data' => $data, 'no' => 1]);
     }
 
     public function createIndex()
     {
-        return $this->view('mapel.create');
+        return $this->view('admin.mapel.create');
     }
 
     public function create(Request $request)
@@ -24,7 +24,7 @@ class MapelController extends Controller
         if(!$request->validate([
             'mapel' => 'required'
         ])) {
-            return $this->view('mapel.create', ['errors' => $request->getErrors()]);
+            return $this->view('admin.mapel.create', ['errors' => $request->getErrors()]);
         }
 
         Mapel::create([
@@ -37,7 +37,7 @@ class MapelController extends Controller
     public function updateIndex($id)
     {
         $data = Mapel::where('id', '=', $id)->first();
-        return $this->view('mapel.update', ['data' => $data]);
+        return $this->view('admin.mapel.update', ['data' => $data]);
     }
 
     public function update(Request $request)
@@ -45,7 +45,7 @@ class MapelController extends Controller
         if(!$request->validate([
             'mapel' => 'required'
         ])) {
-            return $this->view('mapel.update', ['errors' => $request->getErrors()]);
+            return $this->view('admin.mapel.update', ['errors' => $request->getErrors()]);
         }
 
         Mapel::update($request->input('id'), [

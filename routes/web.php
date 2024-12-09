@@ -70,12 +70,31 @@ Route::get('/siswa/update/{id}', SiswaController::class, 'updateIndex')->middlew
 Route::post('/siswa/update', SiswaController::class, 'update')->middleware(['auth', 'admin']);
 Route::get('/siswa/delete/{id}', SiswaController::class, 'delete')->middleware(['auth', 'admin']);
 
-Route::get('/mapel', MapelController::class, 'index');
-Route::get('/create', MapelController::class, 'createIndex');
-Route::post('/create', MapelController::class, 'create');
-Route::get('/update/{id}', MapelController::class, 'updateIndex');
-Route::post('/update', MapelController::class, 'update');
-Route::get('/delete/{id}', MapelController::class, 'delete');
+// Routing untuk Mapel
+Route::get('/mapel', MapelController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/mapel/create', MapelController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/mapel/create', MapelController::class, 'create')->middleware(['auth', 'admin']);
+Route::get('/mapel/update/{id}', MapelController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/mapel/update', MapelController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/mapel/delete/{id}', MapelController::class, 'delete')->middleware(['auth', 'admin']);
+
+// Routing untuk Kelas
+Route::get('/kelas', KelasController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/kelas/create', KelasController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/kelas/create', KelasController::class, 'create')->middleware(['auth', 'admin']);
+Route::get('/kelas/update/{id}', KelasController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/kelas/update', KelasController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/kelas/delete/{id}', KelasController::class, 'delete')->middleware(['auth', 'admin']);
+
+
+
+
+// Route::get('/mapel', MapelController::class, 'index');
+// Route::get('/create', MapelController::class, 'createIndex');
+// Route::post('/create', MapelController::class, 'create');
+// Route::get('/update/{id}', MapelController::class, 'updateIndex');
+// Route::post('/update', MapelController::class, 'update');
+// Route::get('/delete/{id}', MapelController::class, 'delete');
 
 // Route::post('/login', AuthController::class, 'login');
 // Route::get('/home', HomeController::class, 'index')->middleware(['auth']);

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/dataguruadmin.css">
     <link rel="stylesheet" href="/assets/css/dashboardadmin.css">
-    <title>Data Siswa - Admin Dashboard</title>
+    <title>Data Mata Pelajaran - Admin Dashboard</title>
 </head>
 <body>
     <!-- SIDEBAR -->
@@ -28,7 +28,7 @@
 					<span class="text">Guru</span>
 				</a>
 			</li>
-			<li class="active">
+			<li>
 				<a href="/siswa">
 					<i class='bx bxs-group' ></i>
 					<span class="text">Siswa</span>
@@ -52,7 +52,7 @@
 					<span class="text">Kelas</span>
 				</a>
 			</li>
-			<li>
+			<li class="active">
 				<a href="/mapel">
 					<i class='bx bxs-receipt' ></i>
 					<span class="text">Mapel</span>
@@ -94,16 +94,18 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
-            <form action="#">
+            <form action="/siswa/search" method="GET">
                 <div class="form-input">
-                    <input type="search" placeholder="Cari siswa...">
-                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                    <input type="text" name="query" placeholder="Cari siswa..." aria-label="Cari siswa">
+                    <button type="submit" class="search-btn">
+                        <i class='bx bx-search'></i>
+                    </button>
                 </div>
             </form>
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
             <a href="#" class="profile">
-                <img src="/assets/img/people.png" alt="Profile">
+                <img src="/assets/img/people.png" alt="Profile" aria-label="Profile">
             </a>
         </nav>
 
@@ -111,16 +113,16 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Data Siswa</h1>
+                    <h1>Data Mata Pelajaran</h1>
                     <ul class="breadcrumb">
                         <li><a href="/admin">Dashboard</a></li>
                         <li><i class='bx bx-chevron-right'></i></li>
-                        <li><a class="active" href="#">Data Siswa</a></li>
+                        <li><a class="active" href="#">Data Mapel</a></li>
                     </ul>
                 </div>
-                <a href="/siswa/create" class="btn btn-primary">
+                <a href="/mapel/create" class="btn btn-primary">
                     <i class='bx bx-plus'></i>
-                    <span>Tambah Siswa</span>
+                    <span>Tambah Mapel</span>
                 </a>
             </div>
 
@@ -129,18 +131,16 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
-                            <th>Nomor HP</th>
-                            <th>NISN</th>
-                            <th>Actions</th>
+                            <th>Nama Mata Pelajaran</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (empty($data)): ?>
                             <tr>
-                                <td colspan="5" class="empty-state">
+                                <td colspan="3" class="empty-state">
                                     <i class='bx bx-folder-open'></i>
-                                    <p>Belum ada data Siswa tersedia</p>
+                                    <p>Belum ada data Mapel tersedia</p>
                                 </td>
                             </tr>
                         <?php else: ?>
@@ -148,15 +148,13 @@
                                 <tr>
                                     <td><?= $no++; ?></td>
                                     <td><?= htmlspecialchars($row['nama']); ?></td>
-                                    <td><?= htmlspecialchars($row['nomor_hp']); ?></td>
-                                    <td><?= htmlspecialchars($row['nisn']); ?></td>
                                     <td class="action-buttons">
-                                        <a href="/siswa/update/<?= $row['id']; ?>" class="btn btn-success">
+                                        <a href="/mapel/update/<?= $row['id']; ?>" class="btn btn-success">
                                             <i class='bx bx-edit-alt'></i>
                                             <span>Edit</span>
                                         </a>
-                                        <a href="/siswa/delete/<?= $row['id']; ?>" 
-                                           onclick="return confirm('Apakah Anda yakin ingin menghapus data siswa <?= htmlspecialchars($row['nama']); ?>?');"
+                                        <a href="/mapel/delete/<?= $row['id']; ?>"
+                                           onclick="return confirm('Apakah Anda yakin ingin menghapus mata pelajaran <?= htmlspecialchars($row['nama']); ?>?');"
                                            class="btn btn-danger">
                                             <i class='bx bx-trash'></i>
                                             <span>Hapus</span>
@@ -173,15 +171,9 @@
 
     <script src="/assets/js/dashboardadmin.js"></script>
     <script>
-        // Add dark mode toggle functionality
         const switchMode = document.getElementById('switch-mode');
-        
-        switchMode.addEventListener('change', function() {
-            if(this.checked) {
-                document.body.classList.add('dark');
-            } else {
-                document.body.classList.remove('dark');
-            }
+        switchMode.addEventListener('change', function () {
+            document.body.classList.toggle('dark', this.checked);
         });
     </script>
 </body>
