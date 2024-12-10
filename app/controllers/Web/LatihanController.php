@@ -86,7 +86,7 @@ class LatihanController extends Controller
     public function delete($id)
     {
         LatihanSoal::delete($id);
-
+            
         return $this->redirect('/latihan-soal');
     }
 }
