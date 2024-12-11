@@ -283,42 +283,63 @@
             </div>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    const createQuizBtn = document.getElementById('create-quiz-btn');
-                    const cancelQuizBtn = document.getElementById('cancel-quiz-btn');
-                    const quizLayer = document.getElementById('quiz-layer');
-                    const quizQuestionContainer = document.getElementById('quiz-question-container');
-                    const startQuizForm = document.getElementById('start-quiz-form');
-                    const tanggalSoalInput = document.getElementById('tanggal-soal');
-                    const tglDeadlineInput = document.getElementById('tgl-deadline');
+    const createQuizBtn = document.getElementById('create-quiz-btn');
+    const cancelQuizBtn = document.getElementById('cancel-quiz-btn');
+    const quizLayer = document.getElementById('quiz-layer');
+    const quizQuestionContainer = document.getElementById('quiz-question-container');
+    const jumlahSoalInput = document.getElementById('jumlah_soal');
+    const errorMessage = document.getElementById('error-message'); // Tempat menampilkan pesan error
 
+    // Fungsi untuk menghitung total bobot nilai dan validasi
+    function calculateTotalBobot() {
+        const bobotInputs = document.querySelectorAll('[id^="bobot_nilai_"]');
+        let totalBobot = 0;
+        let isValid = true;
 
-                    const today = new Date();
-                    const year = today.getFullYear();
-                    const month = ('0' + (today.getMonth() + 1)).slice(-2);
-                    const day = ('0' + today.getDate()).slice(-2); 
-                    const hours = ('0' + today.getHours()).slice(-2); 
-                    const minutes = ('0' + today.getMinutes()).slice(-2);
+        // Menjumlahkan total bobot dan memeriksa apakah ada nilai yang melebihi 100
+        bobotInputs.forEach(input => {
+            totalBobot += parseInt(input.value) || 0; // Menambahkan bobot soal, default 0 jika tidak ada nilai
+        });
 
-                    const currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+        if (totalBobot > 100) {
+            isValid = false;
+        }
 
-                    // Mengatur nilai min pada input untuk tanggal-soal dan tgl-deadline
-                    tanggalSoalInput.setAttribute('min', currentDateTime);
-                    tglDeadlineInput.setAttribute('min', currentDateTime);
+        if (!isValid) {
+            errorMessage.textContent = 'Jumlah Nilai tidak bisa lebih dari 100';
+            errorMessage.style.color = 'red';
+        } else {
+            errorMessage.textContent = '';
+        }
+        return isValid;
+    }
 
-                    // Ketika tombol "Buat Soal" ditekan
-                    createQuizBtn.addEventListener('click', function() {
-                        const totalQuestions = document.getElementById('jumlah_soal').value;
-                        // Kosongkan soal yang sudah ada, agar tidak ada duplikasi
-                        quizQuestionContainer.innerHTML = '';
-                        // Tampilkan form soal
-                        quizLayer.style.display = 'block';
-                        // Buat soal sesuai jumlah yang diminta
-                        for (let i = 0; i < totalQuestions; i++) {
-                            const questionElement = document.createElement('div');
-                            questionElement.classList.add('question-container');
-                            questionElement.innerHTML = `
+    // Fungsi untuk membuat soal
+    createQuizBtn.addEventListener('click', function() {
+        const totalQuestions = parseInt(jumlahSoalInput.value);
+
+        if (totalQuestions > 50) {
+            alert('Jumlah soal tidak boleh lebih dari 50');
+            jumlahSoalInput.value = 50; // Membatasi jumlah soal maksimal 50
+            return;
+        }
+
+        // Menghapus soal yang sudah ada jika ada
+        quizQuestionContainer.innerHTML = '';
+
+        // Menampilkan form soal
+        quizLayer.style.display = 'block';
+
+        // Menghitung bobot per soal berdasarkan jumlah soal
+        const maxBobotPerSoal = Math.floor(100 / totalQuestions);
+
+        // Membuat soal sesuai jumlah yang diinput
+        for (let i = 0; i < totalQuestions; i++) {
+            const questionElement = document.createElement('div');
+            questionElement.classList.add('question-container');
+            questionElement.innerHTML = `
                 <div class="form-group">
-                    <label for="soal_${i}">Soal No ${i+1}</label>
+                    <label for="soal_${i}">Soal No ${i + 1}</label>
                     <input type="text" class="form-control" id="soal_${i}" name="soal_${i}" required>
                 </div>
                 <div class="form-group">
@@ -342,52 +363,67 @@
                     <input type="text" class="form-control" id="jawaban_d_${i}" name="jawaban_d_${i}" required>
                 </div>
                 <div class="form-group">
-                    <label for="bobot_nilai_${i}">Bobot Nilai</label>
-                    <input type="number" class="form-control" id="bobot_nilai_${i}" name="bobot_nilai_${i}" required>
+                    <label for="bobot_nilai_${i}">Bobot Nilai (Max ${maxBobotPerSoal})</label>
+                    <input type="number" class="form-control" id="bobot_nilai_${i}" name="bobot_nilai_${i}" max="${maxBobotPerSoal}" required>
                 </div>
             `;
-                            quizQuestionContainer.appendChild(questionElement);
+            quizQuestionContainer.appendChild(questionElement);
 
-                            // Menambahkan event listener pada checkbox jawaban untuk menentukan jawaban benar
-                            const answerCheckboxes = [
-                                document.getElementById(`jawaban_a_checkbox_${i}`),
-                                document.getElementById(`jawaban_b_checkbox_${i}`),
-                                document.getElementById(`jawaban_c_checkbox_${i}`),
-                                document.getElementById(`jawaban_d_checkbox_${i}`)
-                            ];
+            // Menambahkan event listener pada input bobot nilai
+            const bobotNilaiInput = document.getElementById(`bobot_nilai_${i}`);
+            bobotNilaiInput.addEventListener('input', function() {
+                // Validasi bobot nilai tidak melebihi maxBobotPerSoal
+                if (parseInt(bobotNilaiInput.value) > maxBobotPerSoal) {
+                    bobotNilaiInput.setCustomValidity(`Bobot tidak bisa lebih dari ${maxBobotPerSoal}`);
+                } else {
+                    bobotNilaiInput.setCustomValidity('');
+                }
+                calculateTotalBobot(); // Hitung dan validasi total bobot setiap kali nilai berubah
+            });
 
-                            answerCheckboxes.forEach(function(checkbox) {
-                                checkbox.addEventListener('change', function() {
-                                    // Jika checkbox ini dicentang, centang hanya checkbox ini dan nonaktifkan yang lainnya
-                                    if (checkbox.checked) {
-                                        // Menonaktifkan checkbox lainnya
-                                        answerCheckboxes.forEach(function(otherCheckbox) {
-                                            if (otherCheckbox !== checkbox) {
-                                                otherCheckbox.checked = false; // Uncheck
-                                                otherCheckbox.disabled = true; // Nonaktifkan
-                                            }
-                                        });
-                                    } else {
-                                        // Mengaktifkan kembali checkbox lainnya jika tidak dicentang
-                                        answerCheckboxes.forEach(function(otherCheckbox) {
-                                            otherCheckbox.disabled = false;
-                                        });
-                                    }
-                                });
-                            });
-                        }
-                    });
-                    // Ketika tombol "Batal" ditekan
-                    cancelQuizBtn.addEventListener('click', function() {
-                        // Menghapus semua soal yang telah dimasukkan
-                        quizQuestionContainer.innerHTML = '';
-                        // Menyembunyikan form soal dan kembali ke tampilan awal
-                        quizLayer.style.display = 'none';
-                        // Mengosongkan input jumlah soal
-                        document.getElementById('jumlah_soal').value = '';
-                    });
+            const answerCheckboxes = [
+                document.getElementById(`jawaban_a_checkbox_${i}`),
+                document.getElementById(`jawaban_b_checkbox_${i}`),
+                document.getElementById(`jawaban_c_checkbox_${i}`),
+                document.getElementById(`jawaban_d_checkbox_${i}`)
+            ];
+
+            answerCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    // Jika checkbox ini dicentang, centang hanya checkbox ini dan nonaktifkan yang lainnya
+                    if (checkbox.checked) {
+                        answerCheckboxes.forEach(function(otherCheckbox) {
+                            if (otherCheckbox !== checkbox) {
+                                otherCheckbox.checked = false; // Uncheck
+                                otherCheckbox.disabled = true; // Nonaktifkan
+                            }
+                        });
+                    } else {
+                        // Mengaktifkan kembali checkbox lainnya jika tidak dicentang
+                        answerCheckboxes.forEach(function(otherCheckbox) {
+                            otherCheckbox.disabled = false;
+                        });
+                    }
                 });
+            });
+        }
+    });
+
+    // Ketika tombol "Batal" ditekan
+    cancelQuizBtn.addEventListener('click', function() {
+        // Menghapus semua soal yang telah dimasukkan
+        quizQuestionContainer.innerHTML = '';
+        // Menyembunyikan form soal dan kembali ke tampilan awal
+        quizLayer.style.display = 'none';
+        // Mengosongkan input jumlah soal
+        jumlahSoalInput.value = '';
+        // Menghapus pesan error
+        errorMessage.textContent = '';
+    });
+});
+
             </script>
+
 
 
         </main>
