@@ -17,6 +17,7 @@ class HomeController extends Controller
         ->join('admin', 'berita.admin_id', '=', 'admin.id') // Menghubungkan berita dengan admin
         ->select(['berita.id', 'berita.judul', 'berita.konten', 'berita.tanggal', 'berita.img', 'admin.username']) // Pilih kolom yang diperlukan
         ->orderBy('berita.tanggal', 'desc')
+        ->orderBy('berita.id', 'desc')
         ->get();
 
         return $this->view('home.index', ['berita' => $data]);
@@ -40,12 +41,22 @@ class HomeController extends Controller
     }
     public function acara_sekolah()
     {
-    return $this->view('html.Acara-Sekolah');
+        $data = DB::table('acara_sekolah')
+        ->select(['acara_sekolah.id', 'acara_sekolah.judul', 'acara_sekolah.konten', 'acara_sekolah.tanggal', 'acara_sekolah.img']) // Pilih kolom yang diperlukan
+        ->orderBy('acara_sekolah.tanggal', 'desc')
+        ->orderBy('acara_sekolah.id', 'desc')
+        ->get();
+        return $this->view('html.Acara-Sekolah', ['acara_sekolah' => $data]);
     
     }
     public function prestasi()
     {
-    return $this->view('html.Prestasi');
+        $data = DB::table('prestasi')
+        ->select(['prestasi.id', 'prestasi.judul', 'prestasi.konten', 'prestasi.tanggal', 'prestasi.img','prestasi.img_sertifikat']) // Pilih kolom yang diperlukan
+        ->orderBy('prestasi.tanggal', 'desc')
+        ->orderBy('prestasi.id', 'desc')
+        ->get();
+        return $this->view('html.Prestasi', ['prestasi' => $data]);
     
     }
     public function berita()
@@ -54,6 +65,7 @@ class HomeController extends Controller
         ->join('admin', 'berita.admin_id', '=', 'admin.id') // Menghubungkan berita dengan admin
         ->select(['berita.id', 'berita.judul', 'berita.konten', 'berita.tanggal', 'berita.img', 'admin.username']) // Pilih kolom yang diperlukan
         ->orderBy('berita.tanggal', 'desc')
+        ->orderBy('berita.id', 'desc')
         ->get();
 
         return $this->view('html.Berita', ['berita' => $data]);
@@ -66,9 +78,49 @@ class HomeController extends Controller
     }
     public function kontak()
     {
-    return $this->view('html.kontak');
     
+        return $this->view('html.kontak');
     }
+    // send wa
+    public function sendWhatsAppMessage(Request $request)
+    {
+        // Validasi input
+        if (!$request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required'
+        ])) {
+            // Jika validasi gagal, tampilkan formulir dengan error
+            return $this->view('html.kontak', ['errors' => $request->getErrors()]);
+        }
+
+        // Ambil data dari form
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $message = $request->input('message');
+
+        // Format pesan untuk WhatsApp
+        $whatsappMessage = "Pesan Baru:\n\n"
+            . "Nama: $name\n"
+            . "Email: $email\n"
+            . "Pesan:\n$message";
+
+        // Kirim ke WhatsApp
+        $whatsappNumber = '6289697639441'; // Ganti dengan nomor WhatsApp Anda
+        $this->redirectToWhatsapp($whatsappNumber, $whatsappMessage);
+
+       
+    }
+    private function redirectToWhatsapp($number, $message)
+    {
+        $encodedMessage = urlencode($message);
+        header("Location: https://wa.me/$number?text=$encodedMessage");
+        exit;
+    }
+  
+
+
+    
     public function blog()
     {
         $data = DB::table('berita')

@@ -24,36 +24,16 @@
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li>
-				<a href="/guru">
-					<i class='bx bxs-group' ></i>
-					<span class="text">Guru</span>
-				</a>
-			</li>
-			<li>
-				<a href="/siswa">
-					<i class='bx bxs-group' ></i>
-					<span class="text">Siswa</span>
-				</a>
-			</li>
-			<li>
+            <li class="active">
 				<a href="/Acara_sekolah">
 					<i class='bx bxs-photo-album' ></i>
-					<span class="text">Gallery</span>
-				</a>
-			</li>
-			<li class="active">
-				<a href="/Berita">
-					<i class='bx bxs-news' ></i>
-					<span class="text">Berita</span>
+					<span class="text">Acara_sekolah</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
-
-					<i class='bx bxs-receipt' ></i>
-
-					<span class="text">PPDB</span>
+				<a href="/Prestasi">
+					<i class='bx bxs-trophy' ></i>
+					<span class="text">Prestasi</span>
 				</a>
 			</li>
 		</ul>
@@ -65,7 +45,6 @@
 				</a>
 			</li>
 			<li>
-
 				<a href="/logout-admin" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 
@@ -102,16 +81,18 @@
         <main>
     <div class="head-title">
         <div class="left">
-            <h1>Data Berita</h1>
+            <h1>Data Acara_sekolah</h1>
             <ul class="breadcrumb">
                 <li><a href="/admin">Dashboard</a></li>
+				<li><i class='bx bx-chevron-right'></i></li>
+                <li><a href="/gallery">Gallery</a></li>
                 <li><i class='bx bx-chevron-right'></i></li>
-                <li><a class="active" href="#">Berita</a></li>
+                <li><a class="active" href="#">Acara_sekolah</a></li>
             </ul>
         </div>
-        <a href="/Berita/create" class="btn btn-primary">
+        <a href="/Acara_sekolah/create" class="btn btn-primary">
             <i class='bx bx-plus'></i>
-            <span>Tambah Berita</span>
+            <span>Tambah Acara_sekolah</span>
         </a>
     </div>
 
@@ -123,7 +104,6 @@
                 <th>Judul</th>
                 <th>Konten</th>
                 <th>Tanggal</th>
-                <th>Pembuat</th>
                 <th>Image</th>
                 <th>Action</th>
             </tr>
@@ -142,15 +122,14 @@
                     <td><?= $no++; ?></td>
                     <td><?= htmlspecialchars(strlen($row['judul']) > 20 ? substr($row['judul'], 0, 20) . '...' : $row['judul']); ?></td>
 					<td><?= htmlspecialchars(strlen($row['konten']) > 20 ? substr($row['konten'], 0, 20) . '...' : $row['konten']); ?></td>
-                    <td><?= htmlspecialchars($row['tanggal']); ?></td>
-					 <td><?= htmlspecialchars($row['username'] ?? 'Tidak ada admin'); ?></td> <!-- Tampilkan username admin -->             
+                    <td><?= htmlspecialchars($row['tanggal']); ?></td>          
 					 <td><?= htmlspecialchars(strlen(basename($row['img'])) > 20 ? substr(basename($row['img']), 0, 20) . '...' : basename($row['img'])); ?></td>
                     <td class="action-buttons">
-                        <a href="/Berita/update/<?= urlencode($row['id']); ?>" class="btn btn-success btn-edit">
+                        <a href="/Acara_sekolah/update/<?= urlencode($row['id']); ?>" class="btn btn-success btn-edit">
                             <i class='bx bx-edit-alt'></i>
                             <span>Edit</span>
                         </a>
-						<a href="/Berita/delete/<?= urlencode($row['id']); ?>" 
+						<a href="/Acara_sekolah/delete/<?= urlencode($row['id']); ?>" 
 							class="btn btn-danger btn-delete">
 							<i class='bx bx-trash'></i>
 							<span>Hapus</span>

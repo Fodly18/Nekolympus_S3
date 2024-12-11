@@ -26,55 +26,49 @@ body {
 	min-height: 480px;
 }
 
-.container p {
-	font-size: 14px;
-	line-height: 20px;
-	letter-spacing: 0.3px;
-	margin: 20px 0;
-}
 
 .container img {
 	max-width: 50%;
 	height: 40%;
 }
 
-.j2 {
-	margin-bottom: 40px;
+h1 {
+    text-align: center;
+    line-height: 1.5; /* Mengatur jarak antarbaris */
+    font-size: 2rem; /* Sesuaikan ukuran */
+    font-weight: bold;
+	margin-bottom: 20px;
 }
 
-
-.container span {
-	font-size: 12px;
-}
-
-.container a {
-	color: #333;
-	font-size: 16px;
-	text-decoration: none;
-	margin: 15px 0 10px;
-}
-
+/* button */
 .container button {
-	background-color: #0f43ab;
-	color: #fff;
-	padding: 10px 45px;
-	border: 1px solid transparent;
-	border-radius: 8px;
-	font-weight: 600;
-	letter-spacing: 0.5px;
-	text-transform: uppercase;
-	margin-top: 20px;
-	cursor: pointer;
-	margin-bottom: 100px;
+    background-color: #0f43ab;
+    color: #fff;
+    padding: 12px 50px; /* Menambahkan ruang lebih lebar */
+    border: 1px solid transparent;
+    border-radius: 12px; /* Sudut lebih melengkung */
+    font-weight: 700; /* Lebih tebal */
+    letter-spacing: 1px; /* Jarak antar huruf lebih besar */
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 30px; /* Lebih sedikit margin bawah */
+    cursor: pointer;
+    font-size: 16px; /* Ukuran font sedikit lebih besar */
+    transition: all 0.3s ease; /* Transisi halus saat hover/focus */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Bayangan untuk kedalaman */
 }
 
-
-.container button.hidden {
-	background-color: transparent;
-	color: #333;
-	border-color: #fff;
+.container button:hover {
+    background-color: #084799; /* Warna berubah saat hover */
+    transform: scale(1.05); /* Efek pembesaran saat hover */
 }
 
+.container button:focus {
+    outline: none; /* Menghilangkan outline default */
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0f43ab; /* Fokus dengan bayangan */
+}
+
+/* container main */
 .container form {
 	background-color: #fff;
 	display: flex;
@@ -96,129 +90,86 @@ body {
 	outline: none;
 }
 
-.sign-up,
+/* container  kri (putih)*/
 .sign-in {
-	position: absolute;
-	top: 0;
-	height: 100%;
-	transition: all 0.6s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 2;
+    transition: all 0.6s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.sign-in {
-	left: 0;
-	width: 50%;
-	z-index: 2;
+.input-group {
+    position: relative; /* Pastikan elemen induk memiliki posisi relatif */
+    width: 100%;
+    margin-bottom: 5px; /* Jarak antar input */
+}
 
+.error-placeholder {
+    position: absolute; /* Pesan error akan muncul tepat di bawah input */
+    top: 80%; /* Letak di bawah input */
+    left: 0;
+    color: red;
+    font-size: 12px;
+    margin-top: 5px; /* Jarak kecil dari input */
+    white-space: nowrap; /* Mencegah teks meluas ke baris baru */
+    visibility: hidden; /* Sembunyikan error secara default */
+}
+
+.error-placeholder.active {
+    visibility: visible; /* Tampilkan error jika ada */
+}
+
+.input-group input,
+.container input {
+    position: relative; /* Tambahkan posisi relatif pada input */
+    z-index: 1; /* Pastikan input tidak menimpa pesan error */
 }
 
 
-.container.active .sign-in {
-	transform: translateX(100%);
-}
 
-.sign-up {
-	left: 0;
-	width: 50%;
-	z-index: 1;
-	opacity: 0;
-}
-
-.container.active .sign-up {
-	transform: translateX(100%);
-	opacity: 1;
-	z-index: 5;
-	animation: move 0.6s;
-}
-
-@keyframes move {
-
-	0%,
-	49.99% {
-		opacity: 0;
-		z-index: 1;
-	}
-
-	50%,
-	100% {
-		opacity: 1;
-		z-index: 5;
-	}
-}
-
-.icons {
-	margin: 20px 0;
-}
-
-.icons a {
-	border: 1px solid #ccc;
-	border-radius: 20%;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0 3px;
-	width: 40px;
-	height: 40px;
-}
-
+/* Container kanan (biru) */
 .toogle-container {
-	position: absolute;
-	top: 0;
-	left: 50%;
-	width: 50%;
-	height: 100%;
-	overflow: hidden;
-	z-index: 1000;
-	transition: all 0.6s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1000;
 }
 
-.container.active .toogle-container {
-	transform: translateX(-100%);
-}
-
+/* Area toogle (latar belakang biru) */
 .toogle {
-	background-color: #002e64;
-	height: 100%;
-	background: linear-gradient(to right, #324a66, #002e64);
-	color: #fff;
-	position: relative;
-	left: -100%;
-	width: 200%;
-	transform: translateX(0);
-	transition: all 0.6s ease-in-out;
+    position: relative;
+    width: 100%; /* Tidak lagi menggunakan lebar 200% */
+    height: 100%;
+    background: linear-gradient(to right, #324a66, #002e64);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.container.active .toogle {
-	transform: translateX(50%);
-}
-
+/* Panel dalam toogle */
 .toogle-panel {
-	position: absolute;
-	width: 50%;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	padding: 0 30px;
-	text-align: center;
-	top: 0;
-	transform: translateX(0);
-	transition: all 0.6s ease-in-out;
+    width: 100%; /* Panel memenuhi seluruh kontainer */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
+    text-align: center;
 }
 
-.toogle-left {
-	transform: translateX(-200%);
-}
 
-.container.active .toogle-left {
-	transform: translateX(0);
-}
+/* Kontainer input dan error */
 
-.toogle-right {
-	right: 0;
-	transform: translateX(0);
-}
 
-.container.active .toogle-right {
-	transform: translateX(200%);
-}

@@ -96,30 +96,30 @@
         <img class="banner-jpg" src="/assets/img/bnn.jpeg" alt="Banner JPG">
     </div>
 
-    <!-- sejarah -->
+  
     <section id="contact">
         <div class="contact-container">      
+ <!-- Formulir Kontak -->
+ <form action="/send-whatsapp-message" method="POST" id="contactForm" class="contact-form">
+    <h2>Hubungi kami :</h2>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="message">Pesan:</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+    </div>
+    
+    <button type="submit" class="submit-btn">Kirim pesan</button>
+</form>
 
-            <!-- Formulir Kontak -->
-            <form action="#" method="POST" class="contact-form">
-            <h2>Hubungi kami :</h2>
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="nam" name="name" placeholder="Your Name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Pesan:</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Kirim pesan</button>
-            </form>
     
             <!-- Informasi Kontak -->
             <div class="contact-info">
@@ -182,5 +182,15 @@
     </div>
   </div>
 </footer>
+<script>
+    // Menangani penghapusan teks di form setelah submit
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        // Tunggu sedikit agar proses submit selesai
+        setTimeout(() => {
+            // Reset semua field di dalam formulir
+            event.target.reset();
+        }, 100);
+    });
+</script>
 </body>
 </html>

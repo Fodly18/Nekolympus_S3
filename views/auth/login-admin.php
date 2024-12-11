@@ -14,46 +14,56 @@
 </head>
 
 <body>
-    <div class="container" id="container">
-        <div class="sign-in">
-            <form action="/login-admin" method="POST">
-                <h1 class="j1">Selamat Datang </h1>
-                <h1 class="j2">Di Login Admin</h1>
-                <input type="text" name="username" placeholder="Username"/>
-                <?php if (isset($errors['username'])): ?>
-                    <div class="error-message">
-                        <?php foreach ($errors['username'] as $error): ?>
-                            <p><?php echo htmlspecialchars($error); ?></p>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-                <input type="password" name="password" id="password" placeholder="Password">
-                <?php if (isset($errors['password'])): ?>
-                    <div class="error-message">
-                        <?php foreach ($errors['password'] as $error): ?>
-                            <p><?php echo htmlspecialchars($error); ?></p>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-                <?php if (isset($error)) : ?>
-                    <p><?php echo htmlspecialchars($error); ?></p>
-                <?php endif; ?>
-                <button>Log In</button>
-            </form>
+<div class="container" id="container">
+    <div class="sign-in">
+        <form action="/login-admin" method="POST">
+        <h1>
+            Selamat Datang<br>
+            Di Login Admin
+        </h1>
+                <div class="error-global">
+            <?php if (isset($errors['login'])): ?>
+                <p><?php echo htmlspecialchars($errors['login']); ?></p>
+            <?php endif; ?>
         </div>
-        <div class="toogle-container">
-            <div class="toogle">
-                <div class="toogle-panel toogle-right">
-                    <h4>APLIKASI PEMBELAJARAN DIGITAL</h4>
-                    <h4>DAN</h4>
-                    <h4>MONITORING SISWA</h4>
-                    <br>
-                    <img src="/assets/img/logo.png" alt="logo">
-                    <br>
-                    <h2>SDN 1 KALISAT</h2>
-                </div>
+                    <!-- Username Input -->
+        <div class="input-group">
+            <input type="text" name="username" placeholder="Username" />
+            <div class="error-placeholder <?php echo isset($errors['username']) ? 'active' : ''; ?>">
+                <?php if (isset($errors['username'])): ?>
+                    <p><?php echo htmlspecialchars($errors['username'][0]); ?></p>
+                <?php endif; ?>
             </div>
         </div>
+
+        <!-- Password Input -->
+        <div class="input-group">
+            <input type="password" name="password" id="password" placeholder="Password" />
+            <div class="error-placeholder <?php echo isset($errors['password']) ? 'active' : ''; ?>">
+                <?php if (isset($errors['password'])): ?>
+                    <p><?php echo htmlspecialchars($errors['password'][0]); ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+
+
+            <!-- Login Button -->
+            <button>Log In</button>
+        </form>
     </div>
+    <div class="toogle-container">
+    <div class="toogle">
+        <div class="toogle-panel">
+            <h4>APLIKASI PEMBELAJARAN DIGITAL</h4>
+            <h4>DAN</h4>
+            <h4>MONITORING SISWA</h4>
+            <br>
+            <img src="/assets/img/logo.png" alt="logo">
+            <br>
+            <h2>SDN 1 KALISAT</h2>
+        </div>
+    </div>
+</div>
+</div>
 </body>
 </html>

@@ -49,7 +49,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/Acara_sekolah">
 					<i class='bx bxs-photo-album' ></i>
 					<span class="text">Gallery</span>
 				</a>
@@ -89,7 +89,7 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu'></i>
-			<a href="#" class="nav-link">Categories</a>
+
 			<form action="#">
 				<div class="form-input">
 					<input type="search" placeholder="Search...">
