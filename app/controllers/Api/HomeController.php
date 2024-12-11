@@ -22,13 +22,13 @@ class HomeController extends Controller
             ], 401);
         }
 
-        $jadwal = DB::table('siswa')
-                    ->join('kelas', 'siswa.id_kelas', '=', 'kelas.id')
-                    ->join('jadwal', 'kelas.id', '=', 'jadwal.id_kelas')
-                    ->join('mapel', 'jadwal.id_kelas', '=', 'mapel.id')
-                    ->where('siswa.id', '=', $user->id)
-                    ->select(['jadwal.id', 'mapel.nama', 'jadwal.hari', 'jadwal.jam_mulai', 'jadwal.jam_selesai'])
-                    ->get();
+        $jadwal = DB::table('jadwal')
+                ->join('kelas', 'jadwal.id_kelas', '=', 'kelas.id')
+                ->join('mapel', 'jadwal.id_mapel', '=', 'mapel.id')
+                ->where('kelas.id', '=', $user->id_kelas)
+                ->select(['jadwal.id', 'mapel.nama', 'jadwal.hari', 'jadwal.jam_mulai', 'jadwal.jam_selesai'])
+                ->get();
+
 
         return $this->json([
             'status' => 'success',
