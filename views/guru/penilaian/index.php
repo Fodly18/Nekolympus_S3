@@ -159,8 +159,7 @@
 						<tr>
 							<th>No</th>
 							<th>Nama Siswa</th>
-							<th>Kelas</th>    
-							<th>Tanggal Penyelesaian</th>    
+							<th>Kelas</th>     
 							<th>Nilai Latihan Soal</th>
 						</tr>
 					</thead>
@@ -178,8 +177,7 @@
 									<td><?= $no++; ?></td>
 									<td><?= htmlspecialchars($row['nama'] ?? 'Tidak Ditemukan'); ?></td>
 									<td><?= htmlspecialchars($row['kelas'] ?? 'Tidak Ditemukan'); ?></td>
-									<td><?= htmlspecialchars($row['tanggal']); ?></td>
-                                    <td><?= htmlspecialchars($row['nilai']) ; ?></td>
+                                    <td><?= htmlspecialchars($row['total_nilai']) ; ?></td>
                                 </tr>
 							<?php endforeach; ?>
 						<?php endif; ?>
