@@ -142,5 +142,10 @@ public function update(Request $request)
 
     return $this->redirect('/Acara_sekolah')->with('success', 'konten berhasil diperbarui');
 }
-
+public function delete($id)
+    {
+        AcaraSekolah::delete($id);
+        
+        return $this->redirect('/Acara_sekolah')->with('success', 'Data berhasil dihapus');
+    }
 }
