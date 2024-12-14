@@ -4,10 +4,12 @@
 	use Nekolympus\Project\models\Siswa;
 	use Nekolympus\Project\models\Guru;
 	use Nekolympus\Project\models\Berita;
+  use Nekolympus\Project\models\Prestasi;
 
 	$totalSiswa = Siswa::count();
 	$totalGuru = Guru::count();
 	$totalBerita = Berita::count();
+  $totalPrestasi= Prestasi::count();
 	?>
 <head>
 
@@ -157,7 +159,7 @@
           </div>
           <div class="stat-item fade-in">
             <i class="fas fa-trophy"></i>
-            <div class="stat-value">5</div>
+            <div class="stat-value"><?= htmlspecialchars($totalPrestasi, ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="stat-label">Penghargaan</div>
           </div>
         </div>
