@@ -11,6 +11,7 @@ class QueryBuilder
     protected $conditions = [];
     protected $bindings = [];
     protected $limit;
+    protected $groupBy;
     protected $orderBy = [];
 
     public function __construct(\PDO $db, $table)
@@ -64,7 +65,7 @@ class QueryBuilder
         return $results ? $results[0] : null;
     }
 
-    private function buildQuery()
+    public function buildQuery()
     {
         $columns = implode(', ', $this->columns);
         $query = "SELECT $columns FROM {$this->table}";
@@ -77,6 +78,10 @@ class QueryBuilder
             $query .= ' WHERE ' . implode(' AND ', $this->conditions);
         }
 
+
+        if (isset($this->groupBy)) {
+            $query .= " GROUP BY {$this->groupBy}";
+
         if ($this->orderBy) {
             $query .= ' ORDER BY ' . implode(', ', $this->orderBy);
         }
@@ -87,6 +92,7 @@ class QueryBuilder
 
         return $query;
     }
+
 
     public function limit($count)
     {
@@ -130,6 +136,18 @@ class QueryBuilder
         ];
     }
 
+
+    public function groupBy($columns)
+    {
+        $this->groupBy = is_array($columns) ? implode(', ', $columns) : $columns;
+        return $this;
+    }
+
+    public function addSelect($column)
+    {
+        if (!in_array($column, $this->columns)) {
+            $this->columns[] = $column;
+        }
 
     public function orderBy($column, $direction = 'ASC')
     {

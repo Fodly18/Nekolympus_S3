@@ -109,21 +109,26 @@ class DashboardController extends Controller
     public function penilaianFilter(Request $request)
     {
         $idGuru = $_SESSION['auth'];
+
         $latihan = DB::table('latihan_soal')
             ->join('mapel_kelas', 'latihan_soal.id_mapel_kelas', '=', 'mapel_kelas.id')
             ->select(['latihan_soal.id', 'latihan_soal.judul_soal'])
             ->where('mapel_kelas.id_guru', '=', $idGuru)
             ->get();
+
         $no = 1;
 
         $data = DB::table('penilaian_soal')
-        ->join('siswa', 'penilaian_soal.id_siswa', '=', 'siswa.id')
-        ->join('kelas', 'siswa.id_kelas', '=', 'kelas.id')
-        ->join('detail_soal', 'penilaian_soal.id_detail_soal', '=', 'detail_soal.id')
-        ->join('latihan_soal', 'detail_soal.id_latihan_soal', '=', 'latihan_soal.id')
-        ->select(['penilaian_soal.id', 'siswa.nama','kelas.kelas','penilaian_soal.tanggal', 'penilaian_soal.nilai', 'latihan_soal.judul_soal'])
-        ->where('penilaian_soal.id_detail_soal', '=', $request->input('filter-nilai'))
-        ->get();
+            ->join('detail_soal', 'penilaian_soal.id_detail_soal', '=', 'detail_soal.id')
+            ->join('latihan_soal', 'detail_soal.id_latihan_soal', '=', 'latihan_soal.id')
+            ->join('siswa', 'penilaian_soal.id_siswa', '=', 'siswa.id')
+            ->join('kelas', 'siswa.id_kelas', '=', 'kelas.id')
+            ->select(['siswa.nama', 'kelas.kelas'])
+            ->addSelect('SUM(penilaian_soal.nilai) AS total_nilai')
+            ->where('latihan_soal.id', '=', $request->input('filter-nilai')) // Filter by latihan_soal ID
+            ->groupBy(['siswa.nama', 'kelas.kelas']) 
+            ->get();
+
 
         return $this->view('guru.penilaian.index', ['data' => $latihan, 'no' => $no, 'dataLatihan' => $data]);
     }
