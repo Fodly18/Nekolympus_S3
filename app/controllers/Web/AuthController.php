@@ -18,26 +18,56 @@ class AuthController extends Controller
 
     public function LoginAdmin(Request $request)
     {
-        if(!$request->validate([
-            'username' => 'required',
-            'password' => 'required|min:8'
-        ])) {
-            return $this->view('auth.login-admin', ['errors' => $request->getErrors()]);
+        // Validasi input
+        $errors = [];
+    
+        // Validasi kolom username
+        if (!$request->input('username')) {
+            $errors['username'][] = 'Username wajib diisi.';
         }
-        
+    
+        // Validasi kolom password
+        if (!$request->input('password')) {
+            $errors['password'][] = 'Password wajib diisi.';
+        } elseif (strlen($request->input('password')) < 8) {
+            $errors['password'][] = 'Password minimal 8 karakter.';
+        }
+    
+        // Jika ada error validasi input, kembalikan view dengan error
+        if (!empty($errors)) {
+            return $this->view('auth.login-admin', ['errors' => $errors]);
+        }
+    
+        // Ambil username dan password
         $username = $request->input('username');
-
+        $password = $request->input('password');
+    
+        // Cari user berdasarkan username
         $user = Admin::where('username', '=', $username)->first();
-        if(Helper::bcryptVerify($request->input('password'), $user->password)) 
-        {
-            $_SESSION['user_role'] = 'admin';
-            $_SESSION['user'] = true;
-            $_SESSION['auth'] = $user->id;
-            return $this->redirect('/dashboard-admin');
+    
+        // Validasi login
+        if (!$user) {
+            // Jika username tidak ditemukan
+            $errors['username'][] = 'Username tidak ditemukan.';
+        } elseif (!Helper::bcryptVerify($password, $user->password)) {
+            // Jika password salah
+            $errors['password'][] = 'Password salah.';
         }
-
-        return $this->view('auth.login-admin', ['error' => 'Username Atau Password Salah']);
+    
+        // Jika ada error saat validasi username atau password
+        if (!empty($errors)) {
+            return $this->view('auth.login-admin', ['errors' => $errors]);
+        }
+    
+        // Jika berhasil login
+        $_SESSION['user_role'] = 'admin';
+        $_SESSION['user'] = true;
+        $_SESSION['auth'] = $user->id;
+    
+        return $this->redirect('/dashboard-admin');
     }
+    
+
 
     public function logoutAdmin()
     {

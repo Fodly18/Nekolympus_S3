@@ -106,25 +106,28 @@ h1 {
 }
 
 .input-group {
-    position: relative; /* Pastikan elemen induk memiliki posisi relatif */
+    position: relative;
     width: 100%;
     margin-bottom: 5px; /* Jarak antar input */
 }
 
 .error-placeholder {
-    position: absolute; /* Pesan error akan muncul tepat di bawah input */
-    top: 80%; /* Letak di bawah input */
+    position: absolute;
+    top: 80%; /* Posisi tepat di bawah input */
     left: 0;
     color: red;
     font-size: 12px;
-    margin-top: 5px; /* Jarak kecil dari input */
+    margin-top: 5px;
+    margin-left: 5px;
     white-space: nowrap; /* Mencegah teks meluas ke baris baru */
-    visibility: hidden; /* Sembunyikan error secara default */
+    visibility: hidden; /* Error disembunyikan secara default */
+
 }
 
 .error-placeholder.active {
     visibility: visible; /* Tampilkan error jika ada */
 }
+
 
 .input-group input,
 .container input {
