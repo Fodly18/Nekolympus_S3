@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
+	<?php
+	use Nekolympus\Project\models\Siswa;
+	use Nekolympus\Project\models\Guru;
+	use Nekolympus\Project\models\Berita;
 
-use Nekolympus\Project\models\Siswa;
-use Nekolympus\Project\models\Guru;
+	$totalSiswa = Siswa::count();
+	$totalGuru = Guru::count();
+	$totalBerita = Berita::count();
+	?>
 
-$totalSiswa = Siswa::count();
-$totalGuru = Guru::count();
-?>
 
 <head>
 	<meta charset="UTF-8">
@@ -35,26 +37,25 @@ $totalGuru = Guru::count();
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<i class='bx bxs-book'></i>
-					<span class="text">Data Admin</span>
-				</a>
-			</li>
-			<li>
 				<a href="/guru">
 					<i class='bx bxs-group'></i>
 					<span class="text">Guru</span>
 				</a>
 			</li>
 			<li>
-
-				<a href="#">
+				<a href="/siswa">
 					<i class='bx bxs-group'></i>
 					<span class="text">Siswa</span>
 				</a>
 			</li>
 			<li>
-				<a href="/berita">
+				<a href="/Acara_sekolah">
+					<i class='bx bxs-photo-album' ></i>
+					<span class="text">Gallery</span>
+				</a>
+			</li>
+			<li>
+				<a href="/Berita">
 					<i class='bx bxs-news' ></i>
 					<span class="text">Berita</span>
 				</a>
@@ -74,10 +75,8 @@ $totalGuru = Guru::count();
 				</a>
 			</li>
 			<li>
-
 				<a href="/logout-admin" class="logout">
 					<i class='bx bxs-log-out-circle'></i>
-
 					<span class="text">Logout</span>
 				</a>
 			</li>
@@ -90,7 +89,7 @@ $totalGuru = Guru::count();
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu'></i>
-			<a href="#" class="nav-link">Categories</a>
+
 			<form action="#">
 				<div class="form-input">
 					<input type="search" placeholder="Search...">
@@ -139,21 +138,21 @@ $totalGuru = Guru::count();
 					<i class='bx bxs-user'></i>
 					<span class="text">
 						<h3><?= htmlspecialchars($totalGuru, ENT_QUOTES, 'UTF-8'); ?></h3>
-						<p>Jumlah Guru</p>
+						<p>Total Guru</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-user'></i>
 					<span class="text">
 						<h3><?= htmlspecialchars($totalSiswa, ENT_QUOTES, 'UTF-8'); ?></h3>
-						<p>Jumlah Siswa</p>
+						<p>Total Siswa</p>
 					</span>
 				</li>
 				<li>
-					<i class='bx bxs-dollar-circle'></i>
+					<i class='bx bx-news'></i>
 					<span class="text">
-						<h3>$2543</h3>
-						<p>Total Sales</p>
+						<h3><?= htmlspecialchars($totalBerita, ENT_QUOTES, 'UTF-8'); ?></h3>
+						<p>Total Berita</p>
 					</span>
 				</li>
 			</ul>

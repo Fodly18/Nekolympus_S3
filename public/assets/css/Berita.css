@@ -246,9 +246,13 @@ nav ul li a:hover {
   }
   
   .news-title {
-    font-size: 1.2rem;
+    font-size: 20px;
+    font-weight: bold;
     margin-bottom: 10px;
     color: #333;
+    word-wrap: break-word; /* Memecah kata panjang jika diperlukan */
+    overflow-wrap: break-word; /* Dukungan tambahan untuk pemecahan */
+    white-space: normal; /* Pastikan teks dapat membungkus ke baris berikutnya */
   }
   
   .news-meta {
@@ -261,6 +265,23 @@ nav ul li a:hover {
     font-size: 0.95rem;
     color: #444;
   }
+  
+  .read-more-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #007bff; /* Warna biru */
+    color: #fff; /* Warna teks putih */
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.read-more-btn:hover {
+    background-color: #0056b3; /* Warna biru gelap saat hover */
+}
+
   
 /* Footer */
 .footer {

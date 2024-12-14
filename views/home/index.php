@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+	use Nekolympus\Project\models\Siswa;
+	use Nekolympus\Project\models\Guru;
+	use Nekolympus\Project\models\Berita;
+
+	$totalSiswa = Siswa::count();
+	$totalGuru = Guru::count();
+	$totalBerita = Berita::count();
+	?>
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
@@ -62,9 +72,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/berita">Berita</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/blog">blog</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/ppdb">PPDB</a>
@@ -130,18 +137,18 @@
         <div class="stat-items">
           <div class="stat-item fade-in">
             <i class="fas fa-users"></i>
-            <div class="stat-value">350</div>
+            <div class="stat-value"><?= htmlspecialchars($totalSiswa, ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="stat-label">Jumlah Siswa</div>
           </div>
           <div class="stat-item fade-in">
             <i class="fas fa-chalkboard-teacher"></i>
-            <div class="stat-value">20</div>
+            <div class="stat-value"><?= htmlspecialchars($totalGuru, ENT_QUOTES, 'UTF-8'); ?></div>
             <div class="stat-label">Jumlah Guru</div>
           </div>
           <div class="stat-item fade-in">
-            <i class="fas fa-book"></i>
-            <div class="stat-value">1500</div>
-            <div class="stat-label">Jumlah Buku</div>
+            <i class="fa-solid fa-newspaper"></i>
+            <div class="stat-value"><?= htmlspecialchars($totalBerita, ENT_QUOTES, 'UTF-8'); ?></div>
+            <div class="stat-label">Jumlah Berita</div>
           </div>
           <div class="stat-item fade-in">
             <i class="fas fa-graduation-cap"></i>
@@ -162,66 +169,30 @@
   <section class="news-section">
     <h2 class="section-title fade-in">Kumpulan Berita</h2>
     <div class="news-container">
-      <button class="arrow left-arrow" onclick="scrollNews(-1)">
-        &#10094;
-      </button>
-      <div class="news-wrapper fade-in">
-        <div class="news-item">
-          <img src="assets/img/foto1.jpg" alt="Berita 1" class="news-img" />
-          <h3 class="news-title">Judul Berita 1</h3>
-          <p class="news-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-            voluptatibus unde facilis, vitae doloremque cumque. Voluptatibus
-            laborum atque dolores perspiciatis repellendus? Natus vitae quos
-            recusandae ad possimus voluptate quae tempore.
-          </p>
+        <button class="arrow left-arrow" onclick="scrollNews(-1)">
+            &#10094;
+        </button>
+        <div class="news-wrapper fade-in">
+            <?php foreach ($berita as $row): ?>
+                <a href="/berita#berita-<?= urlencode($row['id']); ?>" class="news-item">
+                    <img src="<?= htmlspecialchars($row['img'] ?? '/path/to/default.jpg'); ?>" 
+                         alt="Gambar Berita" 
+                         class="news-img" />
+                    <h3 class="news-title"><?= htmlspecialchars($row['judul']); ?></h3>
+                    <p class="news-description">
+                        <?= htmlspecialchars(substr($row['konten'], 0, 200)) . (strlen($row['konten']) > 200 ? '...' : ''); ?>
+                    </p>
+                </a>
+            <?php endforeach; ?>
         </div>
-        <div class="news-item">
-          <img src="assets/img/foto2.jpg" alt="Berita 2" class="news-img" />
-          <h3 class="news-title">Judul Berita 2</h3>
-          <p class="news-description">
-            Deskripsi singkat tentang berita 2. Ini menjelaskan konten berita
-            dengan lebih detail.
-          </p>
-        </div>
-        <div class="news-item">
-          <img src="assets/img/foto3.jpg" alt="Berita 3" class="news-img" />
-          <h3 class="news-title">Judul Berita 3</h3>
-          <p class="news-description">
-            Deskripsi singkat tentang berita 3. Ini menjelaskan konten berita
-            dengan lebih detail.
-          </p>
-        </div>
-        <div class="news-item">
-          <img src="assets/img/foto4.jpg" alt="Berita 4" class="news-img" />
-          <h3 class="news-title">Judul Berita 4</h3>
-          <p class="news-description">
-            Deskripsi singkat tentang berita 4. Ini menjelaskan konten berita
-            dengan lebih detail.
-          </p>
-        </div>
-        <div class="news-item">
-          <img src="assets/img/foto5.jpg" alt="Berita 5" class="news-img" />
-          <h3 class="news-title">Judul Berita 5</h3>
-          <p class="news-description">
-            Deskripsi singkat tentang berita 5. Ini menjelaskan konten berita
-            dengan lebih detail.
-          </p>
-        </div>
-        <div class="news-item">
-          <img src="assets/img/foto6.jpg" alt="Berita 6" class="news-img" />
-          <h3 class="news-title">Judul Berita 6</h3>
-          <p class="news-description">
-            Deskripsi singkat tentang berita 6. Ini menjelaskan konten berita
-            dengan lebih detail.
-          </p>
-        </div>
-      </div>
-      <button class="arrow right-arrow" onclick="scrollNews(1)">
-        &#10095;
-      </button>
+        <button class="arrow right-arrow" onclick="scrollNews(1)">
+            &#10095;
+        </button>
     </div>
-  </section>
+</section>
+
+
+
 
  <!-- FOOTER -->
 <footer class="footer">

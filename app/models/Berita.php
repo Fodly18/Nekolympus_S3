@@ -9,4 +9,5 @@ class Berita extends Model
     protected static $table = 'berita'; 
     protected static $guarded = ['id']; 
 
+    
 }

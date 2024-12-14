@@ -17,6 +17,7 @@ Middleware::register('admin', AdminMiddleware::class);
 Middleware::register('auth', AuthMiddleware::class);
 Middleware::register('guest', GuestMiddleware::class);
 Middleware::register('bearer', ApiMiddleware::class);
+Middleware::register('guru', GuruMiddleware::class);
 
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();

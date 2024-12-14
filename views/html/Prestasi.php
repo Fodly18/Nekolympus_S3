@@ -63,9 +63,6 @@
             <a class="nav-link" href="/berita">Berita</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/blog">blog</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/ppdb">PPDB</a>
           </li>
           <li class="nav-item">
@@ -83,68 +80,29 @@
         <img class="banner-jpg" src="/assets/img/bnn.jpeg" alt="Banner JPG">
     </div>
 
-  <!-- Gallery -->
+<!-- Gallery -->
 <section id="gallery">
     <div class="container">
-        <h2 class="text-center mb-4">Prestasi</h2>
+        <h2 class="text-center mb-4">Galeri Prestasi</h2>
         <div class="row">
-            <!-- Contoh Card Gambar 1 -->
-            <div class="col-md-4 mb-4">
-                <div class="card gallery-card" data-src="/assets/img/foto1.jpg">
-                    <img src="/assets/img/foto1.jpg" class="card-img-top" alt="Kegiatan 1">
-                    <div class="card-body">
-                        <p class="card-text">Deskripsi kegiatan 1 di sini.</p>
+            <?php foreach ($prestasi as $item): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card gallery-card">
+                        <img src="<?= htmlspecialchars($item['img'] ?? '/path/to/default.jpg'); ?>" alt="gambar" class="news-img">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= htmlspecialchars($item['judul']); ?></h5>
+                            <p class="card-text"><?= htmlspecialchars($item['konten']); ?></p>
+                            <p class="card-date text-muted">Dibuat pada: <?= htmlspecialchars($item['tanggal']); ?></p>
+                            <!-- Tombol untuk mempop-up gambar sertifikat -->
+                            <button 
+                                class="btn btn-primary view-certificate-btn" 
+                                data-certificate="<?= htmlspecialchars($item['img_sertifikat'] ?? '/path/to/default_certificate.jpg'); ?>">
+                                Lihat Sertifikat
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Contoh Card Gambar 2 -->
-            <div class="col-md-4 mb-4">
-                <div class="card gallery-card" data-src="/assets/img/foto2.jpg">
-                    <img src="/assets/img/foto2.jpg" class="card-img-top" alt="Kegiatan 2">
-                    <div class="card-body">
-                        <p class="card-text">Deskripsi kegiatan 2 di sini.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card gallery-card" data-src="/assets/img/foto3.jpg">
-                    <img src="/assets/img/foto3.jpg" class="card-img-top" alt="Kegiatan 3">
-                    <div class="card-body">
-                        <p class="card-text">Deskripsi kegiatan 3 di sini.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card gallery-card" data-src="/assets/img/foto4.jpg">
-                    <img src="/assets/img/foto4.jpg" class="card-img-top" alt="Kegiatan 3">
-                    <div class="card-body">
-                        <p class="card-text">Deskripsi kegiatan 3 di sini.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card gallery-card" data-src="/assets/img/foto5.jpg">
-                    <img src="/assets/img/foto5.jpg" class="card-img-top" alt="Kegiatan 3">
-                    <div class="card-body">
-                        <p class="card-text">Deskripsi kegiatan 3 di sini.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="card gallery-card" data-src="/assets/img/foto6.jpg">
-                    <img src="/assets/img/foto6.jpg" class="card-img-top" alt="Kegiatan 3">
-                    <div class="card-body">
-                        <p class="card-text">Deskripsi kegiatan 3 di sini.</p>
-                    </div>
-                </div>
-            </div>
-
-            
+            <?php endforeach; ?>
         </div>
     </div>
 
@@ -152,11 +110,6 @@
     <div id="gallery-modal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="modal-img">
-    </div>
-</section>
-
-
-        </div>
     </div>
 </section>
 
@@ -196,6 +149,7 @@
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.8970015713357!2d111.45046627405344!3d-8.009557579918342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79733e2dbc9155%3A0x4aaf9dd2609da5a9!2sSDN%201%20Kalisat!5e0!3m2!1sen!2sid!4v1731520584344!5m2!1sen!2sid"
             width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </a>
+        <p>Jl. Kapuas No.50, Gabahan, Kalisat, Kec. Bungkal, Kabupaten Ponorogo, Jawa Timur 63462</p>
       </div>
     </div>
 
@@ -207,33 +161,69 @@
 </footer>
 
 <script>
-   // Modal functionality
-const modal = document.getElementById('gallery-modal');
-const modalImg = document.getElementById('modal-img');
-const closeBtn = document.getElementsByClassName('close')[0];
+  // JavaScript untuk modal pop-up
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("gallery-modal");
+    const modalImg = document.getElementById("modal-img");
+    const closeModal = document.querySelector(".close");
 
-// Membuka modal ketika card diklik
-document.querySelectorAll('.gallery-card').forEach(card => {
-    card.addEventListener('click', function() {
-        const imgSrc = this.getAttribute('data-src');
-        modal.style.display = 'flex';
-        modalImg.src = imgSrc;
+    // Event listener untuk tombol lihat sertifikat
+    document.querySelectorAll(".view-certificate-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            const certificateSrc = this.getAttribute("data-certificate");
+            modal.style.display = "block";
+            modalImg.src = certificateSrc;
+        });
+    });
+
+    // Tutup modal saat klik tombol close
+    closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    // Tutup modal saat klik di luar gambar
+    window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
     });
 });
 
-// Menutup modal ketika tombol close diklik
-closeBtn.onclick = function() {
-    modal.style.display = 'none';
-}
+   // Modal functionality
+// Mendapatkan elemen modal
+const modal = document.getElementById('gallery-modal');
+const modalImg = document.getElementById('modal-img');
+const closeModal = document.querySelector('#gallery-modal .close');
 
-// Menutup modal ketika area di luar gambar diklik
-modal.onclick = function(event) {
+// Menambahkan event listener pada setiap gambar
+document.querySelectorAll('.gallery-card img').forEach(img => {
+    img.addEventListener('click', function () {
+        const imageUrl = this.getAttribute('src'); // Ambil URL gambar dari atribut src
+        if (imageUrl) {
+            modalImg.src = imageUrl; // Setel src modal dengan URL gambar
+            modal.style.display = 'flex'; // Tampilkan modal
+        } else {
+            console.error('URL gambar tidak valid:', imageUrl);
+        }
+    });
+});
+
+// Menutup modal saat tombol close diklik
+closeModal.addEventListener('click', function () {
+    modal.style.display = 'none';
+    modalImg.src = ''; // Reset src modal
+});
+
+// Menutup modal saat area di luar gambar diklik
+modal.addEventListener('click', function (event) {
     if (event.target === modal) {
         modal.style.display = 'none';
+        modalImg.src = ''; // Reset src modal
     }
-}
+});
 
-    </script>
+
+</script>
     
 </body>
 

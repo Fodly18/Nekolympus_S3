@@ -64,9 +64,6 @@
             <a class="nav-link" href="/berita">Berita</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/blog">blog</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/ppdb">PPDB</a>
           </li>
           <li class="nav-item">
@@ -99,30 +96,30 @@
         <img class="banner-jpg" src="/assets/img/bnn.jpeg" alt="Banner JPG">
     </div>
 
-    <!-- sejarah -->
+  
     <section id="contact">
         <div class="contact-container">      
+ <!-- Formulir Kontak -->
+ <form action="/send-whatsapp-message" method="POST" id="contactForm" class="contact-form">
+    <h2>Hubungi kami :</h2>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="message">Pesan:</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+    </div>
+    
+    <button type="submit" class="submit-btn">Kirim pesan</button>
+</form>
 
-            <!-- Formulir Kontak -->
-            <form action="#" method="POST" class="contact-form">
-            <h2>Hubungi kami :</h2>
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="nam" name="name" placeholder="Your Name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Pesan:</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Kirim pesan</button>
-            </form>
     
             <!-- Informasi Kontak -->
             <div class="contact-info">
@@ -175,6 +172,7 @@
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.8970015713357!2d111.45046627405344!3d-8.009557579918342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79733e2dbc9155%3A0x4aaf9dd2609da5a9!2sSDN%201%20Kalisat!5e0!3m2!1sen!2sid!4v1731520584344!5m2!1sen!2sid"
             width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </a>
+        <p>Jl. Kapuas No.50, Gabahan, Kalisat, Kec. Bungkal, Kabupaten Ponorogo, Jawa Timur 63462</p>
       </div>
     </div>
 
@@ -184,5 +182,15 @@
     </div>
   </div>
 </footer>
+<script>
+    // Menangani penghapusan teks di form setelah submit
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        // Tunggu sedikit agar proses submit selesai
+        setTimeout(() => {
+            // Reset semua field di dalam formulir
+            event.target.reset();
+        }, 100);
+    });
+</script>
 </body>
 </html>

@@ -15,6 +15,7 @@ Route::post('/update-password', AuthController::class, 'updatePassword')->middle
 
 Route::get('/profile', AuthController::class, 'profile')->middleware(['bearer']);;
 
+
 Route::get('/jadwal', HomeController::class, 'getJadwal')->middleware(['bearer']);;
 
 Route::get('/wali', HomeController::class, 'getWaliKelas')->middleware(['bearer']);;
@@ -38,3 +39,5 @@ Route::get('/latihan-soal/{id}/process', TugasController::class, 'LatihanSoal')-
 Route::post('/submit-latihan-soal', TugasController::class, 'SubmitLatihanSoal')->middleware(['bearer']);
 
 Route::get('/latihan-soal/{id}/nilai', TugasController::class, 'getNilaiSoal')->middleware(['bearer']);
+Route::get('/mapel-kelas', TugasController::class, 'getMapelKelas');
+

@@ -62,9 +62,6 @@
             <a class="nav-link" href="/berita">Berita</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/blog">blog</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/ppdb">PPDB</a>
           </li>
           <li class="nav-item">
@@ -75,20 +72,7 @@
     </div>
   </nav>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const navbarToggler = document.querySelector('.navbar-toggler');
-      const navbarCollapse = document.querySelector('.navbar-collapse');
-  
-      navbarToggler.addEventListener('click', function () {
-        if (navbarCollapse.style.display === 'none' || navbarCollapse.style.display === '') {
-          navbarCollapse.style.display = 'block'; // Menampilkan navbar
-        } else {
-          navbarCollapse.style.display = 'none'; // Menyembunyikan navbar
-        }
-      });
-    });
-  </script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
     <!-- Banner  -->
@@ -98,58 +82,32 @@
 
     <!-- News -->
     
-<section class="news-section">
+    <section class="news-section">
     <h2 class="section-title">Kumpulan Berita</h2>
     <div class="news-container">
-      <!-- Berita 1 -->
-      <div class="news-item">
-        <img src="/assets/img/foto1.jpg" alt="Berita 1" class="news-img">
-        <div class="news-content">
-          <h3 class="news-title">Peningkatan Pariwisata di 2024</h3>
-          <p class="news-meta">Tanggal: 9 November 2024 | Oleh: Admin 1</p>
-          <p class="news-description">
-            Pemerintah telah meluncurkan program baru untuk meningkatkan sektor pariwisata dengan fokus pada destinasi lokal yang lebih ramah lingkungan.
-          </p>
-        </div>
-      </div>
-  
-      <!-- Berita 2 -->
-      <div class="news-item">
-        <img src="/assets/img/foto2.jpg" alt="Berita 2" class="news-img">
-        <div class="news-content">
-          <h3 class="news-title">Teknologi AI untuk Pendidikan</h3>
-          <p class="news-meta">Tanggal: 8 November 2024 | Oleh: Admin 2</p>
-          <p class="news-description">
-            AI semakin digunakan dalam dunia pendidikan untuk membantu pembelajaran yang lebih personal, tetapi tantangan privasi tetap menjadi perhatian.
-          </p>
-        </div>
-      </div>
-  
-      <!-- Berita 3 -->
-      <div class="news-item">
-        <img src="/assets/img/foto3.jpg" alt="Berita 3" class="news-img">
-        <div class="news-content">
-          <h3 class="news-title">Inovasi Energi Terbarukan</h3>
-          <p class="news-meta">Tanggal: 7 November 2024 | Oleh: Admin 3</p>
-          <p class="news-description">
-            Startup lokal berhasil menciptakan inovasi energi terbarukan berbasis biomassa, berpotensi mengurangi ketergantungan pada energi fosil.
-          </p>
-        </div>
-      </div>
-  
-      <!-- Berita 4 -->
-      <div class="news-item">
-        <img src="/assets/img/foto4.jpg" alt="Berita 4" class="news-img">
-        <div class="news-content">
-          <h3 class="news-title">Revolusi Transportasi Publik</h3>
-          <p class="news-meta">Tanggal: 6 November 2024 | Oleh: Admin 4</p>
-          <p class="news-description">
-            Transportasi publik di kota-kota besar mulai beralih ke kendaraan listrik untuk mengurangi emisi karbon dan meningkatkan efisiensi.
-          </p>
-        </div>
-      </div>
+        <?php foreach ($berita as $row): ?>
+            <div class="news-item" id="berita-<?= htmlspecialchars($row['id']); ?>">
+                <img src="<?= htmlspecialchars($row['img'] ?? '/path/to/default.jpg'); ?>" 
+                     alt="gambar" 
+                     class="news-img">
+                <div class="news-content">
+                    <h3 class="news-title"><?= htmlspecialchars($row['judul']); ?></h3>
+                    <p class="news-meta">
+                        Tanggal: <?= htmlspecialchars($row['tanggal']); ?> | 
+                        Oleh: <?= htmlspecialchars($row['username'] ?? 'Tidak ada admin'); ?>
+                    </p>
+                    <p class="news-description">
+                        <?= htmlspecialchars(substr($row['konten'], 0, 200)) . (strlen($row['konten']) > 200 ? '...' : ''); ?>
+                    </p>
+                    <!-- Tambahkan button untuk membaca lebih lanjut -->
+                    <a href="/blog/<?= urlencode($row['id']); ?>" class="read-more-btn">Baca Selengkapnya</a>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
-  </section>
+</section>
+
+
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -186,6 +144,7 @@
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.8970015713357!2d111.45046627405344!3d-8.009557579918342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79733e2dbc9155%3A0x4aaf9dd2609da5a9!2sSDN%201%20Kalisat!5e0!3m2!1sen!2sid!4v1731520584344!5m2!1sen!2sid"
             width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </a>
+        <p>Jl. Kapuas No.50, Gabahan, Kalisat, Kec. Bungkal, Kabupaten Ponorogo, Jawa Timur 63462</p>
       </div>
     </div>
 

@@ -7,9 +7,12 @@ use Nekolympus\Project\core\Route;
 use Nekolympus\Project\controllers\Web\HomeController;
 use Nekolympus\Project\controllers\Web\MapelController;
 use Nekolympus\Project\controllers\Web\GuruController;
-use Nekolympus\Project\controllers\Web\SiswaController; // Ensure this is included
+use Nekolympus\Project\controllers\Web\SiswaController; 
 use Nekolympus\Project\controllers\Web\LatihanController;
 use Nekolympus\Project\controllers\Web\BeritaController;
+use Nekolympus\Project\controllers\Web\KelasController;
+use Nekolympus\Project\controllers\Web\AcaraSekolahController;
+use Nekolympus\Project\controllers\Web\PrestasiController;
 use Nekolympus\Project\core\Middleware;
 use Nekolympus\Project\models\Berita;
 
@@ -23,13 +26,18 @@ Route::get('/ppdb', HomeController::class, 'ppdb')->middleware(['guest']);
 Route::get('/kontak', HomeController::class, 'kontak')->middleware(['guest']);
 Route::get('/strukture-organisasi', HomeController::class, 'strukture_organisasi')->middleware(['guest']);
 Route::get('/blog', HomeController::class, 'blog')->middleware(['guest']);
+Route::get('/blog/{id}', HomeController::class, 'blogDetail')->middleware(['guest']);
 
-
+Route::post('/send-whatsapp-message', HomeController::class, 'sendWhatsAppMessage');
+Route::post('/kontak', HomeController::class, 'kontak')->middleware(['guest']);
+// login admin
 Route::get('/login-admin', AuthController::class, 'indexAdmin')->middleware(['guest']);
 Route::post('/login-admin', AuthController::class, 'LoginAdmin')->middleware(['guest']);
 
+// login guru
 Route::get('/login-guru', AuthController::class, 'indexGuru')->middleware(['guest']);
 Route::post('/login-guru', AuthController::class, 'LoginGuru')->middleware(['guest']);
+
 
 Route::get('/dashboard-admin', DashboardController::class, 'indexAdmin')->middleware(['auth', 'admin']);
 Route::get('/logout-admin', AuthController::class, 'logoutAdmin')->middleware(['auth', 'admin']);
@@ -37,7 +45,6 @@ Route::get('/logout-admin', AuthController::class, 'logoutAdmin')->middleware(['
 // Route Dashboard Guru
 Route::get('/dashboard-guru', DashboardController::class, 'indexGuru')->middleware(['auth', 'guru']);
 Route::get('/pengumpulan-tugas', DashboardController::class, 'submitTugas')->middleware(['auth', 'guru']);
-
 Route::get('/tugas-pembelajaran', DashboardController::class, 'tugasGuru')->middleware(['auth', 'guru']);
 Route::get('/latihan-soal', DashboardController::class, 'latsolGuru')->middleware(['auth', 'guru']);
 Route::get('/settings', DashboardController::class, 'settingGuru')->middleware(['auth', 'guru']);
@@ -53,14 +60,29 @@ Route::post('/pengumpulan-tugas/filter', DashboardController::class, 'submitTuga
 Route::get('/pengumpulan-tugas/show/{id}', DashboardController::class, 'nilaiTugas')->middleware(['auth', 'guru']);
 Route::post('/penilaian-siswa', DashboardController::class, 'submitNilaiTugas')->middleware(['auth', 'guru']);
 
-// Route Berita 
-Route::get('/berita', BeritaController::class, 'index')->middleware(['auth', 'admin']);
-Route::get('/berita/create', BeritaController::class, 'createIndex')->middleware(['auth', 'admin']);
-Route::post('/berita/create', BeritaController::class, 'create')->middleware(['auth', 'admin']);
-Route::get('/berita/update/{id}', BeritaController::class, 'updateIndex')->middleware(['auth', 'admin']);
-Route::post('/berita/update', BeritaController::class, 'update')->middleware(['auth', 'admin']);
-Route::get('/berita/delete/{id}', BeritaController::class, 'delete')->middleware(['auth', 'admin']); 
+// route acara_sekolah
+Route::get('/Acara_sekolah', AcaraSekolahController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/Acara_sekolah/create', AcaraSekolahController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/Acara_sekolah/create', AcaraSekolahController::class, 'create')->  middleware(['auth', 'admin']);
+Route::get('/Acara_sekolah/update/{id}', AcaraSekolahController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/Acara_sekolah/update', AcaraSekolahController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/Acara_sekolah/delete/{id}', AcaraSekolahController::class, 'delete')->middleware(['auth', 'admin']); 
 
+// Route Berita 
+Route::get('/Berita', BeritaController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/Berita/create', BeritaController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/Berita/create', BeritaController::class, 'create')->  middleware(['auth', 'admin']);
+Route::get('/Berita/update/{id}', BeritaController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/Berita/update', BeritaController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/Berita/delete/{id}', BeritaController::class, 'delete')->middleware(['auth', 'admin']); 
+
+// route prestasi 
+Route::get('/Prestasi', PrestasiController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/Prestasi/create', PrestasiController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/Prestasi/create', PrestasiController::class, 'create')->  middleware(['auth', 'admin']);
+Route::get('/Prestasi/update/{id}', PrestasiController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/Prestasi/update', PrestasiController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/Prestasi/delete/{id}', PrestasiController::class, 'delete')->middleware(['auth', 'admin']); 
 
 // Route CRUD Tugas
 Route::get('/tugas-pembelajaran/create', TugasController::class, 'createIndex')->middleware(['auth', 'guru']);
@@ -92,12 +114,31 @@ Route::get('/siswa/update/{id}', SiswaController::class, 'updateIndex')->middlew
 Route::post('/siswa/update', SiswaController::class, 'update')->middleware(['auth', 'admin']);
 Route::get('/siswa/delete/{id}', SiswaController::class, 'delete')->middleware(['auth', 'admin']);
 
-Route::get('/mapel', MapelController::class, 'index');
-Route::get('/create', MapelController::class, 'createIndex');
-Route::post('/create', MapelController::class, 'create');
-Route::get('/update/{id}', MapelController::class, 'updateIndex');
-Route::post('/update', MapelController::class, 'update');
-Route::get('/delete/{id}', MapelController::class, 'delete');
+// Routing untuk Mapel
+Route::get('/mapel', MapelController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/mapel/create', MapelController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/mapel/create', MapelController::class, 'create')->middleware(['auth', 'admin']);
+Route::get('/mapel/update/{id}', MapelController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/mapel/update', MapelController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/mapel/delete/{id}', MapelController::class, 'delete')->middleware(['auth', 'admin']);
+
+// Routing untuk Kelas
+Route::get('/kelas', KelasController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/kelas/create', KelasController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/kelas/create', KelasController::class, 'create')->middleware(['auth', 'admin']);
+Route::get('/kelas/update/{id}', KelasController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/kelas/update', KelasController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/kelas/delete/{id}', KelasController::class, 'delete')->middleware(['auth', 'admin']);
+
+
+
+
+// Route::get('/mapel', MapelController::class, 'index');
+// Route::get('/create', MapelController::class, 'createIndex');
+// Route::post('/create', MapelController::class, 'create');
+// Route::get('/update/{id}', MapelController::class, 'updateIndex');
+// Route::post('/update', MapelController::class, 'update');
+// Route::get('/delete/{id}', MapelController::class, 'delete');
 
 // Route::post('/login', AuthController::class, 'login');
 // Route::get('/home', HomeController::class, 'index')->middleware(['auth']);

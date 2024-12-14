@@ -57,6 +57,26 @@ switchMode.addEventListener('change', function () {
 		document.body.classList.remove('dark');
 	}
 })
+// fungsi calender 
+
+document.addEventListener("DOMContentLoaded", function() {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1; // Bulan dalam format 1-12
+    const year = today.getFullYear();
+
+    // Formatkan tanggal untuk dicocokkan dengan atribut data-date
+    const todayDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+    // Cari semua elemen td dengan atribut data-date yang sesuai dengan hari ini
+    const days = document.querySelectorAll('.calendar td[data-date]');
+    days.forEach(dayElement => {
+        const dayData = dayElement.getAttribute('data-date');
+        if (dayData === todayDate) {
+            dayElement.classList.add('highlight'); // Tambahkan kelas highlight pada hari ini
+        }
+    });
+});
 
  // JavaScript untuk memperbarui waktu setiap detik
  function updateClock() {
