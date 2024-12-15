@@ -81,7 +81,7 @@ class QueryBuilder
 
         if (isset($this->groupBy)) {
             $query .= " GROUP BY {$this->groupBy}";
-
+        }
         if ($this->orderBy) {
             $query .= ' ORDER BY ' . implode(', ', $this->orderBy);
         }
@@ -148,6 +148,8 @@ class QueryBuilder
         if (!in_array($column, $this->columns)) {
             $this->columns[] = $column;
         }
+        return $this;
+    }
 
     public function orderBy($column, $direction = 'ASC')
     {
