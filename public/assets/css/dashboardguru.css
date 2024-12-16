@@ -452,126 +452,356 @@
 	}
 
 
-	/* Style untuk table container */
-#content main .jdwl-border {
-    margin-top: 36px;
-    padding: 24px;
-    background: var(--light);
-    border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#content main .jdwl-border h2 {
-    margin-bottom: 16px;
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--dark);
-}
-
-/* Style untuk table */
-#content main .jdwl-border table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    font-family: var(--poppins);
-}
-
-/* Style untuk thead */
-#content main .jdwl-border table thead {
-    background: var(--grey);
-}
-
-#content main .jdwl-border table thead th {
-    padding: 12px 16px;
-    font-weight: 600;
-    color: var(--dark);
-    text-transform: uppercase;
-    border-bottom: 2px solid var(--dark-grey);
-}
-
-/* Style untuk tbody */
-#content main .jdwl-border table tbody tr {
-    background: var(--light);
-    transition: background-color 0.3s ease;
-}
-
-#content main .jdwl-border table tbody tr:hover {
-    background: var(--light-blue);
-}
-
-#content main .jdwl-border table tbody td {
-    padding: 12px 16px;
-    color: var(--dark);
-    border-bottom: 1px solid var(--grey);
-}
-
-/* Responsive style untuk table */
-@media screen and (max-width: 768px) {
-    #content main .jdwl-border table thead {
-        display: none;
-    }
-
-    #content main .jdwl-border table tbody tr {
-        display: block;
-        margin-bottom: 16px;
-        border: 1px solid var(--grey);
-        border-radius: 10px;
-    }
-
-    #content main .jdwl-border table tbody td {
-        display: flex;
-        justify-content: space-between;
-        padding: 8px 16px;
-        font-size: 14px;
-    }
-
-    #content main .jdwl-border table tbody td::before {
-        content: attr(data-label);
-        font-weight: 600;
-        text-transform: uppercase;
-        color: var(--dark-grey);
-    }
-}
-
-
-
-
+	#content main .table-data {
+		display: flex;
+		flex-wrap: wrap;
+		grid-gap: 24px;
+		margin-top: 24px;
+		width: 95%;
+		color: var(--dark);
+	}
+	#content main .table-data > div {
+		border-radius: 20px;
+		background: var(--light);
+		padding: 24px;
+		overflow-x: auto;
+	}
+	#content main .table-data .head {
+		display: flex;
+		align-items: center;
+		grid-gap: 16px;
+		margin-bottom: 24px;
+	}
+	#content main .table-data .head h3 {
+		margin-right: auto;
+		font-size: 24px;
+		font-weight: 600;
+	}
+	#content main .table-data .head .bx {
+		cursor: pointer;
+	}
+	#content main .table-data .order {
+		flex-grow: 1;
+		flex-basis: 500px;
+	}
+	#content main .table-data .order table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+	#content main .table-data .order table th {
+		padding-bottom: 12px;
+		font-size: 13px;
+		text-align: left;
+		border-bottom: 1px solid var(--grey);
+	}
+	#content main .table-data .order table td {
+		padding: 16px 0;
+	}
+	#content main .table-data .order table tr td:first-child {
+		display: flex;
+		align-items: center;
+		grid-gap: 12px;
+		padding-left: 6px;
+	}
+	#content main .table-data .order table td img {
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		object-fit: cover;
+	}
+	#content main .table-data .order table tbody tr:hover {
+		background: var(--grey);
+	}
+	#content main .table-data .order table tr td .status {
+		font-size: 10px;
+		padding: 6px 16px;
+		color: var(--light);
+		border-radius: 20px;
+		font-weight: 700;
+	}
+	#content main .table-data .order table tr td .status.completed {
+		background: var(--blue);
+	}
+	#content main .table-data .order table tr td .status.process {
+		background: var(--yellow);
+	}
+	#content main .table-data .order table tr td .status.pending {
+		background: var(--orange);
+	}
+	#content main .table-data .todo {
+		flex-grow: 1;
+		flex-basis: 300px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+	#content main .table-data .todo .todo-list {
+		width: 100%;
+	}
+	#content main .table-data .todo .todo-list li {
+		width: 100%;
+		margin-bottom: 16px;
+		background: var(--grey);
+		border-radius: 10px;
+		padding: 14px 20px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		
+	}
+	
+	/* Batas tinggi dan scrollable untuk todo list */
+	.todo-list {
+		max-height: 300px; /* Tentukan batas tinggi yang diinginkan */
+		overflow-y: auto;  /* Menambahkan scroll jika daftar melebihi batas tinggi */
+		padding-right: 10px; /* Memberi sedikit ruang di kanan agar scrollbar tidak menempel */
+	}
+	
+	/* Gaya lainnya untuk todo list */
+	.todo-list li {
+		margin-bottom: 10px;
+		padding: 10px;
+		border: 1px solid #ddd;
+		background-color: #f4f4f4;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.todo-list li .bx-trash {
+		cursor: pointer;
+	}
+	
+	#content main .table-data .todo .todo-list li .bx {
+		cursor: pointer;
+	}
+	#content main .table-data .todo .todo-list li.completed {
+		border-left: 10px solid var(--blue);
+	}
+	#content main .table-data .todo .todo-list li.not-completed {
+		border-left: 10px solid var(--orange);
+	}
+	#content main .table-data .todo .todo-list li:last-child {
+		margin-bottom: 0;
+	}
+	
+	/* Modal pop-up */
+	.modal {
+		display: none; /* Awalnya disembunyikan */
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: 1000;
+	}
+	
+	.modal-content {
+		background: white;
+		width: 30%;
+		margin: 15% auto;
+		padding: 20px;
+		border-radius: 10px;
+		text-align: center;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	}
+	
+	.modal-content h3 {
+		margin-bottom: 20px;
+	}
+	
+	.modal-content input {
+		width: 90%;
+		padding: 10px;
+		margin-bottom: 20px;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+	}
+	
+	.modal-content .btn-submit {
+		padding: 10px 20px;
+		background-color: #4CAF50;
+		color: white;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	
+	.modal-content .btn-submit:hover {
+		background-color: #45a049;
+	}
+	
+	/* Tombol close */
+	.modal-content .close {
+		position: absolute;
+		top: 10px;
+		right: 15px;
+		font-size: 20px;
+		cursor: pointer;
+	}
+	.modal-content {
+		transform: scale(0.8);
+		opacity: 0;
+		transition: all 2s ease-in-out;
+	}
+	
+	.modal.show .modal-content {
+		transform: scale(1);
+		opacity: 1;
+	}
+	
+	
+	
+	
+	/* cart line */
+	.container {
+		width: 50%;
+		max-width: 800px;
+		background: var(--light);
+		border: 1px solid #ddd;
+		border-radius: 20px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		padding: 20px;
+		margin-top: 30px;
+	}
+	.chart-container {
+		text-align: center;
+	}
+	h3 {
+		margin-bottom: 20px;
+	}
+	canvas {
+		width: 100%;
+		height: auto;
+	}
+	
+	/* calender */
+	
+	/* Container untuk kalender */
+	.calendar-container {
+		max-width: 600px;
+		margin: 20px auto;
+		padding: 20px;
+		border-radius: 8px;
+		background-color: #f9f9f9;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		text-align: center;
+		font-family: Arial, sans-serif;
+	}
+	
+	/* Tabel kalender */
+	.calendar {
+		width: 100%;
+		border-collapse: collapse;
+		margin-top: 10px;
+		background-color: var(--light); /* Sesuai warna mode gelap */
+		color: var(--dark); /* Warna teks dalam mode gelap */
+	}
+	
+	.calendar caption {
+		font-size: 1.5em;
+		margin-bottom: 10px;
+		font-weight: bold;
+		text-transform: capitalize;
+		color: var(--dark); /* Warna teks judul kalender */
+	}
+	
+	/* Header hari */
+	.calendar th.header {
+		background-color: var(--grey); /* Header hari dalam mode gelap */
+		color: var(--dark); /* Warna teks header */
+		font-weight: bold;
+		padding: 10px;
+		text-transform: capitalize;
+		border: 1px solid var(--light); /* Warna batas dalam mode gelap */
+	}
+	
+	/* Sel untuk tanggal */
+	.calendar td {
+		width: 14.28%;
+		height: 60px;
+		text-align: center;
+		vertical-align: middle;
+		border: 1px solid var(--grey); /* Batas sel dalam mode gelap */
+		padding: 5px;
+		background-color: var(--light); /* Latar belakang sel */
+		color: var(--dark); /* Warna teks */
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+	
+	.calendar td.day:hover {
+		background-color: var(--grey); /* Efek hover dalam mode gelap */
+	}
+	
+	.calendar td.empty {
+		background-color: var(--light); /* Sel kosong dalam mode gelap */
+		cursor: default;
+	}
+	
+	/* Highlight hari ini */
+	.calendar td.highlight {
+		background-color: #ffeb3b; /* Warna highlight hari ini */
+		font-weight: bold;
+		color: #000; /* Teks tetap terbaca pada highlight */
+	}
+	
+	
+	/* Responsif */
+	@media (max-width: 768px) {
+		.calendar-container {
+			padding: 15px;
+		}
+	
+		.calendar caption {
+			font-size: 1.2em;
+		}
+	
+		.calendar th.header,
+		.calendar td {
+			padding: 5px;
+		}
+	
+		.calendar td {
+			height: 50px;
+		}
+	}
+	
 	/* MAIN */
 	/* CONTENT */
-
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@media screen and (max-width: 768px) {
 		#sidebar {
 			width: 200px;
 		}
-
+	
 		#content {
 			width: calc(100% - 60px);
 			left: 200px;
 		}
-
+	
 		#content nav .nav-link {
 			display: none;
 		}
 	}
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
 	@media screen and (max-width: 576px) {
 		#content nav form .form-input input {
 			display: none;
 		}
-
+	
 		#content nav form .form-input button {
 			width: auto;
 			height: auto;
@@ -579,12 +809,11 @@
 			border-radius: none;
 			color: var(--dark);
 		}
-
+	
 		#content nav form.show .form-input input {
 			display: block;
 			width: 100%;
 		}
-
 		#content nav form.show .form-input button {
 			width: 36px;
 			height: 100%;
@@ -592,24 +821,22 @@
 			color: var(--light);
 			background: var(--red);
 		}
-
-		#content nav form.show~.notification,
-		#content nav form.show~.profile {
+	
+		#content nav form.show ~ .notification,
+		#content nav form.show ~ .profile {
 			display: none;
 		}
-
+	
 		#content main .box-info {
 			grid-template-columns: 1fr;
 		}
-
+	
 		#content main .table-data .head {
 			min-width: 420px;
 		}
-
 		#content main .table-data .order table {
 			min-width: 420px;
 		}
-
 		#content main .table-data .todo .todo-list {
 			min-width: 420px;
 		}

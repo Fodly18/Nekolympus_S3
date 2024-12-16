@@ -126,9 +126,8 @@ class DashboardController extends Controller
             ->select(['siswa.nama', 'kelas.kelas'])
             ->addSelect('SUM(penilaian_soal.nilai) AS total_nilai')
             ->where('latihan_soal.id', '=', $request->input('filter-nilai')) // Filter by latihan_soal ID
-            ->groupBy(['siswa.nama', 'kelas.kelas']) 
+            ->groupBy(['siswa.nama', 'kelas.kelas'])
             ->get();
-
 
         return $this->view('guru.penilaian.index', ['data' => $latihan, 'no' => $no, 'dataLatihan' => $data]);
     }

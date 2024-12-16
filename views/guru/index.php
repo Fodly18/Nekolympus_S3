@@ -139,32 +139,99 @@ $currentTime = date('H:i:s');
 					</span>
 				</li>
 			</ul>
+			<div class="table-data">
+				<div class="todo">
+					<div class="head">
+						<h3>Todos</h3>
+						<!-- Tombol untuk menambah Todo List -->
+						<i class='bx bx-plus' id="addTodoButton"></i>
+					</div>
 
-			<div class="jdwl-border">
-				<h2>Jadwal Hari Ini</h2>
-				<table>
-					<thead>
-						<tr>
-							<th>Mata Pembelajaran</th>
-							<th>Kelas</th>
-							<th>Jam</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td data-label="Mata Pembelajaran">Matematika</td>
-							<td data-label="Kelas">5A</td>
-							<td data-label="Jam">08:00 - 09:30</td>
-						</tr>
-						<tr>
-							<td data-label="Mata Pembelajaran">Bahasa Indonesia</td>
-							<td data-label="Kelas">5B</td>
-							<td data-label="Jam">09:30 - 11:00</td>
-						</tr>
-					</tbody>
+					<!-- Modal Pop-Up untuk menambahkan Todo List -->
+					<div id="todoModal" class="modal">
+						<div class="modal-content">
+							<span class="close">&times;</span>
+							<h3>Tambah To-Do List</h3>
+							<form id="todoForm">
+								<input type="text" id="todoInput" placeholder="Masukkan to-do list..." required>
+								<button type="submit" class="btn-submit">Tambahkan</button>
+							</form>
+						</div>
+					</div>
 
-				</table>
-			</div>
+					<!-- Daftar To-Do List -->
+					<ul class="todo-list" id="todoList">
+						<!-- Items akan ditambahkan di sini -->
+					</ul>
+				</div>
+
+				<?php
+				function build_calendar($month, $year)
+				{
+					$daysOfWeek = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+					$firstDayOfMonth = mktime(0, 0, 0, $month, 1, $year);
+					$numberDays = date('t', $firstDayOfMonth);
+					$dateComponents = getdate($firstDayOfMonth);
+					$monthName = $dateComponents['month'];
+					$dayOfWeek = $dateComponents['wday'];
+
+					$calendar = "<table class='calendar'>";
+					$calendar .= "<caption>$monthName $year</caption>";
+					$calendar .= "<tr>";
+
+					foreach ($daysOfWeek as $day) {
+						$calendar .= "<th class='header'>$day</th>";
+					}
+
+					$calendar .= "</tr><tr>";
+
+					if ($dayOfWeek > 0) {
+						$calendar .= str_repeat("<td class='empty'></td>", $dayOfWeek);
+					}
+
+					$currentDay = 1;
+					while ($currentDay <= $numberDays) {
+						if ($dayOfWeek == 7) {
+							$dayOfWeek = 0;
+							$calendar .= "</tr><tr>";
+						}
+
+						$date = "$year-$month-" . str_pad($currentDay, 2, "0", STR_PAD_LEFT);
+
+						// Modify this section to add events or highlights
+						$calendar .= "<td class='day' data-date='$date'>$currentDay</td>";
+
+						$currentDay++;
+						$dayOfWeek++;
+					}
+
+					if ($dayOfWeek != 7) {
+						$remainingDays = 7 - $dayOfWeek;
+						$calendar .= str_repeat("<td class='empty'></td>", $remainingDays);
+					}
+
+					$calendar .= "</tr>";
+					$calendar .= "</table>";
+					return $calendar;
+				}
+
+				// Mendapatkan bulan dan tahun saat ini
+				$month = date('m');
+				$year = date('Y');
+
+				// Jika ada request untuk pindah bulan
+				if (isset($_GET['month']) && isset($_GET['year'])) {
+					$month = $_GET['month'];
+					$year = $_GET['year'];
+				}
+
+				?>
+
+				<div class="calendar-container">
+					<?php
+					echo build_calendar($month, $year);
+					?>
+				</div>
 			</div>
 		</main>
 		<!-- MAIN -->

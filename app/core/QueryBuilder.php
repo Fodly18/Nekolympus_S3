@@ -148,8 +148,9 @@ class QueryBuilder
         if (!in_array($column, $this->columns)) {
             $this->columns[] = $column;
         }
+        return $this;
     }
-    
+
     public function orderBy($column, $direction = 'ASC')
     {
         $this->orderBy[] = "$column $direction";
