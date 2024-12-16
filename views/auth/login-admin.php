@@ -20,31 +20,26 @@
         <h1>
             Selamat Datang<br>
             Di Login Admin
-        </h1>
-                <div class="error-global">
-            <?php if (isset($errors['login'])): ?>
-                <p><?php echo htmlspecialchars($errors['login']); ?></p>
-            <?php endif; ?>
-        </div>
-                    <!-- Username Input -->
-        <div class="input-group">
-            <input type="text" name="username" placeholder="Username" />
-            <div class="error-placeholder <?php echo isset($errors['username']) ? 'active' : ''; ?>">
-                <?php if (isset($errors['username'])): ?>
-                    <p><?php echo htmlspecialchars($errors['username'][0]); ?></p>
-                <?php endif; ?>
-            </div>
-        </div>
+            </h1>
+                                            <!-- Username Input -->
+                    <div class="input-group">
+                        <input type="text" name="username" placeholder="Username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" />
+                        <div class="error-placeholder <?php echo isset($errors['username']) ? 'active' : ''; ?>">
+                            <?php if (isset($errors['username'])): ?>
+                                <p><?php echo htmlspecialchars($errors['username'][0]); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
 
-        <!-- Password Input -->
-        <div class="input-group">
-            <input type="password" name="password" id="password" placeholder="Password" />
-            <div class="error-placeholder <?php echo isset($errors['password']) ? 'active' : ''; ?>">
-                <?php if (isset($errors['password'])): ?>
-                    <p><?php echo htmlspecialchars($errors['password'][0]); ?></p>
-                <?php endif; ?>
-            </div>
-        </div>
+                    <!-- Password Input -->
+                    <div class="input-group">
+                        <input type="password" name="password" id="password" placeholder="Password" />
+                        <div class="error-placeholder <?php echo isset($errors['password']) ? 'active' : ''; ?>">
+                            <?php if (isset($errors['password'])): ?>
+                                <p><?php echo htmlspecialchars($errors['password'][0]); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
 
 
             <!-- Login Button -->

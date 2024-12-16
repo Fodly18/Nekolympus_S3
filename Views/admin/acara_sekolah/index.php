@@ -39,14 +39,8 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
-					<i class='bx bxs-cog'></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
 				<a href="/logout-admin" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
+					<i class='bx bx-log-out' ></i>
 
 					<span class="text">Logout</span>
 				</a>
@@ -60,22 +54,12 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu'></i>
-			<a href="#" class="nav-link">Categories</a>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell'></i>
-				<span class="num">8</span>
-			</a>
-			<a href="#" class="profile">
-				<img src="img/people.png">
-			</a>
+		<!-- mode malam -->
+			<div class="dark-mode-switch">
+        <p>Dark Mode</p>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+    </div>
 		</nav>
 		<!-- NAVBAR -->
         <main>
@@ -96,6 +80,10 @@
         </a>
     </div>
 
+	<div class="search-bar-container">
+	<input type="text" id="search-input" placeholder="Cari judul...">
+		<i class='bx bx-search'></i>
+	</div>
     <div class="table-container">
     <table class="data-table">
         <thead>
@@ -130,7 +118,7 @@
                             <span>Edit</span>
                         </a>
 						<a href="/Acara_sekolah/delete/<?= urlencode($row['id']); ?>" 
-							class="btn btn-danger btn-delete">
+							class="btn btn-danger btn-delete delete-button">
 							<i class='bx bx-trash'></i>
 							<span>Hapus</span>
 							</a>
@@ -142,9 +130,114 @@
     </table>
 </div>
 
+<!-- Modal Konfirmasi -->
+<div id="confirmation-modal" class="modal hidden">
+    <div class="modal-content">
+        <h3>Konfirmasi Penghapusan</h3>
+        <p>Apakah Anda yakin ingin menghapus data ini?</p>
+        <div class="modal-buttons">
+            <button id="cancel-button" class="btn btn-cancel">Batal</button>
+            <button id="confirm-button" class="btn btn-confirm">Hapus</button>
+        </div>
+    </div>
+</div>
+<style>
+	/* Modal Overlay */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Sembunyikan modal secara default */
+.hidden {
+    display: none;
+}
+
+/* Konten Modal */
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: scaleIn 0.3s ease-in-out;
+}
+
+/* Animasi Scale In */
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Modal Heading */
+.modal-content h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+/* Modal Paragraph */
+.modal-content p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Tombol Modal */
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-buttons .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+/* Tombol Batal */
+.modal-buttons .btn-cancel {
+    background: #f44336;
+    color: #fff;
+}
+
+.modal-buttons .btn-cancel:hover {
+    background: #d32f2f;
+}
+
+/* Tombol Hapus */
+.modal-buttons .btn-confirm {
+    background: #4caf50;
+    color: #fff;
+}
+
+.modal-buttons .btn-confirm:hover {
+    background: #388e3c;
+}
+
+</style>
+
 
 </main>
 </section>
-<script src="/assets/js/dashboardadmin.js"></script>
+<script src="/assets/js/paket-tabel.js"></script>
 </body>
 </html>

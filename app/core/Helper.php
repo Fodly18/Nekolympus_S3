@@ -25,6 +25,9 @@ class Helper
      */
     public static function bcryptVerify($password, $hashedPassword)
     {
+        if (is_null($hashedPassword)) {
+            return false;
+        }
         // Verify the password using bcrypt
         return password_verify($password, $hashedPassword);
     }
