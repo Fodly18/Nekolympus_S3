@@ -35,14 +35,10 @@
         </div>
       </a>
       <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      class="navbar-toggler"
+      type="button"
+      onclick="toggleMenu()"
+    >
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -55,6 +51,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Profil
+              <i class="fas fa-chevron-down"></i>
             </a>
             <ul class="dropdown-menu" aria-labelledby="profilDropdown">
               <li><a class="dropdown-item" href="/sejarah">Sejarah</a></li>
@@ -66,6 +63,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="galleryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Gallery
+              <i class="fas fa-chevron-down"></i> 
             </a>
             <ul class="dropdown-menu" aria-labelledby="galleryDropdown">
               <li><a class="dropdown-item" href="/acara_sekolah">Acara Sekolah</a></li>
@@ -86,6 +84,41 @@
     </div>
   </nav>
 
+  <!-- navbar mobile -->
+  <div id="mobile-menu" class="offcanvas-menu">
+  <h1><a href="/">Beranda</a></h1>
+  <button class="close-btn" onclick="toggleMenu()">&#10005;</button>
+  <ul class="offcanvas-nav">
+    <!-- Dropdown Profil -->
+    <li>
+    <button class="dropdown-toggle" onclick="toggleDropdown('profil-menu', this)">
+  Profil
+  <i class="fas fa-chevron-down"></i>
+      </button>
+      <ul id="profil-menu" class="dropdown-content">
+        <li><a href="/sejarah">Sejarah</a></li>
+        <li><a href="/Visi-misi">Visi dan Misi</a></li>
+        <li><a href="/strukture-organisasi">Struktur Organisasi</a></li>
+      </ul>
+    </li>
+    <!-- Dropdown Gallery -->
+    <li>
+      <button class="dropdown-toggle" onclick="toggleDropdown('gallery-menu',this)">
+        Gallery
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <ul id="gallery-menu" class="dropdown-content">
+        <li><a href="/acara_sekolah">Acara Sekolah</a></li>
+        <li><a href="/prestasi">Prestasi</a></li>
+      </ul>
+    </li>
+    <li><a href="/berita">Berita</a></li>
+    <li><a href="/ppdb">PPDB</a></li>
+    <li><a href="/kontak">Kontak</a></li>
+  </ul>
+</div>
+
+
   <!-- BANNER -->
   <div class="banner">
     <img class="banner-img" src="assets/img/Langit.jpg" alt="Banner JPG" />
@@ -103,7 +136,10 @@
   <!-- CONTENT Sambutan -->
   <section class="sambutan-container">
     <div class="sambutan-text fade-in">
-      <h2>Sambutan Kepala Sekolah</h2>
+    <h2>
+    <span class="icon-decorator">🎓</span> Sambutan Kepala Sekolah
+    <span class="line-decorator"></span>
+  </h2>
       <p>
         Selamat datang di website resmi SDN 1 Kalisat. Kami sangat senang Anda
         mengunjungi situs ini untuk mengetahui lebih lanjut tentang sekolah
@@ -119,57 +155,63 @@
     </div>
   </section>
 
-  <!-- Statistika Content -->
-  <section class="statistics-section">
-    <h2 class="section-title fade-in">Statistik Sekolah</h2>
-    <p class="statistics-description fade-in">
-      Berikut adalah data statistik penting mengenai sekolah kami, mencakup
-      jumlah siswa, guru, dan berbagai informasi lainnya yang mencerminkan
-      kualitas pendidikan.
-    </p>
-    <div class="statistics-container fade-in">
-      <div class="statistics-image">
-        <img
-          src="assets/img/statistika_gambar.png"
-          alt="Statistik Sekolah"
-          class="statistics-img"
-        />
-      </div>
-      <div class="statistics-content">
-        <div class="stat-items">
-          <div class="stat-item fade-in">
-            <i class="fas fa-users"></i>
-            <div class="stat-value"><?= htmlspecialchars($totalSiswa, ENT_QUOTES, 'UTF-8'); ?></div>
-            <div class="stat-label">Jumlah Siswa</div>
-          </div>
-          <div class="stat-item fade-in">
-            <i class="fas fa-chalkboard-teacher"></i>
-            <div class="stat-value"><?= htmlspecialchars($totalGuru, ENT_QUOTES, 'UTF-8'); ?></div>
-            <div class="stat-label">Jumlah Guru</div>
-          </div>
-          <div class="stat-item fade-in">
-            <i class="fa-solid fa-newspaper"></i>
-            <div class="stat-value"><?= htmlspecialchars($totalBerita, ENT_QUOTES, 'UTF-8'); ?></div>
-            <div class="stat-label">Jumlah Berita</div>
-          </div>
-          <div class="stat-item fade-in">
-            <i class="fas fa-graduation-cap"></i>
-            <div class="stat-value">100</div>
-            <div class="stat-label">Lulusan Tahun Ini</div>
-          </div>
-          <div class="stat-item fade-in">
-            <i class="fas fa-trophy"></i>
-            <div class="stat-value"><?= htmlspecialchars($totalPrestasi, ENT_QUOTES, 'UTF-8'); ?></div>
-            <div class="stat-label">Penghargaan</div>
-          </div>
+<!-- Statistika Content -->
+<section class="statistics-section">
+  <h2 class="section-title fade-in">Statistik Sekolah</h2>
+  <div class="title-underline fade-in"></div>
+  <p class="statistics-description fade-in">
+    SDN 1 Kalisat berkomitmen untuk memberikan pendidikan berkualitas dengan dukungan tenaga pendidik profesional dan fasilitas yang memadai. Berikut adalah statistik yang menunjukkan pencapaian dan kapasitas sekolah kami:
+  </p>
+  <div class="statistics-container fade-in">
+    <!-- Gambar Statistik -->
+    <div class="statistics-image">
+      <img
+        src="assets/img/statistika_gambar.png"
+        alt="Statistik Sekolah"
+        class="statistics-img"
+      />
+      <p class="image-caption">
+        Grafik dan data statistik sekolah kami mencerminkan dedikasi terhadap pendidikan.
+      </p>
+    </div>
+    <!-- Konten Statistik -->
+    <div class="statistics-content">
+      <div class="stat-items">
+        <div class="stat-item fade-in">
+          <i class="fas fa-users icon"></i>
+          <div class="stat-value"><?= htmlspecialchars($totalSiswa, ENT_QUOTES, 'UTF-8'); ?></div>
+          <div class="stat-label">Jumlah Siswa</div>
+        </div>
+        <div class="stat-item fade-in">
+          <i class="fas fa-chalkboard-teacher icon"></i>
+          <div class="stat-value"><?= htmlspecialchars($totalGuru, ENT_QUOTES, 'UTF-8'); ?></div>
+          <div class="stat-label">Jumlah Guru</div>
+        </div>
+        <div class="stat-item fade-in">
+          <i class="fa-solid fa-newspaper icon"></i>
+          <div class="stat-value"><?= htmlspecialchars($totalBerita, ENT_QUOTES, 'UTF-8'); ?></div>
+          <div class="stat-label">Jumlah Berita</div>
+        </div>
+        <div class="stat-item fade-in">
+          <i class="fas fa-graduation-cap icon"></i>
+          <div class="stat-value">100</div>
+          <div class="stat-label">Lulusan Tahun Ini</div>
+        </div>
+        <div class="stat-item fade-in">
+          <i class="fas fa-trophy icon"></i>
+          <div class="stat-value"><?= htmlspecialchars($totalPrestasi, ENT_QUOTES, 'UTF-8'); ?></div>
+          <div class="stat-label">Penghargaan</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Content news -->
   <section class="news-section">
     <h2 class="section-title fade-in">Kumpulan Berita</h2>
+    <div class="section-title-underline fade-in"></div>
+    <p class="section-description fade-in">Dapatkan informasi terbaru tentang kegiatan, pengumuman, dan prestasi sekolah kami.</p>
     <div class="news-container">
         <button class="arrow left-arrow" onclick="scrollNews(-1)">
             &#10094;
@@ -181,6 +223,7 @@
                          alt="Gambar Berita" 
                          class="news-img" />
                     <h3 class="news-title"><?= htmlspecialchars($row['judul']); ?></h3>
+                    <div class="news-divider"></div>
                     <p class="news-description">
                         <?= htmlspecialchars(substr($row['konten'], 0, 200)) . (strlen($row['konten']) > 200 ? '...' : ''); ?>
                     </p>
@@ -195,37 +238,37 @@
 
 
 
-
- <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="row">
-      <!-- Tentang Kami dengan Logo -->
-      <div class="col-md-4 about-section d-flex">
+      <!-- Logo -->
+      <div class="col-md-3 logo-section">
         <img src="assets/img/logo.png" alt="Logo SDN 1 Kalisat" class="footer-logo">
-        <div>
-          <h5>Tentang Kami</h5>
-          <p>
-            SDN 1 Kalisat adalah sekolah dasar yang berkomitmen untuk memberikan
-            pendidikan terbaik bagi anak-anak. Kami berfokus pada pengembangan
-            karakter dan akademik siswa.
-          </p>
-        </div>
+      </div>
+
+      <!-- Tentang Kami -->
+      <div class="col-md-3 about-section">
+        <h5>Tentang Kami</h5>
+        <p>
+          SDN 1 Kalisat adalah sekolah dasar yang berkomitmen untuk memberikan
+          pendidikan terbaik bagi anak-anak. Kami berfokus pada pengembangan
+          karakter dan akademik siswa.
+        </p>
       </div>
 
       <!-- Kontak -->
-      <div class="col-md-4 kontak">
+      <div class="col-md-3 kontak-section">
         <h5>Kontak</h5>
         <ul>
-          <li>Alamat: Jl. Kalisat No. 1, Jember</li>
-          <li>Telepon: (0331) 123456</li>
-          <li>Email: info@sdn1kalisat.sch.id</li>
+          <li><i class="fas fa-map-marker-alt"></i> Jl. Kalisat No. 1, Jember</li>
+          <li><i class="fas fa-phone"></i> (0331) 123456</li>
+          <li><i class="fas fa-envelope"></i> info@sdn1kalisat.sch.id</li>
         </ul>
       </div>
 
       <!-- Lokasi -->
-      <div class="col-md-4 lokasi">
-        <h5>Alamat </h5>
+      <div class="col-md-3 lokasi-section content-alamat">
+        <h5>Alamat</h5>
         <a href="https://www.google.com/maps/search/?api=1&query=SDN+1+Kalisat,+Jember" target="_blank">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.8970015713357!2d111.45046627405344!3d-8.009557579918342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79733e2dbc9155%3A0x4aaf9dd2609da5a9!2sSDN%201%20Kalisat!5e0!3m2!1sen!2sid!4v1731520584344!5m2!1sen!2sid"
@@ -235,14 +278,25 @@
       </div>
     </div>
 
+    <!-- Sosial Media -->
+    <div class="row mt-4">
+      <div class="col text-center">
+        <h5>Ikuti Kami</h5>
+        <ul class="social-icons">
+          <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+        </ul>
+      </div>
+    </div>
+
     <!-- Copyright -->
     <div class="text-center mt-4">
       <p>&copy; 2024 SDN 1 Kalisat. All rights reserved.</p>
     </div>
   </div>
 </footer>
-
-
 
 
   <script>
@@ -277,16 +331,58 @@
       observer.observe(element);
     });
 
-    function scrollNews(direction) {
-  const wrapper = document.querySelector('.news-wrapper');
-  const scrollAmount = 300; // Sesuaikan dengan lebar item berita
-  wrapper.scrollBy({
-    left: direction * scrollAmount,
-    behavior: 'smooth',
-  });
+    const newsWrapper = document.querySelector('.news-wrapper');
+const newsItems = document.querySelectorAll('.news-item');
+
+itemWidth = newsItems[0].offsetWidth + parseInt(getComputedStyle(newsItems[0]).marginRight);
+
+let currentIndex = 0;
+
+function updateMaxIndex() {
+  const visibleItems = Math.floor(newsWrapper.offsetWidth / itemWidth);
+  const maxIndex = Math.max(newsItems.length - visibleItems, 0);
+  return maxIndex;
+}
+
+function scrollNews(direction, speed = 1) {
+   const scrollAmount = direction * itemWidth * speed;
+   newsWrapper.scrollLeft += scrollAmount;
+}
+
+
+
+// Menambahkan event listener untuk menangani perubahan ukuran
+window.addEventListener('resize', () => {
+  itemWidth = newsItems[0].offsetWidth + parseInt(getComputedStyle(newsItems[0]).marginRight);  // Update itemWidth jika ukuran berubah
+  const maxIndex = updateMaxIndex(); // Memperbarui maxIndex saat ukuran layar berubah
+});
+
+
+
+const visibleItems = Math.floor(newsWrapper.offsetWidth / itemWidth); // Menentukan jumlah item yang bisa terlihat
+const maxIndex = newsItems.length - visibleItems; // Batas maksimal indeks
+
+console.log('itemWidth:', itemWidth);
+console.log('visibleItems:', visibleItems);
+console.log('maxIndex:', maxIndex);
+console.log('currentIndex:', currentIndex);
+console.log('newsWrapper.offsetWidth:', newsWrapper.offsetWidth);
+
+
+
+function toggleMenu() {
+  const mobileMenu = document.getElementById("mobile-menu");
+  mobileMenu.classList.toggle("active");
+}
+
+function toggleDropdown(menuId, button) {
+  const menu = document.getElementById(menuId);
+  menu.classList.toggle('active');
+  button.classList.toggle('active'); // Menambahkan/menghapus rotasi ikon
 }
 
   </script>
+  
   
 </body>
 </html>

@@ -21,14 +21,10 @@
         </div>
       </a>
       <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      class="navbar-toggler"
+      type="button"
+      onclick="toggleMenu()"
+    >
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -41,6 +37,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Profil
+              <i class="fas fa-chevron-down"></i>
             </a>
             <ul class="dropdown-menu" aria-labelledby="profilDropdown">
               <li><a class="dropdown-item" href="/sejarah">Sejarah</a></li>
@@ -52,6 +49,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="galleryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Gallery
+              <i class="fas fa-chevron-down"></i> 
             </a>
             <ul class="dropdown-menu" aria-labelledby="galleryDropdown">
               <li><a class="dropdown-item" href="/acara_sekolah">Acara Sekolah</a></li>
@@ -72,8 +70,39 @@
     </div>
   </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+  <!-- navbar mobile -->
+  <div id="mobile-menu" class="offcanvas-menu">
+  <h1><a href="/">Beranda</a></h1>
+  <button class="close-btn" onclick="toggleMenu()">&#10005;</button>
+  <ul class="offcanvas-nav">
+    <!-- Dropdown Profil -->
+    <li>
+    <button class="dropdown-toggle" onclick="toggleDropdown('profil-menu', this)">
+  Profil
+  <i class="fas fa-chevron-down"></i>
+      </button>
+      <ul id="profil-menu" class="dropdown-content">
+        <li><a href="/sejarah">Sejarah</a></li>
+        <li><a href="/Visi-misi">Visi dan Misi</a></li>
+        <li><a href="/strukture-organisasi">Struktur Organisasi</a></li>
+      </ul>
+    </li>
+    <!-- Dropdown Gallery -->
+    <li>
+      <button class="dropdown-toggle" onclick="toggleDropdown('gallery-menu',this)">
+        Gallery
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <ul id="gallery-menu" class="dropdown-content">
+        <li><a href="/acara_sekolah">Acara Sekolah</a></li>
+        <li><a href="/prestasi">Prestasi</a></li>
+      </ul>
+    </li>
+    <li><a href="/berita">Berita</a></li>
+    <li><a href="/ppdb">PPDB</a></li>
+    <li><a href="/kontak">Kontak</a></li>
+  </ul>
+</div>
 
     <!-- Banner  -->
     <div class="banner">
@@ -82,10 +111,30 @@
 
     <!-- News -->
     
-    <section class="news-section">
+    <?php
+// Jumlah berita per halaman
+$newsPerPage = 6;
+
+// Ambil halaman saat ini dari parameter URL, default ke 1
+$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// Hitung offset berdasarkan halaman saat ini
+$offset = ($currentPage - 1) * $newsPerPage;
+
+// Ambil total jumlah berita
+$totalNews = count($berita);
+
+// Hitung jumlah halaman
+$totalPages = ceil($totalNews / $newsPerPage);
+
+// Ambil berita yang sesuai untuk halaman saat ini
+$currentNews = array_slice($berita, $offset, $newsPerPage);
+?>
+
+<section class="news-section">
     <h2 class="section-title">Kumpulan Berita</h2>
     <div class="news-container">
-        <?php foreach ($berita as $row): ?>
+        <?php foreach ($currentNews as $row): ?>
             <div class="news-item" id="berita-<?= htmlspecialchars($row['id']); ?>">
                 <img src="<?= htmlspecialchars($row['img'] ?? '/path/to/default.jpg'); ?>" 
                      alt="gambar" 
@@ -99,45 +148,63 @@
                     <p class="news-description">
                         <?= htmlspecialchars(substr($row['konten'], 0, 200)) . (strlen($row['konten']) > 200 ? '...' : ''); ?>
                     </p>
-                    <!-- Tambahkan button untuk membaca lebih lanjut -->
                     <a href="/blog/<?= urlencode($row['id']); ?>" class="read-more-btn">Baca Selengkapnya</a>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <?php if ($currentPage > 1): ?>
+            <a href="?page=<?= $currentPage - 1; ?>" class="prev-btn">Sebelumnya</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <a href="?page=<?= $i; ?>" class="page-btn <?= $i === $currentPage ? 'active' : ''; ?>">
+                <?= $i; ?>
+            </a>
+        <?php endfor; ?>
+
+        <?php if ($currentPage < $totalPages): ?>
+            <a href="?page=<?= $currentPage + 1; ?>" class="next-btn">Berikutnya</a>
+        <?php endif; ?>
+    </div>
 </section>
 
 
 
-<!-- FOOTER -->
+
 <footer class="footer">
   <div class="container">
     <div class="row">
-      <!-- Tentang Kami dengan Logo -->
-      <div class="col-md-4 about-section d-flex">
+      <!-- Logo -->
+      <div class="col-md-3 logo-section">
         <img src="assets/img/logo.png" alt="Logo SDN 1 Kalisat" class="footer-logo">
-        <div>
-          <h5>Tentang Kami</h5>
-          <p>
-            SDN 1 Kalisat adalah sekolah dasar yang berkomitmen untuk memberikan
-            pendidikan terbaik bagi anak-anak. Kami berfokus pada pengembangan
-            karakter dan akademik siswa.
-          </p>
-        </div>
+      </div>
+
+      <!-- Tentang Kami -->
+      <div class="col-md-3 about-section">
+        <h5>Tentang Kami</h5>
+        <p>
+          SDN 1 Kalisat adalah sekolah dasar yang berkomitmen untuk memberikan
+          pendidikan terbaik bagi anak-anak. Kami berfokus pada pengembangan
+          karakter dan akademik siswa.
+        </p>
       </div>
 
       <!-- Kontak -->
-      <div class="col-md-4 kontak">
+      <div class="col-md-3 kontak-section">
         <h5>Kontak</h5>
         <ul>
-          <li>Alamat: Jl. Kalisat No. 1, Jember</li>
-          <li>Telepon: (0331) 123456</li>
-          <li>Email: info@sdn1kalisat.sch.id</li>
+          <li><i class="fas fa-map-marker-alt"></i> Jl. Kalisat No. 1, Jember</li>
+          <li><i class="fas fa-phone"></i> (0331) 123456</li>
+          <li><i class="fas fa-envelope"></i> info@sdn1kalisat.sch.id</li>
         </ul>
       </div>
 
       <!-- Lokasi -->
-      <div class="col-md-4 lokasi">
+      <div class="col-md-3 lokasi-section content-alamat">
         <h5>Alamat</h5>
         <a href="https://www.google.com/maps/search/?api=1&query=SDN+1+Kalisat,+Jember" target="_blank">
           <iframe 
@@ -148,11 +215,25 @@
       </div>
     </div>
 
+    <!-- Sosial Media -->
+    <div class="row mt-4">
+      <div class="col text-center">
+        <h5>Ikuti Kami</h5>
+        <ul class="social-icons">
+          <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+        </ul>
+      </div>
+    </div>
+
     <!-- Copyright -->
     <div class="text-center mt-4">
       <p>&copy; 2024 SDN 1 Kalisat. All rights reserved.</p>
     </div>
   </div>
 </footer>
+<script src="/assets/js/satuuntuksemua.js"></script>
 </body>
 </html>

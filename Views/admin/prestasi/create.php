@@ -136,7 +136,7 @@
         </div>
 
 			<div class="form-group">
-		<label for="img">Foto</label>
+		<label for="img">Upload Foto Juara</label>
 		<input type="file" class="form-control" id="img" name="img" required aria-describedby="imgHint" accept="image/*">
 		<div id="imgHint" class="form-hint">Upload gambar untuk Prestasi</div>
 		<?php if (isset($errors['img'])): ?>
@@ -147,7 +147,7 @@
 	</div>
 
     <div class="form-group">
-    <label for="img_sertifikat">Foto Sertifikat</label>
+    <label for="img_sertifikat">Upload Foto Sertifikat</label>
     <input type="file" class="form-control" id="img_sertifikat" name="img_sertifikat" required aria-describedby="imgSertifikatHint" accept="image/*">
     <div id="imgSertifikatHint" class="form-hint">Upload gambar untuk Sertifikat</div>
 		<?php if (isset($errors['img'])): ?>

@@ -27,7 +27,7 @@
             <li class="active">
 				<a href="/Acara_sekolah">
 					<i class='bx bxs-photo-album' ></i>
-					<span class="text">Acara_sekolah</span>
+					<span class="text">Acara sekolah</span>
 				</a>
 			</li>
 			<li>
@@ -65,18 +65,18 @@
         <main>
     <div class="head-title">
         <div class="left">
-            <h1>Data Acara_sekolah</h1>
+            <h1>Data Acara sekolah</h1>
             <ul class="breadcrumb">
                 <li><a href="/admin">Dashboard</a></li>
 				<li><i class='bx bx-chevron-right'></i></li>
                 <li><a href="/gallery">Gallery</a></li>
                 <li><i class='bx bx-chevron-right'></i></li>
-                <li><a class="active" href="#">Acara_sekolah</a></li>
+                <li><a class="active" href="#">Acara sekolah</a></li>
             </ul>
         </div>
         <a href="/Acara_sekolah/create" class="btn btn-primary">
             <i class='bx bx-plus'></i>
-            <span>Tambah Acara_sekolah</span>
+            <span>Tambah Acara sekolah</span>
         </a>
     </div>
 
