@@ -269,3 +269,34 @@ body.dark .data-table tbody tr:hover {
     padding: 4px;
     text-align: left;
 }
+
+.search-bar-container {
+	width: 300px;  /* Menentukan panjang container */
+	margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 10px;
+	background: var(--light);
+}
+
+.search-bar-container input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+	background: var(--grey);
+    outline: none;
+    width: 300px;
+    border-radius: 5px; /* Membuat input lebih halus */
+}
+
+.search-bar-container i {
+    font-size: 20px;
+    color: #555;
+	margin-top: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
