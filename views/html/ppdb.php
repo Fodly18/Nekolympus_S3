@@ -14,9 +14,7 @@
    <nav class="navbar navbar-expand-lg bg-custom">
     <div class="container-fluid">
       <a class="navbar-brand logo" href="#">
-
         <img src="assets/img/logo.png" class="logo-img" alt="Logo" />
-
         <div class="header-text">
           <span class="main-text">SDN 1 Kalisat</span>
           <span class="sub-text">Kalisat - Jember</span>
@@ -37,9 +35,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-
             <a class="nav-link" href="/">Beranda</a>
-
           </li>
           <!-- Dropdown Profil -->
           <li class="nav-item dropdown">
@@ -47,11 +43,9 @@
               Profil
             </a>
             <ul class="dropdown-menu" aria-labelledby="profilDropdown">
-
               <li><a class="dropdown-item" href="/sejarah">Sejarah</a></li>
               <li><a class="dropdown-item" href="/Visi-misi">Visi dan Misi</a></li>
               <li><a class="dropdown-item" href="/strukture-organisasi">Struktur Organisasi</a></li>
-
             </ul>
           </li>
           <!-- Dropdown Gallery -->
@@ -60,7 +54,6 @@
               Gallery
             </a>
             <ul class="dropdown-menu" aria-labelledby="galleryDropdown">
-
               <li><a class="dropdown-item" href="/acara_sekolah">Acara Sekolah</a></li>
               <li><a class="dropdown-item" href="/prestasi">Prestasi</a></li>
             </ul>
@@ -73,7 +66,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/kontak">Kontak</a>
-
           </li>
         </ul>
       </div>
@@ -87,13 +79,34 @@
         <img class="banner-jpg" src="/assets/img/bnn.jpeg" alt="Banner JPG">
     </div>
 
-    <!-- sejarah -->
-     <div class="container-text">
-        <div class="announcement">PEMBERITAHUAN!</div>
-        <div class="details">Penerimaan Peserta Didik Baru (PPDB)<br>SD Negeri 1 Kalisat</div>
-        <div class="status">BELUM DIBUKA</div>
-        <div class="note">Silakan kembali lagi nanti</div>
-    </div>
+    <div class="container">
+    <h1 class="text-center mt-5">Penerimaan Peserta Didik Baru (PPDB)</h1>
+
+    <?php if (!empty($data)): ?>
+        <?php 
+            // Filter for active posters
+            $activePosters = array_filter($data, function($uploadedposter) {
+                return $uploadedposter->status == 'aktif';
+            });
+        ?>
+
+        <?php if (!empty($activePosters)): ?>
+            <!-- Display active posters -->
+            <div class="announcement">PEMBERITAHUAN!</div>
+            <div class="details">Penerimaan Peserta Didik Baru (PPDB)<br>SD Negeri 1 Kalisat</div>
+            <?php foreach ($activePosters as $poster): ?>
+                <img class="poster-thumbnail" src="<?= htmlspecialchars($poster->img); ?>" alt="Poster PPDB" />
+            <?php endforeach; ?>
+        <?php else: ?>
+            <!-- Message if no active posters -->
+            <div class="announcement">PEMBERITAHUAN!</div>
+            <div class="details">Penerimaan Peserta Didik Baru (PPDB)<br>SD Negeri 1 Kalisat</div>
+            <div class="status">BELUM DIBUKA</div>
+            <div class="note">Silakan kembali lagi nanti</div>
+        <?php endif; ?>
+    <?php else: ?>
+        <p class="text-center">Tidak ada informasi PPDB yang tersedia.</p>
+    <?php endif; ?>
 </div>
 
  <!-- FOOTER -->
@@ -116,7 +129,6 @@
 
       <!-- Kontak -->
       <div class="col-md-4 kontak">
-
         <h5>Kontak</h5>
         <ul>
           <li>Alamat: Jl. Kalisat No. 1, Jember</li>
@@ -139,7 +151,6 @@
 
     <!-- Copyright -->
     <div class="text-center mt-4">
-
       <p>&copy; 2024 SDN 1 Kalisat. All rights reserved.</p>
     </div>
   </div>
