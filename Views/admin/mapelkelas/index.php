@@ -34,62 +34,48 @@
 					<span class="text">Kelas</span>
 				</a>
 			</li>
-			<li class="active">
+			<li>
 				<a href="/mapel">
-					<i class='bx bxs-receipt' ></i>
+					<i class='bx bxs-book-content' ></i>
 					<span class="text">Mapel</span>
 				</a>
 			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-receipt' ></i>
+			<li class="active">
+				<a href="/mapelkelas">
+					<i class='bx bx-book-open' ></i>
 					<span class="text">Mapel-Kelas</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<i class='bx bxs-receipt' ></i>
+				<a href="/jadwal">
+					<i class='bx bxs-book' ></i>
 					<span class="text">Jadwal</span>
 				</a>
 			</li>
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
-					<i class='bx bxs-cog'></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-
 				<a href="/logout-admin" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
-
 					<span class="text">Logout</span>
 				</a>
 			</li>
 		</ul>
     </section>
 
-    <!-- CONTENT -->
-    <section id="content">
-        <!-- NAVBAR -->
-        <nav>
-            <i class='bx bx-menu'></i>
-            <form action="/siswa/search" method="GET">
-                <div class="form-input">
-                    <input type="text" name="query" placeholder="Cari siswa..." aria-label="Cari siswa">
-                    <button type="submit" class="search-btn">
-                        <i class='bx bx-search'></i>
-                    </button>
-                </div>
-            </form>
-            <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
-            <a href="#" class="profile">
-                <img src="/assets/img/people.png" alt="Profile" aria-label="Profile">
-            </a>
-        </nav>
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu'></i>
+		<!-- mode malam -->
+			<div class="dark-mode-switch">
+        <p>Dark Mode</p>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+            </div>
+		</nav>
+		<!-- NAVBAR -->
 
         <!-- MAIN -->
         <main>

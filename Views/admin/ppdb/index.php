@@ -19,7 +19,7 @@
 			<span class="text">SDN 1 KALISAT</span>
 		</a>
 		<ul class="side-menu top">
-			<li >
+			<li>
 				<a href="/dashboard-admin">
 					<i class='bx bxs-dashboard'></i>
 					<span class="text">Dashboard</span>
@@ -27,13 +27,13 @@
 			</li>
 			<li>
 				<a href="/guru">
-					<i class='bx bxs-group' ></i>
+					<i class='bx bxs-group'></i>
 					<span class="text">Guru</span>
 				</a>
 			</li>
 			<li>
 				<a href="/siswa">
-					<i class='bx bxs-group' ></i>
+					<i class='bx bxs-group'></i>
 					<span class="text">Siswa</span>
 				</a>
 			</li>
@@ -49,8 +49,8 @@
 					<span class="text">Berita</span>
 				</a>
 			</li>
-			<li  class="active">
-				<a href="#">
+			<li class="active">
+				<a href="/Ppdb">
 					<i class='bx bxs-receipt' ></i>
 					<span class="text">PPDB</span>
 				</a>
@@ -58,21 +58,14 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
-					<i class='bx bxs-cog'></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-
 				<a href="/logout-admin" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-
+					<i class='bx bx-log-out'></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>
 		</ul>
 	</section>
+
 
 
 	<!-- CONTENT -->
