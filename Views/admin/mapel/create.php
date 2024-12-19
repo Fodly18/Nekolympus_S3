@@ -98,18 +98,13 @@
                 <?php endif; ?>
 
                 <form action="/mapel/create" method="post" id="createForm">
-                    <div class="form-group">
-                        <label for="mapel">Nama Mata Pelajaran</label>
-                        <input 
-                            type="text" 
-                            class="form-control" 
-                            id="mapel" 
-                            name="mapel" 
-                            placeholder="Masukkan nama mata pelajaran" 
-                            required 
-                            maxlength="50">
-                        <?php if (isset($errors['mapel'])): ?>
-                            <?php foreach ($errors['mapel'] as $error): ?>
+                <div class="form-group">
+                        <label for="nama">Mata Pelajaran</label>
+                        <input type="text" class="form-control" id="nama" name="nama" required 
+                               maxlength="100" aria-describedby="namaHint">
+                        <div id="namaHint" class="form-hint">Masukkan Nama Mata Pelajaran</div>
+                        <?php if (isset($errors['nama'])): ?>
+                            <?php foreach ($errors['nama'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
                             <?php endforeach; ?>
                         <?php endif; ?>

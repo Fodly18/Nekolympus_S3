@@ -17,7 +17,7 @@
         </a>
         <ul class="side-menu top">
             <li><a href="/admin"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a></li>
-            <li class="active"><a href="/guru"><i class='bx bxs-group'></i><span class="text">Data Guru</span></a></li>
+            <li class="active"><a href="/guru"><i class='bx bxs-group'></i><span class="text">Data Kelas</span></a></li>
             <li><a href="/mapel"><i class='bx bxs-book'></i><span class="text">Mata Pelajaran</span></a></li>
             <li><a href="/siswa"><i class='bx bxs-user-detail'></i><span class="text">Data Siswa</span></a></li>
         </ul>
@@ -71,11 +71,11 @@
 
                     <div class="form-group">
                         <label for="nama">Nama Kelas</label>
-                        <input type="text" class="form-control" id="nama" name="nama" required 
-                               maxlength="100" aria-describedby="namaHint">
+                        <input type="text" class="form-control" id="kelas" name="kelas" required 
+                               maxlength="2" aria-describedby="namaHint">
                         <div id="namaHint" class="form-hint">Masukkan nama kelas</div>
-                        <?php if (isset($errors['nama'])): ?>
-                            <?php foreach ($errors['nama'] as $error): ?>
+                        <?php if (isset($errors['kelas'])): ?>
+                            <?php foreach ($errors['kelas'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
                             <?php endforeach; ?>
                         <?php endif; ?>

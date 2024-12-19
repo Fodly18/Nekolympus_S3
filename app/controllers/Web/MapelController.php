@@ -11,7 +11,7 @@ class MapelController extends Controller
     public function index()
     {
         $data = Mapel::all();
-        return $this->view('admin.mapel.index', ['data' => $data, 'no' => 1]);
+        return $this->view('admin.mapel.index', ['data' => $data]);
     }
 
     public function createIndex()
@@ -21,43 +21,84 @@ class MapelController extends Controller
 
     public function create(Request $request)
     {
-        if(!$request->validate([
-            'mapel' => 'required'
+        if (!$request->validate([
+            'nama' => 'required|max:100'
         ])) {
-            return $this->view('admin.mapel.create', ['errors' => $request->getErrors()]);
+            return $this->view('admin.mapel.create', [
+                'errors' => $request->getErrors()
+            ]);
         }
 
-        Mapel::create([
-            'nama' => $request->input('mapel')
+        $result = Mapel::create([
+            'nama' => $request->input('nama')
         ]);
 
-        return $this->redirect('/mapel');
+        if ($result) {
+            return $this->redirect('/mapel');
+        } else {
+            return $this->view('admin.mapel.create', [
+                'errors' => ['system' => ['Terjadi kesalahan saat menyimpan data. Silakan coba lagi.']]
+            ]);
+        }
     }
 
     public function updateIndex($id)
     {
         $data = Mapel::where('id', '=', $id)->first();
-        return $this->view('admin.mapel.update', ['data' => $data]);
+
+        if ($data) {
+            return $this->view('admin.mapel.update', ['data' => $data]);
+        } else {
+            return $this->redirect('/mapel', [
+                'errors' => ['system' => ['Data tidak ditemukan.']]
+            ]);
+        }
     }
 
     public function update(Request $request)
     {
-        if(!$request->validate([
-            'mapel' => 'required'
-        ])) {
-            return $this->view('admin.mapel.update', ['errors' => $request->getErrors()]);
+        $id = $request->input('id');
+
+        $currentData = Mapel::where('id', '=', $id)->first();
+        if (!$currentData) {
+            return $this->redirect('/mapel');
         }
 
-        Mapel::update($request->input('id'), [
-            'nama' => $request->input('mapel')
+        if (!$request->validate([
+            'id' => 'required',
+            'nama' => 'required'
+        ])) {
+            return $this->view('admin.mapel.update', [
+                'errors' => $request->getErrors(),
+                'data' => $currentData
+            ]);
+        }
+
+        $result = Mapel::update($id, [
+            'nama' => $request->input('nama')
         ]);
 
-        return $this->redirect('/mapel');
+        if ($result) {
+            return $this->redirect('/mapel');
+        } else {
+            return $this->view('admin.mapel.update', [
+                'errors' => ['system' => ['Terjadi kesalahan saat memperbarui data. Silakan coba lagi.']],
+                'data' => $currentData
+            ]);
+        }
     }
 
     public function delete($id)
     {
-        Mapel::delete($id);
+        $mapel = Mapel::where('id', '=', $id)->first();
+
+        if ($mapel) {
+            $result = Mapel::delete($id);
+
+            if (!$result) {
+                // Log error or handle failure if needed
+            }
+        }
 
         return $this->redirect('/mapel');
     }

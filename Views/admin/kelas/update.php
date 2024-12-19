@@ -79,7 +79,7 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Edit Data Guru</h1>
+                    <h1>Edit Data Kelas</h1>
                     <ul class="breadcrumb">
                         <li><a href="/admin">Dashboard</a></li>
                         <li><i class='bx bx-chevron-right'></i></li>
@@ -103,8 +103,8 @@
                     <div class="form-group">
                         <label for="nama">Nama Kelas</label>
                         <input type="text" class="form-control" id="kelas" name="kelas" required 
-                               maxlength="100" value="<?= htmlspecialchars($data->nama) ?>">
-                        <?php if (isset($errors['nama'])): ?>
+                               maxlength="2" value="<?= htmlspecialchars($data->kelas) ?>">
+                        <?php if (isset($errors['kelas'])): ?>
                             <?php foreach ($errors['kelas'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
                             <?php endforeach; ?>
