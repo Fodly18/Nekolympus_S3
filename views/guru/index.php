@@ -65,7 +65,7 @@ $currentTime = date('H:i:s');
 		<ul class="side-menu">
 			<li>
 				<a href="/logout-guru" class="logout">
-					<i class='bx bxs-log-out-circle'></i>
+				<i class='bx bx-exit bx-flip-horizontal'></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>

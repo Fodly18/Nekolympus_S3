@@ -8,6 +8,25 @@
 	<link rel="stylesheet" href="/assets/css/dashboardadmin.css">
 	<link rel="stylesheet" href="/assets/css/tablestyle.css">
 	<title>Dashboard Guru Page</title>
+	<style>
+		/* Warna tombol "Kembali" */
+		.btn-cancel {
+			background-color: white !important;
+			/* Latar belakang putih */
+			color: black !important;
+			/* Teks hitam */
+			border: 1px solid black !important;
+			/* Garis tepi hitam */
+		}
+
+		/* Warna tombol "Hapus" */
+		.btn-confirm {
+			background-color: #cc183c;
+			/* Latar belakang merah */
+			color: white !important;
+			/* Teks putih */
+		}
+	</style>
 </head>
 
 <body>
@@ -53,7 +72,7 @@
 		<ul class="side-menu">
 			<li>
 				<a href="/logout-guru" class="logout">
-					<i class='bx bxs-log-out-circle'></i>
+					<i class='bx bx-exit bx-flip-horizontal'></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>
@@ -78,6 +97,7 @@
 				<a href="/settings" class="profile">
 					<img src="img/people.png">
 				</a>
+			</a>
 		</nav>
 		<!-- NAVBAR -->
 
@@ -100,6 +120,10 @@
 					<i class='bx bx-plus'></i>
 					<span>Tambah Latihan Soal</span>
 				</a>
+			</div>
+			<div class="search-bar-container">
+				<input type="text" id="search-input" placeholder="Cari judul...">
+				<i class='bx bx-search'></i>
 			</div>
 			<div class="table-container">
 				<table class="data-table">
@@ -124,20 +148,53 @@
 						<?php else: ?>
 							<?php foreach ($data as $row): ?>
 								<tr>
-									<td><?= $no++; ?></td>
-									<td><?= htmlspecialchars($row['judul_soal']); ?></td>
-									<td><?= htmlspecialchars($row['jumlah_soal']); ?></td>
-									<td><?= htmlspecialchars($row['tanggal_soal']); ?></td>
-									<td><?= htmlspecialchars($row['deadline']); ?></td>
-									<td class="action-buttons">
+									<td align="center"><?= $no++; ?></td>
+									<td align="center"><?= htmlspecialchars($row['judul_soal']); ?></td>
+									<td align="center"><?= htmlspecialchars($row['jumlah_soal']); ?></td>
+									<td align="center"><?= htmlspecialchars($row['tanggal_soal']); ?></td>
+									<td align="center"><?= htmlspecialchars($row['deadline']); ?></td>
+									<td align="center" class="action-buttons">
 										<a href="/latihan-soal/update/<?= $row['id']; ?>" class="btn btn-success">
 											<i class='bx bx-edit-alt'></i>
 											<span>Edit</span>
 										</a>
-										<a href="/latihan-soal/delete/<?= $row['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="btn btn-danger">
+										<a href="#"
+											onclick="confirmDelete('/latihan-soal/delete/<?= $row['id']; ?>');"
+											class="btn btn-danger">
 											<i class='bx bx-trash'></i>
 											<span>Hapus</span>
 										</a>
+										<script>
+											function confirmDelete(deleteUrl) {
+												swal("Apakah Anda Yakin Ingin Menghapus Data Ini?", {
+														buttons: {
+															cancel: {
+																text: "Kembali",
+																value: null,
+																visible: true,
+																className: "btn-cancel",
+															},
+															confirm: {
+																text: "Hapus",
+																value: true,
+																visible: true,
+																className: "btn-confirm",
+															},
+														},
+													})
+													.then((willDelete) => {
+														if (willDelete) {
+															window.location.href = deleteUrl;
+														} else {
+															swal("Data tidak jadi dihapus!", {
+																icon: "info",
+																timer: 2000,
+																buttons: false,
+															});
+														}
+													});
+											}
+										</script>
 									</td>
 								</tr>
 							<?php endforeach; ?>
@@ -149,8 +206,7 @@
 		</main>
 		<!-- MAIN -->
 	</section>
-
-	<script src="/assets/js/dashboardguru.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="/assets/js/dashboardadmin.js"></script>\	
 </body>
-
 </html>

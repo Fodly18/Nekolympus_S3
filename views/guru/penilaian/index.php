@@ -97,7 +97,7 @@
 		<ul class="side-menu">
 			<li>
 				<a href="/logout-guru" class="logout">
-					<i class='bx bxs-log-out-circle'></i>
+					<i class='bx bx-exit bx-flip-horizontal' ></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>
@@ -146,7 +146,10 @@
 					</form>
 				</div>
 			</div>
-
+			<div class="search-bar-container">
+				<input type="text" id="search-input" placeholder="Cari judul...">
+				<i class='bx bx-search'></i>
+			</div>
 			<div class="table-container">
 				<table class="data-table">
 					<thead>
@@ -168,10 +171,10 @@
 						<?php else: ?>
 							<?php foreach ($dataLatihan as $row): ?>
 								<tr>
-									<td><?= $no++; ?></td>
-									<td><?= htmlspecialchars($row['nama'] ?? 'Tidak Ditemukan'); ?></td>
-									<td><?= htmlspecialchars($row['kelas'] ?? 'Tidak Ditemukan'); ?></td>
-                                    <td><?= htmlspecialchars($row['total_nilai']) ; ?></td>
+									<td align="center"><?= $no++; ?></td>
+									<td align="center"><?= htmlspecialchars($row['nama'] ?? 'Tidak Ditemukan'); ?></td>
+									<td align="center"><?= htmlspecialchars($row['kelas'] ?? 'Tidak Ditemukan'); ?></td>
+                                    <td align="center"><?= htmlspecialchars($row['total_nilai']) ; ?></td>
                                 </tr>
 							<?php endforeach; ?>
 						<?php endif; ?>
