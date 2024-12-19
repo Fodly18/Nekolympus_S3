@@ -72,7 +72,7 @@ if ($adminId) {
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/Ppdb">
 					<i class='bx bxs-receipt' ></i>
 					<span class="text">PPDB</span>
 				</a>

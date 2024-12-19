@@ -12,68 +12,70 @@
     <!-- SIDEBAR -->
     <section id="sidebar">
         <a href="/admin" class="brand">
-            <i class='bx bxs-school'></i>
+        <img src="/assets/img/logo.png" alt="Logo" class="icon" width="60" height="60">
             <span class="text">SDN 1 KALISAT</span>
         </a>
-        <ul class="side-menu top">
-            <li>
-                <a href="/admin">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="text">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="/guru">
-                    <i class='bx bxs-group'></i>
-                    <span class="text">Data Guru</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="/mapel">
-                    <i class='bx bxs-book'></i>
-                    <span class="text">Mata Pelajaran</span>
-                </a>
-            </li>
-            <li>
-                <a href="/siswa">
-                    <i class='bx bxs-user-detail'></i>
-                    <span class="text">Data Siswa</span>
-                </a>
-            </li>
-        </ul>
-        <ul class="side-menu">
-            <li>
-                <a href="/settings">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
-            <li>
-                <a href="/logout" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
-                </a>
-            </li>
-        </ul>
+		<ul class="side-menu top">
+			<li>
+				<a href="/dashboard-admin">
+					<i class='bx bxs-dashboard'></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="/guru">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Guru</span>
+				</a>
+			</li>
+			<li>
+				<a href="/kelas">
+					<i class='bx bxs-news' ></i>
+					<span class="text">Kelas</span>
+				</a>
+			</li>
+			<li>
+				<a href="/mapel">
+					<i class='bx bxs-book-content' ></i>
+					<span class="text">Mapel</span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="/mapelkelas">
+					<i class='bx bx-book-open' ></i>
+					<span class="text">Mapel-Kelas</span>
+				</a>
+			</li>
+			<li>
+				<a href="/jadwal">
+					<i class='bx bxs-book' ></i>
+					<span class="text">Jadwal</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="/logout-admin" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
     </section>
 
-    <!-- CONTENT -->
-    <section id="content">
-        <!-- NAVBAR -->
-        <nav>
-            <i class='bx bx-menu'></i>
-            <form action="#">
-                <div class="form-input">
-                    <input type="search" placeholder="Cari..." aria-label="Search">
-                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-                </div>
-            </form>
-            <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
-            <a href="#" class="profile">
-                <img src="/assets/img/people.png" alt="Profile">
-            </a>
-        </nav>
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu'></i>
+		<!-- mode malam -->
+			<div class="dark-mode-switch">
+        <p>Dark Mode</p>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+            </div>
+		</nav>
+		<!-- NAVBAR -->
 
         <!-- MAIN -->
         <main>
