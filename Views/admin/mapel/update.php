@@ -91,19 +91,24 @@
             </div>
 
             <div class="form-container">
+                <!-- Pesan error sistem -->
                 <?php if (isset($errors['system'])): ?>
                     <div class="error-message" style="margin-bottom: 1rem;">
                         <?= htmlspecialchars($errors['system'][0]) ?>
                     </div>
                 <?php endif; ?>
 
-                <form action="/mapel/update" method="post">
-                    <input type="hidden" name="id" value="<?= htmlspecialchars($data['id']); ?>">
+                <!-- Form Update Mapel -->
+                <form action="/mapel/update" method="post" id="updateForm">
+                    <!-- ID Mapel (Hidden) -->
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($data->id ?? '') ?>">
 
+                    <!-- Input Mata Pelajaran -->
                     <div class="form-group">
-                        <label for="nama">Nama Mapel</label>
-                        <input type="text" class="form-control" id="nama" name="nama" required 
-                               maxlength="100" value="<?= htmlspecialchars($data->nama) ?>">
+                        <label for="nama">Mata Pelajaran</label>
+                        <input type="text" class="form-control" id="nama" name="nama" 
+                               required maxlength="100" 
+                               value="<?= htmlspecialchars($data->nama ?? '') ?>">
                         <?php if (isset($errors['nama'])): ?>
                             <?php foreach ($errors['nama'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -111,6 +116,7 @@
                         <?php endif; ?>
                     </div>
 
+                    <!-- Tombol Aksi -->
                     <div class="btn-container">
                         <button type="submit" class="btn btn-primary">
                             <i class='bx bx-save'></i>
