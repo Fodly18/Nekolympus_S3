@@ -73,10 +73,10 @@
 
     <!-- SIDEBAR -->
     <section id="sidebar">
-        <a href="/dashboard-guru" class="brand">
-            <i class='bx bxs-smile'></i>
-            <span class="text">SDN 1 KALISAT</span>
-        </a>
+    <a href="#" class="brand">
+			<img src="/assets/img/logo.png" alt="Logo" class="icon" width="60" height="60">
+			<span class="text">SDN 1 KALISAT</span>
+		</a>
         <ul class="side-menu top">
             <li>
                 <a href="/dashboard-guru">
@@ -110,12 +110,6 @@
             </li>
         </ul>
         <ul class="side-menu">
-            <li>
-                <a href="/settings">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
             <li>
                 <a href="/logout-guru" class="logout">
                     <i class='bx bxs-log-out-circle'></i>

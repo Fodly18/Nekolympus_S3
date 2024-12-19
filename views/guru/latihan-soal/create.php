@@ -28,8 +28,38 @@
             font-weight: 500;
         }
 
+        .form-group-quiz {
+            margin-bottom: 16px;
+        }
+
+        .form-group-quiz label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 250;
+        }
+
+        .form-group-quiz .input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group-quiz input[type="checkbox"] {
+            transform: scale(1.5);
+            margin: 0;
+        }
+
         .form-control {
             width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--grey);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-control-answer {
+            flex-grow: 1;
             padding: 0.5rem;
             border: 1px solid var(--grey);
             border-radius: 5px;
@@ -94,10 +124,10 @@
 
     <!-- SIDEBAR -->
     <section id="sidebar">
-        <a href="/dashboard-guru" class="brand">
-            <i class='bx bxs-smile'></i>
-            <span class="text">SDN 1 KALISAT</span>
-        </a>
+    <a href="#" class="brand">
+			<img src="/assets/img/logo.png" alt="Logo" class="icon" width="60" height="60">
+			<span class="text">SDN 1 KALISAT</span>
+		</a>
         <ul class="side-menu top">
             <li>
                 <a href="/dashboard-guru">
@@ -131,12 +161,6 @@
             </li>
         </ul>
         <ul class="side-menu">
-            <li>
-                <a href="/settings">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
             <li>
                 <a href="/logout-guru" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
@@ -271,7 +295,7 @@
                                 <i class='bx bx-save'></i>
                                 <span>Simpan Latihan Soal</span>
                             </button>
-                            <a href="javascript:void(0);" class="btn btn-danger" id="cancel-quiz-btn">
+                            <a href="/latihan-soal" class="btn btn-danger" id="cancel-quiz-btn">
                                 <i class='bx bx-x'></i>
                                 <span>Batal</span>
                             </a>
@@ -283,145 +307,153 @@
             </div>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-    const createQuizBtn = document.getElementById('create-quiz-btn');
-    const cancelQuizBtn = document.getElementById('cancel-quiz-btn');
-    const quizLayer = document.getElementById('quiz-layer');
-    const quizQuestionContainer = document.getElementById('quiz-question-container');
-    const jumlahSoalInput = document.getElementById('jumlah_soal');
-    const errorMessage = document.getElementById('error-message'); // Tempat menampilkan pesan error
+                    const createQuizBtn = document.getElementById('create-quiz-btn');
+                    const cancelQuizBtn = document.getElementById('cancel-quiz-btn');
+                    const quizLayer = document.getElementById('quiz-layer');
+                    const quizQuestionContainer = document.getElementById('quiz-question-container');
+                    const jumlahSoalInput = document.getElementById('jumlah_soal');
+                    const errorMessage = document.getElementById('error-message'); // Tempat menampilkan pesan error
 
-    // Fungsi untuk menghitung total bobot nilai dan validasi
-    function calculateTotalBobot() {
-        const bobotInputs = document.querySelectorAll('[id^="bobot_nilai_"]');
-        let totalBobot = 0;
-        let isValid = true;
+                    // Fungsi untuk menghitung total bobot nilai dan validasi
+                    function calculateTotalBobot() {
+                        const bobotInputs = document.querySelectorAll('[id^="bobot_nilai_"]');
+                        let totalBobot = 0;
+                        let isValid = true;
 
-        // Menjumlahkan total bobot dan memeriksa apakah ada nilai yang melebihi 100
-        bobotInputs.forEach(input => {
-            totalBobot += parseInt(input.value) || 0; // Menambahkan bobot soal, default 0 jika tidak ada nilai
-        });
-
-        if (totalBobot > 100) {
-            isValid = false;
-        }
-
-        if (!isValid) {
-            errorMessage.textContent = 'Jumlah Nilai tidak bisa lebih dari 100';
-            errorMessage.style.color = 'red';
-        } else {
-            errorMessage.textContent = '';
-        }
-        return isValid;
-    }
-
-    // Fungsi untuk membuat soal
-    createQuizBtn.addEventListener('click', function() {
-        const totalQuestions = parseInt(jumlahSoalInput.value);
-
-        if (totalQuestions > 50) {
-            alert('Jumlah soal tidak boleh lebih dari 50');
-            jumlahSoalInput.value = 50; // Membatasi jumlah soal maksimal 50
-            return;
-        }
-
-        // Menghapus soal yang sudah ada jika ada
-        quizQuestionContainer.innerHTML = '';
-
-        // Menampilkan form soal
-        quizLayer.style.display = 'block';
-
-        // Menghitung bobot per soal berdasarkan jumlah soal
-        const maxBobotPerSoal = Math.floor(100 / totalQuestions);
-
-        // Membuat soal sesuai jumlah yang diinput
-        for (let i = 0; i < totalQuestions; i++) {
-            const questionElement = document.createElement('div');
-            questionElement.classList.add('question-container');
-            questionElement.innerHTML = `
-                <div class="form-group">
-                    <label for="soal_${i}">Soal No ${i + 1}</label>
-                    <input type="text" class="form-control" id="soal_${i}" name="soal_${i}" required>
-                </div>
-                <div class="form-group">
-                    <label for="jawaban_a_${i}">Jawaban A</label>
-                    <input type="checkbox" name="jawaban_benar_${i}" value="a" id="jawaban_a_checkbox_${i}" required>
-                    <input type="text" class="form-control" id="jawaban_a_${i}" name="jawaban_a_${i}" required>
-                </div>
-                <div class="form-group">
-                    <label for="jawaban_b_${i}">Jawaban B</label>
-                    <input type="checkbox" name="jawaban_benar_${i}" value="b" id="jawaban_b_checkbox_${i}" required>
-                    <input type="text" class="form-control" id="jawaban_b_${i}" name="jawaban_b_${i}" required>
-                </div>
-                <div class="form-group">
-                    <label for="jawaban_c_${i}">Jawaban C</label>
-                    <input type="checkbox" name="jawaban_benar_${i}" value="c" id="jawaban_c_checkbox_${i}" required>
-                    <input type="text" class="form-control" id="jawaban_c_${i}" name="jawaban_c_${i}" required>
-                </div>
-                <div class="form-group">
-                    <label for="jawaban_d_${i}">Jawaban D</label>
-                    <input type="checkbox" name="jawaban_benar_${i}" value="d" id="jawaban_d_checkbox_${i}" required>
-                    <input type="text" class="form-control" id="jawaban_d_${i}" name="jawaban_d_${i}" required>
-                </div>
-                <div class="form-group">
-                    <label for="bobot_nilai_${i}">Bobot Nilai (Max ${maxBobotPerSoal})</label>
-                    <input type="number" class="form-control" id="bobot_nilai_${i}" name="bobot_nilai_${i}" max="${maxBobotPerSoal}" required>
-                </div>
-            `;
-            quizQuestionContainer.appendChild(questionElement);
-
-            // Menambahkan event listener pada input bobot nilai
-            const bobotNilaiInput = document.getElementById(`bobot_nilai_${i}`);
-            bobotNilaiInput.addEventListener('input', function() {
-                // Validasi bobot nilai tidak melebihi maxBobotPerSoal
-                if (parseInt(bobotNilaiInput.value) > maxBobotPerSoal) {
-                    bobotNilaiInput.setCustomValidity(`Bobot tidak bisa lebih dari ${maxBobotPerSoal}`);
-                } else {
-                    bobotNilaiInput.setCustomValidity('');
-                }
-                calculateTotalBobot(); // Hitung dan validasi total bobot setiap kali nilai berubah
-            });
-
-            const answerCheckboxes = [
-                document.getElementById(`jawaban_a_checkbox_${i}`),
-                document.getElementById(`jawaban_b_checkbox_${i}`),
-                document.getElementById(`jawaban_c_checkbox_${i}`),
-                document.getElementById(`jawaban_d_checkbox_${i}`)
-            ];
-
-            answerCheckboxes.forEach(function(checkbox) {
-                checkbox.addEventListener('change', function() {
-                    // Jika checkbox ini dicentang, centang hanya checkbox ini dan nonaktifkan yang lainnya
-                    if (checkbox.checked) {
-                        answerCheckboxes.forEach(function(otherCheckbox) {
-                            if (otherCheckbox !== checkbox) {
-                                otherCheckbox.checked = false; // Uncheck
-                                otherCheckbox.disabled = true; // Nonaktifkan
-                            }
+                        // Menjumlahkan total bobot dan memeriksa apakah ada nilai yang melebihi 100
+                        bobotInputs.forEach(input => {
+                            totalBobot += parseInt(input.value) || 0; // Menambahkan bobot soal, default 0 jika tidak ada nilai
                         });
-                    } else {
-                        // Mengaktifkan kembali checkbox lainnya jika tidak dicentang
-                        answerCheckboxes.forEach(function(otherCheckbox) {
-                            otherCheckbox.disabled = false;
-                        });
+
+                        if (totalBobot > 100) {
+                            isValid = false;
+                        }
+
+                        if (!isValid) {
+                            errorMessage.textContent = 'Jumlah Nilai tidak bisa lebih dari 100';
+                            errorMessage.style.color = 'red';
+                        } else {
+                            errorMessage.textContent = '';
+                        }
+                        return isValid;
                     }
+
+                    // Fungsi untuk membuat soal
+                    createQuizBtn.addEventListener('click', function() {
+                        const totalQuestions = parseInt(jumlahSoalInput.value);
+
+                        if (totalQuestions > 50) {
+                            alert('Jumlah soal tidak boleh lebih dari 50');
+                            jumlahSoalInput.value = 50; // Membatasi jumlah soal maksimal 50
+                            return;
+                        }
+
+                        // Menghapus soal yang sudah ada jika ada
+                        quizQuestionContainer.innerHTML = '';
+
+                        // Menampilkan form soal
+                        quizLayer.style.display = 'block';
+
+                        // Menghitung bobot per soal berdasarkan jumlah soal
+                        const maxBobotPerSoal = Math.floor(100 / totalQuestions);
+
+                        // Membuat soal sesuai jumlah yang diinput
+                        for (let i = 0; i < totalQuestions; i++) {
+                            const questionElement = document.createElement('div');
+                            questionElement.classList.add('question-container');
+                            questionElement.innerHTML = `
+                                <div class="form-group-quiz">
+                                    <label for="soal_${i}">Soal No ${i + 1}</label>
+                                    <input type="text" class="form-control" id="soal_${i}" name="soal_${i}" required>
+                                </div>
+                                <div class="form-group-quiz">
+                                <label>Centang Jawaban Benar Pada Salah Satu Jawaban</label>
+                                    <label for="jawaban_a_${i}">Jawaban A</label>
+                                    <div class="input-wrapper">
+                                        <input type="checkbox" name="jawaban_benar_${i}" value="a" id="jawaban_a_checkbox_${i}" required>
+                                        <input type="text" class="form-control-answer" id="jawaban_a_${i}" name="jawaban_a_${i}" required>
+                                    </div>
+                                </div>
+                                <div class="form-group-quiz">
+                                    <label for="jawaban_b_${i}">Jawaban B</label>
+                                    <div class="input-wrapper">
+                                        <input type="checkbox" name="jawaban_benar_${i}" value="b" id="jawaban_b_checkbox_${i}" required>
+                                        <input type="text" class="form-control-answer" id="jawaban_b_${i}" name="jawaban_b_${i}" required>
+                                    </div>
+                                </div>
+                                <div class="form-group-quiz">
+                                    <label for="jawaban_c_${i}">Jawaban C</label>
+                                    <div class="input-wrapper">
+                                        <input type="checkbox" name="jawaban_benar_${i}" value="c" id="jawaban_c_checkbox_${i}" required>
+                                        <input type="text" class="form-control-answer" id="jawaban_c_${i}" name="jawaban_c_${i}" required>
+                                    </div>
+                                </div>
+                                <div class="form-group-quiz">
+                                    <label for="jawaban_d_${i}">Jawaban D</label>
+                                    <div class="input-wrapper">
+                                        <input type="checkbox" name="jawaban_benar_${i}" value="d" id="jawaban_d_checkbox_${i}" required>
+                                        <input type="text" class="form-control-answer" id="jawaban_d_${i}" name="jawaban_d_${i}" required>
+                                    </div>
+                                </div>
+                                <div class="form-group-quiz">
+                                    <label for="bobot_nilai_${i}">Bobot Nilai (Max ${maxBobotPerSoal})</label>
+                                    <input type="number" class="form-control" id="bobot_nilai_${i}" name="bobot_nilai_${i}" max="${maxBobotPerSoal}" required>
+                                </div>
+                            `;
+                            quizQuestionContainer.appendChild(questionElement);
+
+                            // Menambahkan event listener pada input bobot nilai
+                            const bobotNilaiInput = document.getElementById(`bobot_nilai_${i}`);
+                            bobotNilaiInput.addEventListener('input', function() {
+                                // Validasi bobot nilai tidak melebihi maxBobotPerSoal
+                                if (parseInt(bobotNilaiInput.value) > maxBobotPerSoal) {
+                                    bobotNilaiInput.setCustomValidity(`Bobot tidak bisa lebih dari ${maxBobotPerSoal}`);
+                                } else {
+                                    bobotNilaiInput.setCustomValidity('');
+                                }
+                                calculateTotalBobot(); // Hitung dan validasi total bobot setiap kali nilai berubah
+                            });
+
+                            const answerCheckboxes = [
+                                document.getElementById(`jawaban_a_checkbox_${i}`),
+                                document.getElementById(`jawaban_b_checkbox_${i}`),
+                                document.getElementById(`jawaban_c_checkbox_${i}`),
+                                document.getElementById(`jawaban_d_checkbox_${i}`)
+                            ];
+
+                            answerCheckboxes.forEach(function(checkbox) {
+                                checkbox.addEventListener('change', function() {
+                                    // Jika checkbox ini dicentang, centang hanya checkbox ini dan nonaktifkan yang lainnya
+                                    if (checkbox.checked) {
+                                        answerCheckboxes.forEach(function(otherCheckbox) {
+                                            if (otherCheckbox !== checkbox) {
+                                                otherCheckbox.checked = false; // Uncheck
+                                                otherCheckbox.disabled = true; // Nonaktifkan
+                                            }
+                                        });
+                                    } else {
+                                        // Mengaktifkan kembali checkbox lainnya jika tidak dicentang
+                                        answerCheckboxes.forEach(function(otherCheckbox) {
+                                            otherCheckbox.disabled = false;
+                                        });
+                                    }
+                                });
+                            });
+                        }
+                    });
+
+                    // Ketika tombol "Batal" ditekan
+                    cancelQuizBtn.addEventListener('click', function() {
+                        // Menghapus semua soal yang telah dimasukkan
+                        quizQuestionContainer.innerHTML = '';
+                        // Menyembunyikan form soal dan kembali ke tampilan awal
+                        quizLayer.style.display = 'none';
+                        // Mengosongkan input jumlah soal
+                        jumlahSoalInput.value = '';
+                        // Menghapus pesan error
+                        errorMessage.textContent = '';
+                    });
                 });
-            });
-        }
-    });
-
-    // Ketika tombol "Batal" ditekan
-    cancelQuizBtn.addEventListener('click', function() {
-        // Menghapus semua soal yang telah dimasukkan
-        quizQuestionContainer.innerHTML = '';
-        // Menyembunyikan form soal dan kembali ke tampilan awal
-        quizLayer.style.display = 'none';
-        // Mengosongkan input jumlah soal
-        jumlahSoalInput.value = '';
-        // Menghapus pesan error
-        errorMessage.textContent = '';
-    });
-});
-
             </script>
 
 
