@@ -7,6 +7,25 @@
 	<link rel="stylesheet" href="/assets/css/dashboardadmin.css">
 	<link rel="stylesheet" href="/assets/css/tablestyle.css">
 	<title>Dashboard Guru Page</title>
+	<style>
+		/* Warna tombol "Kembali" */
+		.btn-cancel {
+			background-color: white !important;
+			/* Latar belakang putih */
+			color: black !important;
+			/* Teks hitam */
+			border: 1px solid black !important;
+			/* Garis tepi hitam */
+		}
+
+		/* Warna tombol "Hapus" */
+		.btn-confirm {
+			background-color: #cc183c;
+			/* Latar belakang merah */
+			color: white !important;
+			/* Teks putih */
+		}
+	</style>
 </head>
 
 <body>
@@ -52,7 +71,7 @@
 		<ul class="side-menu">
 			<li>
 				<a href="/logout-guru" class="logout">
-					<i class='bx bxs-log-out-circle'></i>
+					<i class='bx bx-exit bx-flip-horizontal'></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>
@@ -96,7 +115,10 @@
 					<span>Tambah Tugas</span>
 				</a>
 			</div>
-
+			<div class="search-bar-container">
+				<input type="text" id="search-input" placeholder="Cari judul...">
+				<i class='bx bx-search'></i>
+			</div>
 			<div class="table-container">
 				<table class="data-table">
 					<thead>
@@ -122,22 +144,55 @@
 						<?php else: ?>
 							<?php foreach ($data as $row): ?>
 								<tr>
-									<td><?= $no++; ?></td>
-									<td><?= htmlspecialchars($row['nama'] ?? 'Tidak Ditemukan'); ?></td>
-									<td><?= htmlspecialchars($row['kelas'] ?? 'Tidak Ditemukan'); ?></td>
-									<td><?= htmlspecialchars($row['judul_tugas']); ?></td>
+									<td align="center"><?= $no++; ?></td>
+									<td align="center"><?= htmlspecialchars($row['nama'] ?? 'Tidak Ditemukan'); ?></td>
+									<td align="center"><?= htmlspecialchars($row['kelas'] ?? 'Tidak Ditemukan'); ?></td>
+									<td align="center"><?= htmlspecialchars($row['judul_tugas']); ?></td>
 									<td><?= htmlspecialchars($row['deskripsi']); ?></td>
-									<td><?= htmlspecialchars($row['tanggal_tugas']); ?></td>
-									<td><?= htmlspecialchars($row['deadline']); ?></td>
-									<td class="action-buttons">
+									<td align="center"><?= htmlspecialchars($row['tanggal_tugas']); ?></td>
+									<td align="center"><?= htmlspecialchars($row['deadline']); ?></td>
+									<td align="center" class="action-buttons">
 										<a href="/tugas-pembelajaran/update/<?= $row['id']; ?>" class="btn btn-success">
 											<i class='bx bx-edit-alt'></i>
 											<span>Edit</span>
 										</a>
-										<a href="/tugas-pembelajaran/delete/<?= $row['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="btn btn-danger">
+										<a href="#"
+											onclick="confirmDelete('/tugas-pembelajaran/delete/<?= $row['id']; ?>');"
+											class="btn btn-danger">
 											<i class='bx bx-trash'></i>
 											<span>Hapus</span>
 										</a>
+										<script>
+											function confirmDelete(deleteUrl) {
+												swal("Apakah Anda Yakin Ingin Menghapus Data Ini?", {
+														buttons: {
+															cancel: {
+																text: "Kembali",
+																value: null,
+																visible: true,
+																className: "btn-cancel",
+															},
+															confirm: {
+																text: "Hapus",
+																value: true,
+																visible: true,
+																className: "btn-confirm",
+															},
+														},
+													})
+													.then((willDelete) => {
+														if (willDelete) {
+															window.location.href = deleteUrl;
+														} else {
+															swal("Data tidak jadi dihapus!", {
+																icon: "info",
+																timer: 2000,
+																buttons: false,
+															});
+														}
+													});
+											}
+										</script>
 									</td>
 								</tr>
 							<?php endforeach; ?>
@@ -148,7 +203,7 @@
 			</div>
 		</main>
 	</section>
-
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="/assets/js/dashboardguru.js"></script>
 </body>
 

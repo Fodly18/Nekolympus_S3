@@ -52,7 +52,7 @@
 		<ul class="side-menu">
 			<li>
 				<a href="/logout-guru" class="logout">
-					<i class='bx bxs-log-out-circle'></i>
+					<i class='bx bx-exit bx-flip-horizontal' ></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>
@@ -101,7 +101,10 @@
 					</form>
 				</div>
 			</div>
-
+			<div class="search-bar-container">
+				<input type="text" id="search-input" placeholder="Cari judul...">
+				<i class='bx bx-search'></i>
+			</div>
 			<div class="table-container">
 				<table class="data-table">
 					<thead>
@@ -125,11 +128,11 @@
 						<?php else: ?>
 							<?php foreach ($dataTugas as $row): ?>
 								<tr>
-									<td><?= $no++; ?></td>
-									<td><?= htmlspecialchars($row['nama'] ?? 'Tidak Ditemukan'); ?></td>
-									<td><?= htmlspecialchars($row['kelas'] ?? 'Tidak Ditemukan'); ?></td>
-									<td><?= htmlspecialchars($row['tanggal']); ?></td>
-									<td><?= htmlspecialchars($row['grade'] ?? 'Belum Dinilai'); ?></td>
+									<td align="center"><?= $no++; ?></td>
+									<td align="center"><?= htmlspecialchars($row['nama'] ?? 'Tidak Ditemukan'); ?></td>
+									<td align="center"><?= htmlspecialchars($row['kelas'] ?? 'Tidak Ditemukan'); ?></td>
+									<td align="center"><?= htmlspecialchars($row['tanggal']); ?></td>
+									<td align="center"><?= htmlspecialchars($row['grade'] ?? 'Belum Dinilai'); ?></td>
 									<td class="action-buttons">
 										<a href="/pengumpulan-tugas/show/<?= $row['id']; ?>" class="btn btn-success" id="btn-show-tugas">
 											<i class='bx bx-edit-alt'></i>
