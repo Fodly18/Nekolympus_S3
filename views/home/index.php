@@ -18,12 +18,19 @@
     <title>Homepage</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/Homepage.css">
+    <link rel="stylesheet" href="/assets/css/loading.css">
     <link rel="icon" href="/assets/img/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
+
+<!-- Loader Container -->
+<div id="loader">
+    <img src="assets/animation/loading.svg" alt="Loading Animation">
+</div>
+
    <!-- navbar -->
    <nav class="navbar navbar-expand-lg bg-custom">
     <div class="container-fluid">
@@ -369,20 +376,8 @@ console.log('currentIndex:', currentIndex);
 console.log('newsWrapper.offsetWidth:', newsWrapper.offsetWidth);
 
 
-
-function toggleMenu() {
-  const mobileMenu = document.getElementById("mobile-menu");
-  mobileMenu.classList.toggle("active");
-}
-
-function toggleDropdown(menuId, button) {
-  const menu = document.getElementById(menuId);
-  menu.classList.toggle('active');
-  button.classList.toggle('active'); // Menambahkan/menghapus rotasi ikon
-}
-
   </script>
   
-  
+  <script src="/assets/js/satuuntuksemua.js"></script>
 </body>
 </html>

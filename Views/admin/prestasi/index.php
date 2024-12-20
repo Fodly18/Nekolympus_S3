@@ -7,7 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<link rel="icon" href="/assets/img/logo.png" type="image/png">
 	<link rel="stylesheet" href="/assets/css/dashboardberita.css">
-    <link rel="stylesheet" href="/assets/css/tablestyle.css">
 
 	<title>Berita - Dashboard Admin</title>
 </head>
@@ -143,6 +142,20 @@
         <div class="modal-buttons">
             <button id="cancel-button" class="btn btn-cancel">Batal</button>
             <button id="confirm-button" class="btn btn-confirm">Hapus</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Konfirmasi Berhasil ketika sesudah delete -->
+<div id="success-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="success-content">
+            <div class="trash-bin">
+                <div class="lid"></div>
+                <div class="bin"></div>
+                <div class="trash"></div>
+            </div>
+            <p>Data sudah dihapus!</p>
         </div>
     </div>
 </div>

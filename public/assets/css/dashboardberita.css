@@ -840,6 +840,122 @@ button.btn, a.btn {
 		background: #388e3c;
 	}
 	
+/* Modal untuk Sukses */
+.success-content {
+    text-align: center;
+    color: #4caf50;
+    font-family: Arial, sans-serif;
+}
+
+.success-content p {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Modal Container (sama seperti konfirmasi delete) */
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: scaleIn 0.3s ease-in-out;
+}
+
+/* Animasi Scale In */
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Desain Tong Sampah */
+.trash-bin {
+    position: relative;
+    width: 60px;
+    height: 80px;
+    margin: 0 auto;
+    animation: shake 0.8s ease-in-out;
+}
+
+/* Tutup Tong Sampah */
+.trash-bin .lid {
+    position: absolute;
+    width: 70px;
+    height: 10px;
+    background: #555;
+    border-radius: 5px;
+    top: -12px;
+    left: -5px;
+    animation: lid-move 0.8s ease-in-out;
+}
+
+/* Badan Tong Sampah */
+.trash-bin .bin {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    background: #777;
+    border-radius: 0 0 10px 10px;
+    border: 3px solid #555;
+}
+
+/* Sampah */
+.trash-bin .trash {
+    position: absolute;
+    width: 40px;
+    height: 10px;
+    background: #e74c3c;
+    border-radius: 2px;
+    top: 20px;
+    left: 10px;
+    animation: trash-move 0.8s ease-in-out;
+}
+
+/* Animasi Gerakan Tutup */
+@keyframes lid-move {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-15deg);
+    }
+}
+
+/* Animasi Gerakan Tong Sampah */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Animasi Gerakan Sampah */
+@keyframes trash-move {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(60px);
+        opacity: 0;
+    }
+}
+
+
 
 /* Responsive Adjustments */
 @media screen and (max-width: 768px) {

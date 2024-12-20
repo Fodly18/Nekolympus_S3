@@ -1,22 +1,36 @@
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
-allSideMenu.forEach(item=> {
-	const li = item.parentElement;
-
-	item.addEventListener('click', function () {
-		allSideMenu.forEach(i=> {
-			i.parentElement.classList.remove('active');
-		})
-		li.classList.add('active');
-	})
-});
-
-//toggle sidebar
 const menuBar = document.querySelector('#content nav .bx.bx-menu');
 const sidebar = document.getElementById('sidebar');
 
+// Cek kondisi sidebar dari localStorage
+if (localStorage.getItem('sidebar-hide') === 'true') {
+	sidebar.classList.add('hide');
+}
+
+// Toggle sidebar
 menuBar.addEventListener('click', function () {
 	sidebar.classList.toggle('hide');
-})
+
+	// Simpan kondisi sidebar ke localStorage
+	if (sidebar.classList.contains('hide')) {
+		localStorage.setItem('sidebar-hide', 'true');
+	} else {
+		localStorage.setItem('sidebar-hide', 'false');
+	}
+});
+
+// Handle klik menu item
+allSideMenu.forEach(item => {
+	const li = item.parentElement;
+
+	item.addEventListener('click', function () {
+		allSideMenu.forEach(i => {
+			i.parentElement.classList.remove('active');
+		});
+		li.classList.add('active');
+	});
+});
+
 
 
 // Fungsi Dark Mode disimpan di localstorage agar tidak ke reset
@@ -81,17 +95,19 @@ if (searchButton && searchInput && tableRows.length > 0) {
  const modal = document.getElementById('confirmation-modal');
  const confirmButton = document.getElementById('confirm-button');
  const cancelButton = document.getElementById('cancel-button');
+ const successModal = document.getElementById('success-modal');
  let deleteUrl = '';
 
  // Pilih semua tombol hapus
  const deleteButtons = document.querySelectorAll('.delete-button');
 
-deleteButtons.forEach(button => {
- button.addEventListener('click', function (event) {
-     event.preventDefault(); // Cegah aksi default dari <a>
-     deleteUrl = this.href;  // Ambil URL penghapusan
-     modal.classList.remove('hidden'); // Tampilkan modal
- });
+
+ deleteButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+        event.preventDefault(); // Cegah aksi default dari <a>
+        deleteUrl = button.href; // Simpan URL penghapusan
+        modal.classList.remove('hidden'); // Tampilkan modal konfirmasi
+    });
 });
 
 
@@ -103,13 +119,21 @@ deleteButtons.forEach(button => {
  });
 
  // Tombol hapus pada modal
- confirmButton.addEventListener('click', (event) => {
-     event.preventDefault(); // Pastikan tidak ada aksi default
-     if (deleteUrl) {
-         window.location.href = deleteUrl; // Lanjutkan penghapusan
-     }
-     modal.classList.add('hidden'); // Sembunyikan modal
- });
+confirmButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Cegah aksi default
+    modal.classList.add('hidden'); // Sembunyikan modal konfirmasi
+
+    // Tampilkan modal sukses
+    successModal.classList.remove('hidden');
+
+    // Animasi selesai dalam 2 detik, lalu lanjutkan penghapusan
+    setTimeout(() => {
+        successModal.classList.add('hidden'); // Sembunyikan modal sukses
+        if (deleteUrl) {
+            window.location.href = deleteUrl; // Lanjutkan penghapusan
+        }
+    }, 2000); // 2 detik durasi animasi
+});
 
  // Cegah modal menutup jika klik di dalam konten modal
  modal.addEventListener('click', (event) => {

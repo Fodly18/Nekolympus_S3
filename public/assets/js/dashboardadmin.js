@@ -1,22 +1,39 @@
+
 const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
-allSideMenu.forEach(item=> {
-	const li = item.parentElement;
-
-	item.addEventListener('click', function () {
-		allSideMenu.forEach(i=> {
-			i.parentElement.classList.remove('active');
-		})
-		li.classList.add('active');
-	})
-});
-
-//toggle sidebar
 const menuBar = document.querySelector('#content nav .bx.bx-menu');
 const sidebar = document.getElementById('sidebar');
 
+// Cek kondisi sidebar dari localStorage
+if (localStorage.getItem('sidebar-hide') === 'true') {
+	sidebar.classList.add('hide');
+}
+
+// Toggle sidebar
 menuBar.addEventListener('click', function () {
 	sidebar.classList.toggle('hide');
-})
+
+	// Simpan kondisi sidebar ke localStorage
+	if (sidebar.classList.contains('hide')) {
+		localStorage.setItem('sidebar-hide', 'true');
+	} else {
+		localStorage.setItem('sidebar-hide', 'false');
+	}
+});
+
+// Handle klik menu item
+allSideMenu.forEach(item => {
+	const li = item.parentElement;
+
+	item.addEventListener('click', function () {
+		allSideMenu.forEach(i => {
+			i.parentElement.classList.remove('active');
+		});
+		li.classList.add('active');
+	});
+});
+
+
+
 
 // Cek keberadaan elemen-elemen yang berkaitan dengan search bar
 const searchButton = document.querySelector('#content nav form .form-input button');
