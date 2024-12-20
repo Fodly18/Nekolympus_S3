@@ -18,66 +18,65 @@ menuBar.addEventListener('click', function () {
 	sidebar.classList.toggle('hide');
 })
 
-// Cek keberadaan elemen-elemen yang berkaitan dengan search bar
-const searchButton = document.querySelector('#content nav form .form-input button');
-const searchButtonIcon = document.querySelector('#content nav form .form-input button .bx');
-const searchForm = document.querySelector('#content nav form');
 
-if (searchButton && searchButtonIcon && searchForm) {
-    searchButton.addEventListener('click', function (e) {
-        if (window.innerWidth < 576) {
-            e.preventDefault();
-            searchForm.classList.toggle('show');
-            if (searchForm.classList.contains('show')) {
-                searchButtonIcon.classList.replace('bx-search', 'bx-x');
-            } else {
-                searchButtonIcon.classList.replace('bx-x', 'bx-search');
-            }
-        }
-    });
-
-    window.addEventListener('resize', function () {
-        if (window.innerWidth > 576) {
-            searchButtonIcon.classList.replace('bx-x', 'bx-search');
-            searchForm.classList.remove('show');
-        }
-    });
-}
-
-// Fungsi Dark Mode
+// Fungsi Dark Mode disimpan di localstorage agar tidak ke reset
 const switchMode = document.getElementById('switch-mode');
+document.addEventListener('DOMContentLoaded', () => {
+    const darkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
+    if (darkModeEnabled) {
+        document.body.classList.add('dark');
+        switchMode.checked = true; 
+    }
+});
 
 switchMode.addEventListener('change', function () {
     if (this.checked) {
         document.body.classList.add('dark');
+        localStorage.setItem('darkMode', 'enabled'); 
     } else {
         document.body.classList.remove('dark');
+        localStorage.setItem('darkMode', 'disabled'); 
     }
 });
 
-// untuk filter search bar
+
+
+//fungsi search bar
+const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-input');
 const tableRows = document.querySelectorAll('table tbody tr');
 
-searchInput.addEventListener('input', function () {
-    const filter = searchInput.value.toLowerCase();
-    tableRows.forEach(row => {
-        const titleCell = row.querySelector('td:nth-child(2)');
-        const titleText = titleCell 
-            ? titleCell.textContent.toLowerCase().replace('...', '') // Hilangkan "..."
-            : '';
-        
-        // Filter berdasarkan teks input
-        if (titleText.includes(filter)) {
-            row.style.display = ''; // Tampilkan baris
-        } else {
-            row.style.display = 'none'; // Sembunyikan baris
+// Pastikan elemen-elemen ada
+if (searchButton && searchInput && tableRows.length > 0) {
+    // Tambahkan event listener pada tombol search
+    searchButton.addEventListener('click', function () {
+        const filter = searchInput.value.toLowerCase().trim();
+
+        tableRows.forEach(row => {
+            const titleCell = row.querySelector('td:nth-child(2)');
+            const titleText = titleCell 
+                ? titleCell.textContent.toLowerCase().replace('...', '') // Hilangkan "..."
+                : '';
+
+            // Filter berdasarkan teks input
+            if (filter !== '' && titleText.includes(filter)) {
+                row.style.display = ''; // Tampilkan baris
+            } else {
+                row.style.display = 'none'; // Sembunyikan baris
+            }
+        });
+
+        // Tambahkan feedback jika tidak ada hasil pencarian
+        if (!Array.from(tableRows).some(row => row.style.display === '')) {
+            console.log('Tidak ada hasil yang cocok.');
+            alert('Tidak ada hasil yang cocok dengan kata kunci Anda.');
         }
     });
-});
+}
 
 
 
+//buat confimaasi delete pada tabel
  // Pilih elemen modal dan tombol
  const modal = document.getElementById('confirmation-modal');
  const confirmButton = document.getElementById('confirm-button');

@@ -7,6 +7,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<link rel="icon" href="/assets/img/logo.png" type="image/png">
 	<link rel="stylesheet" href="/assets/css/dashboardberita.css">
+    <link rel="stylesheet" href="/assets/css/tablestyle.css">
+
 	<title>Berita - Dashboard Admin</title>
 </head>
 <body>
@@ -27,7 +29,7 @@
             <li>
 				<a href="/Acara_sekolah">
 					<i class='bx bxs-photo-album' ></i>
-					<span class="text">Acara_sekolah</span>
+					<span class="text">Acara sekolah</span>
 				</a>
 			</li>
             <li class="active">
@@ -39,15 +41,8 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
-					<i class='bx bxs-cog'></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
 				<a href="/logout-admin" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-
+					<i class='bx bx-log-out' ></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>
@@ -60,22 +55,12 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu'></i>
-			<a href="#" class="nav-link">Categories</a>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell'></i>
-				<span class="num">8</span>
-			</a>
-			<a href="#" class="profile">
-				<img src="img/people.png">
-			</a>
+		<!-- mode malam -->
+			<div class="dark-mode-switch">
+        <p>Dark Mode</p>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+    </div>
 		</nav>
 		<!-- NAVBAR -->
         <main>
@@ -95,6 +80,12 @@
             <span>Tambah Konten Prestasi</span>
         </a>
     </div>
+
+    <div class="search-bar-container">
+    <i class="bx bx-search"></i>
+    <input type="text" id="search-input" placeholder="Cari judul...">
+    <button type="button" id="search-button">Search</button>
+</div>
 
     <div class="table-container">
     <table class="data-table">
@@ -132,7 +123,7 @@
                             <span>Edit</span>
                         </a>
 						<a href="/Prestasi/delete/<?= urlencode($row['id']); ?>" 
-							class="btn btn-danger btn-delete">
+                        class="btn btn-danger btn-delete delete-button">
 							<i class='bx bx-trash'></i>
 							<span>Hapus</span>
 							</a>
@@ -144,9 +135,20 @@
     </table>
 </div>
 
+<!-- Modal Konfirmasi -->
+<div id="confirmation-modal" class="modal hidden">
+    <div class="modal-content">
+        <h3>Konfirmasi Penghapusan</h3>
+        <p>Apakah Anda yakin ingin menghapus data ini?</p>
+        <div class="modal-buttons">
+            <button id="cancel-button" class="btn btn-cancel">Batal</button>
+            <button id="confirm-button" class="btn btn-confirm">Hapus</button>
+        </div>
+    </div>
+</div>
 
 </main>
 </section>
-<script src="/assets/js/dashboardadmin.js"></script>
+<script src="/assets/js/paket-tabel.js"></script>
 </body>
 </html>

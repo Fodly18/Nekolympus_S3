@@ -27,7 +27,7 @@
             <li>
 				<a href="/Acara_sekolah">
 					<i class='bx bxs-photo-album' ></i>
-					<span class="text">Acara_sekolah</span>
+					<span class="text">Acara sekolah</span>
 				</a>
 			</li>
             <li class="active">
@@ -39,15 +39,8 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
-					<i class='bx bxs-cog'></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-
 				<a href="/logout-admin" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
+					<i class='bx bx-log-out' ></i>
 
 					<span class="text">Logout</span>
 				</a>
@@ -61,22 +54,12 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu'></i>
-			<a href="#" class="nav-link">Categories</a>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell'></i>
-				<span class="num">8</span>
-			</a>
-			<a href="#" class="profile">
-				<img src="img/people.png">
-			</a>
+		<!-- mode malam -->
+			<div class="dark-mode-switch">
+        <p>Dark Mode</p>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+    </div>
 		</nav>
 		<!-- NAVBAR -->
 		<!-- MAIN -->
@@ -106,7 +89,7 @@
 
     <!-- Input Judul -->
     <div class="form-group">
-        <label for="judul">Judul</label>
+        <label for="judul">Judul :</label>
         <input type="text" class="form-control" id="judul" name="judul" required maxlength="255" value="<?= htmlspecialchars($data->judul) ?>">
         <?php if (isset($errors['judul'])): ?>
             <?php foreach ($errors['judul'] as $error): ?>
@@ -117,7 +100,7 @@
 
     <!-- Input Konten -->
     <div class="form-group">
-        <label for="konten">Konten</label>
+        <label for="konten">Konten :</label>
         <textarea class="form-control" id="konten" name="konten" rows="8" required><?= htmlspecialchars($data->konten) ?></textarea>
         <?php if (isset($errors['konten'])): ?>
             <?php foreach ($errors['konten'] as $error): ?>
@@ -128,7 +111,7 @@
 
     <!-- Input Tanggal -->
     <div class="form-group">
-        <label for="tanggal">Tanggal</label>
+        <label for="tanggal">Tanggal :</label>
         <input type="date" class="form-control" id="tanggal" name="tanggal" required value="<?= htmlspecialchars($data->tanggal) ?>">
         <?php if (isset($errors['tanggal'])): ?>
             <?php foreach ($errors['tanggal'] as $error): ?>
@@ -139,11 +122,11 @@
 
     <!-- Upload Foto -->
     <div class="form-group">
-        <label for="img">Upload Foto</label>
+        <label for="img">Upload Foto :</label>
         <input type="file" class="form-control" id="img" name="img" accept="image/*">
         <?php if (!empty($data->img)): ?>
             <br>
-            <p>Foto Saat Ini:</p>
+            <p>Foto Saat Ini :</p>
             <img src="<?= htmlspecialchars($data->img) ?>" alt="Gambar saat ini" style="max-width: 30%; height: auto; margin-top: 10px;">
         <?php else: ?>
             <p style="color: gray;">Tidak ada gambar yang diunggah sebelumnya.</p>
@@ -157,11 +140,11 @@
 
     <!-- Upload Foto Sertifikat -->
     <div class="form-group">
-        <label for="img_sertifikat">Upload Foto Sertifikat</label>
+        <label for="img_sertifikat">Upload Foto Sertifikat :</label>
         <input type="file" class="form-control" id="img_sertifikat" name="img_sertifikat" accept="image/*">
         <?php if (!empty($data->img_sertifikat)): ?>
             <br>
-            <p>Foto Sertifikat Saat Ini:</p>
+            <p>Foto Sertifikat Saat Ini :</p>
             <img src="<?= htmlspecialchars($data->img_sertifikat) ?>" alt="Gambar sertifikat saat ini" style="max-width: 30%; height: auto; margin-top: 10px;">
         <?php else: ?>
             <p style="color: gray;">Tidak ada sertifikat yang diunggah sebelumnya.</p>

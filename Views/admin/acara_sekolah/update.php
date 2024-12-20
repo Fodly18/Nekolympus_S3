@@ -27,7 +27,7 @@
             <li class="active">
 				<a href="/Acara_sekolah">
 					<i class='bx bxs-photo-album' ></i>
-					<span class="text">Acara_sekolah</span>
+					<span class="text">Acara sekolah</span>
 				</a>
 			</li>
 			<li>
@@ -39,16 +39,8 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
-					<i class='bx bxs-cog'></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-
 				<a href="/logout-admin" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-
+					<i class='bx bx-log-out' ></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>
@@ -61,37 +53,27 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu'></i>
-			<a href="#" class="nav-link">Categories</a>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell'></i>
-				<span class="num">8</span>
-			</a>
-			<a href="#" class="profile">
-				<img src="img/people.png">
-			</a>
+		<!-- mode malam -->
+			<div class="dark-mode-switch">
+        <p>Dark Mode</p>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+    </div>
 		</nav>
 		<!-- NAVBAR -->
 		<!-- MAIN -->
 <main>
     <div class="head-title">
         <div class="left">
-            <h1>Edit Acara_sekolah</h1>
+            <h1>Edit Acara sekolah</h1>
             <ul class="breadcrumb">
                 <li><a href="/admin">Dashboard</a></li>
                 <li><i class='bx bx-chevron-right'></i></li>
 				<li><a href="/#">Gallery</a></li>
 				<li><i class='bx bx-chevron-right'></i></li>
-                <li><a href="/Acara_sekolah">Acara_sekolah</a></li>
+                <li><a href="/Acara_sekolah">Acara sekolah</a></li>
                 <li><i class='bx bx-chevron-right'></i></li>
-                <li><a class="active" href="#">Edit Acara_sekolah</a></li>
+                <li><a class="active" href="#">Edit Acara sekolah</a></li>
             </ul>
         </div>
     </div>
@@ -143,7 +125,7 @@
 			<input type="file" class="form-control" id="img" name="img">
 			<?php if (!empty($data->img)): ?>
 				<br>
-				<p>Gambar saat ini:</p>
+				<p class="pgambar">Gambar saat ini:</p>
 				<br>
 				<img src="<?= htmlspecialchars($data->img) ?>" alt="Gambar saat ini" style="max-width: 20%; height: auto; margin-top: 10px;">
 			<?php endif; ?>

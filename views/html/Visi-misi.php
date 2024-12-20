@@ -10,26 +10,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
-  <!-- navbar -->
-  <nav class="navbar navbar-expand-lg bg-custom">
+   <!-- navbar -->
+   <nav class="navbar navbar-expand-lg bg-custom">
     <div class="container-fluid">
       <a class="navbar-brand logo" href="#">
         <img src="assets/img/logo.png" class="logo-img" alt="Logo" />
-
         <div class="header-text">
           <span class="main-text">SDN 1 Kalisat</span>
           <span class="sub-text">Kalisat - Jember</span>
         </div>
       </a>
       <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      class="navbar-toggler"
+      type="button"
+      onclick="toggleMenu()"
+    >
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -42,6 +37,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="profilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Profil
+              <i class="fas fa-chevron-down"></i>
             </a>
             <ul class="dropdown-menu" aria-labelledby="profilDropdown">
               <li><a class="dropdown-item" href="/sejarah">Sejarah</a></li>
@@ -53,6 +49,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="galleryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Gallery
+              <i class="fas fa-chevron-down"></i> 
             </a>
             <ul class="dropdown-menu" aria-labelledby="galleryDropdown">
               <li><a class="dropdown-item" href="/acara_sekolah">Acara Sekolah</a></li>
@@ -73,8 +70,39 @@
     </div>
   </nav>
 
-  </script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+  <!-- navbar mobile -->
+  <div id="mobile-menu" class="offcanvas-menu">
+  <h1><a href="/">Beranda</a></h1>
+  <button class="close-btn" onclick="toggleMenu()">&#10005;</button>
+  <ul class="offcanvas-nav">
+    <!-- Dropdown Profil -->
+    <li>
+    <button class="dropdown-toggle" onclick="toggleDropdown('profil-menu', this)">
+  Profil
+  <i class="fas fa-chevron-down"></i>
+      </button>
+      <ul id="profil-menu" class="dropdown-content">
+        <li><a href="/sejarah">Sejarah</a></li>
+        <li><a href="/Visi-misi">Visi dan Misi</a></li>
+        <li><a href="/strukture-organisasi">Struktur Organisasi</a></li>
+      </ul>
+    </li>
+    <!-- Dropdown Gallery -->
+    <li>
+      <button class="dropdown-toggle" onclick="toggleDropdown('gallery-menu',this)">
+        Gallery
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <ul id="gallery-menu" class="dropdown-content">
+        <li><a href="/acara_sekolah">Acara Sekolah</a></li>
+        <li><a href="/prestasi">Prestasi</a></li>
+      </ul>
+    </li>
+    <li><a href="/berita">Berita</a></li>
+    <li><a href="/ppdb">PPDB</a></li>
+    <li><a href="/kontak">Kontak</a></li>
+  </ul>
+</div>
 
     <!-- Banner  -->
     <div class="banner">
@@ -124,31 +152,33 @@
 <footer class="footer">
   <div class="container">
     <div class="row">
-      <!-- Tentang Kami dengan Logo -->
-      <div class="col-md-4 about-section d-flex">
+      <!-- Logo -->
+      <div class="col-md-3 logo-section">
         <img src="assets/img/logo.png" alt="Logo SDN 1 Kalisat" class="footer-logo">
-        <div>
-          <h5>Tentang Kami</h5>
-          <p>
-            SDN 1 Kalisat adalah sekolah dasar yang berkomitmen untuk memberikan
-            pendidikan terbaik bagi anak-anak. Kami berfokus pada pengembangan
-            karakter dan akademik siswa.
-          </p>
-        </div>
+      </div>
+
+      <!-- Tentang Kami -->
+      <div class="col-md-3 about-section">
+        <h5>Tentang Kami</h5>
+        <p>
+          SDN 1 Kalisat adalah sekolah dasar yang berkomitmen untuk memberikan
+          pendidikan terbaik bagi anak-anak. Kami berfokus pada pengembangan
+          karakter dan akademik siswa.
+        </p>
       </div>
 
       <!-- Kontak -->
-      <div class="col-md-4 kontak">
+      <div class="col-md-3 kontak-section">
         <h5>Kontak</h5>
         <ul>
-          <li>Alamat: Jl. Kalisat No. 1, Jember</li>
-          <li>Telepon: (0331) 123456</li>
-          <li>Email: info@sdn1kalisat.sch.id</li>
+          <li><i class="fas fa-map-marker-alt"></i> Jl. Kalisat No. 1, Jember</li>
+          <li><i class="fas fa-phone"></i> (0331) 123456</li>
+          <li><i class="fas fa-envelope"></i> info@sdn1kalisat.sch.id</li>
         </ul>
       </div>
 
       <!-- Lokasi -->
-      <div class="col-md-4 lokasi">
+      <div class="col-md-3 lokasi-section content-alamat">
         <h5>Alamat</h5>
         <a href="https://www.google.com/maps/search/?api=1&query=SDN+1+Kalisat,+Jember" target="_blank">
           <iframe 
@@ -159,11 +189,25 @@
       </div>
     </div>
 
+    <!-- Sosial Media -->
+    <div class="row mt-4">
+      <div class="col text-center">
+        <h5>Ikuti Kami</h5>
+        <ul class="social-icons">
+          <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+        </ul>
+      </div>
+    </div>
+
     <!-- Copyright -->
     <div class="text-center mt-4">
       <p>&copy; 2024 SDN 1 Kalisat. All rights reserved.</p>
     </div>
   </div>
 </footer>
+<script src="/assets/js/satuuntuksemua.js"></script>
 </body>
 </html>

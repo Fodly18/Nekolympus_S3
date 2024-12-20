@@ -10,11 +10,11 @@
 </head>
 <body>
     <!-- SIDEBAR -->
-    <section id="sidebar">
-        <a href="/admin" class="brand">
-        <img src="/assets/img/logo.png" alt="Logo" class="icon" width="60" height="60">
-            <span class="text">SDN 1 KALISAT</span>
-        </a>
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<img src="/assets/img/logo.png" alt="Logo" class="icon" width="60" height="60">
+			<span class="text">SDN 1 KALISAT</span>
+		</a>
 		<ul class="side-menu top">
 			<li>
 				<a href="/dashboard-admin">
@@ -24,18 +24,18 @@
 			</li>
 			<li>
 				<a href="/guru">
-					<i class='bx bxs-group' ></i>
+					<i class='bx bxs-group'></i>
 					<span class="text">Guru</span>
 				</a>
 			</li>
-			<li class="active">
+			<li  class="active">
 				<a href="/siswa">
-					<i class='bx bxs-group' ></i>
+					<i class='bx bxs-group'></i>
 					<span class="text">Siswa</span>
 				</a>
 			</li>
-            <li>
-				<a href="#">
+			<li>
+				<a href="/Acara_sekolah">
 					<i class='bx bxs-photo-album' ></i>
 					<span class="text">Gallery</span>
 				</a>
@@ -47,7 +47,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/Ppdb">
 					<i class='bx bxs-receipt' ></i>
 					<span class="text">PPDB</span>
 				</a>
@@ -55,38 +55,27 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
-					<i class='bx bxs-cog'></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
 				<a href="/logout-admin" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-
+					<i class='bx bx-log-out'></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>
 		</ul>
-    </section>
+	</section>
 
-    <!-- CONTENT -->
-    <section id="content">
-        <!-- NAVBAR -->
-        <nav>
-            <i class='bx bx-menu'></i>
-            <form action="#">
-                <div class="form-input">
-                    <input type="search" placeholder="Cari siswa...">
-                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-                </div>
-            </form>
-            <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
-            <a href="#" class="profile">
-                <img src="/assets/img/people.png" alt="Profile">
-            </a>
-        </nav>
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu'></i>
+		<!-- mode malam -->
+			<div class="dark-mode-switch">
+        <p>Dark Mode</p>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+            </div>
+		</nav>
+		<!-- NAVBAR -->
 
         <!-- MAIN -->
         <main>

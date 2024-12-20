@@ -27,7 +27,7 @@
             <li>
 				<a href="/Acara_sekolah">
 					<i class='bx bxs-photo-album' ></i>
-					<span class="text">Acara_sekolah</span>
+					<span class="text">Acara sekolah</span>
 				</a>
 			</li>
             <li class="active">
@@ -39,16 +39,8 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#">
-					<i class='bx bxs-cog'></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-
 				<a href="/logout-admin" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-
+					<i class='bx bx-log-out' ></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>
@@ -61,22 +53,12 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu'></i>
-			<a href="#" class="nav-link">Categories</a>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell'></i>
-				<span class="num">8</span>
-			</a>
-			<a href="#" class="profile">
-				<img src="img/people.png">
-			</a>
+		<!-- mode malam -->
+			<div class="dark-mode-switch">
+        <p>Dark Mode</p>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+    </div>
 		</nav>
 		<!-- NAVBAR -->
 		<!-- MAIN -->
@@ -103,7 +85,7 @@
 
     <form action="/Prestasi/create" method="post" id="createForm" onsubmit="return validateForm()" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="judul">Judul</label>
+            <label for="judul">Judul :</label>
             <input type="text" class="form-control" id="judul" name="judul" required maxlength="100" aria-describedby="judulHint">
             <div id="judulHint" class="form-hint">Judul konten Prestasi maksimal 100 karakter</div>
             <?php if (isset($errors['judul'])): ?>
@@ -114,7 +96,7 @@
         </div>
 
         <div class="form-group">
-            <label for="konten">Konten</label>
+            <label for="konten">Konten :</label>
             <textarea class="form-control" id="konten" name="konten" required rows="5" aria-describedby="kontenHint"></textarea>
             <div id="kontenHint" class="form-hint">Masukkan konten Prestasi</div>
             <?php if (isset($errors['konten'])): ?>
@@ -125,7 +107,7 @@
         </div>
 
         <div class="form-group">
-            <label for="tanggal">Tanggal</label>
+            <label for="tanggal">Tanggal :</label>
             <input type="date" class="form-control" id="tanggal" name="tanggal" required aria-describedby="tanggalHint">
             <div id="tanggalHint" class="form-hint">Pilih tanggal Prestasi</div>
             <?php if (isset($errors['tanggal'])): ?>
@@ -136,7 +118,7 @@
         </div>
 
 			<div class="form-group">
-		<label for="img">Foto</label>
+		<label for="img">Upload Foto Juara :</label>
 		<input type="file" class="form-control" id="img" name="img" required aria-describedby="imgHint" accept="image/*">
 		<div id="imgHint" class="form-hint">Upload gambar untuk Prestasi</div>
 		<?php if (isset($errors['img'])): ?>
@@ -147,7 +129,7 @@
 	</div>
 
     <div class="form-group">
-    <label for="img_sertifikat">Foto Sertifikat</label>
+    <label for="img_sertifikat">Upload Foto Sertifikat :</label>
     <input type="file" class="form-control" id="img_sertifikat" name="img_sertifikat" required aria-describedby="imgSertifikatHint" accept="image/*">
     <div id="imgSertifikatHint" class="form-hint">Upload gambar untuk Sertifikat</div>
 		<?php if (isset($errors['img'])): ?>

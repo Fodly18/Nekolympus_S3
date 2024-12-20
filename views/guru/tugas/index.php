@@ -84,12 +84,12 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu'></i>
-			<!-- mode malam -->
+		<!-- mode malam -->
 			<div class="dark-mode-switch">
-				<p>Dark Mode</p>
-				<input type="checkbox" id="switch-mode" hidden>
-				<label for="switch-mode" class="switch-mode"></label>
-			</div>
+        <p>Dark Mode</p>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+    </div>
 		</nav>
 		<!-- NAVBAR -->
 
@@ -109,10 +109,13 @@
 					<span>Tambah Tugas</span>
 				</a>
 			</div>
+
 			<div class="search-bar-container">
+				<i class="bx bx-search"></i>
 				<input type="text" id="search-input" placeholder="Cari judul...">
-				<i class='bx bx-search'></i>
+				<button type="button" id="search-button">Search</button>
 			</div>
+
 			<div class="table-container">
 				<table class="data-table">
 					<thead>
@@ -198,7 +201,7 @@
 		</main>
 	</section>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="/assets/js/dashboardguru.js"></script>
+	<script src="/assets/js/paket-tabel.js"></script>
 </body>
 
 </html>

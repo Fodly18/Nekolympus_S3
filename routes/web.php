@@ -11,10 +11,14 @@ use Nekolympus\Project\controllers\Web\SiswaController;
 use Nekolympus\Project\controllers\Web\LatihanController;
 use Nekolympus\Project\controllers\Web\BeritaController;
 use Nekolympus\Project\controllers\Web\KelasController;
+use Nekolympus\Project\controllers\Web\PpdbController;
 use Nekolympus\Project\controllers\Web\AcaraSekolahController;
 use Nekolympus\Project\controllers\Web\PrestasiController;
+use Nekolympus\Project\controllers\Web\MapelKelasController;
+use Nekolympus\Project\controllers\Web\JadwalController;
 use Nekolympus\Project\core\Middleware;
 use Nekolympus\Project\models\Berita;
+use Nekolympus\Project\models\PPDB;
 
 Route::get('/', HomeController::class, 'index')->middleware(['guest']);
 Route::get('/sejarah', HomeController::class, 'sejarah')->middleware(['guest']);
@@ -76,6 +80,14 @@ Route::get('/Berita/update/{id}', BeritaController::class, 'updateIndex')->middl
 Route::post('/Berita/update', BeritaController::class, 'update')->middleware(['auth', 'admin']);
 Route::get('/Berita/delete/{id}', BeritaController::class, 'delete')->middleware(['auth', 'admin']); 
 
+// Route PPDB
+Route::get('/Ppdb', PpdbController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/Ppdb/create', PpdbController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/Ppdb/create', PPdbController::class, 'create')->  middleware(['auth', 'admin']);
+Route::get('/Ppdb/update/{id}', PpdbController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/Ppdb/update', PpdbController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/Ppdb/delete/{id}', PpdbController::class, 'delete')->middleware(['auth', 'admin']); 
+
 // route prestasi 
 Route::get('/Prestasi', PrestasiController::class, 'index')->middleware(['auth', 'admin']);
 Route::get('/Prestasi/create', PrestasiController::class, 'createIndex')->middleware(['auth', 'admin']);
@@ -130,6 +142,29 @@ Route::get('/kelas/update/{id}', KelasController::class, 'updateIndex')->middlew
 Route::post('/kelas/update', KelasController::class, 'update')->middleware(['auth', 'admin']);
 Route::get('/kelas/delete/{id}', KelasController::class, 'delete')->middleware(['auth', 'admin']);
 
+// Routing untuk PPDB
+Route::get('/Ppdb', PpdbController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/Ppdb/create', PpdbController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/Ppdb/create', PpdbController::class, 'create')->middleware(['auth', 'admin']);
+Route::get('/Ppdb/update/{id}', PpdbController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/Ppdb/update', PPdbController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/Ppdb/delete/{id}', PpdbController::class, 'delete')->middleware(['auth', 'admin']);
+
+// Routing untuk MapelKelas
+Route::get('/mapelkelas', MapelKelasController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/mapelkelas/create', MapelKelasController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/mapelkelas/create', MapelKelasController::class, 'create')->middleware(['auth', 'admin']);
+Route::get('/mapelkelas/update/{id}', MapelKelasController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/mapelkelas/update', MapelKelasController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/mapelkelas/delete/{id}', MapelKelasController::class, 'delete')->middleware(['auth', 'admin']);
+
+// Routing untuk Jadwal
+Route::get('/jadwal', JadwalController::class, 'index')->middleware(['auth', 'admin']);
+Route::get('/jadwal/create', JadwalController::class, 'createIndex')->middleware(['auth', 'admin']);
+Route::post('/jadwal/create', JadwalController::class, 'create')->middleware(['auth', 'admin']);
+Route::get('/jadwal/update/{id}', JadwalController::class, 'updateIndex')->middleware(['auth', 'admin']);
+Route::post('/jadwal/update', JadwalController::class, 'update')->middleware(['auth', 'admin']);
+Route::get('/jadwal/delete/{id}', JadwalController::class, 'delete')->middleware(['auth', 'admin']);
 
 
 
