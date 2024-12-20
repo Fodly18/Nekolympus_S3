@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,7 @@
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-	<a href="#" class="brand">
+		<a href="#" class="brand">
 			<img src="/assets/img/logo.png" alt="Logo" class="icon" width="60" height="60">
 			<span class="text">SDN 1 KALISAT</span>
 		</a>
