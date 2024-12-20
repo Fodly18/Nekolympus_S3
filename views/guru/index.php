@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-
+use Nekolympus\Project\core\DB;
 use Nekolympus\Project\models\LatihanSoal;
 use Nekolympus\Project\models\Tugas;
 
-$totalLatsol = LatihanSoal::count();
-$totalTugas = Tugas::count();
+$guruId = $_SESSION['auth'] ?? null;
+$GuruName = 'Bapak/Ibu Guru';
 
+if ($guruId) {
+    $guru = DB::table('guru')->where('id', '=', $guruId)->first();
+    if ($guru && isset($guru['nama'])) {
+        $guruName = trim($guru['nama']);
+    }
+}
 
-$currentDate = date('l, d F Y');
-$currentTime = date('H:i:s');
+	$totalLatsol = LatihanSoal::count();
+	$totalTugas = Tugas::count();
+	?>
 
-?>
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link rel="icon" href="/assets/img/logo.png" type="image/png">
 	<link rel="stylesheet" href="/assets/css/dashboardadmin.css">
-	<title>Dashboard Guru Page</title>
+	<title>Dashboard Admin Page</title>
 </head>
 
 <body>
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-	<a href="#" class="brand">
+		<a href="#" class="brand">
 			<img src="/assets/img/logo.png" alt="Logo" class="icon" width="60" height="60">
 			<span class="text">SDN 1 KALISAT</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+			<li  class="active">
 				<a href="/dashboard-guru">
 					<i class='bx bxs-dashboard'></i>
 					<span class="text">Dashboard</span>
@@ -65,33 +73,34 @@ $currentTime = date('H:i:s');
 		<ul class="side-menu">
 			<li>
 				<a href="/logout-guru" class="logout">
-				<i class='bx bx-exit bx-flip-horizontal'></i>
+					<i class='bx bx-exit bx-flip-horizontal'></i>
 					<span class="text">Logout</span>
 				</a>
 			</li>
 		</ul>
 	</section>
-	<!-- SIDEBAR -->
+
 
 	<!-- CONTENT -->
 	<section id="content">
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu'></i>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="profile">
-				<a href="/settings" class="profile">
-					<img src="img/people.png">
-				</a>
+			<!-- Ucapan Selamat Datang -->
+			<div class="welcome-message">
+            <p>Selamat Datang, <strong><?php echo htmlspecialchars($guruName); ?></strong></p>
+        </div>
+
+		<!-- mode malam -->
+			<div class="dark-mode-switch">
+        <p>Dark Mode</p>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+    </div>
 		</nav>
 		<!-- NAVBAR -->
+
+
 
 		<!-- MAIN -->
 		<main>
@@ -100,7 +109,7 @@ $currentTime = date('H:i:s');
 					<h1>Dashboard</h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Dashboard</a>
+							<a href="/dashboard-admin">Dashboard</a>
 						</li>
 						<li><i class='bx bx-chevron-right'></i></li>
 						<li>
@@ -108,8 +117,14 @@ $currentTime = date('H:i:s');
 						</li>
 					</ul>
 				</div>
+				<div class="clock-container">
+					<div class="clock" id="clock">
+						<?php
+						echo date("H:i:s"); // Menampilkan waktu server
+						?>
+					</div>
+				</div>
 			</div>
-
 			<ul class="box-info">
 				<li>
 					<i class='bx bxs-calendar-check'></i>
@@ -125,14 +140,9 @@ $currentTime = date('H:i:s');
 						<h3><?= htmlspecialchars($totalLatsol, ENT_QUOTES, 'UTF-8'); ?></h3>
 					</span>
 				</li>
-				<li>
-					<i class='bx bxs-time-five'></i>
-					<span class="text">
-						<h3 id="current-time"></h3>
-						<p id="current-date"></p>
-					</span>
-				</li>
 			</ul>
+
+
 			<div class="table-data">
 				<div class="todo">
 					<div class="head">
@@ -230,8 +240,11 @@ $currentTime = date('H:i:s');
 		</main>
 		<!-- MAIN -->
 	</section>
+	<!-- CONTENT -->
 
-	<script src="/assets/js/dashboardguru.js"></script>
+	<script src="/assets/js/dashboardadmin.js"></script>
+	<script src="/assets/js/line-cart.js"></script>
+
 </body>
 
 </html>

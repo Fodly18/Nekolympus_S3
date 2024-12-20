@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" href="/assets/css/dashboardadmin.css">
-	<link rel="stylesheet" href="/assets/css/tablestyle.css">
+	<link rel="stylesheet" href="/assets/css/dashboardberita.css">
 	<title>Dashboard Guru Page</title>
 	<style>
 		/* Warna tombol "Kembali" */
@@ -32,7 +32,7 @@
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-	<a href="#" class="brand">
+		<a href="#" class="brand">
 			<img src="/assets/img/logo.png" alt="Logo" class="icon" width="60" height="60">
 			<span class="text">SDN 1 KALISAT</span>
 		</a>
@@ -84,18 +84,12 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu'></i>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="profile">
-				<a href="/settings" class="profile">
-					<img src="img/people.png">
-				</a>
+			<!-- mode malam -->
+			<div class="dark-mode-switch">
+				<p>Dark Mode</p>
+				<input type="checkbox" id="switch-mode" hidden>
+				<label for="switch-mode" class="switch-mode"></label>
+			</div>
 		</nav>
 		<!-- NAVBAR -->
 

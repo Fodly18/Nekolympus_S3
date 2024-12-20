@@ -5,8 +5,51 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" href="/assets/css/dashboardadmin.css">
-	<link rel="stylesheet" href="/assets/css/tablestyle.css">
+	<link rel="stylesheet" href="/assets/css/dashboardberita.css">
+	<style>
+		.select {
+			display: inline-block;
+			width: auto;
+			min-width: 600px;
+			align-items: center;
+			justify-content: center;
+			margin-top: 10px;
+			padding: 8px 12px;
+			color: #333;
+			background-color: #eee;
+			border: 2px solid #bbb;
+			cursor: pointer;
+			border-radius: 5px;
+			font-size: 14px;
+			text-align: left;
+			text-align-last: center;
+			transition: border-color 0.3s ease;
+		}
+
+		.select:focus,
+		.select:hover {
+			outline: none;
+			border: 2px solid #169dea;
+		}
+
+		.select option {
+			background: #fff;
+			color: #333;
+			padding: 4px;
+			text-align: left;
+		}
+
+		.btn-select {
+			margin-left: 16px;
+			padding: 8px 12px;
+			color: #eee;
+			background-color: #169dea;
+			font-size: 14px;
+			cursor: pointer;
+			border: 2px solid #169dea;
+			border-radius: 10px;
+		}
+	</style>
 	<title>Dashboard Guru Page</title>
 </head>
 
@@ -65,18 +108,12 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu'></i>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-				</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="profile">
-				<a href="/settings" class="profile">
-					<img src="img/people.png">
-				</a>
+			<!-- mode malam -->
+			<div class="dark-mode-switch">
+				<p>Dark Mode</p>
+				<input type="checkbox" id="switch-mode" hidden>
+				<label for="switch-mode" class="switch-mode"></label>
+			</div>
 		</nav>
 		<!-- NAVBAR -->
 
@@ -102,8 +139,9 @@
 				</div>
 			</div>
 			<div class="search-bar-container">
+				<i class="bx bx-search"></i>
 				<input type="text" id="search-input" placeholder="Cari judul...">
-				<i class='bx bx-search'></i>
+				<button type="button" id="search-button">Search</button>
 			</div>
 			<div class="table-container">
 				<table class="data-table">
@@ -148,6 +186,7 @@
 		</main>
 	</section>
 	<script src="/assets/js/dashboardguru.js"></script>
+	<script src="/assets/js/paket-tabel.js"></script>
 </body>
 
 </html>
