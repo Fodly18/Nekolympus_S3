@@ -63,7 +63,8 @@
 			</li>
 			<li>
 				<a href="/penilaian-latihan-soal">
-					<i class='bx bx-task'></i>
+			
+				<i class='bx bx-task'></i>
 					<span class="text">Penilaian Latihan Soal</span>
 				</a>
 			</li>
