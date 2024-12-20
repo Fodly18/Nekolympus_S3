@@ -5,66 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/assets/css/dataguruadmin.css">
-    <link rel="stylesheet" href="/assets/css/dashboardadmin.css">
+    <link rel="stylesheet" href="/assets/css/dashboardberita.css">
     <title>Tambah Tugas - Dashboard Guru</title>
-    <style>
-        .form-container {
-            background: var(--light);
-            padding: 24px;
-            border-radius: 20px;
-            margin-top: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid var(--grey);
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .error-message {
-            color: var(--red);
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-
-        .btn-container {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .form-hint {
-            font-size: 0.75rem;
-            color: var(--dark-grey);
-            margin-top: 0.25rem;
-        }
-
-        .invalid-feedback {
-            display: none;
-            color: var(--red);
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-
-        .form-control:invalid~.invalid-feedback {
-            display: block;
-        }
-    </style>
 </head>
 
 <body>
@@ -120,19 +62,14 @@
     <section id="content">
         <!-- NAVBAR -->
         <nav>
-            <i class='bx bx-menu'></i>
-            <form action="#">
-                <div class="form-input">
-                    <input type="search" placeholder="Cari...">
-                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-                </div>
-            </form>
-            <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
-            <a href="#" class="profile">
-                <img src="/assets/img/people.png" alt="Profile">
-            </a>
-        </nav>
+			<i class='bx bx-menu'></i>
+		<!-- mode malam -->
+			<div class="dark-mode-switch">
+        <p>Dark Mode</p>
+        <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label>
+    </div>
+		</nav>
 
         <!-- MAIN -->
         <main>

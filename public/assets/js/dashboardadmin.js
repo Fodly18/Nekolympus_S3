@@ -44,14 +44,23 @@ if (searchButton && searchButtonIcon && searchForm) {
     });
 }
 
-// Fungsi Dark Mode
+// Fungsi Dark Mode disimpan di localstorage agar tidak ke reset
 const switchMode = document.getElementById('switch-mode');
+document.addEventListener('DOMContentLoaded', () => {
+    const darkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
+    if (darkModeEnabled) {
+        document.body.classList.add('dark');
+        switchMode.checked = true; 
+    }
+});
 
 switchMode.addEventListener('change', function () {
     if (this.checked) {
         document.body.classList.add('dark');
+        localStorage.setItem('darkMode', 'enabled'); 
     } else {
         document.body.classList.remove('dark');
+        localStorage.setItem('darkMode', 'disabled'); 
     }
 });
 

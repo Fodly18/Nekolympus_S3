@@ -60,7 +60,7 @@ class TugasController extends Controller
                 ->where('mapel_kelas.id_guru', '=', $idGuru)
                 ->get();
 
-        var_dump($id);
+
         $data = DB::table('tugas')
                 ->join('mapel_kelas', 'tugas.id_mapel_kelas', '=', 'mapel_kelas.id')
                 ->join('mapel', 'mapel_kelas.id_mapel', '=', 'mapel.id')

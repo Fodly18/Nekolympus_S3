@@ -81,9 +81,11 @@
     </div>
 
 	<div class="search-bar-container">
-	<input type="text" id="search-input" placeholder="Cari judul...">
-		<i class='bx bx-search'></i>
-	</div>
+    <i class="bx bx-search"></i>
+    <input type="text" id="search-input" placeholder="Cari judul...">
+    <button type="button" id="search-button">Search</button>
+</div>
+
     <div class="table-container">
     <table class="data-table">
         <thead>
@@ -141,99 +143,6 @@
         </div>
     </div>
 </div>
-<style>
-	/* Modal Overlay */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-/* Sembunyikan modal secara default */
-.hidden {
-    display: none;
-}
-
-/* Konten Modal */
-.modal-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: scaleIn 0.3s ease-in-out;
-}
-
-/* Animasi Scale In */
-@keyframes scaleIn {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Modal Heading */
-.modal-content h3 {
-    margin-bottom: 10px;
-    font-size: 20px;
-    color: #333;
-}
-
-/* Modal Paragraph */
-.modal-content p {
-    margin-bottom: 20px;
-    font-size: 16px;
-    color: #555;
-}
-
-/* Tombol Modal */
-.modal-buttons {
-    display: flex;
-    justify-content: space-around;
-}
-
-.modal-buttons .btn {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    transition: all 0.3s ease;
-}
-
-/* Tombol Batal */
-.modal-buttons .btn-cancel {
-    background: #f44336;
-    color: #fff;
-}
-
-.modal-buttons .btn-cancel:hover {
-    background: #d32f2f;
-}
-
-/* Tombol Hapus */
-.modal-buttons .btn-confirm {
-    background: #4caf50;
-    color: #fff;
-}
-
-.modal-buttons .btn-confirm:hover {
-    background: #388e3c;
-}
-
-</style>
 
 
 </main>
