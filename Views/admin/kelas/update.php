@@ -105,7 +105,8 @@
                     <div class="form-group">
                         <label for="nama">Nama Kelas</label>
                         <input type="text" class="form-control" id="kelas" name="kelas" required 
-                               maxlength="2" value="<?= htmlspecialchars($data->kelas) ?>">
+                               maxlength="2" aria-describedby="namaHint">
+                        <div id="namaHint" class="form-hint">Masukkan nama kelas</div>
                         <?php if (isset($errors['kelas'])): ?>
                             <?php foreach ($errors['kelas'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -113,6 +114,18 @@
                         <?php endif; ?>
                     </div>
 
+                    <div class="form-group">
+                        <label for="guru">Guru</label>
+                        <select class="form-control" id="guru" name="guru" required>
+                            <option value="" disabled selected>-- Pilih Guru --</option>
+                            <?php foreach ($data as $row): ?>
+                                <option value="<?= htmlspecialchars($row['id']); ?>">
+                                    <?= htmlspecialchars($row['guru']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        </div>
+                        
                     <div class="btn-container">
                         <button type="submit" class="btn btn-primary">
                             <i class='bx bx-save'></i>

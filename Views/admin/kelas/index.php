@@ -6,7 +6,7 @@
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/dataguruadmin.css">
     <link rel="stylesheet" href="/assets/css/dashboardadmin.css">
-    <title>Data Guru - Admin Dashboard</title>
+    <title>Data Kelas - Admin Dashboard</title>
 </head>
 <body>
     <!-- SIDEBAR -->
@@ -81,7 +81,7 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Data Guru</h1>
+                    <h1>Data Kelas</h1>
                     <ul class="breadcrumb">
                         <li><a href="/admin">Dashboard</a></li>
                         <li><i class='bx bx-chevron-right'></i></li>
@@ -100,6 +100,7 @@
                         <tr>
                             <th>No</th>
                             <th>Kelas</th>
+                            <th>guru</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -116,6 +117,7 @@
                                 <tr>
                                     <td><?= $no++; ?></td>
                                     <td><?= htmlspecialchars($row['kelas']); ?></td>
+                                    <td><?= htmlspecialchars($row['guru']); ?></td>
                                     <td class="action-buttons">
                                         <a href="/kelas/update/<?= $row['id']; ?>" class="btn btn-success">
                                             <i class='bx bx-edit-alt'></i>

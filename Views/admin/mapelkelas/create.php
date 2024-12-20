@@ -101,66 +101,52 @@
 
         <form action="/mapelkelas/create" method="post" id="createForm">
             <div class="form-group">
-                <label for="id_mapel">Mata Pelajaran</label>
-                <select class="form-control" id="id_mapel" name="id_mapel" required>
-                    <option value="" disabled selected>Pilih Mata Pelajaran</option>
-                    <?php foreach ($mapel as $item): ?>
-                        <option value="<?= htmlspecialchars($item->id) ?>">
-                            <?= htmlspecialchars($item->nama) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <?php if (isset($errors['id_mapel'])): ?>
-                    <?php foreach ($errors['id_mapel'] as $error): ?>
-                        <div class="error-message"><?= htmlspecialchars($error) ?></div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+            <label for="nama">Mata Pelajaran</label>
+            <select class="form-control" id="nama" name="nama" required>
+                <option value="" disabled selected>-- Pilih Mata Pelajaran --</option>
+                <?php foreach ($data as $row): ?>
+                    <option value="<?= htmlspecialchars($row['id']); ?>">
+                        <?= htmlspecialchars($row['nama']); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
             </div>
 
             <div class="form-group">
-                <label for="id_kelas">Kelas</label>
-                <select class="form-control" id="id_kelas" name="id_kelas" required>
-                    <option value="" disabled selected>Pilih Kelas</option>
-                    <?php foreach ($kelas as $item): ?>
-                        <option value="<?= htmlspecialchars($item->id) ?>">
-                            <?= htmlspecialchars($item->nama) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <?php if (isset($errors['id_kelas'])): ?>
-                    <?php foreach ($errors['id_kelas'] as $error): ?>
-                        <div class="error-message"><?= htmlspecialchars($error) ?></div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+            <label for="guru">Guru</label>
+            <select class="form-control" id="guru" name="guru" required>
+                <option value="" disabled selected>-- Pilih Guru --</option>
+                <?php foreach ($data as $row): ?>
+                    <option value="<?= htmlspecialchars($row['id']); ?>">
+                        <?= htmlspecialchars($row['guru']); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
             </div>
 
             <div class="form-group">
-                <label for="id_guru">Guru</label>
-                <select class="form-control" id="id_guru" name="id_guru" required>
-                    <option value="" disabled selected>Pilih Guru</option>
-                    <?php foreach ($guru as $item): ?>
-                        <option value="<?= htmlspecialchars($item->id) ?>">
-                            <?= htmlspecialchars($item->nama) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <?php if (isset($errors['id_guru'])): ?>
-                    <?php foreach ($errors['id_guru'] as $error): ?>
-                        <div class="error-message"><?= htmlspecialchars($error) ?></div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+            <label for="kelas">Kelas</label>
+            <select class="form-control" id="kelas" name="kelas" required>
+                <option value="" disabled selected>-- Pilih Kelas --</option>
+                <?php foreach ($data as $row): ?>
+                    <option value="<?= htmlspecialchars($row['id']); ?>">
+                        <?= htmlspecialchars($row['kelas']); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
             </div>
 
-            <div class="btn-container">
-                <button type="submit" class="btn btn-primary">
-                    <i class='bx bx-save'></i>
-                    <span>Simpan</span>
-                </button>
-                <a href="/mapelkelas" class="btn btn-danger">
-                    <i class='bx bx-x'></i>
-                    <span>Batal</span>
-                </a>
-            </div>
+
+    <div class="btn-container">
+        <button type="submit" class="btn btn-primary">
+            <i class='bx bx-save'></i>
+            <span>Simpan</span>
+        </button>
+        <a href="/mapelkelas" class="btn btn-danger">
+            <i class='bx bx-x'></i>
+            <span>Batal</span>
+        </a>
+    </div>
         </form>
     </div>
 </main>

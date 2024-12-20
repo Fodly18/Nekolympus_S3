@@ -11,32 +11,39 @@ class KelasController extends Controller
 {
     public function index()
     {
-        $data = Kelas::all();
-        foreach ($data as $kelas) {
-            if (is_object($kelas)) {
-                $kelas->guru = $kelas->guru(); // Fetch the associated guru
-                // Debugging output to check id_guru
-                error_log("Kelas ID: {$kelas->id}, id_guru: {$kelas->id_guru}");
-            }
-        }
-        return $this->view('admin.kelas.index', ['data' => $data, 'no' => 1]);
+        $data = DB::table('kelas')
+        ->join('guru', 'kelas.id_guru', '=', 'guru.id')
+        ->select([
+            'kelas.id',
+            'kelas.kelas',
+            'guru.nama as guru'
+        ])
+        ->get();
+
+        return $this->view('admin.kelas.index', ['data' => $data]);
     }
 
     public function createIndex()
     {
+        $data = DB::table('kelas')
+        ->join('guru', 'kelas.id_guru', '=', 'guru.id')
+        ->select([
+            'kelas.id',
+            'kelas.kelas',
+            'guru.nama as guru'
+        ])
+        ->get();
+
+            return $this->view('admin.kelas.create', ['data' => $data]);
+
         return $this->view('admin.kelas.create');
     }
 
     public function create(Request $request)
     {
-        if(!$request->validate([
-            'kelas' => 'required'
-        ])) {
-            return $this->view('admin.kelas.create', ['errors' => $request->getErrors()]);
-        }
-
-        Kelas::create([
-            'kelas' => $request->input('kelas')
+        $Kelas = Kelas::create([
+            'kelas' => $request->input('kelas'),
+            'id_guru' => $request->input('guru_id')
         ]);
 
         return $this->redirect('/kelas');
@@ -44,22 +51,25 @@ class KelasController extends Controller
 
     public function updateIndex($id)
     {
-        $data = Kelas::where('id', '=', $id)->first();
-        $guruList = DB::table('guru')->get(); // Fetch all guru for the dropdown
-        return $this->view('admin.kelas.update', ['data' => $data]);
+        $data = DB::table('kelas')
+        ->join('guru', 'kelas.id_guru', '=', 'guru.id')
+        ->select([
+            'kelas.id',
+            'kelas.kelas',
+            'guru.nama as guru'
+        ])
+        ->get();
+
+            return $this->view('admin.kelas.create', ['data' => $data]);
+
+        return $this->view('admin.kelas.update');
     }
 
     public function update(Request $request)
     {
-        if(!$request->validate([
-            'kelas' => 'required'
-        ])) {
-            return $this->view('admin.kelas.update', ['errors' => $request->getErrors()]);
-        }
-
-        Kelas::update($request->input('id'), [
+        $kelas = Kelas::update($request->input('id'), [
             'kelas' => $request->input('kelas'),
-            'id_guru' => $request->input('guru_id'), // Update the guru ID
+            'id_guru' => $request->input('guru_id')
         ]);
 
         return $this->redirect('/kelas');
