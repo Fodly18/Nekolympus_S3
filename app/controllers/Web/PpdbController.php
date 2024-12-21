@@ -38,6 +38,17 @@ class PpdbController extends Controller
     {
         return $this->view('admin.Ppdb.create');
     }
+    public function updateIndex($id)
+    {
+        $ppdb = PPDB::where('id', '=', $id)->first();
+
+        if (!$ppdb) {
+            die("Error: Data dengan ID $id tidak ditemukan.");
+        }
+        return $this->view('admin.Ppdb.update', ['data' => $ppdb]);
+    }
+
+
 
     public function create(Request $request)
     {
@@ -115,18 +126,16 @@ class PpdbController extends Controller
     
 
 
-
-    public function updateIndex()
-    {
-        return $this->view('admin.Ppdb.update');
-    }
-
     public function update(Request $request)
 {
     $id = $request->input('id');
     $tgl_mulai = $request->input('tanggal_mulai');
     $tgl_selesai = $request->input('tanggal_selesai');
     $uploadedposter = $_FILES['img'] ?? null;
+
+    if (empty($tgl_mulai) || empty($tgl_selesai)) {
+        die("Error: Tanggal mulai dan tanggal selesai wajib diisi.");
+    }
 
     $tgl_mulai = date('Y-m-d', strtotime($tgl_mulai));
     $tgl_selesai = date('Y-m-d', strtotime($tgl_selesai));
@@ -145,7 +154,13 @@ class PpdbController extends Controller
         die("Error: Data dengan ID $id tidak ditemukan.");
     }
 
-    $filePath = $ppdb->img; // Default ke gambar lama
+    // Konversi ke object jika perlu
+    if (is_array($ppdb)) {
+        $ppdb = (object)$ppdb;
+    }
+
+    $filePath = isset($ppdb->img) && !empty($ppdb->img) ? $ppdb->img : '/path/to/default.jpg';
+
     if ($uploadedposter && $uploadedposter['error'] === UPLOAD_ERR_OK) {
         $allowedExtensions = ['jpg', 'jpeg', 'png'];
         $fileExtension = pathinfo($uploadedposter['name'], PATHINFO_EXTENSION);
@@ -185,12 +200,15 @@ class PpdbController extends Controller
     PPDB::update($id, [
         'tanggal_mulai' => $tgl_mulai,
         'tanggal_selesai' => $tgl_selesai,
-        'img' => $filePath,
+        'img' => $filePath ?? '/path/to/default.jpg',
         'status' => $status,
     ]);
 
     return $this->redirect('/Ppdb')->with('success', 'Data berhasil diperbarui');
 }
+
+    
+    
 
 
     public function delete($id)

@@ -98,30 +98,30 @@
 			</div>
 
 			<div class="form-container">
-    <?php if (isset($errors['system'])): ?>
-        <div class="warning-message mb-3">
-            <?= htmlspecialchars($errors['system'][0]) ?>
-        </div>
-    <?php endif; ?>
-
     <form action="/Ppdb/update" method="post" id="updateForm" onsubmit="return validateForm()" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= htmlspecialchars($data->id ?? '') ?>">
 
         <!-- Tanggal Mulai -->
         <div class="form-group">
             <label for="tanggal_mulai">Tanggal Mulai:</label>
-            <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai" required value="<?= htmlspecialchars($data->tanggal_mulai ?? '') ?>">
+            <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai" required 
+                   value="<?= htmlspecialchars($data->tanggal_mulai ?? '') ?>">
             <?php if (isset($errors['tanggal_mulai'])): ?>
-                <div class="error-message"><?= htmlspecialchars(implode(', ', $errors['tanggal_mulai'])) ?></div>
+                <?php foreach ($errors['tanggal_mulai'] as $error): ?>
+                    <div class="error-message"><?= htmlspecialchars($error) ?></div>
+                <?php endforeach; ?>
             <?php endif; ?>
         </div>
 
         <!-- Tanggal Selesai -->
         <div class="form-group">
             <label for="tanggal_selesai">Tanggal Selesai:</label>
-            <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai" required value="<?= htmlspecialchars($data->tanggal_selesai ?? '') ?>">
+            <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai" required 
+                   value="<?= htmlspecialchars($data->tanggal_selesai ?? '') ?>">
             <?php if (isset($errors['tanggal_selesai'])): ?>
-                <div class="error-message"><?= htmlspecialchars(implode(', ', $errors['tanggal_selesai'])) ?></div>
+                <?php foreach ($errors['tanggal_selesai'] as $error): ?>
+                    <div class="error-message"><?= htmlspecialchars($error) ?></div>
+                <?php endforeach; ?>
             <?php endif; ?>
         </div>
 
@@ -132,9 +132,6 @@
             <?php if (!empty($data->img)): ?>
                 <p>Gambar saat ini:</p>
                 <img src="<?= htmlspecialchars($data->img ?? '') ?>" alt="Gambar saat ini" style="max-width: 20%; height: auto; margin-top: 10px;">
-            <?php endif; ?>
-            <?php if (isset($errors['img'])): ?>
-                <div class="error-message"><?= htmlspecialchars(implode(', ', $errors['img'])) ?></div>
             <?php endif; ?>
         </div>
 
@@ -151,6 +148,8 @@
         </div>
     </form>
 </div>
+
+
 
 	<!-- CONTENT -->
 	<script src="/assets/js/paket-tabel.js"></script>
