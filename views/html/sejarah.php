@@ -111,7 +111,6 @@
 
     <!-- Banner  -->
     <div class="banner">
-
         <img class="banner-jpg" src="/assets/img/banner-sejarah.jpg" alt="Banner JPG">
     </div>
 

@@ -373,6 +373,25 @@ nav ul li a:hover {
     object-fit: cover; /* Mengisi seluruh kontainer dengan proporsi yang benar */
 }
 
+
+
+.text-muted {
+  font-size: 18px; /* Ukuran teks */
+  color: #6c757d; /* Warna abu-abu lembut */
+  margin-top: 20px;
+  font-style: italic; /* Memberikan gaya miring untuk estetika */
+}
+
+.no-achievements-message {
+  text-align: center; /* Pusatkan teks */
+  padding: 40px 0; /* Ruang vertikal */
+  background-color: #f9f9f9; /* Latar belakang abu terang */
+  border: 2px dashed #ddd; /* Garis putus-putus untuk menarik perhatian */
+  border-radius: 10px; /* Sudut melengkung */
+}
+
+
+
 /* Container dan Header */
 #gallery {
   padding: 2rem 0;

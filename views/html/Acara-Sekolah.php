@@ -112,7 +112,7 @@
 
     <!-- Banner  -->
     <div class="banner">
-        <img class="banner-jpg" src="/assets/img/bnn.jpeg" alt="Banner JPG">
+        <img class="banner-jpg" src="/assets/img/banner-galeri.jpg" alt="Banner JPG">
     </div>
 
     <?php
@@ -137,38 +137,46 @@ $currentEvents = array_slice($acara_sekolah, $offset, $eventsPerPage);
 
 <section id="gallery">
     <div class="container">
-        <h2 class="text-center mb-4">Galeri Kegiatan</h2>
+    <h2 class="text-center mb-4">Galeri Kegiatan</h2>
         <div class="row">
-            <?php foreach ($currentEvents as $item): ?>
-                <div class="col-md-4 mb-4">
-                    <div class="card gallery-card" data-src="<?= htmlspecialchars($item['id']); ?>">
-                        <img src="<?= htmlspecialchars($item['img'] ?? '/path/to/default.jpg'); ?>" alt="gambar" class="news-img">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($item['judul']); ?></h5>
-                            <p class="card-text"><?= htmlspecialchars($item['konten']); ?></p>
-                            <p class="card-date text-muted">Dibuat pada: <?= htmlspecialchars($item['tanggal']); ?></p>
+            <?php if (empty($currentEvents)): ?>
+              <div class="col-12 text-center no-gallery-message">
+                <p class="text-muted">Belum ada foto galeri.</p>
+              </div>
+            <?php else: ?>
+                <?php foreach ($currentEvents as $item): ?>
+                    <div class="col-md-4 mb-4">
+                        <div class="card gallery-card" data-src="<?= htmlspecialchars($item['id']); ?>">
+                            <img src="<?= htmlspecialchars($item['img'] ?? '/path/to/default.jpg'); ?>" alt="gambar" class="news-img">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= htmlspecialchars($item['judul']); ?></h5>
+                                <p class="card-text"><?= htmlspecialchars($item['konten']); ?></p>
+                                <p class="card-date text-muted">Dibuat pada: <?= htmlspecialchars($item['tanggal']); ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
 
         <!-- Pagination -->
-        <div class="pagination">
-            <?php if ($currentPage > 1): ?>
-                <a href="?page=<?= $currentPage - 1; ?>" class="prev-btn">Sebelumnya</a>
-            <?php endif; ?>
+        <?php if ($totalPages > 1): ?>
+            <div class="pagination">
+                <?php if ($currentPage > 1): ?>
+                    <a href="?page=<?= $currentPage - 1; ?>" class="prev-btn">Sebelumnya</a>
+                <?php endif; ?>
 
-            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <a href="?page=<?= $i; ?>" class="page-btn <?= $i === $currentPage ? 'active' : ''; ?>">
-                    <?= $i; ?>
-                </a>
-            <?php endfor; ?>
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <a href="?page=<?= $i; ?>" class="page-btn <?= $i === $currentPage ? 'active' : ''; ?>">
+                        <?= $i; ?>
+                    </a>
+                <?php endfor; ?>
 
-            <?php if ($currentPage < $totalPages): ?>
-                <a href="?page=<?= $currentPage + 1; ?>" class="next-btn">Berikutnya</a>
-            <?php endif; ?>
-        </div>
+                <?php if ($currentPage < $totalPages): ?>
+                    <a href="?page=<?= $currentPage + 1; ?>" class="next-btn">Berikutnya</a>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
     </div>
 
     <!-- Modal untuk memperbesar gambar -->
@@ -177,6 +185,7 @@ $currentEvents = array_slice($acara_sekolah, $offset, $eventsPerPage);
         <img class="modal-content" id="modal-img">
     </div>
 </section>
+
 
 
 

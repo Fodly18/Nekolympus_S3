@@ -369,6 +369,26 @@ nav ul li a:hover {
     object-fit: cover; /* Mengisi seluruh kontainer dengan proporsi yang benar */
 }
 
+/* style text ketika tidak ada galeri */
+.text-muted {
+  font-size: 18px; /* Ukuran font yang cukup besar */
+  color: #6c757d; /* Warna abu-abu untuk memberikan kesan netral */
+  margin-top: 20px; /* Memberikan jarak di atas teks */
+  font-style: italic; /* Memberikan gaya miring agar lebih artistik */
+}
+
+.no-gallery-message {
+  text-align: center; /* Posisi teks berada di tengah */
+  padding: 30px 0; /* Memberikan ruang di sekitar teks */
+  background-color: #f9f9f9; /* Latar belakang abu terang untuk kontras */
+  border: 2px dashed #ddd; /* Garis putus-putus untuk efek visual */
+  border-radius: 10px; /* Membuat sudut melengkung */
+}
+
+
+
+
+
 /* Container dan Header */
 #gallery {
   padding: 2rem 0;

@@ -112,7 +112,7 @@
     </header>
     <!-- Banner  -->
     <div class="banner">
-        <img class="banner-jpg" src="/assets/img/bnn.jpeg" alt="Banner JPG">
+        <img class="banner-jpg" src="/assets/img/banner-kontak.jpg" alt="Banner JPG">
     </div>
 
   

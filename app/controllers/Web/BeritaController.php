@@ -175,6 +175,7 @@ public function delete($id)
             
             Berita::delete($id);
         } else {
+            
             die("Error: Berita dengan ID $id tidak ditemukan.");
         }  
         return $this->redirect('/Berita');

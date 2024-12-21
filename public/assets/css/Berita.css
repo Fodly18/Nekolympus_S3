@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-
 * {
     padding: 0;
     margin: 0;
@@ -151,10 +150,6 @@ nav ul li a:hover {
   opacity: 1; /* Pastikan terlihat */
   visibility: visible; /* Tambahkan untuk menghindari masalah tampilan */
 }
-
-
-
-
 
 /* Off-Canvas Menu */
 .offcanvas-menu {
@@ -371,6 +366,24 @@ nav ul li a:hover {
   height: auto; /* Gunakan auto agar tinggi gambar proporsional dengan lebar */
   object-fit: cover; /* Mengisi seluruh kontainer dengan proporsi yang benar */
 }
+
+
+.text-muted {
+  font-size: 18px; /* Ukuran teks */
+  color: #6c757d; /* Warna abu-abu lembut */
+  margin: 10px 0;
+  font-style: italic; /* Memberikan kesan artistik */
+}
+
+.no-news-message {
+  text-align: center; /* Teks berada di tengah */
+  padding: 40px 0; /* Ruang vertikal untuk fokus */
+  background-color: #f9f9f9; /* Warna latar belakang abu terang */
+  border: 2px dashed #ddd; /* Garis border putus-putus */
+  border-radius: 10px; /* Membuat sudut melengkung */
+}
+
+
 
 /* News */
 .news-section {

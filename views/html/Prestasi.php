@@ -114,7 +114,7 @@
 
     <!-- Banner  -->
     <div class="banner">
-        <img class="banner-jpg" src="/assets/img/bnn.jpeg" alt="Banner JPG">
+        <img class="banner-jpg" src="/assets/img/banner-prestasi.jpg" alt="Banner JPG">
     </div>
 
     <?php
@@ -141,44 +141,53 @@ $currentAchievements = array_slice($prestasi, $offset, $achievementsPerPage);
     <div class="container">
         <h2 class="text-center mb-4">Galeri Prestasi</h2>
         <div class="row">
-            <?php foreach ($currentAchievements as $item): ?>
-                <div class="col-md-4 mb-4">
-                    <div class="card gallery-card">
-                        <img src="<?= htmlspecialchars($item['img'] ?? '/path/to/default.jpg'); ?>" alt="gambar" class="news-img">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($item['judul']); ?></h5>
-                            <p class="card-text"><?= htmlspecialchars($item['konten']); ?></p>
-                            <p class="card-date text-muted">Dibuat pada: <?= htmlspecialchars($item['tanggal']); ?></p>
-                            <!-- Tombol untuk mempop-up gambar sertifikat -->
-                            <button 
-                                class="btn btn-primary view-certificate-btn" 
-                                data-certificate="<?= htmlspecialchars($item['img_sertifikat'] ?? '/path/to/default_certificate.jpg'); ?>">
-                                Lihat Sertifikat
-                            </button>
+            <?php if (empty($currentAchievements)): ?>
+                <div class="col-12 text-center no-achievements-message">
+                    <p class="text-muted">Belum ada prestasi yang tersedia.</p>
+                </div>
+            <?php else: ?>
+                <?php foreach ($currentAchievements as $item): ?>
+                    <div class="col-md-4 mb-4">
+                        <div class="card gallery-card">
+                            <img src="<?= htmlspecialchars($item['img'] ?? '/path/to/default.jpg'); ?>" alt="gambar" class="news-img">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= htmlspecialchars($item['judul']); ?></h5>
+                                <p class="card-text"><?= htmlspecialchars($item['konten']); ?></p>
+                                <p class="card-date text-muted">Dibuat pada: <?= htmlspecialchars($item['tanggal']); ?></p>
+                                <!-- Tombol untuk mempop-up gambar sertifikat -->
+                                <button 
+                                    class="btn btn-primary view-certificate-btn" 
+                                    data-certificate="<?= htmlspecialchars($item['img_sertifikat'] ?? '/path/to/default_certificate.jpg'); ?>">
+                                    Lihat Sertifikat
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
 
         <!-- Pagination -->
-        <div class="pagination">
-            <?php if ($currentPage > 1): ?>
-                <a href="?page=<?= $currentPage - 1; ?>" class="prev-btn">Sebelumnya</a>
-            <?php endif; ?>
+        <?php if ($totalPages > 1): ?>
+            <div class="pagination">
+                <?php if ($currentPage > 1): ?>
+                    <a href="?page=<?= $currentPage - 1; ?>" class="prev-btn">Sebelumnya</a>
+                <?php endif; ?>
 
-            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <a href="?page=<?= $i; ?>" class="page-btn <?= $i === $currentPage ? 'active' : ''; ?>">
-                    <?= $i; ?>
-                </a>
-            <?php endfor; ?>
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <a href="?page=<?= $i; ?>" class="page-btn <?= $i === $currentPage ? 'active' : ''; ?>">
+                        <?= $i; ?>
+                    </a>
+                <?php endfor; ?>
 
-            <?php if ($currentPage < $totalPages): ?>
-                <a href="?page=<?= $currentPage + 1; ?>" class="next-btn">Berikutnya</a>
-            <?php endif; ?>
-        </div>
+                <?php if ($currentPage < $totalPages): ?>
+                    <a href="?page=<?= $currentPage + 1; ?>" class="next-btn">Berikutnya</a>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
     </div>
 </section>
+
 
 
     <!-- Modal untuk memperbesar gambar -->
