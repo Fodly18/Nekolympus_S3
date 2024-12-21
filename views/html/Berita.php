@@ -111,7 +111,7 @@
 
     <!-- Banner  -->
     <div class="banner">
-        <img class="banner-jpg" src="/assets/img/bnn.jpeg" alt="Banner JPG">
+        <img class="banner-jpg" src="/assets/img/banner-berita.jpeg" alt="Banner JPG">
     </div>
 
     <!-- News -->
@@ -139,25 +139,27 @@ $currentNews = array_slice($berita, $offset, $newsPerPage);
 <section class="news-section">
     <h2 class="section-title">Kumpulan Berita</h2>
     <div class="news-container">
-        <?php foreach ($currentNews as $row): ?>
-            <div class="news-item" id="berita-<?= htmlspecialchars($row['id']); ?>">
-                <img src="<?= htmlspecialchars($row['img'] ?? '/path/to/default.jpg'); ?>" 
-                     alt="gambar" 
-                     class="news-img">
-                <div class="news-content">
-                    <h3 class="news-title"><?= htmlspecialchars($row['judul']); ?></h3>
-                    <p class="news-meta">
-                        Tanggal: <?= htmlspecialchars($row['tanggal']); ?> | 
-                        Oleh: <?= htmlspecialchars($row['username'] ?? 'Tidak ada admin'); ?>
-                    </p>
-                    <p class="news-description">
-                        <?= htmlspecialchars(substr($row['konten'], 0, 200)) . (strlen($row['konten']) > 200 ? '...' : ''); ?>
-                    </p>
-                    <a href="/blog/<?= urlencode($row['id']); ?>" class="read-more-btn">Baca Selengkapnya</a>
-                </div>
+    <?php foreach ($currentNews as $index => $row): ?>
+        <div class="news-item" id="berita-<?= htmlspecialchars($row['id']); ?>" 
+             style="--delay: <?= $index; ?>;">
+            <img src="<?= htmlspecialchars($row['img'] ?? '/path/to/default.jpg'); ?>" 
+                 alt="gambar" 
+                 class="news-img">
+            <div class="news-content">
+                <h3 class="news-title"><?= htmlspecialchars($row['judul']); ?></h3>
+                <p class="news-meta">
+                    Tanggal: <?= htmlspecialchars($row['tanggal']); ?> | 
+                    Oleh: <?= htmlspecialchars($row['username'] ?? 'Tidak ada admin'); ?>
+                </p>
+                <p class="news-description">
+                    <?= htmlspecialchars(substr($row['konten'], 0, 200)) . (strlen($row['konten']) > 200 ? '...' : ''); ?>
+                </p>
+                <a href="/blog/<?= urlencode($row['id']); ?>" class="read-more-btn">Baca Selengkapnya</a>
             </div>
-        <?php endforeach; ?>
-    </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
 
     <!-- Pagination -->
     <div class="pagination">

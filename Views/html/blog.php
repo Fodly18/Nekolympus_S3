@@ -13,7 +13,7 @@
 <>
   <!-- Loader Container -->
   <div id="loader">
-    <img src="assets/animation/loading.svg" alt="Loading Animation">
+    <img src="/assets/animation/loading.svg" alt="Loading Animation">
 </div>
      <!-- navbar -->
      <nav class="navbar navbar-expand-lg bg-custom">

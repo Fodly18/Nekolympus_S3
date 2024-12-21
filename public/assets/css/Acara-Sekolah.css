@@ -475,7 +475,7 @@ nav ul li a:hover {
 
 .pagination a {
   padding: 10px 15px;
-  background-color: #28a745; /* Warna hijau */
+  background-color: #007bff; /* Warna hijau */
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
@@ -484,11 +484,11 @@ nav ul li a:hover {
 }
 
 .pagination a:hover {
-  background-color: #218838;
+  background-color: #0056b3;
 }
 
 .pagination a.active {
-  background-color: #218838;
+  background-color: #0056b3;
   pointer-events: none;
 }
 

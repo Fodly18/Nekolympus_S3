@@ -7,25 +7,6 @@
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="/assets/css/dashboardberita.css">
 	<title>Dashboard Guru Page</title>
-	<style>
-		/* Warna tombol "Kembali" */
-		.btn-cancel {
-			background-color: white !important;
-			/* Latar belakang putih */
-			color: black !important;
-			/* Teks hitam */
-			border: 1px solid black !important;
-			/* Garis tepi hitam */
-		}
-
-		/* Warna tombol "Hapus" */
-		.btn-confirm {
-			background-color: #cc183c;
-			/* Latar belakang merah */
-			color: white !important;
-			/* Teks putih */
-		}
-	</style>
 </head>
 
 <body>
@@ -153,53 +134,45 @@
 										</a>
 										<a href="#"
 											onclick="confirmDelete('/latihan-soal/delete/<?= $row['id']; ?>');"
-											class="btn btn-danger">
+											class="btn btn-danger btn-delete delete-button">
 											<i class='bx bx-trash'></i>
 											<span>Hapus</span>
 										</a>
-										<script>
-											function confirmDelete(deleteUrl) {
-												swal("Apakah Anda Yakin Ingin Menghapus Data Ini?", {
-														buttons: {
-															cancel: {
-																text: "Kembali",
-																value: null,
-																visible: true,
-																className: "btn-cancel",
-															},
-															confirm: {
-																text: "Hapus",
-																value: true,
-																visible: true,
-																className: "btn-confirm",
-															},
-														},
-													})
-													.then((willDelete) => {
-														if (willDelete) {
-															window.location.href = deleteUrl;
-														} else {
-															swal("Data tidak jadi dihapus!", {
-																icon: "info",
-																timer: 2000,
-																buttons: false,
-															});
-														}
-													});
-											}
-										</script>
 									</td>
 								</tr>
 							<?php endforeach; ?>
 						<?php endif; ?>
 					</tbody>
 				</table>
-
 			</div>
+			<!-- Modal Konfirmasi -->
+<div id="confirmation-modal" class="modal hidden">
+    <div class="modal-content">
+        <h3>Konfirmasi Penghapusan</h3>
+        <p>Apakah Anda yakin ingin menghapus data ini?</p>
+        <div class="modal-buttons">
+            <button id="cancel-button" class="btn btn-cancel">Batal</button>
+            <button id="confirm-button" class="btn btn-confirm">Hapus</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Konfirmasi Berhasil ketika sesudah delete -->
+<div id="success-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="success-content">
+            <div class="trash-bin">
+                <div class="lid"></div>
+                <div class="bin"></div>
+                <div class="trash"></div>
+            </div>
+            <p>Data sudah dihapus!</p>
+        </div>
+    </div>
+</div>
 		</main>
 		<!-- MAIN -->
 	</section>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="/assets/js/paket-tabel.js"></script>
 </body>
 </html>

@@ -12,3 +12,13 @@ RewriteRule ^(.*)$ $1.php [L]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [L]
+
+# Pembatasan Request
+<IfModule mod_evasive20.c>
+    DOSHashTableSize    3097
+    DOSPageCount        5          # Maksimal 5 request per detik untuk halaman yang sama
+    DOSSiteCount        30         # Maksimal 30 request per detik untuk semua halaman
+    DOSBlockingPeriod   600        # Blokir IP selama 600 detik (10 menit)
+    DOSEmailNotify      admin@example.com # Email admin untuk notifikasi
+    DOSLogDir           "/var/log/apache2/mod_evasive" # Direktori log
+</IfModule>

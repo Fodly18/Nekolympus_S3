@@ -185,7 +185,6 @@
 			</div>
 		</main>
 	</section>
-	<script src="/assets/js/dashboardguru.js"></script>
 	<script src="/assets/js/paket-tabel.js"></script>
 </body>
 
