@@ -132,8 +132,7 @@
 											<i class='bx bx-edit-alt'></i>
 											<span>Edit</span>
 										</a>
-										<a href="#"
-											onclick="confirmDelete('/latihan-soal/delete/<?= $row['id']; ?>');"
+										<a href="/latihan-soal/delete/<?= urlencode($row['id']); ?>"
 											class="btn btn-danger btn-delete delete-button">
 											<i class='bx bx-trash'></i>
 											<span>Hapus</span>
@@ -146,33 +145,34 @@
 				</table>
 			</div>
 			<!-- Modal Konfirmasi -->
-<div id="confirmation-modal" class="modal hidden">
-    <div class="modal-content">
-        <h3>Konfirmasi Penghapusan</h3>
-        <p>Apakah Anda yakin ingin menghapus data ini?</p>
-        <div class="modal-buttons">
-            <button id="cancel-button" class="btn btn-cancel">Batal</button>
-            <button id="confirm-button" class="btn btn-confirm">Hapus</button>
-        </div>
-    </div>
-</div>
+			<div id="confirmation-modal" class="modal hidden">
+				<div class="modal-content">
+					<h3>Konfirmasi Penghapusan</h3>
+					<p>Apakah Anda yakin ingin menghapus data ini?</p>
+					<div class="modal-buttons">
+						<button id="cancel-button" class="btn btn-cancel">Batal</button>
+						<button id="confirm-button" class="btn btn-confirm">Hapus</button>
+					</div>
+				</div>
+			</div>
 
-<!-- Modal Konfirmasi Berhasil ketika sesudah delete -->
-<div id="success-modal" class="modal hidden">
-    <div class="modal-content">
-        <div class="success-content">
-            <div class="trash-bin">
-                <div class="lid"></div>
-                <div class="bin"></div>
-                <div class="trash"></div>
-            </div>
-            <p>Data sudah dihapus!</p>
-        </div>
-    </div>
-</div>
+			<!-- Modal Konfirmasi Berhasil ketika sesudah delete -->
+			<div id="success-modal" class="modal hidden">
+				<div class="modal-content">
+					<div class="success-content">
+						<div class="trash-bin">
+							<div class="lid"></div>
+							<div class="bin"></div>
+							<div class="trash"></div>
+						</div>
+						<p>Data sudah dihapus!</p>
+					</div>
+				</div>
+			</div>
 		</main>
 		<!-- MAIN -->
 	</section>
 	<script src="/assets/js/paket-tabel.js"></script>
 </body>
+
 </html>

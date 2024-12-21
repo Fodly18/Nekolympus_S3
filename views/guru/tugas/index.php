@@ -44,8 +44,8 @@
 			</li>
 			<li>
 				<a href="/penilaian-latihan-soal">
-			
-				<i class='bx bx-task'></i>
+
+					<i class='bx bx-task'></i>
 					<span class="text">Penilaian Latihan Soal</span>
 				</a>
 			</li>
@@ -66,12 +66,12 @@
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu'></i>
-		<!-- mode malam -->
+			<!-- mode malam -->
 			<div class="dark-mode-switch">
-        <p>Dark Mode</p>
-        <input type="checkbox" id="switch-mode" hidden>
-        <label for="switch-mode" class="switch-mode"></label>
-    </div>
+				<p>Dark Mode</p>
+				<input type="checkbox" id="switch-mode" hidden>
+				<label for="switch-mode" class="switch-mode"></label>
+			</div>
 		</nav>
 		<!-- NAVBAR -->
 
@@ -135,8 +135,7 @@
 											<i class='bx bx-edit-alt'></i>
 											<span>Edit</span>
 										</a>
-										<a href="#"
-											onclick="confirmDelete('/tugas-pembelajaran/delete/<?= $row['id']; ?>');"
+										<a href="/tugas-pembelajaran/delete/<?= urlencode($row['id']); ?>"
 											class="btn btn-danger btn-delete delete-button">
 											<i class='bx bx-trash'></i>
 											<span>Hapus</span>
@@ -149,7 +148,7 @@
 				</table>
 			</div>
 
-						<!-- Modal Konfirmasi -->
+			<!-- Modal Konfirmasi -->
 			<div id="confirmation-modal" class="modal hidden">
 				<div class="modal-content">
 					<h3>Konfirmasi Penghapusan</h3>
