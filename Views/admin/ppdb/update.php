@@ -153,18 +153,15 @@
 </div>
 
 	<!-- CONTENT -->
-	<script src="/assets/js/dashboardadmin.js"></script>
-	<script src="/assets/js/line-cart.js"></script>
+	<script src="/assets/js/paket-tabel.js"></script>
     <script>
         function validateForm() {
             const tanggalMulai = document.getElementById('tanggal_mulai').value;
             const tanggalSelesai = document.getElementById('tanggal_selesai').value;
-
             if (new Date(tanggalMulai) > new Date(tanggalSelesai)) {
                 document.querySelector('.warning-message').innerText = 'Tanggal mulai tidak boleh lebih besar dari tanggal selesai!';
                 return false;
             }
-
             return true;
         }
     </script>

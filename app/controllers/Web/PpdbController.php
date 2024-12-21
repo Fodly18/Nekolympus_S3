@@ -6,29 +6,33 @@ use Nekolympus\Project\helpers\Redirect;
 use Nekolympus\Project\core\DB;
 use Nekolympus\Project\core\Request;
 use Nekolympus\Project\models\PPDB;
+use Nekolympus\Project\core\QueryBuilder;
+
 
 class PpdbController extends Controller
 {
     public function index()
-    {
-        $data = DB::table('ppdb')
-            ->select(['ppdb.id', 'ppdb.tanggal_mulai', 'ppdb.tanggal_selesai', 'ppdb.img', 'ppdb.status']) 
-            ->get();
+{
+    $data = DB::table('ppdb')
+        ->select(['ppdb.id', 'ppdb.tanggal_mulai', 'ppdb.tanggal_selesai', 'ppdb.img', 'ppdb.status']) 
+        ->get();
 
-        // Update status berdasarkan waktu saat ini
-        foreach ($data as &$item) {
-            $now = date('Y-m-d H:i:s');
-            
-            // Mengakses elemen array dengan menggunakan indeks
-            if ($now >= $item['tanggal_mulai'] && $now <= $item['tanggal_selesai']) {
-                $item['status'] = 'aktif'; // Mengubah status di array
-            } elseif ($now > $item['tanggal_selesai']) {
-                $item['status'] = 'non-aktif'; // Mengubah status di array
-            }
+    // Update status berdasarkan waktu saat ini
+    foreach ($data as &$item) {
+        $now = date('Y-m-d H:i:s'); // Mendapatkan waktu sekarang
+        
+        // Memeriksa status berdasarkan rentang tanggal
+        if ($now >= $item['tanggal_mulai'] && $now <= $item['tanggal_selesai']) {
+            $item['status'] = 'aktif'; // Status aktif jika dalam rentang tanggal mulai dan selesai
+        } elseif ($now > $item['tanggal_selesai']) {
+            $item['status'] = 'non-aktif'; // Status non-aktif jika sudah lewat tanggal selesai
+        } elseif ($now < $item['tanggal_mulai']) {
+            $item['status'] = 'belum dimulai'; // Status belum dimulai jika tanggal mulai lebih besar dari sekarang
         }
-
-        return $this->view('admin.Ppdb.index', ['data' => $data]);
     }
+
+    return $this->view('admin.Ppdb.index', ['data' => $data]);
+}
 
     public function createIndex()
     {
@@ -37,70 +41,80 @@ class PpdbController extends Controller
 
     public function create(Request $request)
     {
-        $tgl_mulai = $request->input('tanggal_mulai');
-        $tgl_selesai = $request->input('tanggal_selesai');
+        $tgl_mulai = date('Y-m-d', strtotime($request->input('tanggal_mulai')));
+        $tgl_selesai = date('Y-m-d', strtotime($request->input('tanggal_selesai')));
         $uploadedposter = $_FILES['img'] ?? null;
-
-        $errors = []; // Initialize an array to hold error messages
-
+        $today = date('Y-m-d');
+        $errors = [];
+    
         // Validasi tanggal
-        $tgl_mulai = date('Y-m-d', strtotime($tgl_mulai));
-        $today = date('Y-m-d'); // Tanggal hari ini dalam format Y-m-d
-        
         if ($tgl_mulai < $today) {
-            die("Error: Tanggal mulai tidak boleh sebelum hari ini.");
+            $errors[] = "Tanggal mulai tidak boleh sebelum hari ini.";
         }
-        
-        // Izinkan tanggal selesai sama dengan tanggal mulai
-        $tgl_selesai = date('Y-m-d', strtotime($tgl_selesai));
+    
         if ($tgl_selesai < $tgl_mulai) {
-            die("Error: Tanggal selesai tidak boleh sebelum tanggal mulai.");
+            $errors[] = "Tanggal selesai tidak boleh sebelum tanggal mulai.";
         }
-        
-        // Validasi hanya boleh ada 1 poster
-        $posterCount = count(DB::table('ppdb')->get());
-        
-        if ($posterCount >= 2) {
-            $errors['system'][] = "Tidak boleh ada lebih dari 1 poster.";
+    
+        // Menentukan status berdasarkan tanggal
+        $status = 'belum dimulai';  // Default status
+    
+        if ($today >= $tgl_mulai && $today <= $tgl_selesai) {
+            $status = 'aktif'; // Jika hari ini berada di rentang tanggal mulai dan selesai
+        } elseif ($today > $tgl_selesai) {
+            $status = 'non-aktif'; // Jika hari ini lebih dari tanggal selesai
         }
-        
-        // Check if there are any errors
+    
+        // Query jumlah poster aktif
+        $activePosterCount = DB::table('ppdb')->where('status', '=', 'aktif')->count();
+    
+        if ($activePosterCount >= 1) {
+            $errors[] = "Tidak boleh ada lebih dari 1 poster aktif.";
+        }
+    
+        // Validasi upload file img
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+        $maxFileSize = 2 * 1024 * 1024; // 2MB
+    
+        if (!$uploadedposter || $uploadedposter['error'] !== UPLOAD_ERR_OK) {
+            $errors[] = "File img wajib diunggah.";
+        } elseif (!in_array($uploadedposter['type'], $allowedTypes)) {
+            $errors[] = "Jenis file tidak didukung. Hanya JPEG/PNG yang diperbolehkan.";
+        } elseif ($uploadedposter['size'] > $maxFileSize) {
+            $errors[] = "Ukuran file melebihi 2MB.";
+        }
+    
         if (!empty($errors)) {
             return $this->view('admin.Ppdb.create', ['errors' => $errors]);
         }
-
-        // Validasi upload file img
-        if (!$uploadedposter || $uploadedposter['error'] !== UPLOAD_ERR_OK) {
-            die("Error: File img wajib diunggah.");
+    
+        // Proses upload img
+        $uploadDir = '/gambar_ppdb/';
+        $fileName = time() . '_' . basename($uploadedposter['name']);
+        $filePath = $uploadDir . $fileName;
+        $fullPath = __DIR__ . '/../../../public' . $filePath;
+    
+        if (!is_dir(dirname($fullPath))) {
+            mkdir(dirname($fullPath), 0777, true);
         }
-
-        // Proses upload untuk img
-        $filePath = null;
-        if ($uploadedposter && $uploadedposter['error'] === UPLOAD_ERR_OK) {
-            $uploadDir = '/gambar_ppdb/';
-            $fileName = time() . '_' . basename($uploadedposter['name']);
-            $filePath = $uploadDir . $fileName;
-            $fullPath = __DIR__ . '/../../../public' . $filePath;
-
-            if (!is_dir(dirname($fullPath))) {
-                mkdir(dirname($fullPath), 0777, true);
-            }
-
-            if (!move_uploaded_file($uploadedposter['tmp_name'], $fullPath)) {
-                die("Error: Gagal mengunggah file img.");
-            }
+    
+        if (!move_uploaded_file($uploadedposter['tmp_name'], $fullPath)) {
+            return $this->view('admin.Ppdb.create', ['errors' => ["Gagal mengunggah file img."]]);
         }
-
-        // Simpan data ke database
+    
+        // Simpan data dengan status yang sudah ditentukan
         PPDB::create([
             'tanggal_mulai' => $tgl_mulai,
             'tanggal_selesai' => $tgl_selesai,
-            'img' => $filePath, // Path untuk img
-            'status' => 'non-aktif', // Default status
+            'img' => $filePath,
+            'status' => $status,
         ]);
-
+    
         return $this->redirect('/Ppdb')->with('success', 'Konten berhasil dibuat.');
     }
+    
+
+
 
     public function updateIndex()
     {
@@ -108,72 +122,76 @@ class PpdbController extends Controller
     }
 
     public function update(Request $request)
-    {
-        $id = $request->input('id');
-        error_log("Updating PPDB with ID: " . $id); // Debug statement
+{
+    $id = $request->input('id');
+    $tgl_mulai = $request->input('tanggal_mulai');
+    $tgl_selesai = $request->input('tanggal_selesai');
+    $uploadedposter = $_FILES['img'] ?? null;
 
-        $tgl_mulai = $request->input('tanggal_mulai');
-        $tgl_selesai = $request->input('tanggal_selesai');
-        $uploadedposter = $_FILES['img'] ?? null;
+    $tgl_mulai = date('Y-m-d', strtotime($tgl_mulai));
+    $tgl_selesai = date('Y-m-d', strtotime($tgl_selesai));
+    $today = date('Y-m-d');
 
-        // Validasi tanggal
-        $tgl_mulai = date('Y-m-d', strtotime($tgl_mulai));
-        $today = date('Y-m-d'); // Tanggal hari ini dalam format Y-m-d
-        
-        if ($tgl_mulai < $today) {
-            die("Error: Tanggal mulai tidak boleh sebelum hari ini.");
-        }
-        
-        // Izinkan tanggal selesai sama dengan tanggal mulai
-        $tgl_selesai = date('Y-m-d', strtotime($tgl_selesai));
-        if ($tgl_selesai < $tgl_mulai) {
-            die("Error: Tanggal selesai tidak boleh sebelum tanggal mulai.");
-        }
-
-        // Ambil data lama dari database
-        error_log("Updating PPDB with ID: " . $id); // Debug statement
-        $ppdb = DB::table('ppdb')
-        ->select(['id', 'img', 'status'])
-            ->select(['id', 'img', 'status'])
-            ->where('id', '=', $id)
-            ->first();
-
-        if (!$ppdb) {
-            die("Error: Data dengan ID $id tidak ditemukan.");
-        }
-
-        error_log("PPDB record found: " . print_r($ppdb, true)); // Log the found record
-        $filePath = $ppdb->img; // Default ke gambar lama
-        if ($uploadedposter && $uploadedposter['error'] === UPLOAD_ERR_OK) {
-            $uploadDir = __DIR__ . '/../../../public/gambar_ppdb/';
-            $fileName = time() . '_' . basename($uploadedposter['name']);
-            $filePath = '/gambar_ppdb/' . $fileName; // Path baru
-            $fullPath = $uploadDir . $fileName;
-
-            if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0777, true);
-            }
-
-            if (move_uploaded_file($uploadedposter['tmp_name'], $fullPath)) {
-                // Hapus file lama
-                $oldFilePath = __DIR__ . '/../../../public' . $ppdb->img;
-                if (!empty($ppdb->img) && file_exists($oldFilePath)) {
-                    unlink($oldFilePath);
-                }
-            } else {
-                die("Error: Gagal mengunggah file img.");
-            }
-        }
-
-        // Update data
-        PPDB::update($id, [
-            'tanggal_mulai' => $tgl_mulai,
-            'tanggal_selesai' => $tgl_selesai,
-            'img' => $filePath, // Tetap gunakan path lama jika tidak ada file baru
-        ]);
-
-        return $this->redirect('/Ppdb')->with('success', 'Data berhasil diperbarui');
+    if ($tgl_mulai < $today) {
+        die("Error: Tanggal mulai tidak boleh sebelum hari ini.");
     }
+    if ($tgl_selesai < $tgl_mulai) {
+        die("Error: Tanggal selesai tidak boleh sebelum tanggal mulai.");
+    }
+
+    // Ambil data lama
+    $ppdb = DB::table('ppdb')->where('id', '=', $id)->first();
+    if (!$ppdb) {
+        die("Error: Data dengan ID $id tidak ditemukan.");
+    }
+
+    $filePath = $ppdb->img; // Default ke gambar lama
+    if ($uploadedposter && $uploadedposter['error'] === UPLOAD_ERR_OK) {
+        $allowedExtensions = ['jpg', 'jpeg', 'png'];
+        $fileExtension = pathinfo($uploadedposter['name'], PATHINFO_EXTENSION);
+
+        if (!in_array(strtolower($fileExtension), $allowedExtensions)) {
+            die("Error: Hanya file dengan ekstensi .jpg, .jpeg, atau .png yang diperbolehkan.");
+        }
+
+        $uploadDir = __DIR__ . '/../../../public/gambar_ppdb/';
+        $fileName = time() . '_' . basename($uploadedposter['name']);
+        $filePath = '/gambar_ppdb/' . $fileName;
+        $fullPath = $uploadDir . $fileName;
+
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        if (move_uploaded_file($uploadedposter['tmp_name'], $fullPath)) {
+            $oldFilePath = __DIR__ . '/../../../public' . $ppdb->img;
+            if (!empty($ppdb->img) && file_exists($oldFilePath)) {
+                unlink($oldFilePath);
+            }
+        } else {
+            die("Error: Gagal mengunggah file img.");
+        }
+    }
+
+    // Tentukan status baru
+    $status = 'belum dimulai';
+    if ($tgl_mulai <= $today && $tgl_selesai >= $today) {
+        $status = 'aktif';
+    } elseif ($tgl_selesai < $today) {
+        $status = 'non-aktif';
+    }
+
+    // Update data
+    PPDB::update($id, [
+        'tanggal_mulai' => $tgl_mulai,
+        'tanggal_selesai' => $tgl_selesai,
+        'img' => $filePath,
+        'status' => $status,
+    ]);
+
+    return $this->redirect('/Ppdb')->with('success', 'Data berhasil diperbarui');
+}
+
 
     public function delete($id)
     {  

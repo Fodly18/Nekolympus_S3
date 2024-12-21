@@ -72,11 +72,35 @@ class HomeController extends Controller
     
     }
     public function ppdb()
-    {
+{
+    // Ambil semua data PPDB tanpa filter status
+    $data = DB::table('ppdb')
+        ->select(['id', 'tanggal_mulai', 'tanggal_selesai', 'img', 'status'])
+        ->orderBy('tanggal_mulai', 'desc')
+        ->get();
+
+    // Update status berdasarkan waktu saat ini
+    foreach ($data as &$item) {
+        $now = date('Y-m-d H:i:s'); // Mendapatkan waktu sekarang
         
-    return $this->view('html.ppdb');
-    
+        // Tentukan status berdasarkan rentang tanggal
+        if ($now >= $item['tanggal_mulai'] && $now <= $item['tanggal_selesai']) {
+            $item['status'] = 'aktif'; // Status aktif jika dalam rentang tanggal mulai dan selesai
+        } elseif ($now > $item['tanggal_selesai']) {
+            $item['status'] = 'non-aktif'; // Status non-aktif jika sudah lewat tanggal selesai
+        } elseif ($now < $item['tanggal_mulai']) {
+            $item['status'] = 'belum dimulai'; // Status belum dimulai jika tanggal mulai lebih besar dari sekarang
+        }
     }
+
+    // Kirim data ke tampilan
+    return $this->view('html.ppdb', ['data' => $data]);
+}
+
+
+    
+
+
     public function kontak()
     {
     

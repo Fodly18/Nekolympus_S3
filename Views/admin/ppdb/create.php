@@ -147,7 +147,7 @@
         </main>
     </section>
     <!-- CONTENT -->
-	<script>
+	<!-- <script>
     function validateForm() {
         const imgInput = document.getElementById('img');
         const startDate = new Date(document.getElementById('tanggal_mulai').value);
@@ -175,9 +175,8 @@
 
         return true; // Jika semua validasi lolos
     }
-</script>
+</script> -->
 
-    <script src="/assets/js/dashboardadmin.js"></script>
-    <script src="/assets/js/line-cart.js"></script>
+<script src="/assets/js/paket-tabel.js"></script>
 </body>
 </html>

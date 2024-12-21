@@ -157,5 +157,24 @@ class QueryBuilder
         return $this;
     }
 
+    public function count()
+{
+    // Ubah SELECT menjadi COUNT(*)
+    $query = str_replace("SELECT *", "SELECT COUNT(*) AS count", $this->buildQuery());
+    $stmt = $this->db->prepare($query);
+
+    // Bind semua parameter
+    foreach ($this->bindings as $key => $value) {
+        $stmt->bindValue($key, $value);
+    }
+
+    // Eksekusi query dan ambil hasilnya
+    $stmt->execute();
+    $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+    return $result['count'] ?? 0; // Kembalikan jumlah atau 0 jika tidak ada hasil
+}
+
+
 
 }
