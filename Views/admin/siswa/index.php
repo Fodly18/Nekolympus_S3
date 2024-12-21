@@ -79,67 +79,71 @@
 
         <!-- MAIN -->
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Data Siswa</h1>
-                    <ul class="breadcrumb">
-                        <li><a href="/admin">Dashboard</a></li>
-                        <li><i class='bx bx-chevron-right'></i></li>
-                        <li><a class="active" href="#">Data Siswa</a></li>
-                    </ul>
-                </div>
-                <a href="/siswa/create" class="btn btn-primary">
-                    <i class='bx bx-plus'></i>
-                    <span>Tambah Siswa</span>
-                </a>
-            </div>
+    <div class="head-title">
+        <div class="left">
+            <h1>Data Siswa</h1>
+            <ul class="breadcrumb">
+                <li><a href="/admin">Dashboard</a></li>
+                <li><i class='bx bx-chevron-right'></i></li>
+                <li><a class="active" href="#">Data Siswa</a></li>
+            </ul>
+        </div>
+        <a href="/siswa/create" class="btn btn-primary">
+            <i class='bx bx-plus'></i>
+            <span>Tambah Siswa</span>
+        </a>
+    </div>
 
-            <div class="table-container">
-                <table class="data-table">
-                    <thead>
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Siswa</th>
+                    <th>NISN</th>
+                    <th>Nomor HP</th>
+                    <th>Kelas</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (empty($data)): ?>
+                    <tr>
+                        <td colspan="6" class="empty-state">
+                            <i class='bx bx-folder-open'></i>
+                            <p>Belum ada data siswa tersedia</p>
+                        </td>
+                    </tr>
+                <?php else: ?>
+                    <?php $no = 1; foreach ($data as $row): ?>
                         <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Nomor HP</th>
-                            <th>NISN</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if (empty($data)): ?>
-                            <tr>
-                                <td colspan="5" class="empty-state">
-                                    <i class='bx bx-folder-open'></i>
-                                    <p>Belum ada data Siswa tersedia</p>
-                                </td>
-                            </tr>
-                        <?php else: ?>
-                            <?php $no = 1; foreach ($data as $row): ?>
-                                <tr>
-                                    <td><?= $no++; ?></td>
-                                    <td><?= htmlspecialchars($row['nama']); ?></td>
-                                    <td><?= htmlspecialchars($row['nomor_hp']); ?></td>
-                                    <td><?= htmlspecialchars($row['nisn']); ?></td>
-                                    <td class="action-buttons">
+                            <td><?= $no++; ?></td>
+                            <td><?= htmlspecialchars($row['nama']); ?></td>
+                            <td><?= htmlspecialchars($row['nisn']); ?></td>
+                            <td><?= htmlspecialchars($row['nomor_hp']); ?></td>
+                            <td><?= htmlspecialchars($row['kelas']); ?></td>
+                            <td class="action-buttons">
                                         <a href="/siswa/update/<?= $row['id']; ?>" class="btn btn-success">
                                             <i class='bx bx-edit-alt'></i>
                                             <span>Edit</span>
                                         </a>
                                         <a href="/siswa/delete/<?= $row['id']; ?>" 
-                                           onclick="return confirm('Apakah Anda yakin ingin menghapus data siswa <?= htmlspecialchars($row['nama']); ?>?');"
+                                           onclick="return confirm('Apakah Anda yakin ingin menghapus data guru <?= htmlspecialchars($row['nama']); ?>?');"
                                            class="btn btn-danger">
                                             <i class='bx bx-trash'></i>
                                             <span>Hapus</span>
                                         </a>
                                     </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
-            </div>
-        </main>
-    </section>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+
+    
 
     <script src="/assets/js/dashboardadmin.js"></script>
     <script>

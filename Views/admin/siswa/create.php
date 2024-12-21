@@ -148,6 +148,19 @@
                         <?php endif; ?>
                     </div>
 
+                    <div class="form-group">
+                        <label for="nama_kelas">Kelas</label>
+                        <select class="form-control" id="kelas" name="kelas" required>
+                            <option value="" disabled selected>-- Pilih Kelas --</option>
+                            <?php foreach ($data as $row): ?>
+                                <option value="<?= htmlspecialchars($row['id']); ?>">
+                                    <?= htmlspecialchars($row['kelas']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        </div>
+
+
                     <div class="btn-container">
                         <button type="submit" class="btn btn-primary">
                             <i class='bx bx-save'></i>

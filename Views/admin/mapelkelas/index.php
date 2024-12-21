@@ -117,9 +117,9 @@
                     <?php $no = 1; foreach ($data as $row): ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= htmlspecialchars($row['nama_mapel']); ?></td>
-                            <td><?= htmlspecialchars($row['nama_kelas']); ?></td>
-                            <td><?= htmlspecialchars($row['nama_guru']); ?></td>
+                            <td><?= htmlspecialchars($row['nama']); ?></td>
+                            <td><?= htmlspecialchars($row['kelas']); ?></td>
+                            <td><?= htmlspecialchars($row['guru']); ?></td>
                             <td class="action-buttons">
                                 <a href="/mapelkelas/update/<?= $row['id']; ?>" class="btn btn-success">
                                     <i class='bx bx-edit-alt'></i>

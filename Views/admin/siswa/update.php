@@ -100,14 +100,13 @@
                 <?php endif; ?>
 
                 <form action="/siswa/update" method="post" id="updateForm" onsubmit="return validateForm()">
-                    <input type="hidden" name="id" value="<?= htmlspecialchars($data->id) ?>">
+                    <div class="form-group">
                     
                     <div class="form-group">
                         <label for="nisn">NISN</label>
                         <input type="text" class="form-control" id="nisn" name="nisn" required 
-                               pattern="[0-9]{10}" maxlength="10"
-                               value="<?= htmlspecialchars($data->nisn) ?>" aria-describedby="nisnHint">
-                        <div id="nisnHint" class="form-hint">NISN harus 10 digit angka</div>
+                               pattern="[0-9]{10}" maxlength="10">
+                        <div class="form-hint">NISN harus 10 digit angka</div>
                         <?php if (isset($errors['nisn'])): ?>
                             <?php foreach ($errors['nisn'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -118,7 +117,7 @@
                     <div class="form-group">
                         <label for="nama">Nama Lengkap</label>
                         <input type="text" class="form-control" id="nama" name="nama" required 
-                               maxlength="100" value="<?= htmlspecialchars($data->nama) ?>">
+                               maxlength="100">
                         <?php if (isset($errors['nama'])): ?>
                             <?php foreach ($errors['nama'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -129,9 +128,8 @@
                     <div class="form-group">
                         <label for="nomor_hp">Nomor HP</label>
                         <input type="tel" class="form-control" id="nomor_hp" name="nomor_hp" required 
-                               pattern="[0-9]{10,13}" maxlength="13"
-                               value="<?= htmlspecialchars($data->nomor_hp) ?>" aria-describedby="nomorHpHint">
-                        <div id="nomorHpHint" class="form-hint">Nomor HP harus 10-13 digit angka</div>
+                               pattern="[0-9]{10,13}" maxlength="13">
+                        <div class="form-hint">Nomor HP harus 10-13 digit angka</div>
                         <?php if (isset($errors['nomor_hp'])): ?>
                             <?php foreach ($errors['nomor_hp'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
@@ -140,19 +138,28 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Password Baru (Kosongkan jika tidak ingin mengubah)</label>
-                        <div class="password-container">
-                            <input type="password" class="form-control" id="password" name="password" 
-                                   minlength="6" aria-describedby="passwordHint">
-                            <i class='bx bx-show toggle-password' onclick="togglePassword()"></i>
-                        </div>
-                        <div id="passwordHint" class="form-hint">Password minimal 6 karakter</div>
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required 
+                               minlength="6">
+                        <div class="form-hint">Password minimal 6 karakter</div>
                         <?php if (isset($errors['password'])): ?>
                             <?php foreach ($errors['password'] as $error): ?>
                                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </div>
+
+                    <div class="form-group">
+                        <label for="nama_kelas">Kelas</label>
+                        <select class="form-control" id="kelas" name="kelas" required>
+                            <option value="" disabled selected>-- Pilih Kelas --</option>
+                            <?php foreach ($data as $row): ?>
+                                <option value="<?= htmlspecialchars($row['id']); ?>">
+                                    <?= htmlspecialchars($row['kelas']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        </div>
 
                     <div class="btn-container">
                         <button type="submit" class="btn btn-primary">

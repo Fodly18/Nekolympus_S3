@@ -66,8 +66,6 @@
 		</ul>
 	</section>
 
-
-
 	<!-- CONTENT -->
 	<section id="content">
 		<!-- NAVBAR -->
@@ -78,9 +76,11 @@
         <p>Dark Mode</p>
         <input type="checkbox" id="switch-mode" hidden>
         <label for="switch-mode" class="switch-mode"></label>
-    </div>
+            </div>
 		</nav>
 		<!-- NAVBAR -->
+    
+    	<!-- MAIN -->
         <main>
     <div class="head-title">
         <div class="left">

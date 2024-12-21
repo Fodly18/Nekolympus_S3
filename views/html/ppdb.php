@@ -89,30 +89,33 @@
 
     <?php if (!empty($data)): ?>
         <?php 
-            // Filter for active posters
+            // Filter untuk poster yang aktif
             $activePosters = array_filter($data, function($uploadedposter) {
-                return $uploadedposter->status == 'aktif';
+                return $uploadedposter->status == 'aktif'; // Mengambil poster dengan status aktif
             });
         ?>
 
         <?php if (!empty($activePosters)): ?>
-            <!-- Display active posters -->
+            <!-- Jika ada poster yang aktif -->
             <div class="announcement">PEMBERITAHUAN!</div>
             <div class="details">Penerimaan Peserta Didik Baru (PPDB)<br>SD Negeri 1 Kalisat</div>
             <?php foreach ($activePosters as $poster): ?>
+                <!-- Menampilkan poster aktif -->
                 <img class="poster-thumbnail" src="<?= htmlspecialchars($poster->img); ?>" alt="Poster PPDB" />
             <?php endforeach; ?>
         <?php else: ?>
-            <!-- Message if no active posters -->
+            <!-- Jika tidak ada poster aktif -->
             <div class="announcement">PEMBERITAHUAN!</div>
             <div class="details">Penerimaan Peserta Didik Baru (PPDB)<br>SD Negeri 1 Kalisat</div>
             <div class="status">BELUM DIBUKA</div>
             <div class="note">Silakan kembali lagi nanti</div>
         <?php endif; ?>
     <?php else: ?>
+        <!-- Jika tidak ada data PPDB -->
         <p class="text-center">Tidak ada informasi PPDB yang tersedia.</p>
     <?php endif; ?>
 </div>
+
 
  <!-- FOOTER -->
 
