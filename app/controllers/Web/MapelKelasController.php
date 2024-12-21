@@ -18,9 +18,9 @@ class MapelKelasController extends Controller
             ->join('guru', 'mapel_kelas.id_guru', '=', 'guru.id')
             ->select([
                 'mapel_kelas.id',
-                'mapel.nama as nama_mapel',
-'kelas.kelas as nama_kelas',
-                'guru.nama as nama_guru',
+                'mapel.nama as nama',
+                'kelas.kelas as kelas',
+                'guru.nama as guru',
             ])
             ->get();
         return $this->view('admin.mapelkelas.index', ['data' => $data]);
@@ -28,84 +28,63 @@ class MapelKelasController extends Controller
 
     public function createIndex()
     {
-        $mapel = DB::table('mapel')->get();
-        $kelas = DB::table('kelas')->get();
-        $guru = DB::table('guru')->get();
-        return $this->view('admin.mapelkelas.create', [
-            'mapel' => $mapel,
-            'kelas' => $kelas,
-            'guru' => $guru,
-        ]);
+
+        $data = DB::table('mapel_kelas')
+        ->join('mapel', 'mapel_kelas.id_mapel', '=', 'mapel.id')
+        ->join('kelas', 'mapel_kelas.id_kelas', '=', 'kelas.id')
+        ->join('guru', 'mapel_kelas.id_guru', '=', 'guru.id')
+        ->select([
+            'mapel_kelas.id',
+            'mapel.nama as nama',
+            'kelas.kelas as kelas',
+            'guru.nama as guru',
+        ])
+        ->get();
+
+        return $this->view('admin.mapelkelas.create',['data' => $data]);
     }
 
     public function create(Request $request)
     {
-        $id_mapel = $request->input('id_mapel');
-        $id_kelas = $request->input('id_kelas');
-        $id_guru = $request->input('id_guru');
-
-        if (empty($id_mapel) || empty($id_kelas) || empty($id_guru)) {
-            die("Error: Semua kolom wajib diisi.");
-        }
-
-        DB::table('mapel_kelas')->insert([
-            'id_mapel' => $id_mapel,
-            'id_kelas' => $id_kelas,
-            'id_guru' => $id_guru,
+        $Mapelkelas = MapelKelas::create([
+            'id_mapel' => $request->input('nama'),
+            'id_kelas' => $request->input('kelas'),
+            'id_guru' => $request->input('guru'),
         ]);
+        
 
         return $this->redirect('/mapelkelas')->with('success', 'Data berhasil ditambahkan.');
     }
 
     public function updateIndex($id)
     {
-        $data = DB::table('mapel_kelas')->where('id', '=', $id)->first();
-        if (!$data) {
-            die("Error: Data tidak ditemukan.");
-        }
-
-        $mapel = DB::table('mapel')->get();
-        $kelas = DB::table('kelas')->get();
-        $guru = DB::table('guru')->get();
-
-        return $this->view('admin.mapelkelas.update', [
-            'data' => $data,
-            'mapel' => $mapel,
-            'kelas' => $kelas,
-            'guru' => $guru,
-        ]);
+        $data = DB::table('mapel_kelas')
+        ->join('mapel', 'mapel_kelas.id_mapel', '=', 'mapel.id')
+        ->join('kelas', 'mapel_kelas.id_kelas', '=', 'kelas.id')
+        ->join('guru', 'mapel_kelas.id_guru', '=', 'guru.id')
+        ->select([
+            'mapel_kelas.id',
+            'mapel.nama as nama',
+            'kelas.kelas as kelas',
+            'guru.nama as guru',
+        ])
+        ->get();
     }
 
     public function update(Request $request)
     {
-        $id = $request->input('id');
-        $id_mapel = $request->input('id_mapel');
-        $id_kelas = $request->input('id_kelas');
-        $id_guru = $request->input('id_guru');
-
-        if (empty($id_mapel) || empty($id_kelas) || empty($id_guru)) {
-            die("Error: Semua kolom wajib diisi.");
-        }
-
-        DB::table('mapel_kelas')
-            ->where('id', '=', $id)
-            ->update([
-                'id_mapel' => $id_mapel,
-                'id_kelas' => $id_kelas,
-                'id_guru' => $id_guru,
-            ]);
+        $Mapelkelas = MapelKelas::update($request->input('id'), [
+            'id_mapel' => $request->input('nama_mapel'),
+            'id_kelas' => $request->input('kelas'),
+            'id_guru' => $request->input('guru'),
+        ]);
 
         return $this->redirect('/mapelkelas')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function delete($id)
     {
-        $data = DB::table('mapel_kelas')->where('id', '=', $id)->first();
-        if ($data) {
-            DB::table('mapel_kelas')->where('id', '=', $id)->delete();
-        } else {
-            die("Error: Data tidak ditemukan.");
-        }
+        MapelKelas::delete($id);
 
         return $this->redirect('/mapelkelas')->with('success', 'Data berhasil dihapus.');
     }

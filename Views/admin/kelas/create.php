@@ -41,7 +41,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="mapelkelas">
+				<a href="/mapelkelas">
 					<i class='bx bx-book-open' ></i>
 					<span class="text">Mapel-Kelas</span>
 				</a>
@@ -112,6 +112,19 @@
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </div>
+
+                    <div class="form-group">
+                        <label for="guru">Guru</label>
+                        <select class="form-control" id="guru" name="guru" required>
+                            <option value="" disabled selected>-- Pilih Guru --</option>
+                            <?php foreach ($data as $row): ?>
+                                <option value="<?= htmlspecialchars($row['id']); ?>">
+                                    <?= htmlspecialchars($row['guru']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        </div>
+
 
                     <div class="btn-container">
                         <button type="submit" class="btn btn-primary">

@@ -41,7 +41,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="mapelkelas">
+				<a href="/mapelkelas">
 					<i class='bx bx-book-open' ></i>
 					<span class="text">Mapel-Kelas</span>
 				</a>
